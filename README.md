@@ -9,7 +9,7 @@ Tele-Vet is a tele-health web app designed to connect vets with their furry pati
 ## What will our app do?
 
 It will connect vets and pet owners virtually. User can sign in as either pet owner or vet. Pet owners can:
-- Undergo a pre-screening using a chatbox to indicate the level of urgency and preliminary info
+- Undergo a pre-screening using a chatbot to indicate the level of urgency and preliminary info
 - Find the nearest vet to their location
 - Book an appointment with a vet
 - Message vets in real-time
@@ -48,16 +48,16 @@ Pet owners can retrieve message log, prescriptions and uploaded images. Vets can
 
 ## Stretch Requirements
 
-# Breakdown of minimal requirements
+## Breakdown of minimal requirements
 
-# Prototypes
+## Prototypes
 
 // TODO figure out where each of these functionalities belong:
-(1) Pre-screening chatbox
-(2) Booking/viewing appointment with Calendar
-(3) Payment integration
-(4) Upload images
-(5) Realtime messaging btwn patients and vets
-(6) Video conferencing 
-(7) Integrate with maps
-(8) Database storage 
+- Pre-screening chatbot
+- Booking/viewing appointment with Calendar
+- Payment integration
+- Upload images
+- Realtime messaging btwn patients and vets
+- Video conferencing 
+- Integrate with maps
+- Database storage 
