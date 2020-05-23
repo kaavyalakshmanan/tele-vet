@@ -98,6 +98,5 @@ Pet owners can retrieve message log, prescriptions and uploaded images. Vets can
     1. Choose an Oauth2.0 provider (Auth0 is free for up to 7k users https://auth0.com/). We don't want to manage this ourselves.
     2. Set up account (details depend on provider).
     3. Integrate into web app.
-    
 
 ## Prototypes
