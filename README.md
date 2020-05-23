@@ -64,7 +64,7 @@ Vets:
 - Address
 - Uploaded images of the clinic or staff
 - Staff profiles
-- Some certificate prooving the vet is real
+- Some certificate proving the vet is real
 - Message history
 - Prescription history etc
 
