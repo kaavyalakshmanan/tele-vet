@@ -72,8 +72,6 @@ Vets:
 
 Pet owners can retrieve message log, prescriptions and uploaded images. Vets can retrieve message log, patient file, and uploaded images.
 
-## Additional functionality (contingent on time constraints)
-
 ## Minimal Requirements
 - Database storage 
 - User and vet accounts
