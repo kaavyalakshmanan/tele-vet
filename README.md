@@ -68,21 +68,36 @@ Pet owners can retrieve message log, prescriptions and uploaded images. Vets can
 ## Additional functionality (contingent on time constraints)
 
 ## Minimal Requirements
+- Database storage 
+- User and vet accounts
+- log in portal
+- Search for vets by location (google map integration)
+- View a vet's availability
+- Booking/viewing appointment
 
 ## Standard Requirements
+- Booking/viewing appointment
+- Pre-screening chatbot
+- Send and receive private messages to a message inbox
+- Realtime messaging between patients and vets
+- Embedded video portal
+- Upload images
 
 ## Stretch Requirements
+- Integrate booking with external calendars (google Cal, Outlook, Apple Cal)
+- Payment integration
+- Pre-screening chatbot
 
 ## Breakdown of minimal requirements
+- Database Storage
+    1. Set up a (mysql?) database
+    2. Create a REST service in the backend that will provide endpoints for accessing the database, so we can access the
+        data with frontend AJAX requests.
+
+- log-in portal
+    1. Choose an Oauth2.0 provider (Auth0 is free for up to 7k users https://auth0.com/). We don't want to manage this ourselves.
+    2. Set up account (details depend on provider).
+    3. Integrate into web app.
+    
 
 ## Prototypes
-
-// TODO figure out where each of these functionalities belong:
-- Pre-screening chatbot
-- Booking/viewing appointment with Calendar
-- Payment integration
-- Upload images
-- Realtime messaging btwn patients and vets
-- Video conferencing 
-- Integrate with maps
-- Database storage 
