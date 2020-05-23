@@ -100,3 +100,6 @@ Pet owners can retrieve message log, prescriptions and uploaded images. Vets can
     3. Integrate into web app.
 
 ## Prototypes
+
+![initialSketches](sketches.jpg)
+![initialSketches2](sketches2.jpg)
