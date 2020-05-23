@@ -1,5 +1,12 @@
 # tele-vet
 
+## Who are we?
+
+Kaavya: r2q7
+Amy: U5X9A
+Francois: j1h1b
+Nick: t9f2b
+
 ## Who is this for?
 
 Tele-Vet is a tele-health web app designed to connect vets with their furry patients. There are two use cases:
