@@ -2,7 +2,7 @@
 
 ## Who is this for?
 
-Tele-Vet is a tele-health web app designed to connect vets with their furry patients. There are 2 use cases:
+Tele-Vet is a tele-health web app designed to connect vets with their furry patients. There are two use cases:
 (1) Pet owners who want to meet their vet virtually.
 (2) Vets who want to meet their patient or take on new patients virtually.
 
@@ -11,10 +11,11 @@ Tele-Vet is a tele-health web app designed to connect vets with their furry pati
 It will connect vets and pet owners virtually with video conferencing and messaging. Users can sign in as either pet owner or vet. 
 Pet owners can:
 - Undergo a pre-screening using a chatbot to indicate the level of urgency and preliminary info
-- Find the nearest vet to their location
+- Search for vets by location
 - Book an appointment with a vet
-- View a vets availability
+- View a vet's availability
 - Message vets in real-time
+- Send and receive private messages to a message inbox
 - Upload images
 - Video conference with vets
 - View message log history with vets
@@ -22,7 +23,7 @@ Pet owners can:
 - Receive prescriptions from the vet that can be downloaded as a pdf for printing and collecting
 
 Vets can:
-- Message patients
+- Send and receive private messages to a message inbox
 - View calendar and book patients through Google Calendar or Outlook or Apple Calendar
 - View message log history with patients 
 - Send notes and prescriptions
@@ -33,15 +34,21 @@ Vets can:
 ## What type of data will we store?
 
 We will store patient profile data: 
-Patients:
-- Pet owner name
+Pet Owners:
+- Name
 - Contact information
-- Pet name
-- Pet breed
+- Address
+- Message History
+- List of pets
+
+Pets:
+- Name
+- Owner
+- Species
+- Breed
 - Address
 - Uploaded images
 - Files (patient history, prescription history, pre-existing conditions, etc)
-- Message history
 
 Vets:
 - Vet name
@@ -61,21 +68,35 @@ Pet owners can retrieve message log, prescriptions and uploaded images. Vets can
 ## Additional functionality (contingent on time constraints)
 
 ## Minimal Requirements
+- Database storage 
+- User and vet accounts
+- log in portal
+- Search for vets by location (google map integration)
+- View a vet's availability
+- Booking/viewing appointment
 
 ## Standard Requirements
+- Booking/viewing appointment
+- Pre-screening chatbot
+- Send and receive private messages to a message inbox
+- Realtime messaging between patients and vets
+- Embedded video portal
+- Upload images
 
 ## Stretch Requirements
+- Integrate booking with external calendars (google Cal, Outlook, Apple Cal)
+- Payment integration
+- Pre-screening chatbot
 
 ## Breakdown of minimal requirements
+- Database Storage
+    1. Set up a (mysql?) database
+    2. Create a REST service in the backend that will provide endpoints for accessing the database, so we can access the
+        data with frontend AJAX requests.
+
+- log-in portal
+    1. Choose an Oauth2.0 provider (Auth0 is free for up to 7k users https://auth0.com/). We don't want to manage this ourselves.
+    2. Set up account (details depend on provider).
+    3. Integrate into web app.
 
 ## Prototypes
-
-// TODO figure out where each of these functionalities belong:
-- Pre-screening chatbot
-- Booking/viewing appointment with Calendar
-- Payment integration
-- Upload images
-- Realtime messaging btwn patients and vets
-- Video conferencing 
-- Integrate with maps
-- Database storage 
