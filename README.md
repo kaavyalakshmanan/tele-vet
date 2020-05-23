@@ -2,10 +2,10 @@
 
 ## Who are we?
 
-Kaavya: r2q7
-Amy: U5X9A
-Francois: j1h1b
-Nick: t9f2b
+- Kaavya: r2q7
+- Amy: U5X9A
+- Francois: j1h1b
+- Nick: t9f2b
 
 ## Who is this for?
 
