@@ -4,8 +4,8 @@
 
 - Kaavya: R2Q7
 - Amy: U5X9A
-- Francois: j1h1b
-- Nick: t9f2b
+- Francois: J1H1B
+- Nick: T9F2B
 
 ## Who is this for?
 
