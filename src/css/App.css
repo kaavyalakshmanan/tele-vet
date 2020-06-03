@@ -1,8 +1,2 @@
-/* This library is basically a set of pre-packaged designs that look really good
-   TODO: Confirm with a TA that we can use these (I don't think it will be a problem)
- */
-@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-
-.navbar-light {
-    background-color: #e3f2fd;
-}
+@import './Appointments.css';
+@import './Navigation.css';
