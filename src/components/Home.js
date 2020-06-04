@@ -7,6 +7,7 @@ class Home extends React.Component {
                 <h1>Home (Work in Progress)</h1>
                 <p>Welcome to Tele-Vet!</p>
             </div>
+            
         );
     }
 }

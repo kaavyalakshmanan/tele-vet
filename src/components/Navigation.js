@@ -13,6 +13,8 @@ class Navigation extends React.Component {
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/features">Features</Nav.Link>
                     <Nav.Link href="/about">Team</Nav.Link>
+                    <Nav.Link href="/login">LogIn</Nav.Link>
+                    <Nav.Link href="/signup">SignUp</Nav.Link>
                 </Nav>
                 <Form inline>
                     <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
