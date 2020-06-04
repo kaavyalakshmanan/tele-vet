@@ -1,0 +1,25 @@
+{
+  "name": "Adlib Scaredy Cat",
+  "contact": {
+    "address": "808 Pet Drive",
+    "city": "Vancouver",
+    "province/state": "British Columbia",
+    "Country": "Canada"
+  },
+  "pets": [
+    {
+      "name": "CatDog",
+      "Owner": "Adlib Scaredy Cat",
+      "Species": "Falcon",
+      "images": [],
+      "files": []
+    },
+    {
+      "name": "Yoda",
+      "Owner": "Adlib Scaredy Cat",
+      "Species": "Gold Fish",
+      "images": [],
+      "files": []
+    }
+  ]
+}
