@@ -6,25 +6,43 @@ class PetSignUp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          email: "",
-          password: ""
+          user_name: "",
+          address: "",
+          password: "",
+          email: ""
         };
       }
     render() {
       
-        const { email, password } = this.state;
+        const { user_name, address, email, password } = this.state;
         return (
           <form onSubmit={this.handleSubmit}>
+            <label htmlFor="user_name">Name</label>
+            <input
+              name="user_name"
+              type="text"
+              placeholder="Enter your full name"
+              value={user_name}
+              onChange={this.handleChange}
+            />
+             <label htmlFor="user_name">Address</label>
+            <input
+              name="address"
+              type="text"
+              placeholder="Enter your address"
+              value={address}
+              onChange={this.handleChange}
+            />
             <label htmlFor="email">Email</label>
             <input
               name="email"
-              type="text"
+              type="email"
               placeholder="Enter your email"
               value={email}
               onChange={this.handleChange}
             />
             <label htmlFor="email">Password</label>
-            <input
+              <input
               name="password"
               type="password"
               placeholder="Enter your password"
