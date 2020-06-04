@@ -2,7 +2,7 @@ import React from 'react';
 import "./styles.css";
 // import ValidatedLoginForm from "./ValidatedLoginForm";
 
-class VetLogIn extends React.Component {
+class VetSignUp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -47,4 +47,4 @@ handleChange = event => {
 }
 
 
-export default VetLogIn;
+export default VetSignUp;

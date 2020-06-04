@@ -19,6 +19,10 @@ class Navigation extends React.Component {
                     <NavDropdown.Item href="/vetlogin">Vet LogIn</NavDropdown.Item>
                     <NavDropdown.Item href="/petlogin">Pet LogIn</NavDropdown.Item>
                 </NavDropdown>
+                <NavDropdown title="SignUp" id="basic-nav-dropdown">
+                    <NavDropdown.Item href="/vetsignup">Vet SignUp</NavDropdown.Item>
+                    <NavDropdown.Item href="/petsignup">Pet SignUp</NavDropdown.Item>
+                </NavDropdown>
               
                 
                 <Form inline>

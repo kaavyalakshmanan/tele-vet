@@ -1,4 +1,5 @@
 import React from 'react';
+import "./styles.css";
 
 class PetLogIn extends React.Component {
     constructor(props) {

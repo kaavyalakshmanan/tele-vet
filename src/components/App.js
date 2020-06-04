@@ -7,6 +7,8 @@ import About from "./About";
 import Features from "./Features";
 import VetLogIn from "./VetLogIn";
 import PetLogIn from "./PetLogIn";
+import VetSignUp from "./VetSignUp";
+import PetSignUp from "./PetSignUp";
 import Error from "./Error"
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
             <Route path="/features" component={Features}/>
             <Route path="/vetlogin" component={VetLogIn}/>
             <Route path="/petlogin" component={PetLogIn}/>
+            <Route path="/vetsignup" component={VetSignUp}/>
+            <Route path="/petsignup" component={PetSignUp}/>
             <Route component={Error}/>
           </Switch>
         </div>
