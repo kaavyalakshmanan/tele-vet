@@ -1,0 +1,15 @@
+{
+  "name": "Veterinary Hospital of Vancouver",
+  "contact": {
+    "email": "vet@gmail.com",
+    "phone": "123-456-7890",
+    "address": "808 Pet Drive",
+    "city": "Vancouver",
+    "province/state": "British Columbia",
+    "Country": "Canada"
+  },
+  "images": [],
+  "staff": [],
+  "certs": [],
+  "msgHistory": {}
+}

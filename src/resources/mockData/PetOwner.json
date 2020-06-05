@@ -1,6 +1,8 @@
 {
   "name": "Adlib Scaredy Cat",
   "contact": {
+    "email": "adlib@Ilovecats.com",
+    "phone": null,
     "address": "808 Pet Drive",
     "city": "Vancouver",
     "province/state": "British Columbia",
@@ -21,5 +23,6 @@
       "images": [],
       "files": []
     }
-  ]
+  ],
+  "messageHistory": {}
 }
