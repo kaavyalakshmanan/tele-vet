@@ -15,6 +15,7 @@ class Navigation extends React.Component {
                     <Nav.Link href="/features">Features</Nav.Link>
                     <Nav.Link href="/about">Team</Nav.Link>
                     <Nav.Link href="/Appointments">Appointments</Nav.Link>
+                    <Nav.Link href="/maps">Find a Vet</Nav.Link>
                 </Nav>
                 <NavDropdown title="LogIn" id="basic-nav-dropdown">
                     <NavDropdown.Item href="/vetlogin">Vet LogIn</NavDropdown.Item>
