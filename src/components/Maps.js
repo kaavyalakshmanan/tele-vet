@@ -17,15 +17,6 @@ class Maps extends React.Component {
         }
     }
 
-    // componentDidMount() {
-    //     fetch("../resources/vet_data")
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             this.setState({vets: vetData.results})
-    //         })
-    //         .catch(console.error)
-    // }
-
     componentDidMount() {
         this.setState({
             vets: vetData
@@ -49,7 +40,6 @@ class Maps extends React.Component {
                 <h1>Find a vet to help your pet! </h1>
                 <h2>
                     (work in progress)</h2>
-                <p>... placeholder ...</p>
 
                 <Map
                     google={this.props.google}
@@ -69,5 +59,5 @@ class Maps extends React.Component {
 }
 
 export default GoogleApiWrapper({
-    apiKey: AIzaSyBREwvARS3lmrahtK3OFrNG2Ev3QUm1Spw
+    apiKey: "AIzaSyBREwvARS3lmrahtK3OFrNG2Ev3QUm1Spw"
 })(Maps);
