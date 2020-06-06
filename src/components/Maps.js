@@ -7,9 +7,6 @@ const mapStyles = {
     height: '70%',
 };
 
-const apiKey = 'AIzaSyBREwvARS3lmrahtK3OFrNG2Ev3QUm1Spw'
-const url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=[vet]&key=' + apiKey
-
 class Maps extends React.Component {
 
     constructor(props) {
