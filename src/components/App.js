@@ -10,6 +10,7 @@ import PetLogIn from "./PetLogIn";
 import VetSignUp from "./VetSignUp";
 import PetSignUp from "./PetSignUp";
 import Error from "./Error"
+import AppointmentsView from './Appointments/AppointmentsView'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/" component={Home} exact/>
             <Route path="/about" component={About}/>
             <Route path="/features" component={Features}/>
+            <Route path="/appointments" component={AppointmentsView}/>
             <Route path="/vetlogin" component={VetLogIn}/>
             <Route path="/petlogin" component={PetLogIn}/>
             <Route path="/vetsignup" component={VetSignUp}/>

@@ -1,0 +1,40 @@
+.appointment-calendar {
+    border: mediumblue;
+    width: 65%;
+    float: right;
+}
+
+.appointment-list-container {
+    margin: 20px;
+    float: left;
+    width: 30%;
+}
+
+.appointment-list {
+    list-style-type: none;
+    width: 500px;
+}
+
+.appt-title {
+    font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+}
+
+.vet-logo {
+    float: left;
+    margin: 0 15px 0 0;
+}
+
+.appointment-container p {
+    font: 200 12px/1.5 Georgia, Times New Roman, serif;
+}
+
+.appointment-container {
+    padding: 10px;
+    overflow: auto;
+}
+
+.appointment-container:hover {
+    background: #eee;
+    cursor: pointer;
+}
+
