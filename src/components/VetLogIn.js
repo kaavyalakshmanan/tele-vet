@@ -1,5 +1,5 @@
 import React from 'react';
-import "./styles.css";
+import "../css/App.css";
 // import ValidatedLoginForm from "./ValidatedLoginForm";
 
 class VetLogIn extends React.Component {
