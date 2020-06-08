@@ -7,3 +7,10 @@ export const updateAppointments = appointmentData => {
         appointmentData: appointmentData
     }
 }
+
+export const hideNavigation = hidden => {
+    return {
+        type: 'HIDE_NAVBAR',
+        hidden: hidden
+    }
+}
