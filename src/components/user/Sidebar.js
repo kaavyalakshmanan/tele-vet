@@ -1,37 +1,55 @@
-import React, { Component } from "react";
-import Styles from "./SidebarStyles";
+import React, {Component} from "react";
+import "../../css/App.css"
+import {
+    MenuLogo,
+    SidebarContainer,
+    SidebarMenu,
+    SidebarMenuItem,
+    SidebarMenuItemLabel
+} from "./SidebarStyles";
+import EmailIcon from '@material-ui/icons/Email';
+import PersonIcon from '@material-ui/icons/Person';
+import EventIcon from '@material-ui/icons/Event';
+import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import ChatIcon from '@material-ui/icons/Chat';
+import PetsIcon from '@material-ui/icons/Pets';
+
 
 class Sidebar extends Component {
     render() {
         return (
-            <Styles.SidebarContainer>
-                <Styles.SidebarMenu>
-                    <Styles.SidebarMenuItem>
-                        <Styles.Icon/>
-                        <Styles.SidebarMenuItemLabel>Profile</Styles.SidebarMenuItemLabel>
-                    </Styles.SidebarMenuItem>
-                    <Styles.SidebarMenuItem>
-                        <Styles.Icon/>
-                        <Styles.SidebarMenuItemLabel>Inbox</Styles.SidebarMenuItemLabel>
-                    </Styles.SidebarMenuItem>
-                    <Styles.SidebarMenuItem>
-                        <Styles.Icon/>
-                        <Styles.SidebarMenuItemLabel>Schedule</Styles.SidebarMenuItemLabel>
-                    </Styles.SidebarMenuItem>
-                    <Styles.SidebarMenuItem>
-                        <Styles.Icon/>
-                        <Styles.SidebarMenuItemLabel>Documents</Styles.SidebarMenuItemLabel>
-                    </Styles.SidebarMenuItem>
-                    <Styles.SidebarMenuItem>
-                        <Styles.Icon/>
-                        <Styles.SidebarMenuItemLabel>Find Vets</Styles.SidebarMenuItemLabel>
-                    </Styles.SidebarMenuItem>
-                    <Styles.SidebarMenuItem>
-                        <Styles.Icon/>
-                        <Styles.SidebarMenuItemLabel>Connect</Styles.SidebarMenuItemLabel>
-                    </Styles.SidebarMenuItem>
-                </Styles.SidebarMenu>
-            </Styles.SidebarContainer>
+            <SidebarContainer>
+                <SidebarMenu>
+                    <MenuLogo>
+                        <PetsIcon style={{padding: "5px"}}/> Hi User Name
+                    </MenuLogo>
+                    <SidebarMenuItem>
+                        <PersonIcon/>
+                        <SidebarMenuItemLabel>Profile</SidebarMenuItemLabel>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                        <EmailIcon/>
+                        <SidebarMenuItemLabel>Inbox</SidebarMenuItemLabel>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                        <EventIcon/>
+                        <SidebarMenuItemLabel>Schedule</SidebarMenuItemLabel>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                        <InsertDriveFileIcon/>
+                        <SidebarMenuItemLabel>Documents</SidebarMenuItemLabel>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                        <PersonAddIcon/>
+                        <SidebarMenuItemLabel>Find Vets</SidebarMenuItemLabel>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                        <ChatIcon/>
+                        <SidebarMenuItemLabel>Connect</SidebarMenuItemLabel>
+                    </SidebarMenuItem>
+                </SidebarMenu>
+            </SidebarContainer>
         );
     }
 }
