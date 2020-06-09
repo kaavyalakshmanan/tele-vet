@@ -71,6 +71,11 @@ export const MenuSignOut = styled.div`
         font-weight: 500;
         height: 45px;
         color: #fff;
-        margin: 200px 30px 60px 30px;
-        padding: 20px 0px 0px 30px;
+        margin: 200px 30px 30px 30px;
+        padding: 12px 0px 0px 30px;
+        &:hover {
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: inset 3px 0 0 0 #ffffff;
+            cursor: pointer;
+        }
         `;

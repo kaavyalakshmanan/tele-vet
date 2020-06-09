@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import "../../css/App.css"
 import {
     MenuLogo,
+    MenuSignOut,
     SidebarContainer,
     SidebarMenu,
     SidebarMenuItem,
@@ -22,7 +23,7 @@ class Sidebar extends Component {
             <SidebarContainer>
                 <SidebarMenu>
                     <MenuLogo>
-                        <PetsIcon style={{padding: "5px"}}/> Hi User Name
+                        <PetsIcon style={{padding: "5px"}}/> User Name
                     </MenuLogo>
                     <SidebarMenuItem>
                         <PersonIcon/>
@@ -48,6 +49,7 @@ class Sidebar extends Component {
                         <ChatIcon/>
                         <SidebarMenuItemLabel>Connect</SidebarMenuItemLabel>
                     </SidebarMenuItem>
+                    <MenuSignOut>Sign Out</MenuSignOut>
                 </SidebarMenu>
             </SidebarContainer>
         );
