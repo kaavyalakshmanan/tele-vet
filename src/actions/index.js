@@ -14,3 +14,10 @@ export const hideNavigation = hidden => {
         hidden: hidden
     }
 }
+
+export const setUserDashboardView = view => {
+    return {
+        type: 'SET_USER_DASHBOARD_VIEW',
+        view: view
+    }
+}

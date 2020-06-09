@@ -37,7 +37,15 @@ const navBarReducer = (hidden = false, action) => {
     return hidden;
 }
 
+const userDashboardViewReducer = (view = 'profile', action) => {
+    if (action.type === 'SET_USER_DASHBOARD_VIEW') {
+        return action.view;
+    }
+    return view;
+}
+
 export default combineReducers({
     appointmentData: appointmentReducer,
-    navBarHidden: navBarReducer
+    navBarHidden: navBarReducer,
+    userDashboardView: userDashboardViewReducer
 });

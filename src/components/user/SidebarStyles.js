@@ -34,7 +34,7 @@ export const MenuLogo = styled.div`
         border-bottom: 1px solid #2e2e33
         `;
 
-export const SidebarMenuItem = styled.li`
+export const SidebarMenuItem = styled.div`
         display: flex;
         height: 50px;
         width: 100%;
@@ -64,7 +64,7 @@ export const Icon = styled.div`
        weight: 30px
        `;
 
-export const MenuSignOut = styled.div`
+export const MenuSignOut = styled.a`
         border-top: 1px solid #2e2e33;
         font-size: 14px;
         line-height: 1.5;
