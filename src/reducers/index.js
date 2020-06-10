@@ -37,15 +37,23 @@ const navBarReducer = (hidden = false, action) => {
     return hidden;
 }
 
-const userDashboardViewReducer = (view = 'profile', action) => {
+const userDashboardViewReducer = (view = 'Inbox', action) => {
     if (action.type === 'SET_USER_DASHBOARD_VIEW') {
         return action.view;
     }
     return view;
 }
 
+const userDashboardSidebarReducer = (open = false, action) =>{
+    if (action.type === 'SET_SIDEBAR_OPEN') {
+        return action.open;
+    }
+    return open;
+}
+
 export default combineReducers({
     appointmentData: appointmentReducer,
     navBarHidden: navBarReducer,
-    userDashboardView: userDashboardViewReducer
+    userDashboardView: userDashboardViewReducer,
+    userDashboardSidebarOpen: userDashboardViewReducer
 });

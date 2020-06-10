@@ -1,17 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { hideNavigation } from "../../actions";
-import Sidebar from "./sidebar/Sidebar";
-import Calendar from "./Calendar";
-import {Grid} from "@material-ui/core";
+import {hideNavigation, setUserDashboardView} from "../../actions";
+import Calendar from "./schedule/Calendar";
+import Maps from "../Maps";
+import MiniDrawer from "./sidebar/MiniDrawer";
 
 const viewMap = {
-    'profile': (<div style={ {float: 'right'} }>Profile</div>),
-    'inbox': (<div style={ {float: 'right'} }>Inbox</div>),
-    'schedule': (<Calendar/>),
-    'documents': (<div style={ {float: 'right'} }>Documents</div>),
-    'findvets': (<div style={ {float: 'right'} }>Find Vets</div>),
-    'connect': (<div style={ {float: 'right'} }>Connect</div>)
+    'Inbox': 'Inbox',
+    'Send Message': 'Send Message',
+    'Drafts': 'Drafts',
+    'Calendar': (<Calendar style={ { padding: '50px'} }/>),
+    'Maps': (<Maps/>),
+    'Documents': 'Documents',
+    'E-Visit': 'E-Visit',
+    'Photos': 'Photos'
 }
 
 class UserDashboard extends Component {
@@ -19,19 +21,20 @@ class UserDashboard extends Component {
         this.props.hideNavigation(true);
         // FIXME: Find a way to make this more responsive, looks bad on small screens
         return (
-            <Grid container spacing={2}>
-                <Grid item xs={2} sm={3} xl={2}>
-                    <Sidebar className="grid-sidebar"/>
-                </Grid>
-                <Grid item xs={9} sm={9} xl={10}>
-                    { viewMap[this.props.view]}
-                </Grid>
-            </Grid>
+            <div>
+                <MiniDrawer
+                    handleViewChange={ this.props.setUserDashboardView }
+                    renderView = { () => viewMap[this.props.view] }
+                />
+            </div>
         )
     }
 }
 
 const mapDispatchToProps = dispatch => ({
+    setUserDashboardView: view => {
+        dispatch(setUserDashboardView(view));
+    },
     hideNavigation: hidden => {
         dispatch(hideNavigation(hidden));
     }

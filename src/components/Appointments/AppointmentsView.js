@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import Calendar from "../user/Calendar";
+import Calendar from "../user/schedule/Calendar";
 import Appointment from "./Appointment";
 
 class AppointmentsView extends React.Component {

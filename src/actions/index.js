@@ -21,3 +21,10 @@ export const setUserDashboardView = view => {
         view: view
     }
 }
+
+export const setSidebarOpen = open => {
+    return {
+        type: 'SET_SIDEBAR_OPEN',
+        open: open
+    }
+}
