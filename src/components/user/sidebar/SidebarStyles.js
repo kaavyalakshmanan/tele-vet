@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const SidebarContainer = styled.div`
-        height: 100vh;
-        width: 230px;
+        height: 100%;
+        width: 100%;
         background-color: #252529;
         color: #fff;
         display: flex;
@@ -71,7 +71,7 @@ export const MenuSignOut = styled.a`
         font-weight: 500;
         height: 45px;
         color: #fff;
-        margin: 200px 30px 30px 30px;
+        margin: 100px 30px 30px 30px;
         padding: 12px 0px 0px 30px;
         &:hover {
             background: rgba(255, 255, 255, 0.05);

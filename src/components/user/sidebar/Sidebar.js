@@ -15,7 +15,7 @@ import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import ChatIcon from '@material-ui/icons/Chat';
 import PetsIcon from '@material-ui/icons/Pets';
-import { setUserDashboardView } from "../../actions";
+import { setUserDashboardView } from "../../../actions";
 
 
 class Sidebar extends Component {
