@@ -13,14 +13,19 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
+import NotificationsIcon from '@material-ui/icons/Notifications';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import PetsIcon from "@material-ui/icons/Pets";
+import Badge from "@material-ui/core/Badge";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
+    },
+    badge: {
+        float: 'right'
     },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
@@ -118,6 +123,12 @@ export const MiniDrawer = ( { handleViewChange, renderView, iconMap, upperItems,
                         <Typography variant="h6" noWrap>
                             <PetsIcon style={{padding: "5px"}}/> Tele-Vet
                         </Typography>
+                        <IconButton color="inherit" style={{"text-align": "right"}, {margin: "0px 0px 0px auto"}}>
+                            <Badge badgeContent={4} color="secondary">
+                                { /*TODO: Store notifications with redux*/ }
+                                <NotificationsIcon />
+                            </Badge>
+                        </IconButton>
                     </Toolbar>
                 </AppBar>
                 <Drawer
