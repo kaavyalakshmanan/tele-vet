@@ -15,29 +15,8 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import PetsIcon from "@material-ui/icons/Pets";
-import DraftsIcon from '@material-ui/icons/Drafts';
-import VideocamIcon from '@material-ui/icons/Videocam';
-import EventIcon from '@material-ui/icons/Event';
-import MapIcon from '@material-ui/icons/Map';
-import DescriptionIcon from '@material-ui/icons/Description';
-import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';import Calendar from '../schedule/Calendar'
-import {setUserDashboardView} from "../../../actions";
-import {connect} from "react-redux";
 const drawerWidth = 240;
-
-const iconMap = {
-    'Inbox': <InboxIcon />,
-    'Send Message':  <MailIcon />,
-    'Drafts': <DraftsIcon/>,
-    'E-Visit': <VideocamIcon/>,
-    'Calendar': <EventIcon/>,
-    'Maps': <MapIcon/>,
-    'Visit-Summary': <DescriptionIcon/>,
-    'Photos': <PhotoCameraIcon/>
-}
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -101,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const MiniDrawer = ( { handleViewChange, renderView } ) => {
+export const MiniDrawer = ( { handleViewChange, renderView, iconMap, upperItems, lowerItems } ) => {
 
         const classes = useStyles();
         const theme = useTheme();
@@ -161,10 +140,9 @@ const MiniDrawer = ( { handleViewChange, renderView } ) => {
                     </div>
                     <Divider/>
                     <List>
-                        {['Inbox', 'Send Message', 'Drafts'].map((text) => (
+                        {upperItems.map((text) => (
                             <ListItem button key={text} onClick={() => {
                                 console.log('clicked ' + text);
-                                // setUserDashboardView(text)
                                 handleViewChange(text);
                             }}>
                                 <ListItemIcon>{iconMap[text]}</ListItemIcon>
@@ -174,10 +152,9 @@ const MiniDrawer = ( { handleViewChange, renderView } ) => {
                     </List>
                     <Divider/>
                     <List>
-                        {['Calendar', 'Maps', 'Photos', 'E-Visit'].map((text) => (
+                        {lowerItems.map((text) => (
                             <ListItem button key={text} onClick={() => {
                                 console.log('clicked ' + text);
-                                // setUserDashboardView(text)
                                 handleViewChange(text);
                             }}>
                                 <ListItemIcon>{iconMap[text]}</ListItemIcon>
@@ -193,17 +170,3 @@ const MiniDrawer = ( { handleViewChange, renderView } ) => {
             </div>
         );
 }
-
-const mapDispatchToProps = dispatch => ({
-    setUserDashboardView: view => {
-        dispatch(setUserDashboardView(view));
-    },
-});
-
-const mapStateToProps = state => {
-    return {
-        view: state.userDashboardView
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(MiniDrawer);
