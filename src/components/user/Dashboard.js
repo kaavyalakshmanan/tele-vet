@@ -17,12 +17,13 @@ const viewMap = {
 class UserDashboard extends Component {
     render() {
         this.props.hideNavigation(true);
+        // FIXME: Find a way to make this more responsive, looks bad on small screens
         return (
             <Grid container spacing={2}>
-                <Grid item xs={2}>
-                    <Sidebar/>
+                <Grid item xs={2} sm={3} xl={2}>
+                    <Sidebar className="grid-sidebar"/>
                 </Grid>
-                <Grid item xs={10}>
+                <Grid item xs={9} sm={9} xl={10}>
                     { viewMap[this.props.view]}
                 </Grid>
             </Grid>

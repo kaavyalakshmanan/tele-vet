@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
 export const SidebarContainer = styled.div`
-        height: 100%;
-        width: 100%;
+        height: 1000px;
+        max-width: 300px;
         background-color: #252529;
         color: #fff;
-        display: flex;
         flex-direction: column;
         font-family: "Roboto", sans-serif;
+        @media (max-width: 600px) {
+                width: 75px
+        }
         `;
 
 export const SidebarMenu = styled.ul`
@@ -20,7 +22,6 @@ export const SidebarMenu = styled.ul`
         `;
 
 export const MenuLogo = styled.div`
-        display: flex;
         align-items: center;
         justify-content: start;
         gap: 16px;

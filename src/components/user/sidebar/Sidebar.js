@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { connect } from "react-redux";
+import "../../../css/App.css"
 import {
     MenuLogo,
     MenuSignOut,
@@ -16,19 +17,24 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import ChatIcon from '@material-ui/icons/Chat';
 import PetsIcon from '@material-ui/icons/Pets';
 import { setUserDashboardView } from "../../../actions";
+import Hidden from '@material-ui/core/Hidden';
+
 
 
 class Sidebar extends Component {
     render() {
         return (
-            <SidebarContainer>
+            <SidebarContainer className="sidebar-container">
                 <SidebarMenu>
                     <MenuLogo>
-                        <PetsIcon style={{padding: "5px"}}/> User Name
+                        <PetsIcon style={{padding: "5px"}}/>
+                        <Hidden only={["xs", "sm"]}>User Name</Hidden>
                     </MenuLogo>
                     <SidebarMenuItem onClick={ () => this.props.setUserDashboardView('profile') }>
                         <PersonIcon/>
+                        <Hidden only={["xs", "sm"]}>
                         <SidebarMenuItemLabel>Profile</SidebarMenuItemLabel>
+                        </Hidden>
                     </SidebarMenuItem>
                     <SidebarMenuItem onClick={ () => this.props.setUserDashboardView('inbox') }>
                         <EmailIcon/>
