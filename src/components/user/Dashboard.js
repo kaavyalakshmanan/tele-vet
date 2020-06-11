@@ -11,17 +11,22 @@ import EventIcon from "@material-ui/icons/Event";
 import MapIcon from "@material-ui/icons/Map";
 import DescriptionIcon from "@material-ui/icons/Description";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
+import PublishIcon from '@material-ui/icons/Publish';
 import {MiniDrawer} from "./sidebar/MiniDrawer";
+import ImageLoader from "./photos/PhotoLoader";
+import Gallery from "./photos/PhotoGallery";
+import PhotoLoader from "./photos/PhotoLoader";
 
 const viewMap = {
     'Inbox': 'Inbox',
     'Send Message': 'Send Message',
     'Drafts': 'Drafts',
-    'Calendar': (<Calendar style={ { padding: '50px'} }/>),
-    'Maps': (<Maps/>),
+    'Calendar': <Calendar style={ { padding: '50px'} }/>,
+    'Maps': <Maps/>,
     'Documents': 'Documents',
     'E-Visit': 'E-Visit',
-    'Photos': 'Photos'
+    'Photo Gallery': <Gallery/>,
+    'Upload Photos': <PhotoLoader/>
 }
 
 const iconMap = {
@@ -32,10 +37,12 @@ const iconMap = {
     'Calendar': <EventIcon/>,
     'Maps': <MapIcon/>,
     'Visit-Summary': <DescriptionIcon/>,
-    'Photos': <PhotoCameraIcon/>
+    'Photo Gallery': <PhotoCameraIcon/>,
+    'Upload Photos': <PublishIcon/>
 }
 
 class UserDashboard extends Component {
+
     render() {
         this.props.hideNavigation(true);
         // FIXME: Change colors to match home screen
@@ -46,7 +53,7 @@ class UserDashboard extends Component {
                     renderView = { () => viewMap[this.props.view] }
                     iconMap = { iconMap }
                     upperItems = { ['Inbox', 'Send Message', 'Drafts'] }
-                    lowerItems = { ['Calendar', 'Maps', 'Photos', 'E-Visit'] }
+                    lowerItems = { ['Calendar', 'Maps', 'Photo Gallery', 'Upload Photos', 'E-Visit'] }
                 />
             </div>
         )
@@ -64,7 +71,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => {
     return {
-        view: state.userDashboardView
+        view: state.userDashboardView,
     }
 };
 

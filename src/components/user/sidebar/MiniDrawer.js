@@ -123,7 +123,7 @@ export const MiniDrawer = ( { handleViewChange, renderView, iconMap, upperItems,
                         <Typography variant="h6" noWrap>
                             <PetsIcon style={{padding: "5px"}}/> Tele-Vet
                         </Typography>
-                        <IconButton color="inherit" style={{"text-align": "right"}, {margin: "0px 0px 0px auto"}}>
+                        <IconButton color="inherit" style={{"textAlign": "right", margin: "0px 0px 0px auto"}}>
                             <Badge badgeContent={4} color="secondary">
                                 { /*TODO: Store notifications with redux*/ }
                                 <NotificationsIcon />
