@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import {hideNavigation, setUserDashboardView} from "../../actions";
 import Calendar from "./schedule/Calendar";
 import Maps from "../Maps";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
-import DraftsIcon from "@material-ui/icons/Drafts";
 import VideocamIcon from "@material-ui/icons/Videocam";
 import EventIcon from "@material-ui/icons/Event";
 import MapIcon from "@material-ui/icons/Map";
@@ -20,10 +18,9 @@ const viewMap = {
     'Messages': 'Messages',
     'Calendar': <Calendar style={ { padding: '50px'} }/>,
     'Maps': <Maps/>,
-    'Documents': 'Documents',
+    'Visit-Summary': 'Visit-Summary',
     'E-Visit': 'E-Visit',
     'Photo Gallery': <Gallery/>,
-    'Upload Photos': <PhotoLoader/>
 }
 
 const iconMap = {
@@ -33,7 +30,6 @@ const iconMap = {
     'E-Visit': <VideocamIcon color={ 'inherit' } />,
     'Visit-Summary': <DescriptionIcon color={ 'inherit' }/>,
     'Photo Gallery': <PhotoCameraIcon color={ 'inherit' }/>,
-    'Upload Photos': <PublishIcon color={ 'inherit' }/>
 }
 
 class UserDashboard extends Component {

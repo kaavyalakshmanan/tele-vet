@@ -1,53 +1,63 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { connect } from "react-redux";
 import Gallery from "react-photo-gallery";
-
-const initialImages = {
-    images: [
-        {
-            src: "https://source.unsplash.com/2ShvY8Lf6l0/800x599",
-            width: 4,
-            height: 3
-        },
-        {
-            src: "https://source.unsplash.com/Dm-qxdynoEc/800x799",
-            width: 1,
-            height: 1
-        },
-        {
-            src: "https://source.unsplash.com/qDkso9nvCg0/600x799",
-            width: 3,
-            height: 4
-        },
-        {
-            src: "https://source.unsplash.com/iecJiKe_RNg/600x799",
-            width: 3,
-            height: 4
-        },
-        {
-            src: "https://source.unsplash.com/epcsn8Ed8kY/600x799",
-            width: 3,
-            height: 4
-        }
-    ]
-}
+import Button from "@material-ui/core/Button";
+import {DropzoneDialog} from "material-ui-dropzone";
+import {addImage, setPhotoDropzoneOpen } from "../../../actions";
 
 class PhotoGallery extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         console.log('props')
         console.log(this.props);
         return (
-            <Gallery photos={this.props.images.list}/>
+            <div>
+                <Gallery photos={this.props.images.list} direction={"column"}/>
+                <Button variant="contained" color="primary" onClick={() => this.props.setPhotoDropzoneOpen(true)}>
+                    Add Image
+                </Button>
+
+                <DropzoneDialog
+                    acceptedFiles={['image/*']}
+                    cancelButtonText={"cancel"}
+                    submitButtonText={"submit"}
+                    maxFileSize={5000000}
+                    open={this.props.dropzoneOpen}
+                    onClose={() => this.props.setPhotoDropzoneOpen(false)}
+                    onSave={(images) => {
+                        console.log('Files:', images);
+                        images.forEach((image) => {
+                            this.props.addImage(image);
+                        })
+                        this.props.setPhotoDropzoneOpen(false)
+                    }}
+                    showPreviews={true}
+                    showFileNamesInPreview={true}
+                />
+            </div>
         )
     }
 }
 
 const mapStateToProps = state => {
     return {
-        images: state.images
+        images: state.images,
+        dropzoneOpen: state.photoDropzoneOpen
     }
 };
 
-export default connect(mapStateToProps, null)(PhotoGallery);
+const mapDispatchToProps = dispatch => ({
+    addImage: image => {
+        dispatch(addImage(image));
+    },
+    setPhotoDropzoneOpen: open => {
+        dispatch(setPhotoDropzoneOpen(open))
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PhotoGallery);
 
 

@@ -74,8 +74,8 @@ const userDashboardViewReducer = (view = 'Inbox', action) => {
     return view;
 }
 
-const userDashboardSidebarReducer = (open = false, action) => {
-    if (action.type === 'SET_SIDEBAR_OPEN') {
+const userPhotosReducer = (open = false, action) => {
+    if (action.type === 'SET_DROPZONE_OPEN') {
         return action.open;
     }
     return open;
@@ -88,7 +88,7 @@ const imageReducer = (images = initialImages, action) => {
         // TODO: Get path for Image
         return {
             list: images.list.concat({
-                path: '',
+                src: '/resources/' + action.image.path,
                 height: 2,
                 width: 2
             })
@@ -102,5 +102,6 @@ export default combineReducers({
     navBarHidden: navBarReducer,
     userDashboardView: userDashboardViewReducer,
     userDashboardSidebarOpen: userDashboardViewReducer,
-    images: imageReducer
+    images: imageReducer,
+    photoDropzoneOpen: userPhotosReducer
 });

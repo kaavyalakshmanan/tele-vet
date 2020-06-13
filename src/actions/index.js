@@ -22,9 +22,9 @@ export const setUserDashboardView = view => {
     }
 }
 
-export const setSidebarOpen = open => {
+export const setPhotoDropzoneOpen = open => {
     return {
-        type: 'SET_SIDEBAR_OPEN',
+        type: 'SET_DROPZONE_OPEN',
         open: open
     }
 }
