@@ -5,6 +5,7 @@ import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
+import Icon from '@material-ui/icons'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -18,6 +19,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import PetsIcon from "@material-ui/icons/Pets";
 import Badge from "@material-ui/core/Badge";
+import NavHeader from "./NavHeader";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -85,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const MiniDrawer = ( { handleViewChange, renderView, iconMap, upperItems, lowerItems } ) => {
+export const NavBar = ({ handleViewChange, renderView, iconMap, userName, email } ) => {
 
         const classes = useStyles();
         const theme = useTheme();
@@ -150,20 +152,14 @@ export const MiniDrawer = ( { handleViewChange, renderView, iconMap, upperItems,
                         </IconButton>
                     </div>
                     <Divider/>
-                    <List>
-                        {upperItems.map((text) => (
-                            <ListItem button key={text} onClick={() => {
-                                console.log('clicked ' + text);
-                                handleViewChange(text);
-                            }}>
-                                <ListItemIcon>{iconMap[text]}</ListItemIcon>
-                                <ListItemText primary={text}/>
-                            </ListItem>
-                        ))}
-                    </List>
+                    <NavHeader
+                        collapsed={ !open }
+                        userName={ userName }
+                        email={ email }
+                    />
                     <Divider/>
                     <List>
-                        {lowerItems.map((text) => (
+                        {Object.keys(iconMap).map((text) => (
                             <ListItem button key={text} onClick={() => {
                                 console.log('clicked ' + text);
                                 handleViewChange(text);
