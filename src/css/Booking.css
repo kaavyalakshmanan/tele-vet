@@ -1,0 +1,106 @@
+.calendar {
+    border-color: #eeeeee;
+    border-width: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    height: 350px
+}
+
+.carousel{
+    height: 350px;
+    width: 100%;
+}
+
+.makeStyles-grid-98 {
+    width: auto;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.MuiGrid-justify-xs-center {
+    justify-content: center;
+}
+
+.MuiGrid-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.makeStyles-grid-99 {
+    width: 100%;
+    position: relative;
+    flex-basis: auto;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.MuiGrid-grid-sm-12 {
+    flex-grow: 0;
+    max-width: 100%;
+    flex-basis: 100%;
+}
+
+.MuiGrid-grid-xs-12 {
+    flex-grow: 0;
+    max-width: 100%;
+    flex-basis: 100%;
+}
+
+.MuiGrid-item {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.makeStyles-profile-436 img {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 300px;
+    transform: translate3d(0, -0%, 0);
+}
+
+.makeStyles-imgRaised-442 {
+    box-shadow: 0 5px 15px -8px rgba(0, 0, 0, 0.24), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.makeStyles-imgRoundedCircle-441 {
+    border-radius: 50% !important;
+}
+
+.makeStyles-imgFluid-439 {
+    height: auto;
+    max-width: 100%;
+}
+
+.makeStyles-profile-436 {
+    /*text-align: center; makes for left sided profile pic when removed*/
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+
+
+.makeStyles-imgRaised-442 {
+    box-shadow: 0 5px 15px -8px rgba(0, 0, 0, 0.24), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.makeStyles-imgRoundedCircle-441 {
+    border-radius: 50% !important;
+}
+
+.makeStyles-imgFluid-439 {
+    height: auto;
+    max-width: 100%;
+}
+
+.profilePageContactInfo{
+    font-family: verdana, sans-serif;
+    font-size: 16px;
+    line-height: 1em;
+}

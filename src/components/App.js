@@ -7,6 +7,9 @@ import About from "./About";
 import Features from "./Features";
 import Error from "./Error"
 import AppointmentsView from './Appointments/AppointmentsView'
+import Vet from "./VetProfile/VetProfilePage"
+import VetProfilePage from "./VetProfile/VetProfilePage";
+import Testing from "./VetProfile/Testing";
 
 function App() {
   return (
@@ -18,6 +21,11 @@ function App() {
             <Route path="/about" component={About}/>
             <Route path="/features" component={Features}/>
             <Route path="/appointments" component={AppointmentsView}/>
+            <Route path="/appointments2" component={AppointmentsView}/>
+            <Route path="/Vet" component={VetProfilePage}/>
+            <Route path="/Testing" component={Testing}/>
+
+
             <Route component={Error}/>
           </Switch>
         </div>

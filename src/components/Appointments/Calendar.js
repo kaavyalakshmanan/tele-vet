@@ -1,7 +1,7 @@
 import React from 'react';
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import Paper from '@material-ui/core/Paper';
-import { ViewState } from '@devexpress/dx-react-scheduler';
+import {ViewState} from '@devexpress/dx-react-scheduler';
 import {
     Scheduler,
     DayView,
@@ -37,39 +37,40 @@ class Calendar extends React.Component {
         return `${yyyy}-${mm}-${dd}`;
     }
 
-    render(){
+    render() {
         return (
-            <Paper elevation={3}>
-                <Scheduler
+            < Paper
+                elevation={3}>
+                < Scheduler
                     data={this.getDataFromAppointments()}
                     height='100%'
                 >
-                    <ViewState
+                    < ViewState
                         currentDate={this.getCurrentDate()}
                         defaultCurrentViewName='Month'
-                    />
-                    <DayView
+                        />
+                    < DayView
+                        const startDayHour = {9}
+                        const endDayHour = {14}
+                        />
+                    < WeekView
                         startDayHour={9}
                         endDayHour={14}
                     />
-                    <WeekView
-                        startDayHour={9}
-                        endDayHour={14}
-                    />
-                    <MonthView/>
-                    <Toolbar/>
-                    <ViewSwitcher/>
-                    <Appointments/>
-                </Scheduler>
-            </Paper>
-        );
-    }
-}
+                    < MonthView />
+                    < Toolbar />
+                    < ViewSwitcher />
+                    < Appointments />
+                    < /Scheduler>
+                        < /Paper>
+                            )
+                            ;
+                            }
+                            }
 
-const mapStateToProps = (state) => {
-    return {
-        appointmentData: state.appointmentData
-    }
-}
+                            const mapStateToProps = (state) => { return {
+                            appointmentData: state.appointmentData
+                        }
+                        }
 
-export default connect(mapStateToProps, null)(Calendar);
+                            export default connect(mapStateToProps, null)(Calendar)
