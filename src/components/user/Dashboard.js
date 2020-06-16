@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {hideNavigation, selectInbox, setUserDashboardView} from "../../actions";
+import {hideNavigation, selectInbox, setPhotoDropzoneOpen, setUserDashboardView} from "../../actions";
 import Calendar from "./schedule/Calendar";
 import Maps from "../Maps";
 import MailIcon from "@material-ui/icons/Mail";
@@ -53,6 +53,8 @@ class UserDashboard extends Component {
                     iconMap = { iconMap }
                     userName={ "Arnob Mukherjee" }
                     email={ "arnob@MockUser.com" }
+                    currentView={this.props.view}
+                    uploadPhoto={() => this.props.setPhotoDropzoneOpen(true)}
                 />
             </div>
         )
@@ -68,6 +70,9 @@ const mapDispatchToProps = dispatch => ({
     },
     hideNavigation: hidden => {
         dispatch(hideNavigation(hidden));
+    },
+    setPhotoDropzoneOpen: open => {
+        dispatch(setPhotoDropzoneOpen(open))
     }
 });
 

@@ -4,6 +4,15 @@ import Gallery from "react-photo-gallery";
 import Button from "@material-ui/core/Button";
 import {DropzoneDialog} from "material-ui-dropzone";
 import {addImage, setPhotoDropzoneOpen } from "../../../actions";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
+import IconButton from "@material-ui/core/IconButton";
+import SearchIcon from "@material-ui/icons/Search";
+import MoreIcon from "@material-ui/icons/MoreVert";
+import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
+import PublishIcon from '@material-ui/icons/Publish';
 
 class PhotoGallery extends React.Component {
     constructor(props) {
@@ -16,9 +25,6 @@ class PhotoGallery extends React.Component {
         return (
             <div>
                 <Gallery photos={this.props.images.list} direction={"column"}/>
-                <Button variant="contained" color="primary" onClick={() => this.props.setPhotoDropzoneOpen(true)}>
-                    Add Image
-                </Button>
 
                 <DropzoneDialog
                     acceptedFiles={['image/*']}

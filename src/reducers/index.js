@@ -104,7 +104,7 @@ const navBarReducer = (hidden = false, action) => {
     return hidden;
 }
 
-const userDashboardViewReducer = (view = 'Inbox', action) => {
+const userDashboardViewReducer = (view = 'Messages', action) => {
     if (action.type === 'SET_USER_DASHBOARD_VIEW') {
         return action.view;
     }

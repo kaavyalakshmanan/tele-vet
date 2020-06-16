@@ -18,6 +18,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import PetsIcon from "@material-ui/icons/Pets";
+import PublishIcon from '@material-ui/icons/Publish';
 import Badge from "@material-ui/core/Badge";
 import NavHeader from "./NavHeader";
 const drawerWidth = 240;
@@ -87,11 +88,19 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const NavBar = ({ handleViewChange, renderView, iconMap, userName, email } ) => {
+export const NavBar = ({ handleViewChange, renderView, iconMap, userName, email, currentView, uploadPhoto } ) => {
 
         const classes = useStyles();
         const theme = useTheme();
         const [open, setOpen] = React.useState(false);
+        const uploadButton = currentView === 'Photo Gallery' ? (
+            <IconButton color="inherit"
+                        style={{align: "right", margin: "0px 0px 0px auto"}}
+                        onClick={uploadPhoto}
+            >
+                <PublishIcon/>
+            </IconButton>
+        ) : null;
 
         const handleDrawerOpen = () => {
             setOpen(true);
@@ -125,6 +134,7 @@ export const NavBar = ({ handleViewChange, renderView, iconMap, userName, email 
                         <Typography variant="h6" noWrap>
                             <PetsIcon style={{padding: "5px"}}/> Tele-Vet
                         </Typography>
+                        {uploadButton}
                         <IconButton color="inherit" style={{"textAlign": "right", margin: "0px 0px 0px auto"}}>
                             <Badge badgeContent={4} color="secondary">
                                 { /*TODO: Store notifications with redux*/ }
