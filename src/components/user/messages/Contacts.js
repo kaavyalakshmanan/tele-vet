@@ -1,8 +1,5 @@
 import React from 'react';
-import { connect } from "react-redux";
-import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
 import {makeStyles} from "@material-ui/core/styles";
-import ListSubheader from "@material-ui/core/ListSubheader";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";

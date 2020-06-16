@@ -9,12 +9,8 @@ import EventIcon from "@material-ui/icons/Event";
 import MapIcon from "@material-ui/icons/Map";
 import DescriptionIcon from "@material-ui/icons/Description";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
-import PublishIcon from '@material-ui/icons/Publish';
 import {NavBar} from "./sidebar/NavBar";
 import Gallery from "./photos/PhotoGallery";
-import PhotoLoader from "./photos/PhotoLoader";
-import Inbox from "./messages/Inbox";
-import {Link} from "react-router-dom";
 import Messages from "./messages/Messages";
 
 const viewMap = {
