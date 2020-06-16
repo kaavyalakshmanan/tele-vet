@@ -35,3 +35,17 @@ export const addImage = image => {
         image: image
     }
 }
+
+export const selectInbox = inbox => {
+    return {
+        type: 'SELECT_INBOX',
+        inbox: inbox
+    }
+}
+
+export const addContact = contact => {
+    return {
+        type: 'ADD_CONTACT',
+        contact: contact
+    }
+}

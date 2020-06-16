@@ -53,6 +53,43 @@ const initialImages = {
     ]
 }
 
+// TODO: We need to decide how we are going to store messages
+// TODO: Add a timestamp to messages
+const initialContacts = {
+    contactList: [
+        {
+            name: "Thiago Barroncas",
+            avatar: "/resources/mock-avatar-3.jpg",
+            msgHistory: [
+                {
+                    id: 1,
+                    primary: 'Nice to meet your snake',
+                    secondary: "The checkup went really well. Your little ball python is very healthy and happy.",
+                    person: "/resources/mock-avatar-3.jpg",
+                },
+                {
+                    id: 3,
+                    primary: 'Thanks for the reminder',
+                    secondary: `We'll be there tomorrow.`,
+                    person: "/resources/mock-avatar-1.jpg",
+                },
+                {
+                    id: 4,
+                    primary: 'Check up reminder',
+                    secondary: 'Just a reminder you have a check up scheduled for your Ball Python tomorrow',
+                    person: "/resources/mock-avatar-3.jpg",
+                },
+
+            ]
+        },
+        {
+            name: "Miyah Miles",
+            avatar: "/resources/mock-avatar-2.jpg",
+            msgHistory: []
+        }
+    ]
+}
+
 const appointmentReducer = (appointments = initialAppointments, action) => {
     if (action.type === 'UPDATE_APPOINTMENTS') {
         return action.appointmentData;
@@ -82,7 +119,6 @@ const userPhotosReducer = (open = false, action) => {
 }
 
 const imageReducer = (images = initialImages, action) => {
-    console.log(images);
     if (action.type === 'ADD_IMAGE') {
         // TODO: Make an AJAX request to server, store image in database
         // TODO: Get path for Image
@@ -97,11 +133,27 @@ const imageReducer = (images = initialImages, action) => {
     return images;
 }
 
+const inboxReducer = (inbox = null, action) => {
+    if (action.type === 'SELECT_INBOX') {
+        return action.inbox;
+    }
+    return inbox;
+}
+
+const contactReducer = (contacts = initialContacts, action) => {
+    if (action.type === 'ADD_CONTACT') {
+        return contacts.concat(action.contact);
+    }
+    return contacts;
+}
+
 export default combineReducers({
     appointmentData: appointmentReducer,
     navBarHidden: navBarReducer,
     userDashboardView: userDashboardViewReducer,
     userDashboardSidebarOpen: userDashboardViewReducer,
     images: imageReducer,
-    photoDropzoneOpen: userPhotosReducer
+    photoDropzoneOpen: userPhotosReducer,
+    inbox: inboxReducer,
+    contacts: contactReducer
 });

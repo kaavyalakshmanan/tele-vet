@@ -18,7 +18,7 @@ const getUsernameAndEmail = ( collapsed, userName, email ) => {
     );
 }
 
-const NavHeader = ({ collapsed, src="/resources/mock-avatar.jpg", target="/user/profile", userName, email } ) => (
+const NavHeader = ({ collapsed, src="/resources/mock-avatar-1.jpg", target="/user/profile", userName, email } ) => (
     <>
         <div style={{ padding: collapsed ? 8 : 16, transition: "0.3s" }}>
             <a href={ target }>

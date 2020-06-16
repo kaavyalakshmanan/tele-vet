@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {hideNavigation, setUserDashboardView} from "../../actions";
+import {hideNavigation, selectInbox, setUserDashboardView} from "../../actions";
 import Calendar from "./schedule/Calendar";
 import Maps from "../Maps";
 import MailIcon from "@material-ui/icons/Mail";
@@ -13,9 +13,12 @@ import PublishIcon from '@material-ui/icons/Publish';
 import {NavBar} from "./sidebar/NavBar";
 import Gallery from "./photos/PhotoGallery";
 import PhotoLoader from "./photos/PhotoLoader";
+import Inbox from "./messages/Inbox";
+import {Link} from "react-router-dom";
+import Messages from "./messages/Messages";
 
 const viewMap = {
-    'Messages': 'Messages',
+    'Messages': <Messages/>,
     'Calendar': <Calendar style={ { padding: '50px'} }/>,
     'Maps': <Maps/>,
     'Visit-Summary': 'Visit-Summary',
@@ -40,7 +43,12 @@ class UserDashboard extends Component {
         return (
             <div>
                 <NavBar
-                    handleViewChange={ this.props.setUserDashboardView }
+                    handleViewChange={ view => {
+                        if (view === 'Messages') {
+                            this.props.selectInbox(null);
+                        }
+                        this.props.setUserDashboardView(view);
+                    } }
                     renderView = { () => viewMap[this.props.view] }
                     iconMap = { iconMap }
                     userName={ "Arnob Mukherjee" }
@@ -52,6 +60,9 @@ class UserDashboard extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
+    selectInbox: inbox => {
+        dispatch(selectInbox(inbox));
+    },
     setUserDashboardView: view => {
         dispatch(setUserDashboardView(view));
     },
