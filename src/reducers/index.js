@@ -63,18 +63,21 @@ const initialContacts = {
             msgHistory: [
                 {
                     id: 1,
+                    from: "Thiago Barroncas",
                     primary: 'Nice to meet your snake',
                     secondary: "The checkup went really well. Your little ball python is very healthy and happy.",
                     person: "/resources/mock-avatar-3.jpg",
                 },
                 {
                     id: 3,
+                    from: "Arnob Mukherjee",
                     primary: 'Thanks for the reminder',
                     secondary: `We'll be there tomorrow.`,
                     person: "/resources/mock-avatar-1.jpg",
                 },
                 {
                     id: 4,
+                    from: "Thiago Barroncas",
                     primary: 'Check up reminder',
                     secondary: 'Just a reminder you have a check up scheduled for your Ball Python tomorrow',
                     person: "/resources/mock-avatar-3.jpg",
@@ -85,7 +88,16 @@ const initialContacts = {
         {
             name: "Miyah Miles",
             avatar: "/resources/mock-avatar-2.jpg",
-            msgHistory: []
+            msgHistory: [
+                {
+                    id: 3,
+                    from: "Miyah Miles",
+                    primary: 'Reminder',
+                    secondary: `This is a reminder that Yoda, your kitten, is scheduled for an E-visit tomorrow.
+                        I'm looking forward to meeting him!`,
+                    person: "/resources/mock-avatar-2.jpg",
+                }
+            ]
         }
     ]
 }
@@ -104,7 +116,7 @@ const navBarReducer = (hidden = false, action) => {
     return hidden;
 }
 
-const userDashboardViewReducer = (view = 'Messages', action) => {
+const userDashboardViewReducer = (view = '', action) => {
     if (action.type === 'SET_USER_DASHBOARD_VIEW') {
         return action.view;
     }
@@ -143,6 +155,16 @@ const inboxReducer = (inbox = null, action) => {
 const contactReducer = (contacts = initialContacts, action) => {
     if (action.type === 'ADD_CONTACT') {
         return contacts.concat(action.contact);
+    }
+    if (action.type === 'ADD_MESSAGE') {
+        let newContacts = {contactList:[]};
+        contacts.contactList.forEach((contact) => {
+            if (contact.name === action.message.from) {
+                contact.msgHistory.unshift(action.message);
+            }
+            newContacts.contactList.push(contact);
+        });
+        return newContacts;
     }
     return contacts;
 }

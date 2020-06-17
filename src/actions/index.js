@@ -36,17 +36,17 @@ export const addImage = image => {
     }
 }
 
-export const renderUploadButton = render => {
-    return {
-        type: 'RENDER_UPLOAD_BUTTON',
-        render: render
-    }
-}
-
 export const selectInbox = inbox => {
     return {
         type: 'SELECT_INBOX',
         inbox: inbox
+    }
+}
+
+export const addMessage = message => {
+    return {
+        type: 'ADD_MESSAGE',
+        message: message
     }
 }
 

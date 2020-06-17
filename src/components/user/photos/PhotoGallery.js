@@ -5,9 +5,6 @@ import {DropzoneDialog} from "material-ui-dropzone";
 import {addImage, setPhotoDropzoneOpen } from "../../../actions";
 
 class PhotoGallery extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         console.log('props')

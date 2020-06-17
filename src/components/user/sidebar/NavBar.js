@@ -92,14 +92,6 @@ export const NavBar = ({ handleViewChange, renderView, iconMap, userName, email,
         const classes = useStyles();
         const theme = useTheme();
         const [open, setOpen] = React.useState(false);
-        const uploadButton = currentView === 'Photo Gallery' ? (
-            <IconButton color="inherit"
-                        style={{align: "right", margin: "0px 0px 0px auto"}}
-                        onClick={uploadPhoto}
-            >
-                <PublishIcon/>
-            </IconButton>
-        ) : null;
 
         const handleDrawerOpen = () => {
             setOpen(true);
@@ -108,6 +100,24 @@ export const NavBar = ({ handleViewChange, renderView, iconMap, userName, email,
         const handleDrawerClose = () => {
             setOpen(false);
         };
+
+        let navbarButton;
+        if (currentView === 'Photo Gallery') {
+            navbarButton = (
+                <IconButton color="inherit" style={{"textAlign": "right", margin: "0px 0px 0px auto"}} onClick={uploadPhoto}>
+                    <PublishIcon/>
+                </IconButton>
+            )
+        } else {
+            navbarButton = (
+                <IconButton color="inherit" style={{"textAlign": "right", margin: "0px 0px 0px auto"}}>
+                    <Badge badgeContent={4} color="secondary">
+                        { /*TODO: Store notifications with redux*/ }
+                        <NotificationsIcon />
+                    </Badge>
+                </IconButton>
+            )
+        }
 
         return (
             <div className={classes.root}>
@@ -131,15 +141,10 @@ export const NavBar = ({ handleViewChange, renderView, iconMap, userName, email,
                             <MenuIcon/>
                         </IconButton>
                         <Typography variant="h6" noWrap>
-                            <PetsIcon style={{padding: "5px"}}/> Tele-Vet
+                            <PetsIcon style={{padding: "5px"}}/>
+                            Tele-Vet
                         </Typography>
-                        {uploadButton}
-                        <IconButton color="inherit" style={{"textAlign": "right", margin: "0px 0px 0px auto"}}>
-                            <Badge badgeContent={4} color="secondary">
-                                { /*TODO: Store notifications with redux*/ }
-                                <NotificationsIcon />
-                            </Badge>
-                        </IconButton>
+                        { navbarButton }
                     </Toolbar>
                 </AppBar>
                 <Drawer

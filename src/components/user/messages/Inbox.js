@@ -16,6 +16,15 @@ import Avatar from '@material-ui/core/Avatar';
 import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import TextField from "@material-ui/core/TextField";
+import DialogActions from "@material-ui/core/DialogActions";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import TextArea from "devextreme-react";
+import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 
 const useStyles = makeStyles((theme) => ({
     text: {
@@ -25,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom: 50,
     },
     list: {
+        marginBottom: theme.spacing(2),
+    },
+    textField: {
         marginBottom: theme.spacing(2),
     },
     subheader: {
@@ -47,8 +59,37 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Inbox({ messages }) {
+// TODO: Find a way to share the current user with all components.
+const mockUser = {
+    avatar: "/resources/mock-avatar-1.jpg",
+    name: "Arnob Mukherjee"
+}
+
+export default function Inbox({ inbox, onSend, currentUser = mockUser } ) {
     const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
+    const [subject, setSubject] = React.useState('');
+    const [message, setMessage] = React.useState('');
+    const messages = inbox.msgHistory;
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleSend = () => {
+        onSend({
+            id: 1,
+            person: mockUser.avatar,
+            from: inbox.name,
+            primary: subject,
+            secondary: message
+        });
+        setOpen(false);
+    }
 
     return (
         <React.Fragment>
@@ -74,7 +115,7 @@ export default function Inbox({ messages }) {
             </Paper>
             <AppBar position="fixed" color="primary" className={classes.appBar}>
                 <Toolbar>
-                    <Fab color="secondary" aria-label="add" className={classes.fabButton}>
+                    <Fab color="secondary" aria-label="add" className={classes.fabButton} onClick={handleClickOpen}>
                         <AddIcon />
                     </Fab>
                     <div className={classes.grow} />
@@ -86,6 +127,40 @@ export default function Inbox({ messages }) {
                     </IconButton>
                 </Toolbar>
             </AppBar>
+            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">Message</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        To subscribe to this website, please enter your email address here. We will send updates
+                        occasionally.
+                    </DialogContentText>
+                    <TextField
+                        className={classes.textField}
+                        autoFocus
+                        margin="dense"
+                        id="subject"
+                        label="Subject"
+                        onChange={(e) => { setSubject(e.target.value); }}
+                        fullWidth
+                    />
+                    <TextField
+                        className={classes.textField}
+                        id="message"
+                        placeholder="Message"
+                        onChange={(e) => { setMessage(e.target.value) }}
+                        multiline
+                        fullWidth
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleSend} color="primary">
+                        Send
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </React.Fragment>
     );
 }
