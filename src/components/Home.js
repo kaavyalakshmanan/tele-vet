@@ -116,10 +116,23 @@ export default function SignInSide() {
               </Grid>
               <Grid item>
                 <Link href="PetSignUp" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {"Don't have an account? Sign Up as a Pet Owner"}
                 </Link>
               </Grid>
             </Grid>
+
+            <Grid container>
+              <Grid item xs>
+                <Link href="" variant="body2">
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href="VetSignUp" variant="body2">
+                  {"Or Sign Up as a Vet"}
+                </Link>
+              </Grid>
+            </Grid>
+            
             <Box mt={5}>
               <Copyright />
             </Box>
