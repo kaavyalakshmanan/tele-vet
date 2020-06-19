@@ -21,3 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# without a database we need local file versions to demo uploading
+public/resources/Camping.jpg
+public/resources/Canoe.jpg
+public/resources/Chugach.jpg
+public/resources/Climbing.JPG
