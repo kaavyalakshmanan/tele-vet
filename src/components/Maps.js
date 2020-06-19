@@ -51,7 +51,6 @@ class Maps extends React.Component {
 
                 </Map>
 
-
             </div>
 
         );
