@@ -27,8 +27,8 @@ const initialImages = {
     list: [
         {
             src: "https://images.pexels.com/photos/110820/pexels-photo-110820.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-            width: 4,
-            height: 3
+            width: 2,
+            height: 2
         },
         {
             src: "https://images.pexels.com/photos/47547/squirrel-animal-cute-rodents-47547.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",

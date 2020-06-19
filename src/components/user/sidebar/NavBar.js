@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
         overflowX: 'hidden',
         width: theme.spacing(0),
         [theme.breakpoints.up('sm')]: {
-            width: theme.spacing(0),
+            width: theme.spacing(9) + 1,
         },
     },
     toolbar: {
