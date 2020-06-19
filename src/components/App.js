@@ -5,8 +5,6 @@ import Navigation from "./Navigation";
 import Home from "./Home";
 import About from "./About";
 import Features from "./Features";
-import VetLogIn from "./VetLogIn";
-import PetLogIn from "./PetLogIn";
 import VetSignUp from "./VetSignUp";
 import PetSignUp from "./PetSignUp";
 import Error from "./Error"
@@ -24,8 +22,6 @@ function App() {
             <Route path="/features" component={Features}/>
             <Route path="/maps" component={Maps}/>
             <Route path="/appointments" component={AppointmentsView}/>
-            <Route path="/vetlogin" component={VetLogIn}/>
-            <Route path="/petlogin" component={PetLogIn}/>
             <Route path="/vetsignup" component={VetSignUp}/>
             <Route path="/petsignup" component={PetSignUp}/>
             <Route component={Error}/>
