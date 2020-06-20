@@ -22,11 +22,11 @@
     "react-bootstrap": "^1.0.1",
     "react-calendar": "^3.1.0",
     "react-dom": "^16.13.1",
-    "react-material-ui-carousel": "^1.5.2",
-    "react-native": "^0.62.2",
     "react-geocode": "^0.2.1",
     "react-google-autocomplete": "^1.2.6",
     "react-google-maps": "^9.4.5",
+    "react-material-ui-carousel": "^1.5.2",
+    "react-native": "^0.62.2",
     "react-redux": "^7.2.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
@@ -34,6 +34,7 @@
     "react-slick": "^0.26.1",
     "react-timekeeper": "^2.1.1",
     "redux": "^4.0.5",
+    "remove-node-modules": "^1.7.6",
     "typescript": "^3.9.3"
   },
   "scripts": {
