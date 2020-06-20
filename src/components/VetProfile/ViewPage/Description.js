@@ -1,5 +1,5 @@
 import React from "react";
-import Pic from "./DefaultPictures/drShawarma.jpeg"
+import Pic from "./DefaultPictures/headShot.jpg"
 
 
 export default function Description() {
