@@ -10,10 +10,8 @@ import PetSignUp from "./home/PetSignUp";
 import Error from "./Error"
 import AppointmentsView from './Appointments/AppointmentsView'
 import FindVet from "./maps/FindVet";
-import Vet from "./VetProfile/ViewPage/ProfilePage"
 import ProfilePage from "./VetProfile/ViewPage/ProfilePage";
 import EditPage from "./VetProfile/EditPage/EditPage";
-import Maps from "./Maps";
 
 function App() {
   return (

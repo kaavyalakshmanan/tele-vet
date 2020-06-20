@@ -65,7 +65,7 @@ function MediaCard(name, info, rate) {
                 <Button size="small" color="primary">
                     Share
                 </Button>
-                <Button size="small" color="primary">
+                <Button size="small" color="primary" href="/vet">
                     Learn More
                 </Button>
             </CardActions>
