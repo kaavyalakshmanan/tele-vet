@@ -1,2 +1,25 @@
 @import './Appointments.css';
 @import './Navigation.css';
+
+
+#wrapper{
+    display: flex;
+}
+#map {
+
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+#card {
+    display: flex;
+
+    width: 100%;
+    height: 100%;
+
+}
+
+#mapDisplay {
+    display: flex;
+}
