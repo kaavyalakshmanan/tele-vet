@@ -4,7 +4,9 @@ import '../css/App.css';
 import Navigation from "./Navigation";
 import Home from "./Home";
 import About from "./About";
-import Features from "./Features";
+import UserDashboard from "./user/Dashboard";
+import VetLogIn from "./VetLogIn";
+import PetLogIn from "./PetLogIn";
 import VetSignUp from "./VetSignUp";
 import PetSignUp from "./PetSignUp";
 import Error from "./Error"
@@ -15,11 +17,11 @@ function App() {
   return (
       <BrowserRouter>
         <div>
-          <Navigation />
+          <Navigation/>
           <Switch>
             <Route path="/" component={Home} exact/>
             <Route path="/about" component={About}/>
-            <Route path="/features" component={Features}/>
+            <Route path="/user/dashboard" component={UserDashboard}/>
             <Route path="/maps" component={Maps}/>
             <Route path="/appointments" component={AppointmentsView}/>
             <Route path="/vetsignup" component={VetSignUp}/>
