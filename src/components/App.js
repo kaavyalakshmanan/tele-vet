@@ -10,6 +10,10 @@ import PetSignUp from "./home/PetSignUp";
 import Error from "./Error"
 import AppointmentsView from './Appointments/AppointmentsView'
 import FindVet from "./maps/FindVet";
+import Vet from "./VetProfile/ViewPage/ProfilePage"
+import ProfilePage from "./VetProfile/ViewPage/ProfilePage";
+import EditPage from "./VetProfile/EditPage/EditPage";
+import Maps from "./Maps";
 
 function App() {
   return (
@@ -22,6 +26,8 @@ function App() {
             <Route path="/user/dashboard" component={UserDashboard}/>
             <Route path="/maps/FindVet" component={FindVet}/>
             <Route path="/appointments" component={AppointmentsView}/>
+            <Route path="/Vet" component={ProfilePage}/>
+            <Route path="/EditPage" component={EditPage}/>
             <Route path="/vetsignup" component={VetSignUp}/>
             <Route path="/petsignup" component={PetSignUp}/>
             <Route component={Error}/>

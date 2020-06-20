@@ -5,7 +5,7 @@ import vetData from "../../resources/vet_data";
 
 //________________________________________________________
 const mapStyles = {
-    width: '50%',
+    width: '45%',
     height: '70%',
     position: 'relative'
 

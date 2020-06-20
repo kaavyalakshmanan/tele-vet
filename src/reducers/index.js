@@ -109,7 +109,7 @@ const appointmentReducer = (appointments = initialAppointments, action) => {
     return appointments;
 }
 
-const navBarReducer = (hidden = false, action) => {
+const navBarReducer = (hidden = true, action) => {
     if (action.type === 'HIDE_NAVBAR') {
         return action.hidden;
     }
