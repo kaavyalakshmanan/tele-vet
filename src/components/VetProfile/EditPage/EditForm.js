@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import Timekeeper from 'react-timekeeper';
 import {editVetProfile} from '../../../actions/index';
-import { TimePicker } from '@material-ui/pickers'
+// import { TimePicker } from '@material-ui/pickers'
 
 class EditForm extends React.Component {
     constructor(props) {
