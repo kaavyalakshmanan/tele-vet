@@ -5,7 +5,6 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { connect } from "react-redux";
-// TODO: Refactor the 'find a vet' button into a component
 
 class Navigation extends React.Component {
     render() {
