@@ -2,25 +2,25 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import '../css/App.css';
 import Navigation from "./Navigation";
-import Home from "./Home";
+import Home from "./home/Home";
 import About from "./About";
-import Features from "./Features";
-import VetSignUp from "./VetSignUp";
-import PetSignUp from "./PetSignUp";
+import UserDashboard from "./user/Dashboard";
+import VetSignUp from "./home/VetSignUp";
+import PetSignUp from "./home/PetSignUp";
 import Error from "./Error"
 import AppointmentsView from './Appointments/AppointmentsView'
-import FindVet from "./maps/FindVet";
+import Maps from "./Maps";
 
 function App() {
   return (
       <BrowserRouter>
         <div>
-          <Navigation />
+          <Navigation/>
           <Switch>
             <Route path="/" component={Home} exact/>
             <Route path="/about" component={About}/>
-            <Route path="/features" component={Features}/>
-            <Route path="/maps/FindVet" component={FindVet}/>
+            <Route path="/user/dashboard" component={UserDashboard}/>
+            <Route path="/maps" component={Maps}/>
             <Route path="/appointments" component={AppointmentsView}/>
             <Route path="/vetsignup" component={VetSignUp}/>
             <Route path="/petsignup" component={PetSignUp}/>
