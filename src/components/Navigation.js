@@ -18,7 +18,7 @@ class Navigation extends React.Component {
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/about">Team</Nav.Link>
                     <Nav.Link href="/Appointments">Appointments</Nav.Link>
-                    <Nav.Link href="/maps">Find a Vet</Nav.Link>
+                    <Nav.Link href="/maps/FindVet">Find a Vet</Nav.Link>
                 </Nav>
                 <NavDropdown title="Dashboards" id="basic-nav-dropdown">
                     <NavDropdown.Item href="/user/dashboard">Pet Owner</NavDropdown.Item>

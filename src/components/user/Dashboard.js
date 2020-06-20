@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import {hideNavigation, selectInbox, setPhotoDropzoneOpen, setUserDashboardView} from "../../actions";
 import Calendar from "./schedule/Calendar";
-import Maps from "../Maps";
 import MailIcon from "@material-ui/icons/Mail";
 import VideocamIcon from "@material-ui/icons/Videocam";
 import EventIcon from "@material-ui/icons/Event";
@@ -12,11 +11,12 @@ import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 import {NavBar} from "./sidebar/NavBar";
 import Gallery from "./photos/PhotoGallery";
 import Messages from "./messages/Messages";
+import FindVet from "../maps/FindVet";
 
 const viewMap = {
     'Messages': <Messages/>,
     'Calendar': <Calendar style={ { padding: '50px'} }/>,
-    'Maps': <Maps/>,
+    'Find a Vet': <FindVet/>,
     'Visit-Summary': 'Visit-Summary',
     'E-Visit': 'E-Visit',
     'Photo Gallery': <Gallery/>,
@@ -25,7 +25,7 @@ const viewMap = {
 const iconMap = {
     'Messages':  <MailIcon color={ 'inherit' }/>,
     'Calendar': <EventIcon color={ 'inherit' }/>,
-    'Maps': <MapIcon color={ 'inherit' }/>,
+    'Find a Vet': <MapIcon color={ 'inherit' }/>,
     'E-Visit': <VideocamIcon color={ 'inherit' } />,
     'Visit-Summary': <DescriptionIcon color={ 'inherit' }/>,
     'Photo Gallery': <PhotoCameraIcon color={ 'inherit' }/>,

@@ -1,10 +1,14 @@
 import React from 'react';
 import {Map, GoogleApiWrapper, Marker} from 'google-maps-react';
-import vetData from "../resources/vet_data";
+import vetData from "../../resources/vet_data";
 
+
+//________________________________________________________
 const mapStyles = {
-    width: '70%',
+    width: '50%',
     height: '70%',
+    position: 'relative'
+
 };
 
 class Maps extends React.Component {
@@ -34,23 +38,21 @@ class Maps extends React.Component {
         })
     }
 
+
     render() {
         return (
-            <div id='map'>
+            <div id='mapDisplay'>
                 <h1>Find a vet to help your pet! </h1>
-                <h2>
-                    (work in progress)</h2>
 
-                <Map
+                <Map id="map_loader"
                     google={this.props.google}
                     zoom={12}
-                    style={mapStyles}
+                     style={mapStyles}
                     initialCenter={{lat: 49.257803, lng: -123.119299}}
                 >
                     {this.displayMarkers()}
 
                 </Map>
-
 
             </div>
 
