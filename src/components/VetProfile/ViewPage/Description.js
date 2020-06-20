@@ -2,7 +2,7 @@ import React from "react";
 import Pic from "./DefaultPictures/drShawarma.jpeg"
 
 
-export default function ProfileBox() {
+export default function Description() {
     return (
         <div className="MuiGrid-root makeStyles-grid-98  MuiGrid-container MuiGrid-justify-xs-center">
             <div

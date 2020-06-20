@@ -15,7 +15,6 @@ class Navigation extends React.Component {
                     <Nav.Link href="/about">Team</Nav.Link>
                     <Nav.Link href="/Appointments">Appointments</Nav.Link>
                     <Nav.Link href="/Vet">Vet</Nav.Link>
-                    <Nav.Link href="/testing">Test</Nav.Link>
                 </Nav>
                 <Form inline>
                     <Form.Control type="text" placeholder="Search" className="mr-sm-2" />

@@ -4,7 +4,7 @@ import 'react-calendar/dist/Calendar.css';
 // import { useState } from 'react'
 
 
- class BookingCalendar extends React.Component {
+ class FlipCalendar extends React.Component {
     constructor(props) {
         super(props);
         // let today = new Date();
@@ -14,12 +14,35 @@ import 'react-calendar/dist/Calendar.css';
         // const [value, onChange] = useState(new Date());
     }
 
-     processPick(day, event) {
+     processPick(day, event, element) {
         this.setState({
             date: day
         })
+     // Calendar.toggle(.flip-card:hover .flip-card-inner) {
+     //         transform: rotateY(180deg);
+     //     }
+     //     (element).toggleClass('flipped')
         console.log(day)
     }
+
+ // <button onClick="flip()">flip the card</button>
+     // function flipCard(el) {
+     //     $(el).toggleClass('flipped')
+     // }
+//https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_toggle_class
+// $('.flip-container .flipper').click(function() {
+//     $(this).closest('.flip-container').toggleClass('hover');
+//     $(this).css('transform, rotateY(180deg)');
+//  <button onclick="myFunction()">Try it</button>
+//
+//  <div id="myDIV">
+//  This is a DIV element.
+//  </div>
+//
+//  <script>
+//  function myFunction() {
+//      var element = document.getElementById("myDIV");
+//      element.classList.toggle("mystyle");
 
     render() {
         return (
@@ -36,4 +59,5 @@ import 'react-calendar/dist/Calendar.css';
     }
 }
 
-export default BookingCalendar
+export default FlipCalendar
+

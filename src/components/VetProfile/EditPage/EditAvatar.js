@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
 import AvatarEditor from 'react-avatar-editor'
+import vet1 from "../ViewPage/DefaultPictures/vet1.jpg"
 
-class PictureCrop extends React.Component {
+class EditAvatar extends React.Component {
     render() {
         return (
             <AvatarEditor
-                image="http://example.com/initialimage.jpg"
+                image= {vet1}
                 width={250}
                 height={250}
                 border={50}
@@ -17,7 +18,4 @@ class PictureCrop extends React.Component {
     }
 }
 
-export default PictureCrop
-
-
-// https://github.com/mosch/react-avatar-editor
+export default EditAvatar

@@ -7,3 +7,24 @@ export const updateAppointments = appointmentData => {
         appointmentData: appointmentData
     }
 }
+
+export const editVetProfile = (input1) => ({
+    type: "EDIT_VET_PROFILE",
+    payload: {
+        firstName: "",
+        lastName: "",
+        username: "",
+        businessAddress: "",
+        website: "",
+        openTimes: {
+            sunday: "",
+            monday: "",
+            tuesday: "",
+            wednesday: "",
+            thursday: "",
+            friday: "",
+            saturday: "",
+        },
+        acceptEmergency: ""
+    }
+});
