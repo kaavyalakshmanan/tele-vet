@@ -2,11 +2,13 @@ import React from "react";
 import {connect} from "react-redux";
 import Timekeeper from 'react-timekeeper';
 import {editVetProfile} from '../../../actions/index';
+import { TimePicker } from '@material-ui/pickers'
 
 class EditForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            mondayTime: null,
             firstName: "",
             lastName: "",
             username: "",
@@ -28,6 +30,13 @@ class EditForm extends React.Component {
     handleSubmission = (e) => {
         e.preventDefault();
         this.props.editVetProfile(this.state.profile);
+    }
+
+    _handleSetTime = (day, e) => {
+        const { target: { value } } = e;
+        this.setState({
+            [day]: value
+        });
     }
 
     render() {
@@ -86,12 +95,15 @@ class EditForm extends React.Component {
                     <h6>Hours of Operation</h6>
                     <div className="formGroup">
                         <label>Sunday</label>
+                        {/*<TimePicker/>*/}
                         <Timekeeper
                             time={e => this.state.openTimes.sunday.setState(e.target.value)}
+                            time={(e) => this._handleSetTime(e)}
                         />
                         <label>Monday</label>
                         <Timekeeper
                             time={e => this.state.openTimes.monday.setState(e.target.value)}
+                            time={(e) => this._handleSetTime("monday", e)}
                         />
                         <label>Tuesday</label>
                         <Timekeeper

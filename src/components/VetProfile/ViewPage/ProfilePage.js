@@ -8,8 +8,8 @@ export default function ProfilePage() {
     return (
         <div>
             <CarouselSection/>
-            <h1>Welcome to the Shawarma Clinic</h1>
             <Description/>
+            <h1>Welcome to the Shawarma Clinic</h1>
             <Link to="/EditPage">Edit</Link>
             <h5>Schedule your Appointment!</h5>
             <FlipMain/>
