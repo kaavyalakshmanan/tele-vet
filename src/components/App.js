@@ -2,13 +2,11 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import '../css/App.css';
 import Navigation from "./Navigation";
-import Home from "./Home";
+import Home from "./home/Home";
 import About from "./About";
 import UserDashboard from "./user/Dashboard";
-import VetLogIn from "./VetLogIn";
-import PetLogIn from "./PetLogIn";
-import VetSignUp from "./VetSignUp";
-import PetSignUp from "./PetSignUp";
+import VetSignUp from "./home/VetSignUp";
+import PetSignUp from "./home/PetSignUp";
 import Error from "./Error"
 import AppointmentsView from './Appointments/AppointmentsView'
 import Maps from "./Maps";
