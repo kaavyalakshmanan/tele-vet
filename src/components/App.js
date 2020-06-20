@@ -9,7 +9,7 @@ import VetSignUp from "./home/VetSignUp";
 import PetSignUp from "./home/PetSignUp";
 import Error from "./Error"
 import AppointmentsView from './Appointments/AppointmentsView'
-import Maps from "./Maps";
+import FindVet from "./maps/FindVet";
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
             <Route path="/" component={Home} exact/>
             <Route path="/about" component={About}/>
             <Route path="/user/dashboard" component={UserDashboard}/>
-            <Route path="/maps" component={Maps}/>
+            <Route path="./maps/FindVet" component={FindVet}/>
             <Route path="/appointments" component={AppointmentsView}/>
             <Route path="/vetsignup" component={VetSignUp}/>
             <Route path="/petsignup" component={PetSignUp}/>
