@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {hideNavigation, selectInbox, setPhotoDropzoneOpen, setUserDashboardView} from "../../actions";
+import { hideNavigation, selectInbox, setUserDashboardView } from "../../actions";
 import Calendar from "./schedule/Calendar";
 import MailIcon from "@material-ui/icons/Mail";
 import VideocamIcon from "@material-ui/icons/Videocam";
@@ -9,9 +9,10 @@ import MapIcon from "@material-ui/icons/Map";
 import DescriptionIcon from "@material-ui/icons/Description";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 import {NavBar} from "./sidebar/NavBar";
-import Gallery from "./photos/PhotoGallery";
 import Messages from "./messages/Messages";
 import FindVet from "../maps/FindVet";
+import Album from "./photos/Album";
+import {Footer} from "../Footer";
 
 const viewMap = {
     'Messages': <Messages/>,
@@ -19,7 +20,7 @@ const viewMap = {
     'Find a Vet': <FindVet/>,
     'Visit-Summary': 'Visit-Summary',
     'E-Visit': 'E-Visit',
-    'Photo Gallery': <Gallery/>,
+    'Photo Gallery': <Album/>,
 }
 
 const iconMap = {
@@ -50,8 +51,8 @@ class UserDashboard extends Component {
                     userName={ "Arnob Mukherjee" }
                     email={ "arnob@MockUser.com" }
                     currentView={this.props.view}
-                    uploadPhoto={() => this.props.setPhotoDropzoneOpen(true)}
                 />
+                <Footer/>
             </div>
         )
     }
@@ -66,9 +67,6 @@ const mapDispatchToProps = dispatch => ({
     },
     hideNavigation: hidden => {
         dispatch(hideNavigation(hidden));
-    },
-    setPhotoDropzoneOpen: open => {
-        dispatch(setPhotoDropzoneOpen(open))
     }
 });
 

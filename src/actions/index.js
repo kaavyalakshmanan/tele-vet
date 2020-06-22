@@ -22,16 +22,16 @@ export const setUserDashboardView = view => {
     }
 }
 
-export const setPhotoDropzoneOpen = open => {
-    return {
-        type: 'SET_DROPZONE_OPEN',
-        open: open
-    }
-}
-
 export const addImage = image => {
     return {
         type: 'ADD_IMAGE',
+        image: image
+    }
+}
+
+export const deleteImage = image => {
+    return {
+        type: 'DELETE_IMAGE',
         image: image
     }
 }
