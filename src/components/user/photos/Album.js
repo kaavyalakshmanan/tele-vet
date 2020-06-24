@@ -17,7 +17,6 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import TextField from "@material-ui/core/TextField";
 import DialogActions from "@material-ui/core/DialogActions";
-import ImageCard from "./ImageCard";
 
 const useStyles = makeStyles((theme) => ({
     icon: {
