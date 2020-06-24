@@ -29,6 +29,13 @@ export const addImage = image => {
     }
 }
 
+export const editImage = image => {
+    return {
+        type: 'EDIT_IMAGE',
+        image: image
+    }
+}
+
 export const deleteImage = image => {
     return {
         type: 'DELETE_IMAGE',

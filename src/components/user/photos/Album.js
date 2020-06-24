@@ -10,14 +10,14 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useDispatch, useSelector } from "react-redux";
-import {addImage, deleteImage} from "../../../actions";
-import { DropzoneDialog } from "material-ui-dropzone";
+import { addImage, deleteImage, editImage } from "../../../actions";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import TextField from "@material-ui/core/TextField";
 import DialogActions from "@material-ui/core/DialogActions";
+import ImageCard from "./ImageCard";
 
 const useStyles = makeStyles((theme) => ({
     icon: {
@@ -53,39 +53,76 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Album() {
     const classes = useStyles();
-    const [photoFormOpen, setPhotoFormOpen] = React.useState(false);
-    // const [photoDropzoneOpen, setPhotoDropzoneOpen] = React.useState(false);
+    const [uploadDialogOpen, setUploadDialogOpen] = React.useState(false);
+    const [editDialogOpen, setEditDialogOpen] = React.useState(false);
+    const [currentImage, setCurrentImage] = React.useState({
+        file: {
+            src: ""
+        },
+        title: "",
+        description: ""
+    });
     const [title, setTitle] = React.useState("");
     const [description, setDescription] = React.useState("");
-    const [image, setImage] = React.useState(null);
+    const [preview, setPreview] = React.useState(null);
     const dispatch = useDispatch();
     const uploadedImages = useSelector(state => state.images);
     const handleClose = () => {
-        setPhotoFormOpen(false);
+        setUploadDialogOpen(false);
         setTitle("");
         setDescription("");
+        setPreview(null);
     };
 
     const handleSubmit = (e) => {
-        if (image) {
-            const reader = new FileReader();
-            reader.addEventListener('load', (event) => {
-                dispatch(addImage({
-                    file: {
-                        src: event.target.result,
-                    },
-                    title: title,
-                    description: description
-                }));
-            });
-            reader.readAsDataURL(image);
+        if (preview) {
+            dispatch(addImage({
+                file: {
+                    src: preview,
+                },
+                title: title,
+                description: description
+            }));
         }
         handleClose();
+    }
+
+    const handlePreview = (e) => {
+        if (e.target.files) {
+            const reader = new FileReader();
+            reader.addEventListener('load', (event) => {
+                setPreview(event.target.result);
+            });
+            reader.readAsDataURL(e.target.files[0]);
+        }
     }
 
     const handleDelete = (index) => {
         console.log(uploadedImages.list[index]);
         dispatch(deleteImage(uploadedImages.list[index]));
+    }
+
+    const handleOpenEdit = (index) => {
+        console.log(uploadedImages.list[index]);
+        setCurrentImage(uploadedImages.list[index]);
+        setEditDialogOpen(true);
+    }
+
+    const handleCloseEdit = () => {
+        setEditDialogOpen(false);
+        setTitle("");
+        setDescription("");
+    }
+
+    const handleSaveEdit = () => {
+        dispatch(editImage({
+            file: {
+                src: currentImage.file.src
+            },
+            title: title,
+            description: description
+        }));
+        handleCloseEdit();
     }
 
     return (
@@ -103,7 +140,7 @@ export default function Album() {
                         </Typography>
                         <div className={classes.heroButtons}>
                             <Grid container spacing={2} justify="center">
-                                <Button variant="contained" color="primary" onClick={() => setPhotoFormOpen(true)}>
+                                <Button variant="contained" color="primary" onClick={() => setUploadDialogOpen(true)}>
                                     Upload Photos
                                 </Button>
                             </Grid>
@@ -130,10 +167,7 @@ export default function Album() {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button size="small" color="primary">
-                                            View
-                                        </Button>
-                                        <Button size="small" color="primary">
+                                        <Button size="small" color="primary" onClick={ () => handleOpenEdit(index) }>
                                             Edit
                                         </Button>
                                         <Button size="small" color="primary" onClick={ () => handleDelete(index) }>
@@ -146,9 +180,14 @@ export default function Album() {
                     </Grid>
                 </Container>
             </main>
-            <Dialog open={photoFormOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <Dialog open={uploadDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Message</DialogTitle>
                 <DialogContent>
+                    <CardMedia
+                        className={ classes.cardMedia }
+                        image={ preview }
+                        title={ 'preview' }
+                    />
                     <DialogContentText>
                         Add a title and description to your photo
                     </DialogContentText>
@@ -185,14 +224,52 @@ export default function Album() {
                         <input
                             type="file"
                             style={{ display: "none" }}
-                            onChange={ (e) => {
-                                console.log(e.target.files);
-                                setImage(e.target.files[0]);
-                            }}
+                            onChange={ handlePreview }
                         />
                     </Button>
                 </DialogActions>
             </Dialog>
+            <Dialog open={editDialogOpen} onClose={ handleCloseEdit } aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">Message</DialogTitle>
+                <DialogContent>
+                    <CardMedia
+                        className={classes.cardMedia}
+                        image={ currentImage.file.src }
+                        title={ 'preview' }
+                    />
+                    <DialogContentText>
+                        Add a title and description to your photo
+                    </DialogContentText>
+                    <TextField
+                        className={classes.textField}
+                        autoFocus
+                        margin="dense"
+                        id="title"
+                        label="Title"
+                        defaultValue={ currentImage.title }
+                        onChange={(e) => { setTitle(e.target.value); }}
+                        fullWidth
+                    />
+                    <TextField
+                        className={classes.textField}
+                        id="description"
+                        placeholder="Description"
+                        defaultValue={ currentImage.description }
+                        onChange={(e) => { setDescription(e.target.value) }}
+                        multiline
+                        fullWidth
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={ handleCloseEdit }>
+                        Cancel
+                    </Button>
+                    <Button onClick={ handleSaveEdit }>
+                        Save
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
         </React.Fragment>
     );
 }

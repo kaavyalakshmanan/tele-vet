@@ -147,6 +147,24 @@ const imageReducer = (images = initialImages, action) => {
             })
         }
     }
+    if (action.type === 'EDIT_IMAGE') {
+        let newList = [];
+        console.log(images);
+        console.log(action.image);
+        images.list.forEach((img) => {
+            console.log(img.file.src);
+            console.log(action.image.file.src);
+            console.log(img.file.src === action.image.file.src);
+            if (img.file.src === action.image.file.src) {
+                newList.push(action.image);
+            } else {
+                newList.push(img);
+            }
+        });
+        return {
+            list: newList
+        };
+    }
     if (action.type === 'DELETE_IMAGE') {
         return {
             list: images.list.filter(img => img.file.src !== action.image.file.src)
