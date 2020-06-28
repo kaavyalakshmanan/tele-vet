@@ -15,7 +15,7 @@
 /*https://www.w3schools.com/css/css3_flexbox.asp*/
 #editProfileForm {
     padding: 20px 20px 100px;
-    float: right;
+    /*float: right;*/
     width: available;
 }
 
@@ -42,7 +42,7 @@
 }
 
 .editProfilePicture {
-    float: left;
+    /*float: left;*/
     width: 10px;
 }
 
@@ -54,7 +54,7 @@
 }
 
 .editCarousel{
-    float: left;
+    /*float: left;*/
     width: 350px;
     height: 100px;
     display: flex;
