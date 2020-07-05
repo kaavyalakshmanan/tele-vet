@@ -102,6 +102,29 @@ const initialContacts = {
     ]
 }
 
+const initialProfiles = [{
+    firstName: "Jane",
+    lastName: "McDouglas",
+    username: "Dr. McDoggy",
+    businessAddress: "2207 12th ave west, Vancouver",
+    website: "www.doggyClinic.com",
+    acceptEmergency:"true",
+    sundayOpen: "8h00",
+    sundayClose: "20h00",
+    mondayOpen: "8h00",
+    mondayClose: "20h00",
+    tuesdayOpen: "8h00",
+    tuesdayClose: "20h00",
+    wednesdayOpen: "8h00",
+    wednesdayClose: "20h00",
+    thursdayOpen: "8h00",
+    thursdayClose: "20h00",
+    fridayOpen: "8h00",
+    fridayClose: "20h00",
+    saturdayOpen: "8h00",
+    saturdayClose: "20h00",
+}];
+
 const appointmentReducer = (appointments = initialAppointments, action) => {
     if (action.type === 'UPDATE_APPOINTMENTS') {
         return action.appointmentData;
@@ -169,6 +192,13 @@ const contactReducer = (contacts = initialContacts, action) => {
     return contacts;
 }
 
+const profileReducer = (profiles = initialProfiles, action) => {
+    if (action.type === "EDIT_VET_PROFILE") {
+        return profiles.push(action.payload)
+    }
+    return profiles
+}
+
 export default combineReducers({
     appointmentData: appointmentReducer,
     navBarHidden: navBarReducer,
@@ -177,5 +207,6 @@ export default combineReducers({
     images: imageReducer,
     photoDropzoneOpen: userPhotosReducer,
     inbox: inboxReducer,
-    contacts: contactReducer
+    contacts: contactReducer,
+    profiles: profileReducer
 });

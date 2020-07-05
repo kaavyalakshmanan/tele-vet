@@ -16,24 +16,35 @@ class EditForm extends React.Component {
             firstName: "",
             lastName: "",
             username: "",
+            description: "",
             businessAddress: "",
+            neighbourhood: "",
+            postalCode: "",
             website: "",
+            email: "",
+            certification: "",
+            specialization: "",
             acceptEmergency: false,
-            sundayOpen: "",
-            sundayClose: "",
-            mondayOpen: "",
-            mondayClose: "",
-            tuesdayOpen: "",
-            tuesdayClose: "",
-            wednesdayOpen: "",
-            wednesdayClose: "",
-            thursdayOpen: "",
-            thursdayClose: "",
-            fridayOpen: "",
-            fridayClose: "",
-            saturdayOpen: "",
-            saturdayClose: "",
+            sundayOpen: '2014-08-18T08:00:00',
+            sundayClose: '2014-08-18T18:00:00',
+            mondayOpen: '2014-08-18T08:00:00',
+            mondayClose: '2014-08-18T18:00:00',
+            tuesdayOpen: '2014-08-18T08:00:00',
+            tuesdayClose: '2014-08-18T18:00:00',
+            wednesdayOpen: '2014-08-18T08:00:00',
+            wednesdayClose: '2014-08-18T18:00:00',
+            thursdayOpen: '2014-08-18T08:00:00',
+            thursdayClose: '2014-08-18T18:00:00',
+            fridayOpen: '2014-08-18T08:00:00',
+            fridayClose: '2014-08-18T18:00:00',
+            saturdayOpen: '2014-08-18T08:00:00',
+            saturdayClose: '2014-08-18T18:00:00',
+            profilePicture: "",
+            carouselPictures: [],
+            reviewMessages: [],
+            rating: ""
         }
+        console.log("hello" + this.state.mondayOpen);
     }
 
     handleSubmission = (e) => {
@@ -41,12 +52,14 @@ class EditForm extends React.Component {
         this.props.editVetProfile(this.state);
     }
 
-    handleTimeChange = (day, e) => {
-        const {target: value} = e;
+    handleInfoChange = (field, event) => {
+        // const {target: value} = event
         this.setState({
-            [day]: value
+            [field]: event //square bracket means get value, not array here.
         });
+        console.log(this.state.mondayOpen)
     }
+
 
     render() {
         return (
@@ -61,43 +74,50 @@ class EditForm extends React.Component {
                         <div className="formGroup">
                             <label>First Name:</label>
                             <input
-                                onChange={e => this.state.profile.firstName.setState(e.target.value)}
+                                value={this.state.firstName}
+                                onChange={e => this.handleInfoChange("firstName", e)}
                             />
                         </div>
                         <div className="formGroup">
                             <label>Last Name:</label>
                             <input
-                                onChange={e => this.state.lastName.setState(e.target.value)}
+                                value={this.state.lastName}
+                                onChange={e => this.handleInfoChange("lastName", e)}
                             />
                         </div>
                         <div className="formGroup">
                             <label>User Name:</label>
                             <input
-                                onChange={e => this.state.username.setState(e.target.value)}
+                                value={this.state.username}
+                                onChange={e => this.handleInfoChange("username", e)}
                             />
                         </div>
                         <div className="formGroup">
                             <label>Business Address:</label>
                             <input
-                                onChange={e => this.state.businessAddress.setState(e.target.value)}
+                                value={this.state.businessAddress}
+                                onChange={e => this.handleInfoChange("businessAddress", e)}
                             />
                         </div>
                         <div className="formGroup">
                             <label>Website:</label>
                             <input
-                                onChange={e => this.state.website.setState(e.target.value)}
+                                value={this.state.website}
+                                onChange={e => this.handleInfoChange("website", e)}
                             />
                         </div>
                         <div className="formGroup">
                             <label>Emergency call accepted?</label>
                             <input
-                                onChange={e => this.state.acceptEmergency.setState(e.target.value)}
+                                value={this.state.acceptEmergency} //careful with boolean bullet implementation
+                                onChange={e => this.handleInfoChange("acceptEmergency", e)}
                             />
                         </div>
                         <div className="formGroup">
                             <label>Profile Write-up:</label>
                             <textarea
-                                onChange={e => this.state.profile.setState(e.target.value)}
+                                value={this.state.description}
+                                onChange={e => this.handleInfoChange("description", e)}
                                 cols={10}
                                 rows={10}
                             />
@@ -105,205 +125,211 @@ class EditForm extends React.Component {
                         <div className="formGroup">
                             <Grid container
                                   spacing={3}
-                                  xs={12}
                                   direction="row"
                                   justify="left"
                                   alignItems="flex-end">
-                                <h6>Hours of Operation</h6>
+                                <title>Hours of Operation</title>
                                 <Grid container
-                                      spacing={3}
                                       xs={12}
+                                      spacing={0}
                                       direction="row"
                                       justify="left"
                                       alignItems="flex-end">
-                                    <Grid item>
-                                        <label>Monday:</label>
+
+                                    <Grid item xs={12}>
+                                        <Grid item spacing={0} xs={12}>
+                                            <paper>Monday:</paper>
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <KeyboardTimePicker
+                                                // margin="normal"
+                                                className="time-picker"
+                                                label="Start Time"
+                                                // helperText={''}
+                                                // type="time"
+                                                // defaultValue="07:30 AM"
+                                                value={this.state.mondayOpen}
+                                                onChange={(e) => this.handleInfoChange("mondayOpen", e)}
+                                            />
+                                        </Grid>
+                                        <Grid item={12}>
+                                            <KeyboardTimePicker
+                                                margin="normal"
+                                                className="time-picker"
+                                                label="Close Time"
+                                                value={this.state.mondayClose}
+                                                onChange={(e) => this.handleInfoChange("mondayClose", e)}
+                                            />
+                                        </Grid>
+
                                     </Grid>
-                                    <Grid item={6}>
-                                        <KeyboardTimePicker
-                                            margin="normal"
-                                            className="time-picker"
-                                            label="Start Time"
-                                            value={this.selectedDate}
-                                            onChange={(e) => this.handleTimeChange("mondayOpen", e)}
-                                        />
+                                    <Grid container
+                                          spacing={3}
+                                          xs={12}
+                                          direction="row"
+                                          justify="left"
+                                          alignItems="flex-end">
+                                        <Grid item>
+                                            <label>Tuesday:</label>
+                                        </Grid>
+                                        <Grid item={6}>
+                                            <KeyboardTimePicker
+                                                margin="normal"
+                                                className="time-picker"
+                                                label="Start Time"
+                                                value={this.state.tuesdayOpen}
+                                                onChange={(e) => this.handleInfoChange("tuesdayOpen", e)}
+                                            />
+                                        </Grid>
+                                        <Grid item={6}>
+                                            <KeyboardTimePicker
+                                                margin="normal"
+                                                className="time-picker"
+                                                label="Close Time"
+                                                value={this.state.tuesdayClose}
+                                                onChange={(e) => this.handleInfoChange("tuesdayClose", e)}
+                                            />
+                                        </Grid>
                                     </Grid>
-                                    <Grid item={6}>
-                                        <KeyboardTimePicker
-                                            margin="normal"
-                                            className="time-picker"
-                                            label="Close Time"
-                                            value={this.selectedDate}
-                                            onChange={(e) => this.handleTimeChange("mondayClose", e)}
-                                        />
+                                    <Grid container
+                                          spacing={3}
+                                          xs={12}
+                                          direction="row"
+                                          justify="left"
+                                          alignItems="flex-end">
+                                        <Grid item>
+                                            <label>Wednesday:</label>
+                                        </Grid>
+                                        <Grid item={6}>
+                                            <KeyboardTimePicker
+                                                margin="normal"
+                                                className="time-picker"
+                                                label="Start Time"
+                                                value={this.state.wednesdayOpen}
+                                                onChange={(e) => this.handleInfoChange("wednesdayOpen", e)}
+                                            />
+                                        </Grid>
+                                        <Grid item={6}>
+                                            <KeyboardTimePicker
+                                                margin="normal"
+                                                className="time-picker"
+                                                label="Close Time"
+                                                value={this.state.wednesdayClose}
+                                                onChange={(e) => this.handleInfoChange("wednesdayClose", e)}
+                                            />
+                                        </Grid>
                                     </Grid>
-                                </Grid>
-                                <Grid container
-                                      spacing={3}
-                                      xs={12}
-                                      direction="row"
-                                      justify="left"
-                                      alignItems="flex-end">
-                                    <Grid item>
-                                        <label>Tuesday:</label>
+                                    <Grid container
+                                          spacing={3}
+                                          xs={12}
+                                          direction="row"
+                                          justify="left"
+                                          alignItems="flex-end">
+                                        <Grid item>
+                                            <label>Thursday:</label>
+                                        </Grid>
+                                        <Grid item={6}>
+                                            <KeyboardTimePicker
+                                                margin="normal"
+                                                className="time-picker"
+                                                label="Start Time"
+                                                value={this.state.thursdayOpen}
+                                                onChange={(e) => this.handleInfoChange("thursdayOpen", e)}
+                                            />
+                                        </Grid>
+                                        <Grid item={6}>
+                                            <KeyboardTimePicker
+                                                margin="normal"
+                                                className="time-picker"
+                                                label="Close Time"
+                                                value={this.state.thursdayClose}
+                                                onChange={(e) => this.handleInfoChange("thursdayClose", e)}
+                                            />
+                                        </Grid>
                                     </Grid>
-                                    <Grid item={6}>
-                                        <KeyboardTimePicker
-                                            margin="normal"
-                                            className="time-picker"
-                                            label="Start Time"
-                                            value={this.selectedDate}
-                                            onChange={(e) => this.handleTimeChange("tuesdayOpen", e)}
-                                        />
+                                    <Grid container
+                                          spacing={3}
+                                          xs={12}
+                                          direction="row"
+                                          justify="left"
+                                          alignItems="flex-end">
+                                        <Grid item>
+                                            <label>Friday:</label>
+                                        </Grid>
+                                        <Grid item={6}>
+                                            <KeyboardTimePicker
+                                                margin="normal"
+                                                className="time-picker"
+                                                label="Start Time"
+                                                value={this.state.fridayOpen}
+                                                onChange={(e) => this.handleInfoChange("fridayOpen", e)}
+                                            />
+                                        </Grid>
+                                        <Grid item={6}>
+                                            <KeyboardTimePicker
+                                                margin="normal"
+                                                className="time-picker"
+                                                label="Close Time"
+                                                value={this.state.fridayClose}
+                                                onChange={(e) => this.handleInfoChange("fridayClose", e)}
+                                            />
+                                        </Grid>
                                     </Grid>
-                                    <Grid item={6}>
-                                        <KeyboardTimePicker
-                                            margin="normal"
-                                            className="time-picker"
-                                            label="Close Time"
-                                            value={this.selectedDate}
-                                            onChange={(e) => this.handleTimeChange("tuesdayClose", e)}
-                                        />
+                                    <Grid container
+                                          spacing={3}
+                                          xs={12}
+                                          direction="row"
+                                          justify="left"
+                                          alignItems="flex-end">
+                                        <Grid item>
+                                            <label>Saturday:</label>
+                                        </Grid>
+                                        <Grid item={6}>
+                                            <KeyboardTimePicker
+                                                margin="normal"
+                                                className="time-picker"
+                                                label="Start Time"
+                                                value={this.state.saturdayOpen}
+                                                onChange={(e) => this.handleInfoChange("saturdayOpen", e)}
+                                            />
+                                        </Grid>
+                                        <Grid item={6}>
+                                            <KeyboardTimePicker
+                                                margin="normal"
+                                                className="time-picker"
+                                                label="Close Time"
+                                                value={this.state.saturdayClose}
+                                                onChange={(e) => this.handleInfoChange("saturdayClose", e)}
+                                            />
+                                        </Grid>
                                     </Grid>
-                                </Grid>
-                                <Grid container
-                                      spacing={3}
-                                      xs={12}
-                                      direction="row"
-                                      justify="left"
-                                      alignItems="flex-end">
-                                    <Grid item>
-                                        <label>Wednesday:</label>
-                                    </Grid>
-                                    <Grid item={6}>
-                                        <KeyboardTimePicker
-                                            margin="normal"
-                                            className="time-picker"
-                                            label="Start Time"
-                                            value={this.selectedDate}
-                                            onChange={(e) => this.handleTimeChange("wednesdayOpen", e)}
-                                        />
-                                    </Grid>
-                                    <Grid item={6}>
-                                        <KeyboardTimePicker
-                                            margin="normal"
-                                            className="time-picker"
-                                            label="Close Time"
-                                            value={this.selectedDate}
-                                            onChange={(e) => this.handleTimeChange("wednesdayClose", e)}
-                                        />
-                                    </Grid>
-                                </Grid>
-                                <Grid container
-                                      spacing={3}
-                                      xs={12}
-                                      direction="row"
-                                      justify="left"
-                                      alignItems="flex-end">
-                                    <Grid item>
-                                        <label>Thursday:</label>
-                                    </Grid>
-                                    <Grid item={6}>
-                                        <KeyboardTimePicker
-                                            margin="normal"
-                                            className="time-picker"
-                                            label="Start Time"
-                                            value={this.selectedDate}
-                                            onChange={(e) => this.handleTimeChange("thursdayOpen", e)}
-                                        />
-                                    </Grid>
-                                    <Grid item={6}>
-                                        <KeyboardTimePicker
-                                            margin="normal"
-                                            className="time-picker"
-                                            label="Close Time"
-                                            value={this.selectedDate}
-                                            onChange={(e) => this.handleTimeChange("thursdayClose", e)}
-                                        />
-                                    </Grid>
-                                </Grid>
-                                <Grid container
-                                      spacing={3}
-                                      xs={12}
-                                      direction="row"
-                                      justify="left"
-                                      alignItems="flex-end">
-                                    <Grid item>
-                                        <label>Friday:</label>
-                                    </Grid>
-                                    <Grid item={6}>
-                                        <KeyboardTimePicker
-                                            margin="normal"
-                                            className="time-picker"
-                                            label="Start Time"
-                                            value={this.selectedDate}
-                                            onChange={(e) => this.handleTimeChange("fridayOpen", e)}
-                                        />
-                                    </Grid>
-                                    <Grid item={6}>
-                                        <KeyboardTimePicker
-                                            margin="normal"
-                                            className="time-picker"
-                                            label="Close Time"
-                                            value={this.selectedDate}
-                                            onChange={(e) => this.handleTimeChange("fridayClose", e)}
-                                        />
-                                    </Grid>
-                                </Grid>
-                                <Grid container
-                                      spacing={3}
-                                      xs={12}
-                                      direction="row"
-                                      justify="left"
-                                      alignItems="flex-end">
-                                    <Grid item>
-                                        <label>Saturday:</label>
-                                    </Grid>
-                                    <Grid item={6}>
-                                        <KeyboardTimePicker
-                                            margin="normal"
-                                            className="time-picker"
-                                            label="Start Time"
-                                            value={this.selectedDate}
-                                            onChange={(e) => this.handleTimeChange("saturdayOpen", e)}
-                                        />
-                                    </Grid>
-                                    <Grid item={6}>
-                                        <KeyboardTimePicker
-                                            margin="normal"
-                                            className="time-picker"
-                                            label="Close Time"
-                                            value={this.selectedDate}
-                                            onChange={(e) => this.handleTimeChange("saturdayClose", e)}
-                                        />
-                                    </Grid>
-                                </Grid>
-                                <Grid container
-                                      spacing={3}
-                                      xs={12}
-                                      direction="row"
-                                      justify="left"
-                                      alignItems="flex-end">
-                                    <Grid item>
-                                        <label>Sunday:</label>
-                                    </Grid>
-                                    <Grid item={6}>
-                                        <KeyboardTimePicker
-                                            margin="normal"
-                                            className="time-picker"
-                                            label="Start Time"
-                                            value={this.selectedDate}
-                                            onChange={(e) => this.handleTimeChange("sundayOpen", e)}
-                                        />
-                                    </Grid>
-                                    <Grid item={6}>
-                                        <KeyboardTimePicker
-                                            margin="normal"
-                                            className="time-picker"
-                                            label="Close Time"
-                                            value={this.selectedDate}
-                                            onChange={(e) => this.handleTimeChange("sundayClose", e)}
-                                        />
+                                    <Grid container
+                                          spacing={3}
+                                          xs={12}
+                                          direction="row"
+                                          justify="left"
+                                          alignItems="flex-end">
+                                        <Grid item>
+                                            <label>Sunday:</label>
+                                        </Grid>
+                                        <Grid item={6}>
+                                            <KeyboardTimePicker
+                                                margin="normal"
+                                                className="time-picker"
+                                                label="Start Time"
+                                                value={this.state.sundayOpen}
+                                                onChange={(e) => this.handleInfoChange("sundayOpen", e)}
+                                            />
+                                        </Grid>
+                                        <Grid item={6}>
+                                            <KeyboardTimePicker
+                                                margin="normal"
+                                                className="time-picker"
+                                                label="Close Time"
+                                                value={this.state.sundayClose}
+                                                onChange={(e) => this.handleInfoChange("sundayClose", e)}
+                                            />
+                                        </Grid>
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -312,20 +338,20 @@ class EditForm extends React.Component {
                     </form>
                 </div>
             </MuiPickersUtilsProvider>
-        )
+    )
     }
-}
+    }
 
-export default connect(null, {editVetProfile})(EditForm);
+    export default connect(null, {editVetProfile})(EditForm);
 
-{/*//===========================================================*/
-}
-{/*///!*    add https://www.npmjs.com/package/react-geosuggest*!/*/
-}
-{/*//=============================================================*/
-}
+    {/*//===========================================================*/
+    }
+    {/*///!*    add https://www.npmjs.com/package/react-geosuggest*!/*/
+    }
+    {/*//=============================================================*/
+    }
 
-// const handleDateChange = (date) => {
+    // const handleDateChange = (date) => {
 //     setSelectedDate(date);
 // };
 //
