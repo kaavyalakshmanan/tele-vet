@@ -38,11 +38,13 @@
     "react-redux": "^7.2.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
+    "react-schedule-selector": "^1.0.3",
     "react-scripts": "3.4.1",
     "react-slick": "^0.26.1",
     "react-timekeeper": "^2.1.1",
     "redux": "^4.0.5",
     "remove-node-modules": "^1.7.6",
+    "styled-components": "^5.1.1",
     "typescript": "^3.9.3",
     "yarn": "^1.22.4"
   },

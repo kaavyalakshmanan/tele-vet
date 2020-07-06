@@ -13,7 +13,7 @@ const StaticDatePicker = () => {
                     variant="static"
                     openTo="date"
                     value={date}
-                    onChange={changeDate}
+                    onChange={changeDate => {console.log(changeDate)}}
                 />
         </MuiPickersUtilsProvider>
     );
