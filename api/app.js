@@ -3,11 +3,28 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const cors = require("cors");
+const mongoose = require("mongoose");
+
+// Adding mongoose
+mongoose.connect("mongodb://localhost:27017/televet", {useNewUrlParser: true})
+    .then(() => console.log('MongoDB Connected...'))
+    .catch((err) => console.log(err));
+
+const connection = mongoose.connection;
+
+connection.once("open", function () {
+  console.log("MongoDB database connection established successfully :-D");
+})
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+// Adding cors
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
