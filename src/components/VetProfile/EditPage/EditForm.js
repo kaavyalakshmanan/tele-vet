@@ -9,25 +9,40 @@ import {
 } from '@material-ui/pickers';
 import {Grid} from "@material-ui/core";
 import ScheduleSelector from 'react-schedule-selector'
-
-const format = require('date-fns/format')
+import axios from "axios"
 
 class EditForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            username: "",
+            password: "",
             firstName: "",
             lastName: "",
-            username: "",
             description: "",
-            businessAddress: "",
-            neighbourhood: "",
-            postalCode: "",
             website: "",
             email: "",
-            certification: "",
+            phone: "",
+            businessAddress: "",
+            city: "",
+            postalCode: "",
             specialization: "",
-            acceptEmergency: false,
+            acceptEmergencyCalls: "",
+            certificates: [], //{type: 'Buffer'}
+            businessNumber: "",
+            profilePicture: "", // {type: 'Buffer'}
+            carouselPictures: [], // {type: 'Buffer'}
+            reviews: [],
+            rating: 0,
+            facebook: "",
+            instagram: "",
+            socialMediaSpare1: "",
+            socialMediaSpare2: "",
+            socialMediaSpare3: "",
+            socialMediaSpare4: "",
+            socialMediaSpare5: "",
+            weeklyTimeBlocks: [],
+            scheduledAppointments: [],
             sundayOpen: '2014-08-18T08:00:00',
             sundayClose: '2014-08-18T18:00:00',
             mondayOpen: '2014-08-18T08:00:00',
@@ -42,27 +57,28 @@ class EditForm extends React.Component {
             fridayClose: '2014-08-18T18:00:00',
             saturdayOpen: '2014-08-18T08:00:00',
             saturdayClose: '2014-08-18T18:00:00',
-            profilePicture: "",
-            carouselPictures: [],
-            reviewMessages: [],
-            rating: "",
-            timeslots: [],
-            schedule: []
+            spareField1: "", //Schema.Types.Mixed
+            spareField2: "",
+            spareField3: "",
+            spareField4: "",
+            spareField5: ""
         }
-        console.log("hello" + this.state.mondayOpen);
     }
 
     handleSubmission = (e) => {
         e.preventDefault();
         this.props.editVetProfile(this.state);
+        const id = ""//dummy mongodb id here
+            const updatedProfile = this.state
+        axios.post("http://localhost:9000/" + id, updatedProfile)
+            .then(res => console.log(res.data))
+            .catch(() => console.log("The axios.post call in itemBlock failed"))
     }
 
     handleInfoChange = (field, event) => {
-        // const {target: value} = event
         this.setState({
             [field]: event //square bracket means get value, not array here.
         });
-        console.log(this.state.mondayOpen)
     }
 
     handleTimeslotsChange = newSchedule => {
@@ -97,15 +113,14 @@ class EditForm extends React.Component {
             if (String(selected).substring(0, 3) === "Sun") {
                 sunday.push (String(selected).substring(16, 21))
             }
-            // Tue Jul 07 2020 06:00:00 GMT-0700 (Pacific Daylight Time), Wed Jul 08 2020 06:00:00 GMT-0700 (Pacific Daylight Time)
         })
         const week = [monday, tuesday, wednesday, thursday, friday, saturday, sunday];
-        this.setState({timeslots: week})
+        this.setState({weeklyTimeBlocks: week})
         console.log(week)
     }
 //    unshift()
-// + " " + (String(selected).substring(35, 56))
-
+// + " " + (String(selected).substring(35, 56)) for timezone
+// Tue Jul 07 2020 06:00:00 GMT-0700 (Pacific Daylight Time), Wed Jul 08 2020 06:00:00 GMT-0700 (Pacific Daylight Time)
 
 render()
 {
@@ -156,7 +171,7 @@ render()
                     <div className="formGroup">
                         <label>Emergency call accepted?</label>
                         <input
-                            value={this.state.acceptEmergency} //careful with boolean bullet implementation
+                            value={this.state.acceptEmergencyCalls} //careful with boolean bullet implementation
                             onChange={e => this.handleInfoChange("acceptEmergency", e)}
                         />
                     </div>
@@ -389,7 +404,6 @@ render()
                             // hourlyChunks={2}
                             minTime={0}
                             maxTime={23}
-                            hourlyChunks={4}
                             dateFormat={"dddd"}
                             margin={2}
                             selectedColor={'rgba(162, 198, 248, 1)'}
