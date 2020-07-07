@@ -24,6 +24,7 @@ class Navigation extends React.Component {
                 </Nav>
                 <NavDropdown title="Dashboards" id="basic-nav-dropdown">
                     <NavDropdown.Item href="/user/dashboard">Pet Owner</NavDropdown.Item>
+                    <NavDropdown.Item href="/vet-dashboard/dashboard">Vet</NavDropdown.Item>
                 </NavDropdown>
                 <Form inline>
                     <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
