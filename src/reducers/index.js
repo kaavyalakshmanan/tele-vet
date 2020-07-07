@@ -3,22 +3,14 @@ import { combineReducers } from 'redux';
 const initialAppointments = {
     apptList: [
         {
-            vet: "Johnny Reptiles",
-            calendarData:
-            {
-                startDate: '2020-06-15T09:45',
-                endDate: '2020-06-15T11:00',
-                title: 'Cat Check-Up'
-            }
-        },
-        {
-            vet: "Sandy Fish",
-            calendarData:
-            {
-                startDate: '2020-06-16T12:00',
-                endDate: '2020-06-16T13:30',
-                title: 'Dog Vaccines'
-            }
+            text: 'Dog Check Up',
+            startDate: new Date(2020, 6, 22, 9, 30),
+            endDate: new Date(2020, 6, 22, 11, 30)
+        }, {
+            text: 'Cat Check Up',
+            startDate: new Date(2020, 6, 22, 12, 0),
+            endDate: new Date(2020, 6, 22, 13, 0),
+            allDay: true
         }
     ]
 }
