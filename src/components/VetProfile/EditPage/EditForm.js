@@ -15,62 +15,83 @@ class EditForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "",
-            password: "",
-            firstName: "",
-            lastName: "",
-            description: "",
-            website: "",
-            email: "",
-            phone: "",
-            businessAddress: "",
-            city: "",
-            postalCode: "",
-            specialization: "",
-            acceptEmergencyCalls: "",
-            certificates: [], //{type: 'Buffer'}
-            businessNumber: "",
-            profilePicture: "", // {type: 'Buffer'}
-            carouselPictures: [], // {type: 'Buffer'}
-            reviews: [],
-            rating: 0,
-            facebook: "",
-            instagram: "",
-            socialMediaSpare1: "",
-            socialMediaSpare2: "",
-            socialMediaSpare3: "",
-            socialMediaSpare4: "",
-            socialMediaSpare5: "",
-            weeklyTimeBlocks: [],
-            scheduledAppointments: [],
-            sundayOpen: "2014-08-18T08:00:00",
-            sundayClose: "2014-08-18T18:00:00",
-            mondayOpen: "2014-08-18T08:00:00",
-            mondayClose: "2014-08-18T18:00:00",
-            tuesdayOpen: "2014-08-18T08:00:00",
-            tuesdayClose: "2014-08-18T18:00:00",
-            wednesdayOpen: "2014-08-18T08:00:00",
-            wednesdayClose: "2014-08-18T18:00:00",
-            thursdayOpen: "2014-08-18T08:00:00",
-            thursdayClose: "2014-08-18T18:00:00",
-            fridayOpen: "2014-08-18T08:00:00",
-            fridayClose: "2014-08-18T18:00:00",
-            saturdayOpen: "2014-08-18T08:00:00",
-            saturdayClose: "2014-08-18T18:00:00",
-            spareField1: "", //Schema.Types.Mixed
-            spareField2: "",
-            spareField3: "",
-            spareField4: "",
-            spareField5: ""
+            profile: null
         }
     }
+            //fields as they appear in mongodb
+            //_id: ""
+            // username: "",
+            // password: "",
+            // firstName: "",
+            // lastName: "",
+            // description: "",
+            // website: "",
+            // email: "",
+            // phone: "",
+            // businessAddress: "",
+            // city: "",
+            // postalCode: "",
+            // specialization: "",
+            // acceptEmergencyCalls: "",
+            // certificates: [], //{type: 'Buffer'}
+            // businessNumber: "",
+            // profilePicture: "", // {type: 'Buffer'}
+            // carouselPictures: [], // {type: 'Buffer'}
+            // reviews: [],
+            // rating: 0,
+            // facebook: "",
+            // instagram: "",
+            // socialMediaSpare1: "",
+            // socialMediaSpare2: "",
+            // socialMediaSpare3: "",
+            // socialMediaSpare4: "",
+            // socialMediaSpare5: "",
+            // weeklyTimeBlocks: [],
+            // scheduledAppointments: [],
+            // sundayOpen: "2014-08-18T08:00:00",
+            // sundayClose: "2014-08-18T18:00:00",
+            // mondayOpen: "2014-08-18T08:00:00",
+            // mondayClose: "2014-08-18T18:00:00",
+            // tuesdayOpen: "2014-08-18T08:00:00",
+            // tuesdayClose: "2014-08-18T18:00:00",
+            // wednesdayOpen: "2014-08-18T08:00:00",
+            // wednesdayClose: "2014-08-18T18:00:00",
+            // thursdayOpen: "2014-08-18T08:00:00",
+            // thursdayClose: "2014-08-18T18:00:00",
+            // fridayOpen: "2014-08-18T08:00:00",
+            // fridayClose: "2014-08-18T18:00:00",
+            // saturdayOpen: "2014-08-18T08:00:00",
+            // saturdayClose: "2014-08-18T18:00:00",
+            // spareField1: "", //Schema.Types.Mixed
+            // spareField2: "",
+            // spareField3: "",
+            // spareField4: "",
+            // spareField5: ""
+
+    // placeholder***Should be deleted in later phase***
+    // I think the mongoDB call should be made when the Vet logs in and
+    // the Vet is sent to her/his portal created by Nick, then passed to
+    // this component as a prop on user onClick EDIT button
+    componentDidMount() {
+        const id = "5f04b521d46d3306e446c70f"
+        axios.get("http://localhost:9000/" + id)
+            .then(response => {
+                this.setState(
+                    {
+                        profile: response.data
+                    })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
 
     handleSubmission = (e) => {
         e.preventDefault();
         this.props.editVetProfile(this.state);
-        const id = ""//dummy mongodb id here
             const updatedProfile = this.state
-        axios.post("http://localhost:9000/" + id, updatedProfile)
+        axios.post("http://localhost:9000/" + this._id, updatedProfile)
             .then(res => console.log(res.data))
             .catch(() => console.log("The axios.post call in itemBlock failed"))
     }
@@ -83,7 +104,7 @@ class EditForm extends React.Component {
 
     handleTimeslotsChange = newSchedule => {
         this.setState({schedule: newSchedule})
-        const helperSchedule = newSchedule.slice();;
+        const helperSchedule = newSchedule.slice();
         const monday = [];
         const tuesday = [];
         const wednesday = [];
@@ -397,12 +418,20 @@ render()
                         </Grid>
                     </div>
                     <div>
-                        <h6>Select the appointment timeslots for customers to select</h6>
+                        <p/>
+                        <p/>
+                        <p/>
+                        <p/>
+                        <h2>Select the appointment timeslots for customers to select</h2>
+                        <p/>
+                        <p/>
+                        <p/>
+                        <p/>
                         <ScheduleSelector
                             selection={this.state.schedule}
                             numDays={7}
                             // hourlyChunks={2}
-                            minTime={0}
+                            minTime={6}
                             maxTime={23}
                             dateFormat={"dddd"}
                             margin={2}

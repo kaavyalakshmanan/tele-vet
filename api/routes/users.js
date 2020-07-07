@@ -15,6 +15,18 @@ router.get('/', function (req, res, next) {
     })
 })
 
+// Get veterinarian profile when given the mongodb _id
+router.get('/id/:id', function (req, res, next) {
+    veterinarian.findById(req.params.id, function (err, foundVet) {
+        res.setHeader('Content-Type', 'application/json');
+        if (!foundVet) {
+            res.status(404).send("id item was not found")
+        } else {
+            res.json(foundVet)
+        }
+    })
+})
+
 // Get veterinarian by matching username for login NOTE: EVERY API CALLS ARE CASE SENSITIVE
 router.get('/username/:username', function (req, res, next) {
     veterinarian.find({username: req.params.username}, function (err, foundVet) {

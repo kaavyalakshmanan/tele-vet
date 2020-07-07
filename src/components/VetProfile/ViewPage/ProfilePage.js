@@ -35,10 +35,13 @@ class ProfilePage extends React.Component {
     //
     // classes = useStyles();
 
+
+    // placeholder***Should be deleted in later phase***
+    // I think the mongoDB call should be made when the user makes the search
+    // and displays the teaser cards created by Amy, then passes to this component as a prop on user onClick
     componentDidMount() {
-        axios.get("http://localhost:9000/"
-            // + props.id
-            )
+        const id = "5f04b521d46d3306e446c70f"
+        axios.get("http://localhost:9000/id/" + id)
             .then(response => {
                 this.setState(
                     {
@@ -70,7 +73,7 @@ class ProfilePage extends React.Component {
                             <h5>Schedule your Appointment!</h5>
                         </Grid>
                         <Grid item xs={12}>
-                            {/*<Booking key0={this.profile._id} key1={this.profile.weeklyTimeBlocks} key2={this.profile.scheduledAppointments}/>*/}
+                            {/*<Booking key0={this.state.profile._id} key1={this.state.profile.weeklyTimeBlocks} key2={this.state.profile.scheduledAppointments}/>*/}
                         </Grid>
                     </Grid>
                     <Grid container direction="column" spacing={1} xs={8}>

@@ -26,13 +26,13 @@ class Booking extends React.Component {
         // e.preventDefault();
         this.setState(prevState => ({ isFlipped: !prevState.isFlipped }));
         this.setState({selectedDate: e})
-        // if ((String(e).substring(0,3)) === "Mon") {this.setState({selectedWeekday: props.key1.monday})}
-        // if ((String(e).substring(0,3)) === "Tue") {this.setState({selectedWeekday: props.key1.tuesday})}
-        // if ((String(e).substring(0,3)) === "Wed") {this.setState({selectedWeekday: props.key1.wednesday})}
-        // if ((String(e).substring(0,3)) === "Thu") {this.setState({selectedWeekday: props.key1.thursday})}
-        // if ((String(e).substring(0,3)) === "Fri") {this.setState({selectedWeekday: props.key1.friday})}
-        // if ((String(e).substring(0,3)) === "Sat") {this.setState({selectedWeekday: props.key1.saturday})}
-        // if ((String(e).substring(0,3)) === "Sun") {this.setState({selectedWeekday: props.key1.sunday})}
+        if ((String(e).substring(0,3)) === "Mon") {this.setState({selectedWeekday: this.props.key1.monday})}
+        if ((String(e).substring(0,3)) === "Tue") {this.setState({selectedWeekday: this.props.key1.tuesday})}
+        if ((String(e).substring(0,3)) === "Wed") {this.setState({selectedWeekday: this.props.key1.wednesday})}
+        if ((String(e).substring(0,3)) === "Thu") {this.setState({selectedWeekday: this.props.key1.thursday})}
+        if ((String(e).substring(0,3)) === "Fri") {this.setState({selectedWeekday: this.props.key1.friday})}
+        if ((String(e).substring(0,3)) === "Sat") {this.setState({selectedWeekday: this.props.key1.saturday})}
+        if ((String(e).substring(0,3)) === "Sun") {this.setState({selectedWeekday: this.props.key1.sunday})}
         console.log(this.props.key1)
     }
 
