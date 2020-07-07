@@ -39,8 +39,7 @@ class Calendar extends React.Component {
 
     render() {
         return (
-            < Paper
-                elevation={3}>
+            <Paper elevation={3}>
                 < Scheduler
                     data={this.getDataFromAppointments()}
                     height='100%'
@@ -48,29 +47,29 @@ class Calendar extends React.Component {
                     < ViewState
                         currentDate={this.getCurrentDate()}
                         defaultCurrentViewName='Month'
-                        />
+                    />
                     < DayView
-                        const startDayHour = {9}
-                        const endDayHour = {14}
-                        />
+                        startDayHour={9}
+                        endDayHour={14}
+                    />
                     < WeekView
                         startDayHour={9}
                         endDayHour={14}
                     />
-                    < MonthView />
-                    < Toolbar />
-                    < ViewSwitcher />
-                    < Appointments />
-                    < /Scheduler>
-                        < /Paper>
-                            )
-                            ;
-                            }
-                            }
+                    < MonthView/>
+                    < Toolbar/>
+                    < ViewSwitcher/>
+                    < Appointments/>
+                </Scheduler>
+            </Paper>
+        );
+    }
+}
 
-                            const mapStateToProps = (state) => { return {
-                            appointmentData: state.appointmentData
-                        }
-                        }
+const mapStateToProps = (state) => {
+    return {
+        appointmentData: state.appointmentData
+    }
+};
 
-                            export default connect(mapStateToProps, null)(Calendar)
+export default connect(mapStateToProps, null)(Calendar);
