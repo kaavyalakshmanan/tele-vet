@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const {uuid} = require("uuidv4");
-let veterinarian = require("../models/model");
+let veterinarian = require("../models/vetModel");
 
 //Get all veterinarians in the dataset
 router.get('/', function (req, res, next) {
@@ -15,12 +15,13 @@ router.get('/', function (req, res, next) {
     })
 })
 
-// Get veterinarian by matching username for login
-router.get('/username', function (req, res, next) {
+// Get veterinarian by matching username for login NOTE: EVERY API CALLS ARE CASE SENSITIVE
+router.get('/username/:username', function (req, res, next) {
     veterinarian.find({username: req.params.username}, function (err, foundVet) {
+
         res.setHeader('Content-Type', 'application/json');
         if (!foundVet) {
-            res.status(404).send("This email was never signed up as a user")
+            res.status(404).send("This username is not signed up as a user")
         } else {
             res.json(foundVet)
         }
@@ -28,8 +29,11 @@ router.get('/username', function (req, res, next) {
 });
 
 // Get veterinarian by matching email for lost password
-router.get('/:email', function (req, res, next) {
+router.get('/email/:email', function (req, res, next) {
     veterinarian.find({email: req.params.email}, function (err, foundVet) {
+        console.log(foundVet);
+        console.log(req.params.email);
+        console.log("hello");
         res.setHeader('Content-Type', 'application/json');
         if (!foundVet) {
             res.status(404).send("This email was never signed up as a user")
@@ -52,7 +56,7 @@ router.post('/', function (req, res, next) {
 })
 
 // Update veterinarian profile when given the mongodb _id - using findOneAndUpdate -> needs to be tested
-router.post('/:id', function (req, res, next) {
+router.put('/:id', function (req, res, next) {
     veterinarian.findOneAndUpdate(req.params.id, req.body, function(err, result) {
         res.setHeader('Content-Type', 'application/json');
         if (err) {
@@ -62,25 +66,6 @@ router.post('/:id', function (req, res, next) {
         }
     });
 });
-
-// // Update veterinarian profile when given the mongodb _id
-// router.post('/:id', function (req, res, next) {
-//     veterinarian.findById(req.params.id, function (err, foundVet) {
-//             res.setHeader('Content-Type', 'application/json');
-//             if (!foundVet) {
-//                 res.status(404).send("id number was not found")
-//             } else {
-//                 foundVet.name = req.body.name;
-//                 foundVet.save().then(foundVet => {
-//                     res.json("The found veterinarian has been updated ;-D")
-//                 })
-//                     .catch(err => {
-//                         res.status(400).send("The update has failed ;-(")
-//                     })
-//             }
-//         }
-//     )
-// })
 
 // Delete veterinarian profile when given the mongodb _id
 router.delete('/:id', function (req, res, next) {
@@ -101,3 +86,23 @@ router.delete('/:id', function (req, res, next) {
 })
 
 module.exports = router;
+
+
+// UPDATE WITHOUT USING findOneAndUpdate - veterinarian profile when given the mongodb _id
+// router.post('/:id', function (req, res, next) {
+//     veterinarian.findById(req.params.id, function (err, foundVet) {
+//             res.setHeader('Content-Type', 'application/json');
+//             if (!foundVet) {
+//                 res.status(404).send("id number was not found")
+//             } else {
+//                 foundVet.name = req.body.name;
+//                 foundVet.save().then(foundVet => {
+//                     res.json("The found veterinarian has been updated ;-D")
+//                 })
+//                     .catch(err => {
+//                         res.status(400).send("The update has failed ;-(")
+//                     })
+//             }
+//         }
+//     )
+// })
