@@ -13,6 +13,7 @@ import AppointmentsView from './Appointments/AppointmentsView'
 import FindVet from "./maps/FindVet";
 import ProfilePage from "./VetProfile/ViewPage/ProfilePage";
 import EditPage from "./VetProfile/EditPage/EditPage";
+// import VetProfile from "./vet-dashboard/profile/VetProfile"
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/about" component={About}/>
             <Route path="/user/dashboard" component={UserDashboard}/>
             <Route path="/vet-dashboard/dashboard" component={VetDashboard}/>
+            {/* <Route path="/vet-dashboard/profile/VetProfile" component={VetProfile}/> */}
             <Route path="/maps/FindVet" component={FindVet}/>
             <Route path="/appointments" component={AppointmentsView}/>
             <Route path="/Vet" component={ProfilePage}/>

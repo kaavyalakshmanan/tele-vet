@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
+import About from "../profile/VetProfile"
 
 const getUsernameAndEmail = ( collapsed, userName, email ) => {
     return collapsed ? null : (
@@ -17,8 +18,8 @@ const getUsernameAndEmail = ( collapsed, userName, email ) => {
         </>
     );
 }
-
-const NavHeader = ({ collapsed, src="/resources/mock-avatar-1.jpg", target="/user/profile", userName, email } ) => (
+// /user/profile
+const NavHeader = ({ collapsed, src="/resources/mock-avatar-2.jpg", target="../profile/VetProfile", userName, email } ) => (
     <>
         <div style={{ padding: collapsed ? 8 : 16, transition: "0.3s" }}>
             <a href={ target }>
