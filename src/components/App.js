@@ -5,6 +5,7 @@ import Navigation from "./Navigation";
 import Home from "./home/Home";
 import About from "./About";
 import UserDashboard from "./user/Dashboard";
+import VetDashboard from "./vet-dashboard/Dashboard";
 import VetSignUp from "./home/VetSignUp";
 import PetSignUp from "./home/PetSignUp";
 import Error from "./Error"
@@ -22,6 +23,7 @@ function App() {
             <Route path="/" component={Home} exact/>
             <Route path="/about" component={About}/>
             <Route path="/user/dashboard" component={UserDashboard}/>
+            <Route path="/vet-dashboard/dashboard" component={VetDashboard}/>
             <Route path="/maps/FindVet" component={FindVet}/>
             <Route path="/appointments" component={AppointmentsView}/>
             <Route path="/Vet" component={ProfilePage}/>
