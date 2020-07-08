@@ -39,6 +39,7 @@
     "react-scripts": "3.4.1",
     "react-slick": "^0.26.1",
     "react-timekeeper": "^2.1.1",
+    "reactstrap": "^8.5.1",
     "redux": "^4.0.5",
     "remove-node-modules": "^1.7.6",
     "typescript": "^3.9.3",
