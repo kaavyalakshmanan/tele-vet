@@ -19,7 +19,7 @@ function JitsiMeetComponent() {
         try {
             const domain = 'meet.jit.si';
             const options = {
-                roomName: 'roomName',
+                roomName: 'AppointmentTime',
                 height: 400,
                 parentNode: document.getElementById('jitsi-container'),
                 interfaceConfigOverwrite: {
@@ -35,7 +35,7 @@ function JitsiMeetComponent() {
             api.addEventListener('videoConferenceJoined', () => {
                 console.log('Local User Joined');
                 setLoading(false);
-                api.executeCommand('displayName', 'MyName');
+                api.executeCommand('displayName', 'Dr. Shawarma');
             });
         } catch (error) {
             console.error('Failed to load Jitsi API', error);
