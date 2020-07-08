@@ -44,7 +44,7 @@ class VetProfile extends React.Component {
                         <img
                           alt="..."
                           className="rounded-circle"
-                          src={require("../profile-img-tmp/team-4-800x800.jpg")}
+                          src={require("../profile-img-tmp/mock-avatar-2.jpg")}
                         />
                       </a>
                     </div>
@@ -157,7 +157,7 @@ class VetProfile extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="lucky.jesse"
+                              defaultValue="jessica.jones"
                               id="input-username"
                               placeholder="Username"
                               type="text"
@@ -175,7 +175,7 @@ class VetProfile extends React.Component {
                             <Input
                               className="form-control-alternative"
                               id="input-email"
-                              placeholder="jesse@example.com"
+                              placeholder="jessica.jones@example.com"
                               type="email"
                             />
                           </FormGroup>
@@ -192,7 +192,7 @@ class VetProfile extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Lucky"
+                              defaultValue="Jessica"
                               id="input-first-name"
                               placeholder="First name"
                               type="text"
@@ -209,7 +209,7 @@ class VetProfile extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Jesse"
+                              defaultValue="Jones"
                               id="input-last-name"
                               placeholder="Last name"
                               type="text"
@@ -235,7 +235,7 @@ class VetProfile extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+                              defaultValue="6324 Sunshine Blvd"
                               id="input-address"
                               placeholder="Home Address"
                               type="text"
@@ -254,7 +254,7 @@ class VetProfile extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="New York"
+                              defaultValue="Vancouver"
                               id="input-city"
                               placeholder="City"
                               type="text"
@@ -271,7 +271,7 @@ class VetProfile extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="United States"
+                              defaultValue="Canada"
                               id="input-country"
                               placeholder="Country"
                               type="text"
@@ -289,7 +289,7 @@ class VetProfile extends React.Component {
                             <Input
                               className="form-control-alternative"
                               id="input-postal-code"
-                              placeholder="Postal code"
+                              placeholder="V6Z123"
                               type="number"
                             />
                           </FormGroup>
@@ -306,8 +306,7 @@ class VetProfile extends React.Component {
                           className="form-control-alternative"
                           placeholder="A few words about you ..."
                           rows="4"
-                          defaultValue="A beautiful Dashboard for Bootstrap 4. It is Free and
-                          Open Source."
+                          defaultValue="I am a practicing vet specializing in dogs."
                           type="textarea"
                         />
                       </FormGroup>
