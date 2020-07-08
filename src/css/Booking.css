@@ -60,6 +60,10 @@
     display: flex;
 }
 
+.MuiPickersBasePicker-pickerView{
+    max-width: 100% !important;
+    /*max-width: 100%*/
+}
 
 .makeStyles-grid-98 {
     width: auto;
