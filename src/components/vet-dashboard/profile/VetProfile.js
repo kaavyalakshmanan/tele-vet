@@ -10,6 +10,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 import React from "react";
+import Inbox from "../messages/Inbox"
+import { Link } from 'react-router-dom';
 
 // reactstrap components
 import {
@@ -55,21 +57,23 @@ class VetProfile extends React.Component {
                     <Button
                       className="mr-4"
                       color="info"
-                      href="#pablo"
+                      href="../messages/Inbox"
                       onClick={e => e.preventDefault()}
                       size="sm"
                     >
                       Connect
                     </Button>
+                    {/* <Link to= "../"> */}
                     <Button
                       className="float-right"
-                      color="default"
-                      href="#pablo"
-                      onClick={e => e.preventDefault()}
+                      color="info"
+                      href= '/vet-dashboard/dashboard/inbox'
+                      onClick={this.handleClick}
                       size="sm"
                     >
-                      Message
+                      Inbox
                     </Button>
+                    {/* </Link> */}
                   </div>
                 </CardHeader>
                 <CardBody className="pt-0 pt-md-4">
@@ -135,7 +139,7 @@ class VetProfile extends React.Component {
                         onClick={e => e.preventDefault()}
                         size="sm"
                       >
-                        Settings
+                        Edit Profile
                       </Button>
                     </Col>
                   </Row>

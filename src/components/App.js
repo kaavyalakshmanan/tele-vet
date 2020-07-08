@@ -13,6 +13,7 @@ import AppointmentsView from './Appointments/AppointmentsView'
 import FindVet from "./maps/FindVet";
 import ProfilePage from "./VetProfile/ViewPage/ProfilePage";
 import EditPage from "./VetProfile/EditPage/EditPage";
+import VetDashboardInbox from "./vet-dashboard/messages/Inbox"
 // import VetProfile from "./vet-dashboard/profile/VetProfile"
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Route path="/user/dashboard" component={UserDashboard}/>
             <Route path="/vet-dashboard/dashboard" component={VetDashboard}/>
             {/* <Route path="/vet-dashboard/profile/VetProfile" component={VetProfile}/> */}
+            <Route path="/vet-dashboard/dashboard/inbox" component={VetDashboardInbox}/>
             <Route path="/maps/FindVet" component={FindVet}/>
             <Route path="/appointments" component={AppointmentsView}/>
             <Route path="/Vet" component={ProfilePage}/>
