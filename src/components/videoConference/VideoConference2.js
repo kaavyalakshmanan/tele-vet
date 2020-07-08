@@ -65,3 +65,7 @@ export default JitsiMeetComponent;
 
 // https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-iframe
 //https://github.com/jitsi/lib-jitsi-meet/blob/master/doc/API.md#installation
+//https://gitee.com/huangranrumeng/jitsi-meet/raw/a9bdde193da5d57cbbd4e8c89afebe6de71544a5/doc/api.md
+//https://meetrix.io/blog/webrtc/integrate-jitsi-meet-to-react-app.html
+//https://jitsi.org/api/
+//https://github.com/gatteo/react-jitsi/tree/master/example
