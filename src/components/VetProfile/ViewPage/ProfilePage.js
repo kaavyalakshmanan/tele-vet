@@ -10,6 +10,7 @@ import Calendar from "./StaticDatePicker"; //temporary
 import StaticDatePicker from "./StaticDatePicker"
 import Booking from "../bookingSystem2.0/Booking";
 import axios from "axios"
+import VideoConference2 from "../../videoConference/VideoConference2";
 
 
 
@@ -86,6 +87,9 @@ class ProfilePage extends React.Component {
                                 tastes best! Give me a call and I will help you get better.</p>
                         </Grid>
                         <Link to="/EditPage">Edit</Link>
+                        <Grid item>
+                            <VideoConference2/>
+                        </Grid>
                     </Grid>
                 </Grid>
             </div>
@@ -118,3 +122,5 @@ export default ProfilePage
 {/*        textAlign: 'center'*/}
 {/*    }} />*/}
 
+///////////////////////////////////////////////////
+// to use api: https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-iframe
