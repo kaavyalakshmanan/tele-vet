@@ -1,14 +1,3 @@
-/*!
-=========================================================
-* Argon Dashboard React - v1.1.0
-=========================================================
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-* Coded by Creative Tim
-=========================================================
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 import React from "react";
 import Inbox from "../messages/Inbox"
 import { Link } from 'react-router-dom';
@@ -79,20 +68,6 @@ class VetProfile extends React.Component {
                 <CardBody className="pt-0 pt-md-4">
                   <Row>
                     <div className="col">
-                      <div className="card-profile-stats d-flex justify-content-center mt-md-5">
-                        <div>
-                          <span className="heading">22</span>
-                          <span className="description">Friends</span>
-                        </div>
-                        <div>
-                          <span className="heading">10</span>
-                          <span className="description">Photos</span>
-                        </div>
-                        <div>
-                          <span className="heading">89</span>
-                          <span className="description">Comments</span>
-                        </div>
-                      </div>
                     </div>
                   </Row>
                   <div className="text-center">
@@ -102,24 +77,22 @@ class VetProfile extends React.Component {
                     </h3>
                     <div className="h5 font-weight-300">
                       <i className="ni location_pin mr-2" />
-                      Bucharest, Romania
+                      Vancouver, BC
                     </div>
                     <div className="h5 mt-4">
                       <i className="ni business_briefcase-24 mr-2" />
-                      Solution Manager - Creative Tim Officer
+                      Senior Vet -- Dogs
                     </div>
                     <div>
                       <i className="ni education_hat mr-2" />
-                      University of Computer Science
+                      University of British Columbia
                     </div>
                     <hr className="my-4" />
                     <p>
-                      Ryan — the name taken by Melbourne-raised, Brooklyn-based
-                      Nick Murphy — writes, performs and records all of his own
-                      music.
+                      I am a Senior Vet who specializes in dog care.
                     </p>
                     <a href="#pablo" onClick={e => e.preventDefault()}>
-                      Show more
+                      Edit
                     </a>
                   </div>
                 </CardBody>
@@ -168,6 +141,25 @@ class VetProfile extends React.Component {
                             />
                           </FormGroup>
                         </Col>
+
+                        <Col lg="6">
+                          <FormGroup>
+                            <label
+                              className="form-control-label"
+                              htmlFor="input-password"
+                            >
+                              Password
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              defaultValue="*********"
+                              id="input-password"
+                              placeholder="Password"
+                              type="text"
+                            />
+                          </FormGroup>
+                        </Col>
+
                         <Col lg="6">
                           <FormGroup>
                             <label
@@ -265,6 +257,26 @@ class VetProfile extends React.Component {
                             />
                           </FormGroup>
                         </Col>
+
+
+                        <Col lg="4">
+                          <FormGroup>
+                            <label
+                              className="form-control-label"
+                              htmlFor="input-province"
+                            >
+                              Province
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              defaultValue="British Columbia"
+                              id="input-province"
+                              placeholder="province"
+                              type="text"
+                            />
+                          </FormGroup>
+                        </Col>
+
                         <Col lg="4">
                           <FormGroup>
                             <label
