@@ -4,7 +4,7 @@ const {uuid} = require("uuidv4");
 const veterinarian = require("../models/vetModel");
 
 //Get all veterinarians in the dataset
-router.get('/vet', function (req, res, next) {
+router.get('/', function (req, res, next) {
     res.setHeader('Content-Type', 'application/json');
     veterinarian.find({}, function (err, myData) {
         if (err) {
