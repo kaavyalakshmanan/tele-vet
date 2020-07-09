@@ -19,7 +19,9 @@ connection.once("open", function () {
 })
 
 
-const usersRouter = require('./routes/vets');
+const vetsRouter = require('./routes/vets');
+const usersRouter = require('./routes/users')
+
 
 const app = express();
 
@@ -37,7 +39,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use('/', indexRouter);
-app.use('/', usersRouter);
+app.use('/vets', vetsRouter);
 app.use('/users', usersRouter);
 
 
