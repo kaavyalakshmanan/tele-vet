@@ -1,26 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import ProgressComponent from '@material-ui/core/CircularProgress';
+const { v4: uuidv4 } = require('uuid');
+
 
 
 function JitsiMeetComponent() {
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
     const containerStyle = {
-        width: '800px',
-        height: '400px',
+        // width: '800px',
+        // height: '400px',
+        width: "100%",
+        height: "100%",
     };
 
     const jitsiContainerStyle = {
-        display: (loading ? 'none' : 'block'),
+        display: "block",
+            // (loading ? 'none' : 'block'),
         width: '100%',
         height: '100%',
+        // width: '800px',
+        // height: '400px',
     }
 
     function startConference() {
         try {
-            const domain = 'meet.jit.si';
+            const id = uuidv4();
+            const domain = 'meet.jit.si/' + id;
             const options = {
                 roomName: 'AppointmentTime',
-                height: 400,
+                height: 800,
                 parentNode: document.getElementById('jitsi-container'),
                 interfaceConfigOverwrite: {
                     filmStripOnly: false,
@@ -34,7 +42,7 @@ function JitsiMeetComponent() {
             const api = new window.JitsiMeetExternalAPI(domain, options);
             api.addEventListener('videoConferenceJoined', () => {
                 console.log('Local User Joined');
-                setLoading(false);
+                // setLoading(false);
                 api.executeCommand('displayName', 'Dr. Shawarma');
             });
         } catch (error) {
@@ -52,7 +60,7 @@ function JitsiMeetComponent() {
         <div
             style={containerStyle}
         >
-            {loading && <ProgressComponent />}
+            {/*{loading && <ProgressComponent />}*/}
             <div
                 id="jitsi-container"
                 style={jitsiContainerStyle}
@@ -62,6 +70,7 @@ function JitsiMeetComponent() {
 }
 
 export default JitsiMeetComponent;
+
 
 // https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-iframe
 //https://github.com/jitsi/lib-jitsi-meet/blob/master/doc/API.md#installation
