@@ -1,54 +1,50 @@
 import React, { useState, useEffect } from 'react';
-import JitsiMeetExternalAPI from "lib-jitsi-meet-dist"
-// import JitsiMeetJS from "lib-jitsi-meet-dist"
+import ProgressComponent from '@material-ui/core/CircularProgress';
+const { v4: uuidv4 } = require('uuid');
 
-function VideoConference() {
-    const [loading, setLoading] = useState(true);
+
+
+function JitsiMeetComponent() {
+    // const [loading, setLoading] = useState(true);
     const containerStyle = {
-        width: '100%',
-        height: '100vh',
-        padding: '0',
-        margin: '0'
+        // width: '800px',
+        // height: '400px',
+        width: "100%",
+        height: "100%",
     };
 
     const jitsiContainerStyle = {
-        display: (loading ? 'none' : 'block'),
+        display: "block",
+            // (loading ? 'none' : 'block'),
         width: '100%',
         height: '100%',
-        padding: '0',
-        margin: '0'
+        // width: '800px',
+        // height: '400px',
     }
 
     function startConference() {
         try {
-            const domain = 'meet.jit.si';
+            const id = uuidv4();
+            const domain = 'meet.jit.si/';
             const options = {
-                roomName: 'roomName22',
-                height: '100vh',
+                roomName: id,
+                height: 800,
+                // security: Need to find this option in the API and implement itS
                 parentNode: document.getElementById('jitsi-container'),
                 interfaceConfigOverwrite: {
                     filmStripOnly: false,
                     SHOW_JITSI_WATERMARK: false,
-                    SHOW_BRAND_WATERMARK: false,
-                    SHOW_WATERMARK_FOR_GUESTS: false,
-                    defaultLanguage: 'es',
-                    TOOLBAR_BUTTONS: [
-                        "microphone", "camera", "desktop",
-                        "chat", "filmstrip","settings",'etherpad','titleview','hangup'
-                    ],
-                    MAIN_TOOLBAR_BUTTONS: ['microphone', 'camera', 'desktop'],
                 },
                 configOverwrite: {
                     disableSimulcast: false,
-                    defaultLanguage: 'es',
                 },
             };
 
             const api = new window.JitsiMeetExternalAPI(domain, options);
             api.addEventListener('videoConferenceJoined', () => {
                 console.log('Local User Joined');
-                setLoading(false);
-                api.executeCommand('displayName', 'MyName');
+                // setLoading(false);
+                api.executeCommand('displayName', 'Dr. Shawarma');
             });
         } catch (error) {
             console.error('Failed to load Jitsi API', error);
@@ -57,18 +53,15 @@ function VideoConference() {
 
     useEffect(() => {
         // verify the JitsiMeetExternalAPI constructor is added to the global..
-        if (window.JitsiMeetExternalAPI){ startConference();}
-        else {
-            alert('Ha ocurrido un error por favor intenté más tarde o pruebe en otro navegador');
-            window.location.replace('../index.html');
-        }
+        if (window.JitsiMeetExternalAPI) startConference();
+        else alert('Jitsi Meet API script not loaded');
     }, []);
-
 
     return (
         <div
             style={containerStyle}
         >
+            {/*{loading && <ProgressComponent />}*/}
             <div
                 id="jitsi-container"
                 style={jitsiContainerStyle}
@@ -77,4 +70,12 @@ function VideoConference() {
     );
 }
 
-export default VideoConference
+export default JitsiMeetComponent;
+
+
+// https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-iframe
+//https://github.com/jitsi/lib-jitsi-meet/blob/master/doc/API.md#installation
+//https://gitee.com/huangranrumeng/jitsi-meet/raw/a9bdde193da5d57cbbd4e8c89afebe6de71544a5/doc/api.md
+//https://meetrix.io/blog/webrtc/integrate-jitsi-meet-to-react-app.html
+//https://jitsi.org/api/
+//https://github.com/gatteo/react-jitsi/tree/master/example

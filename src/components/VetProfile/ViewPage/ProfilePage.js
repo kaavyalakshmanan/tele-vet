@@ -10,7 +10,7 @@ import Calendar from "./StaticDatePicker"; //temporary
 import StaticDatePicker from "./StaticDatePicker"
 import Booking from "../bookingSystem2.0/Booking";
 import axios from "axios"
-import VideoConference2 from "../../videoConference/VideoConference2";
+import VideoConference2 from "../../videoConference/VideoConference";
 
 
 
@@ -88,7 +88,7 @@ class ProfilePage extends React.Component {
                         </Grid>
                         <Link to="/EditPage">Edit</Link>
                         <Grid item>
-                            <VideoConference2/>
+                            <h3>Testimonials</h3>
                         </Grid>
                     </Grid>
                 </Grid>

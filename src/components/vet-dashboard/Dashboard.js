@@ -14,6 +14,7 @@ import Gallery from "./photos/PhotoGallery";
 import Messages from "./messages/Messages";
 import FindVet from "../maps/FindVet";
 import VetProfile from "./profile/VetProfile"
+import VideoConference from "../videoConference/VideoConference";
 
 const viewMap = {
     'Profile': <VetProfile/>,
@@ -21,7 +22,7 @@ const viewMap = {
     'Calendar': <Calendar style={ { padding: '50px'} }/>,
     'Find a Vet': <FindVet/>,
     'Visit-Summary': 'Visit-Summary',
-    'E-Visit': 'E-Visit',
+    'E-Visit': <VideoConference/>,
     'Photo Gallery': <Gallery/>,
 }
 

@@ -13,13 +13,14 @@ import Messages from "./messages/Messages";
 import FindVet from "../maps/FindVet";
 import Album from "./photos/Album";
 import {Footer} from "../Footer";
+import VideoConference from "../videoConference/VideoConference"
 
 const viewMap = {
     'Messages': <Messages/>,
     'Calendar': <Calendar style={ { padding: '50px'} }/>,
     'Find a Vet': <FindVet/>,
     'Visit-Summary': 'Visit-Summary',
-    'E-Visit': 'E-Visit',
+    'E-Visit': <VideoConference/>,
     'Photo Gallery': <Album/>,
 }
 
