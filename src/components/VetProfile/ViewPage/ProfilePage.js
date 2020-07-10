@@ -40,19 +40,19 @@ class ProfilePage extends React.Component {
     // placeholder***Should be deleted in later phase***
     // I think the mongoDB call should be made when the user makes the search
     // and displays the teaser cards created by Amy, then passes to this component as a prop on user onClick
-    componentDidMount() {
-        const id = "5f04b521d46d3306e446c70f"
-        axios.get("http://localhost:9000/id/" + id)
-            .then(response => {
-                this.setState(
-                    {
-                        profile: response.data
-                    })
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
+    // componentDidMount() {
+    //     const id = "5f04b521d46d3306e446c70f"
+    //     axios.get("http://localhost:9000/id/" + id)
+    //         .then(response => {
+    //             this.setState(
+    //                 {
+    //                     profile: response.data
+    //                 })
+    //         })
+    //         .catch((err) => {
+    //             console.log(err)
+    //         })
+    // }
 
 
     render() {
