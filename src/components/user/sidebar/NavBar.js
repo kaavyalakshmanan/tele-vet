@@ -17,7 +17,6 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import PetsIcon from "@material-ui/icons/Pets";
-import PublishIcon from '@material-ui/icons/Publish';
 import Badge from "@material-ui/core/Badge";
 import NavHeader from "./NavHeader";
 const drawerWidth = 240;
@@ -87,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const NavBar = ({ handleViewChange, renderView, iconMap, userName, email, currentView, uploadPhoto } ) => {
+export const NavBar = ({ handleViewChange, renderView, iconMap, userName, email, currentView } ) => {
 
         const classes = useStyles();
         const theme = useTheme();
@@ -100,24 +99,6 @@ export const NavBar = ({ handleViewChange, renderView, iconMap, userName, email,
         const handleDrawerClose = () => {
             setOpen(false);
         };
-
-        let navbarButton;
-        if (currentView === 'Photo Gallery') {
-            navbarButton = (
-                <IconButton color="inherit" style={{"textAlign": "right", margin: "0px 0px 0px auto"}} onClick={uploadPhoto}>
-                    <PublishIcon/>
-                </IconButton>
-            )
-        } else {
-            navbarButton = (
-                <IconButton color="inherit" style={{"textAlign": "right", margin: "0px 0px 0px auto"}}>
-                    <Badge badgeContent={4} color="secondary">
-                        { /*TODO: Store notifications with redux*/ }
-                        <NotificationsIcon />
-                    </Badge>
-                </IconButton>
-            )
-        }
 
         return (
             <div className={classes.root}>
@@ -144,7 +125,12 @@ export const NavBar = ({ handleViewChange, renderView, iconMap, userName, email,
                             <PetsIcon style={{padding: "5px"}}/>
                             Tele-Vet
                         </Typography>
-                        { navbarButton }
+                        <IconButton color="inherit" style={{"textAlign": "right", margin: "0px 0px 0px auto"}}>
+                            <Badge badgeContent={4} color="secondary">
+                                { /*TODO: Store notifications with redux*/ }
+                                <NotificationsIcon />
+                            </Badge>
+                        </IconButton>
                     </Toolbar>
                 </AppBar>
                 <Drawer
