@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import Gallery from "react-photo-gallery";
 import {DropzoneDialog} from "material-ui-dropzone";
-import {addImage, setPhotoDropzoneOpen } from "../../../actions";
+import {addImage, setPhotoDropzoneOpen} from "../../../actions";
 
 class PhotoGallery extends React.Component {
 

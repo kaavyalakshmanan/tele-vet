@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {hideNavigation, selectInbox, setPhotoDropzoneOpen, setUserDashboardView} from "../../actions";
+import {hideNavigation, selectInbox, setUserDashboardView, setPhotoDropzoneOpen} from "../../actions";
 import Calendar from "./schedule/Calendar";
 import MailIcon from "@material-ui/icons/Mail";
 import VideocamIcon from "@material-ui/icons/Videocam";
