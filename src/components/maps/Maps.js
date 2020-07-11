@@ -23,6 +23,9 @@ class Maps extends React.Component {
     }
 
     componentDidMount() {
+        navigator.geolocation.getCurrentPosition(function (position) {
+                console.log("mounted", position.coords.latitude, position.coords.longitude)
+                })
         this.setState({
             vets: vetData,
             pos: this.initialMap()
