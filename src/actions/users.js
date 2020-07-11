@@ -123,3 +123,10 @@ export const deleteImage = (image, user) => {
     });
     return dispatch => dispatch(updateUser(newUser));
 }
+
+export const updateProfilePicture = (src, user) => {
+    const newUser = Object.assign({}, user, {
+        profilePicture: src
+    });
+    return dispatch => dispatch(updateUser(newUser));
+}

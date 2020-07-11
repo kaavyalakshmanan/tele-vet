@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import {connect, useDispatch, useSelector} from "react-redux";
-import {fetchUserById, hideNavigation, loginUser, logoutUser, selectInbox, setUserDashboardView} from "../../actions";
+import React from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {addImage, hideNavigation, loginUser, logoutUser, selectInbox, updateProfilePicture} from "../../actions";
 import Calendar from "./schedule/Calendar";
 import MailIcon from "@material-ui/icons/Mail";
 import VideocamIcon from "@material-ui/icons/Videocam";
@@ -13,6 +13,14 @@ import Messages from "./messages/Messages";
 import FindVet from "../maps/FindVet";
 import Album from "./photos/Album";
 import {Footer} from "../Footer";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import TextField from "@material-ui/core/TextField";
+import DialogActions from "@material-ui/core/DialogActions";
+import Button from "@material-ui/core/Button";
 let initialFetch = true;
 
 const viewMap = {
@@ -38,11 +46,6 @@ export default function UserDashboard({id}) {
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
 
-    // constructor() {
-    //     super();
-    //     this.intialFetch = false;
-    // }
-
     const onLogout = (e) => {
         dispatch(logoutUser());
     }
@@ -58,9 +61,7 @@ export default function UserDashboard({id}) {
     }
 
     if (!user.isAuthenticated) {
-        // window.location.replace("/");
         return (<div className="loader"/>)
-
     } else {
         // FIXME: Change colors to match home screen
         return (
@@ -70,13 +71,12 @@ export default function UserDashboard({id}) {
                         if (view === 'Messages') {
                             dispatch(selectInbox(null));
                         }
-                        // dispatch(setUserDashboardView(view));
                         setView(view);
                     }}
                     renderView={() => viewMap[currentView]}
                     iconMap={iconMap}
-                    userName={"Arnob Mukherjee"}
-                    email={"arnob@MockUser.com"}
+                    userName={user.username}
+                    email={user.email}
                     currentView={currentView}
                     onLogout={onLogout}
                 />
@@ -84,32 +84,4 @@ export default function UserDashboard({id}) {
             </div>
         )
     }
-
 }
-
-// const mapDispatchToProps = dispatch => ({
-//     selectInbox: inbox => {
-//         dispatch(selectInbox(inbox));
-//     },
-//     setUserDashboardView: view => {
-//         dispatch(setUserDashboardView(view));
-//     },
-//     hideNavigation: hidden => {
-//         dispatch(hideNavigation(hidden));
-//     },
-//     fetchUserById: id => {
-//         dispatch(fetchUserById(id));
-//     },
-//     logoutUser: () => {
-//         dispatch(logoutUser());
-//     }
-// });
-//
-// const mapStateToProps = state => {
-//     return {
-//         user: state.user,
-//         view: state.userDashboardView,
-//     }
-// };
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(UserDashboard);

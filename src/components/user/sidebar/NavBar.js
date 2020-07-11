@@ -92,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const NavBar = ({ handleViewChange, renderView, iconMap, userName, email, onLogout } ) => {
+export const NavBar = ({ handleViewChange, renderView, iconMap, onLogout } ) => {
 
         const classes = useStyles();
         const theme = useTheme();
@@ -162,8 +162,6 @@ export const NavBar = ({ handleViewChange, renderView, iconMap, userName, email,
                     <Divider/>
                     <NavHeader
                         collapsed={ !open }
-                        userName={ userName }
-                        email={ email }
                     />
                     <Divider/>
                     <List>

@@ -7,7 +7,7 @@ const initialUser = {
     "email": "user@test.com",
     "username": "testUser",
     "password": "test",
-    "profilePicture": null,
+    "profilePicture": "/public/resources/woman.png",
     "lastUpdated": "",
     "images": {
         "list": []

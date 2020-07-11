@@ -174,7 +174,7 @@ export default function Album() {
                 </Container>
             </main>
             <Dialog open={uploadDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Message</DialogTitle>
+                <DialogTitle id="form-dialog-title">Upload and share photos with your vet</DialogTitle>
                 <DialogContent>
                     <CardMedia
                         className={ classes.cardMedia }
@@ -223,7 +223,7 @@ export default function Album() {
                 </DialogActions>
             </Dialog>
             <Dialog open={editDialogOpen} onClose={ handleCloseEdit } aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Message</DialogTitle>
+                <DialogTitle id="form-dialog-title">Edit the title and description</DialogTitle>
                 <DialogContent>
                     <CardMedia
                         className={classes.cardMedia}
