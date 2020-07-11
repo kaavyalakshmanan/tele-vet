@@ -4,7 +4,7 @@ const {uuid} = require("uuidv4");
 const veterinarian = require("../models/vetModel");
 
 //Get all veterinarians in the dataset
-router.get('/vet', function (req, res, next) {
+router.get('/', function (req, res, next) {
     res.setHeader('Content-Type', 'application/json');
     veterinarian.find({}, function (err, myData) {
         if (err) {
@@ -16,7 +16,7 @@ router.get('/vet', function (req, res, next) {
 })
 
 // Get veterinarian profile when given the mongodb _id
-router.get('/vet/id/:id', function (req, res, next) {
+router.get('/id/:id', function (req, res, next) {
     veterinarian.findById(req.params.id, function (err, foundVet) {
         res.setHeader('Content-Type', 'application/json');
         if (err) {
@@ -30,7 +30,7 @@ router.get('/vet/id/:id', function (req, res, next) {
 })
 
 // Get veterinarian by matching username for login NOTE: EVERY API CALLS ARE CASE SENSITIVE
-router.get('/vet/username/:username', function (req, res, next) {
+router.get('/username/:username', function (req, res, next) {
     veterinarian.find({username: req.params.username}, function (err, foundVet) {
         res.setHeader('Content-Type', 'application/json');
         if (err) {
@@ -44,7 +44,7 @@ router.get('/vet/username/:username', function (req, res, next) {
 });
 
 // Get veterinarian by matching email for lost password
-router.get('/vet/email/:email', function (req, res, next) {
+router.get('/email/:email', function (req, res, next) {
     veterinarian.find({email: req.params.email}, function (err, foundVet) {
         res.setHeader('Content-Type', 'application/json');
         if (err) {
@@ -59,7 +59,7 @@ router.get('/vet/email/:email', function (req, res, next) {
 });
 
 // Add new veterinarian profile as per given in the body
-router.post('/vet', function (req, res, next) {
+router.post('/', function (req, res, next) {
     let newVet = new veterinarian(req.body);
     newVet.id = uuid();
     res.setHeader('Content-Type', 'application/json');
@@ -72,7 +72,7 @@ router.post('/vet', function (req, res, next) {
 })
 
 // Update veterinarian profile when given the mongodb _id - using findOneAndUpdate -> needs to be tested
-router.put('/vet/:id', function (req, res, next) {
+router.put('/:id', function (req, res, next) {
     veterinarian.findOneAndUpdate(req.params.id, req.body, function(err, result) {
         res.setHeader('Content-Type', 'application/json');
         if (err) {
@@ -84,7 +84,7 @@ router.put('/vet/:id', function (req, res, next) {
 });
 
 // Delete veterinarian profile when given the mongodb _id
-router.delete('/vet/:id', function (req, res, next) {
+router.delete('/:id', function (req, res, next) {
     veterinarian.findById(req.params.id, function (err, foundVet) {
         res.setHeader('Content-Type', 'application/json');
         if (!foundVet) {

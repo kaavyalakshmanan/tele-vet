@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require("cors");
 const mongoose = require("mongoose");
+const bodyParser = require('body-parser')
 const CONNECTION_STRING = "mongodb+srv://televet:cpsc436i@televet-u0yv3.mongodb.net/televet?retryWrites=true&w=majority";
 
 // Adding mongoose
@@ -19,7 +20,9 @@ connection.once("open", function () {
 })
 
 
-const usersRouter = require('./routes/vets');
+const vetsRouter = require('./routes/vets');
+const usersRouter = require('./routes/users')
+
 
 const app = express();
 
@@ -31,7 +34,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
-app.use(express.json());
+//app.use(express.json());
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -44,7 +49,7 @@ app.use(function(req, res, next) {
 
 
 // app.use('/', indexRouter);
-app.use('/', usersRouter);
+app.use('/vets', vetsRouter);
 app.use('/users', usersRouter);
 
 

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { hideNavigation, selectInbox, setUserDashboardView } from "../../actions";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {loginUser, logoutUser, selectInbox} from "../../actions";
 import Calendar from "./schedule/Calendar";
 import MailIcon from "@material-ui/icons/Mail";
 import VideocamIcon from "@material-ui/icons/Videocam";
@@ -12,16 +12,17 @@ import {NavBar} from "./sidebar/NavBar";
 import Messages from "./messages/Messages";
 import FindVet from "../maps/FindVet";
 import Album from "./photos/Album";
-import {Footer} from "../Footer";
 import VideoConference from "../videoConference/VideoConference"
+import DocumentList from "./documents/DocumentList";
 
 const viewMap = {
     'Messages': <Messages/>,
     'Calendar': <Calendar style={ { padding: '50px'} }/>,
     'Find a Vet': <FindVet/>,
-    'Visit-Summary': 'Visit-Summary',
+    'Visit-Summary': <DocumentList/>,
     'E-Visit': <VideoConference/>,
     'Photo Gallery': <Album/>,
+    'loader': <div className="loader"/>
 }
 
 const iconMap = {
@@ -33,48 +34,40 @@ const iconMap = {
     'Photo Gallery': <PhotoCameraIcon color={ 'inherit' }/>,
 }
 
-class UserDashboard extends Component {
+export default function UserDashboard({id}) {
+    const [currentView, setView] = React.useState('');
+    const user = useSelector(state => state.user);
+    const dispatch = useDispatch();
 
-    render() {
-        this.props.hideNavigation(true);
-        // FIXME: Change colors to match home screen
-        return (
+    const onLogout = (e) => {
+        dispatch(logoutUser());
+    }
+
+    useEffect(() => {
+        dispatch(loginUser(id));
+    }, [])
+
+    return user.isAuthenticated && !user.isFetching ?
+        (
             <div>
                 <NavBar
-                    handleViewChange={ view => {
+                    handleViewChange={view => {
+                        // FIXME: what is going on here?
                         if (view === 'Messages') {
-                            this.props.selectInbox(null);
+                            dispatch(selectInbox(null));
                         }
-                        this.props.setUserDashboardView(view);
-                    } }
-                    renderView = { () => viewMap[this.props.view] }
-                    iconMap = { iconMap }
-                    userName={ "Arnob Mukherjee" }
-                    email={ "arnob@MockUser.com" }
-                    currentView={this.props.view}
+                        setView(view);
+                    }
+                    }
+                    renderView={() => viewMap[currentView]}
+                    iconMap={iconMap}
+                    userName={user.username}
+                    email={user.email}
+                    currentView={currentView}
+                    onLogout={onLogout}
                 />
-                <Footer/>
             </div>
         )
-    }
+        :
+        (<div className="loader"/>)
 }
-
-const mapDispatchToProps = dispatch => ({
-    selectInbox: inbox => {
-        dispatch(selectInbox(inbox));
-    },
-    setUserDashboardView: view => {
-        dispatch(setUserDashboardView(view));
-    },
-    hideNavigation: hidden => {
-        dispatch(hideNavigation(hidden));
-    }
-});
-
-const mapStateToProps = state => {
-    return {
-        view: state.userDashboardView,
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserDashboard);

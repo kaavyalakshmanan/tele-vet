@@ -1,4 +1,4 @@
-// This will .env will contain actions used to change state
+// This file will contain actions used to change state
 // See Workshop 2 slides for details
 
 export const updateAppointments = appointmentData => {
@@ -77,3 +77,5 @@ export const editVetProfile = (stateInput) => {
         profile: stateInput
     }
 };
+
+export * from "./users";

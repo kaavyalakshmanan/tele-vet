@@ -16,6 +16,8 @@ import EditPage from "./VetProfile/EditPage/EditPage";
 import VetDashboardInbox from "./vet-dashboard/messages/Inbox"
 // import VetProfile from "./vet-dashboard/profile/VetProfile"
 
+const TEST_USER_ID = "5f0927c903a88652b45a877a";
+
 function App() {
   return (
       <BrowserRouter>
@@ -24,7 +26,7 @@ function App() {
           <Switch>
             <Route path="/" component={Home} exact/>
             <Route path="/about" component={About}/>
-            <Route path="/user/dashboard" component={UserDashboard}/>
+            <Route path="/user/dashboard" render={() => <UserDashboard id={TEST_USER_ID}/>}/>
             <Route path="/vet-dashboard/dashboard" component={VetDashboard}/>
             {/* <Route path="/vet-dashboard/profile/VetProfile" component={VetProfile}/> */}
             <Route path="/vet-dashboard/dashboard/inbox" component={VetDashboardInbox}/>
