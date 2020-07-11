@@ -18,6 +18,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "components": "^0.1.0",
+    "cors": "^2.8.5",
     "date-fns": "^2.0.0",
     "devextreme": "^20.1.4",
     "devextreme-react": "^20.1.3",
