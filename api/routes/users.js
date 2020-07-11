@@ -40,6 +40,30 @@ router.get('/id/:id', (req, res, next) => {
     });
 });
 
+// FIXME: Do we still need this route?
+router.get('/id/:userId/document/:documentId', (req, res, next) => {
+    res.setHeader('Content-Type', 'application/json');
+    user.findById(req.params.userId, (err, user) => {
+        if (err) {
+            next(err);
+        } else if (!user) {
+            res.status(404).send(`User with id ${req.params.userId} not found`);
+        } else {
+            let targetDocument = null;
+            user._doc.documents.list.forEach((doc => {
+                if (req.params.documentId === doc.id.toString()) {
+                    targetDocument = JSON.stringify(doc);
+                }
+            }));
+            if (targetDocument) {
+                res.status(200).json(targetDocument);
+            } else {
+                res.status(404).send(`Document with id ${req.params.documentId} not found`);
+            }
+        }
+    });
+})
+
 router.put('/id/:id', (req, res, next) => {
     res.setHeader('Content-Type', 'application/json');
     user.findByIdAndUpdate(req.params.id, req.body, (err, newUser) => {

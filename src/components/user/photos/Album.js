@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useDispatch, useSelector } from "react-redux";
-import {addImage, deleteImage, editImage} from "../../../actions";
+import {addData, addImage, deleteImage, editImage} from "../../../actions";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -64,6 +64,7 @@ export default function Album() {
     const [preview, setPreview] = React.useState(null);
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
+    const DATA_TYPE = "images";
 
     const handleClose = () => {
         setUploadDialogOpen(false);
@@ -79,7 +80,7 @@ export default function Album() {
                 title: title,
                 description: description
             };
-            dispatch(addImage(newImage, user));
+            dispatch(addData(DATA_TYPE, newImage, user));
         }
         handleClose();
     }

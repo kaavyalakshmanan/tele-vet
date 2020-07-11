@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {addImage, hideNavigation, loginUser, logoutUser, selectInbox, updateProfilePicture} from "../../actions";
 import Calendar from "./schedule/Calendar";
@@ -13,16 +13,16 @@ import Messages from "./messages/Messages";
 import FindVet from "../maps/FindVet";
 import Album from "./photos/Album";
 import {Footer} from "../Footer";
-import DocumentAlbum from "./documents/DocumentAlbum";
-let initialFetch = true;
+import DocumentList from "./documents/DocumentList";
 
 const viewMap = {
     'Messages': <Messages/>,
     'Calendar': <Calendar style={ { padding: '50px'} }/>,
     'Find a Vet': <FindVet/>,
-    'Visit-Summary': <DocumentAlbum/>,
+    'Visit-Summary': <DocumentList/>,
     'E-Visit': 'E-Visit',
     'Photo Gallery': <Album/>,
+    'loader': <div className="loader"/>
 }
 
 const iconMap = {
@@ -43,29 +43,22 @@ export default function UserDashboard({id}) {
         dispatch(logoutUser());
     }
 
-    dispatch(hideNavigation(true));
-    if (initialFetch) {
-        initialFetch = false;
+    useEffect(() => {
         dispatch(loginUser(id));
-    }
+    }, [])
 
-    if (user.isFetching) {
-        return (<div className="loader"/>)
-    }
-
-    if (!user.isAuthenticated) {
-        return (<div className="loader"/>)
-    } else {
-        // FIXME: Change colors to match home screen
-        return (
+    return user.isAuthenticated && !user.isFetching ?
+        (
             <div>
                 <NavBar
                     handleViewChange={view => {
+                        // FIXME: what is going on here?
                         if (view === 'Messages') {
                             dispatch(selectInbox(null));
                         }
                         setView(view);
-                    }}
+                    }
+                    }
                     renderView={() => viewMap[currentView]}
                     iconMap={iconMap}
                     userName={user.username}
@@ -75,5 +68,6 @@ export default function UserDashboard({id}) {
                 />
             </div>
         )
-    }
+        :
+        (<div className="loader"/>)
 }
