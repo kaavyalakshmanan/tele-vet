@@ -74,6 +74,24 @@ export const updateUser = user => {
     }
 }
 
+export const addAppointment = (appointment, user) => {
+    const newUser = Object.assign({}, user, {
+        appointments: {
+            list: user.appointments.list.concat(appointment)
+        }
+    });
+    return dispatch => dispatch(updateUser(newUser));
+}
+
+export const deleteAppointment = (appointment, user) => {
+    const newUser = Object.assign({}, user, {
+        appointments: {
+            list: user.appointments.list.filter(userAppointment => userAppointment.id !== appointment.id)
+        }
+    });
+    return dispatch => dispatch(updateUser(newUser));
+}
+
 export const addImage = (image, user) => {
     const newUser = Object.assign({}, user, {
         images: {
