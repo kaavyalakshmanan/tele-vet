@@ -23,21 +23,19 @@ const viewMap = {
     'Schedule': <TimePickers/>,
     'Messages': <Messages/>,
     'Calendar': <Calendar style={ { padding: '50px'} }/>,
-    'Find a Vet': <FindVet/>,
     'Visit-Summary': 'Visit-Summary',
-    'E-Visit': <VideoConference/>,
-    'Photo Gallery': <Gallery/>,
+    'E-Visit': <VideoConference/>
 }
 
 const iconMap = {
     'Profile':  <PersonIcon color={ 'inherit' }/>,
     'Schedule': <ScheduleIcon color={ 'inherit' }/>,
-    'Messages':  <MailIcon color={ 'inherit' }/>,
+    // 'Messages':  <MailIcon color={ 'inherit' }/>,
     'Calendar': <EventIcon color={ 'inherit' }/>,
-    'Find a Vet': <MapIcon color={ 'inherit' }/>,
+    // 'Find a Vet': <MapIcon color={ 'inherit' }/>,
     'E-Visit': <VideocamIcon color={ 'inherit' } />,
-    'Visit-Summary': <DescriptionIcon color={ 'inherit' }/>,
-    'Photo Gallery': <PhotoCameraIcon color={ 'inherit' }/>,
+    // 'Visit-Summary': <DescriptionIcon color={ 'inherit' }/>,
+    // 'Photo Gallery': <PhotoCameraIcon color={ 'inherit' }/>,
 
 }
 

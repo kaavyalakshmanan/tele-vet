@@ -110,11 +110,13 @@ export default function Album() {
         setDescription("");
     }
 
-    const handleSaveEdit = () => {
+    const handleSaveEdit = (e) => {
+        const newTitle = title !== '' ? title : currentImage.title;
+        const newDescription = description !== '' ? description : currentImage.description;
         dispatch(editImage({
             src: currentImage.src,
-            title: title,
-            description: description
+            title: newTitle,
+            description: newDescription
         }, user));
         handleCloseEdit();
     }
