@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
@@ -11,6 +11,15 @@ import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 import {updateProfilePicture} from "../../../actions";
 import {useDispatch, useSelector} from "react-redux";
+import {makeStyles} from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import DialogContentText from "@material-ui/core/DialogContentText";
+
+const useStyles = makeStyles((theme) => ({
+    cardMedia: {
+        paddingTop: '56.25%', // 16:9
+    }
+}));
 
 const getUsernameAndEmail = ( collapsed, userName, email ) => {
     return collapsed ? null : (
@@ -28,8 +37,10 @@ const getUsernameAndEmail = ( collapsed, userName, email ) => {
 
 
 export default function NavHeader({collapsed} ) {
+    const classes = useState()
     const [dialogOpen, setDialogOpen] = React.useState(false);
-    const [preview, setPreview] = React.useState(null);
+    const [previewFile, setPreviewFile] = React.useState(null);
+    const [previewName, setPreviewName] = React.useState(null);
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
 
@@ -39,21 +50,22 @@ export default function NavHeader({collapsed} ) {
 
     const handleCloseDialog = () => {
         setDialogOpen(false);
-        setPreview(null);
+        setPreviewFile(null);
     };
 
     const handleSubmitProfile = () => {
-        if (preview) {
-            dispatch(updateProfilePicture(preview, user));
+        if (previewFile) {
+            dispatch(updateProfilePicture(previewFile, user));
         }
         handleCloseDialog();
     }
 
     const handlePreview = (e) => {
+        setPreviewName(e.target.files[0].name);
         if (e.target.files) {
             const reader = new FileReader();
             reader.addEventListener('load', (event) => {
-                setPreview(event.target.result);
+                setPreviewFile(event.target.result);
             });
             reader.readAsDataURL(e.target.files[0]);
         }
@@ -78,10 +90,9 @@ export default function NavHeader({collapsed} ) {
             <Dialog open={dialogOpen} onClose={handleCloseDialog} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Upload a Profile Picture</DialogTitle>
                 <DialogContent>
-                    <CardMedia
-                        image={preview}
-                        title={'preview'}
-                    />
+                    <DialogContentText>
+                        {previewName}
+                    </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleCloseDialog} color="primary">
