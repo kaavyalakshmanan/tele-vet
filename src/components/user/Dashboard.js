@@ -13,21 +13,14 @@ import Messages from "./messages/Messages";
 import FindVet from "../maps/FindVet";
 import Album from "./photos/Album";
 import {Footer} from "../Footer";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import TextField from "@material-ui/core/TextField";
-import DialogActions from "@material-ui/core/DialogActions";
-import Button from "@material-ui/core/Button";
+import DocumentAlbum from "./documents/DocumentAlbum";
 let initialFetch = true;
 
 const viewMap = {
     'Messages': <Messages/>,
     'Calendar': <Calendar style={ { padding: '50px'} }/>,
     'Find a Vet': <FindVet/>,
-    'Visit-Summary': 'Visit-Summary',
+    'Visit-Summary': <DocumentAlbum/>,
     'E-Visit': 'E-Visit',
     'Photo Gallery': <Album/>,
 }

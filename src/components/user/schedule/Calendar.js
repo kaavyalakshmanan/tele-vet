@@ -14,12 +14,10 @@ export default function Calendar() {
 
     const onAppointmentAdded = (event) => {
         event.appointmentData.id = Date.now();
-        setAppointmentList(appointmentList.concat(event.appointmentData));
         dispatch(addAppointment(event.appointmentData, user));
     }
 
     const onAppointmentDeleted = (event) => {
-        setAppointmentList(appointmentList.filter(appointment => appointment.id !== event.appointmentData.id));
         dispatch(deleteAppointment(event.appointmentData, user));
     }
 

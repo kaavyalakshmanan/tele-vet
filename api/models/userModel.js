@@ -18,6 +18,9 @@ const userSchema = new Schema({
     },
     messages: {
         contactList: [{}]
+    },
+    documents: {
+        list: [{}]
     }
 });
 

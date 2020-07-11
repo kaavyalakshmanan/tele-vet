@@ -16,8 +16,11 @@ const initialUser = {
         "list": []
     },
     "messages": {
-            "contactList": []
-        }
+        "contactList": []
+    },
+    "documents": {
+        "list":[]
+    }
 }
 
 const initialAppointments = {

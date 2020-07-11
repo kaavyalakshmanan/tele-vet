@@ -35,7 +35,6 @@ router.get('/id/:id', (req, res, next) => {
         } else if (!user) {
             res.status(404).send(`User with id ${req.params.id} not found`);
         } else {
-            console.log(user._doc);
             res.status(200).json(user._doc);
         }
     });

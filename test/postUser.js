@@ -7,7 +7,7 @@ const initialUser = {
     "email": "user@test.com",
     "username": "testUser",
     "password": "test",
-    "profilePicture": null,
+    "profilePicture": "/resources/woman.jpg",
     "lastUpdated": 0,
     "images": {
         "list": []
@@ -60,7 +60,10 @@ const initialUser = {
                         ]
                     }
                 ]
-        }
+        },
+    "documents": {
+        "list": []
+    }
 }
 
 axios.post("http://localhost:9000/users", initialUser)
