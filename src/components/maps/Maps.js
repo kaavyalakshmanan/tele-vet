@@ -17,13 +17,15 @@ class Maps extends React.Component {
         super(props);
 
         this.state = {
-            vets: []
+            vets: [],
+            pos: {lat: 49.257803, lng: -123.119299}
         }
     }
 
     componentDidMount() {
         this.setState({
-            vets: vetData
+            vets: vetData,
+            pos: this.initialMap()
         })
     }
 
@@ -38,39 +40,11 @@ class Maps extends React.Component {
         })
     }
 
-    initMap = () => {
-        console.log("async", this.initialMap())
-        let position = this.initialMap()
-        let pos;
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
-                console.log("success", pos)
-            })
-        } else {
-            pos = {lat: 49.257803, lng: -123.119299}
-
-            console.log("local", pos)
-        }
-        console.log("now", pos)
-        return <Map id="map_loader"
-                    google={this.props.google}
-                    zoom={12}
-                    style={mapStyles}
-                    initialCenter={position}
-
-        />
-
-    }
 
     initialMap = async () => {
         async function getPos() {
             let pos;
 
-            // if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
                 pos = {
                     lat: position.coords.latitude,
@@ -80,11 +54,6 @@ class Maps extends React.Component {
 
                 return pos
             })
-            // } else {
-            //     pos = {lat: 49.257803, lng: -123.119299}
-            // }
-            // console.log("now", pos)
-            // return pos
         }
 
         console.log("lost", getPos())
@@ -92,42 +61,26 @@ class Maps extends React.Component {
     }
 
 
-    setUserCenter = () => {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            let pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-            console.log(pos)
-            return pos
-        })
-    }
-
     render() {
         return (
             <div id='mapDisplay'>
                 <h1>Find a vet to help your pet! </h1>
 
-                {/*<Map id="map_loader"*/}
-                {/*     google={this.props.google}*/}
-                {/*     zoom={12}*/}
-                {/*     style={mapStyles}*/}
-                {/*     initialCenter={{lat: 49.257803, lng: -123.119299}}*/}
-                {/*>*/}
-                <div id="map">
-                    {this.initMap()}
-                    {/* {this.displayMarkers()}*/}
-                    {/*/!*{console.log("LOCATION!", navigator.geolocation.getCurrentPosition(function (position) {*!/*/}
-                    {/*/!*    let pos = {*!/*/}
-                    {/*/!*        lat: position.coords.latitude,*!/*/}
-                    {/*/!*        lng: position.coords.longitude*!/*/}
-                    {/*/!*    };*!/*/}
-                    {/*/!*    console.log(pos)*!/*/}
-                    {/*/!*}))}*!/*/}
-                    {/*// {console.log(this.setUserCenter())}*/}
+                <div id="map"
+                >
+                    <Map id="map_loader"
+                         google={this.props.google}
+                         zoom={12}
+                         style={mapStyles}
+                         initialCenter={this.state.pos}
+
+
+                    >
+                        {this.displayMarkers()}
+                        {console.log("success!")}
+                    </Map>
 
                 </div>
-                {/*</Map>*/}
 
             </div>
 
