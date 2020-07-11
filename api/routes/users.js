@@ -19,13 +19,10 @@ router.post('/', (req, res, next) => {
     let newUser = new user(req.body);
     newUser.id = uuid();
     res.setHeader('Content-Type', 'application/json');
-    newUser.save().then((err, newUser) => {
-        if (err) {
-            next(err);
-        } else {
-            res.json(newUser);
-        }
+    newUser.save().then((newUser) => {
+        res.send(newUser);
     }).catch(err => {
+        console.log(err);
         next(err);
     });
 });
@@ -38,7 +35,8 @@ router.get('/id/:id', (req, res, next) => {
         } else if (!user) {
             res.status(404).send(`User with id ${req.params.id} not found`);
         } else {
-            res.json(user);
+            console.log(user._doc);
+            res.status(200).json(user._doc);
         }
     });
 });
@@ -49,7 +47,7 @@ router.put('/id/:id', (req, res, next) => {
         if (err) {
             next(err);
         } else {
-            res.json(newUser);
+            res.send(req.body);
         }
     });
 });

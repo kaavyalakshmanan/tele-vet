@@ -13,6 +13,8 @@ import FindVet from "./maps/FindVet";
 import ProfilePage from "./VetProfile/ViewPage/ProfilePage";
 import EditPage from "./VetProfile/EditPage/EditPage";
 
+const TEST_USER_ID = "5f08d0033a06d9389459c4cd";
+
 function App() {
   return (
       <BrowserRouter>
@@ -21,7 +23,7 @@ function App() {
           <Switch>
             <Route path="/" component={Home} exact/>
             <Route path="/about" component={About}/>
-            <Route path="/user/dashboard" component={UserDashboard}/>
+            <Route path="/user/dashboard" render={() => <UserDashboard id={TEST_USER_ID}/>}/>
             <Route path="/maps/FindVet" component={FindVet}/>
             <Route path="/appointments" component={AppointmentsView}/>
             <Route path="/Vet" component={ProfilePage}/>
