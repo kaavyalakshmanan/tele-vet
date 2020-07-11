@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useDispatch, useSelector } from "react-redux";
-import { addImage, deleteImage, editImage } from "../../../actions";
+import {addData, addImage, deleteImage, editImage} from "../../../actions";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -55,9 +55,7 @@ export default function Album() {
     const [uploadDialogOpen, setUploadDialogOpen] = React.useState(false);
     const [editDialogOpen, setEditDialogOpen] = React.useState(false);
     const [currentImage, setCurrentImage] = React.useState({
-        file: {
-            src: ""
-        },
+        src: "",
         title: "",
         description: ""
     });
@@ -65,7 +63,9 @@ export default function Album() {
     const [description, setDescription] = React.useState("");
     const [preview, setPreview] = React.useState(null);
     const dispatch = useDispatch();
-    const uploadedImages = useSelector(state => state.images);
+    const user = useSelector(state => state.user);
+    const DATA_TYPE = "images";
+
     const handleClose = () => {
         setUploadDialogOpen(false);
         setTitle("");
@@ -75,13 +75,12 @@ export default function Album() {
 
     const handleSubmit = (e) => {
         if (preview) {
-            dispatch(addImage({
-                file: {
-                    src: preview,
-                },
+            const newImage = {
+                src: preview,
                 title: title,
                 description: description
-            }));
+            };
+            dispatch(addData(DATA_TYPE, newImage, user));
         }
         handleClose();
     }
@@ -97,13 +96,11 @@ export default function Album() {
     }
 
     const handleDelete = (index) => {
-        console.log(uploadedImages.list[index]);
-        dispatch(deleteImage(uploadedImages.list[index]));
+        dispatch(deleteImage(user.images.list[index], user));
     }
 
     const handleOpenEdit = (index) => {
-        console.log(uploadedImages.list[index]);
-        setCurrentImage(uploadedImages.list[index]);
+        setCurrentImage(user.images.list[index]);
         setEditDialogOpen(true);
     }
 
@@ -113,14 +110,14 @@ export default function Album() {
         setDescription("");
     }
 
-    const handleSaveEdit = () => {
+    const handleSaveEdit = (e) => {
+        const newTitle = title !== '' ? title : currentImage.title;
+        const newDescription = description !== '' ? description : currentImage.description;
         dispatch(editImage({
-            file: {
-                src: currentImage.file.src
-            },
-            title: title,
-            description: description
-        }));
+            src: currentImage.src,
+            title: newTitle,
+            description: newDescription
+        }, user));
         handleCloseEdit();
     }
 
@@ -149,12 +146,12 @@ export default function Album() {
                 <Container className={classes.cardGrid} maxWidth="md">
                     {/* End hero unit */}
                     <Grid container spacing={4}>
-                        {uploadedImages.list.map((image, index) => (
+                        {user.images.list.map((image, index) => (
                             <Grid item key={index} xs={12} sm={6} md={4}>
                                 <Card className={classes.card}>
                                     <CardMedia
                                         className={classes.cardMedia}
-                                        image={ image.file.src }
+                                        image={ image.src }
                                         title={ image.title }
                                     />
                                     <CardContent className={classes.cardContent}>
@@ -180,7 +177,7 @@ export default function Album() {
                 </Container>
             </main>
             <Dialog open={uploadDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Message</DialogTitle>
+                <DialogTitle id="form-dialog-title">Upload and share photos with your vet</DialogTitle>
                 <DialogContent>
                     <CardMedia
                         className={ classes.cardMedia }
@@ -229,11 +226,11 @@ export default function Album() {
                 </DialogActions>
             </Dialog>
             <Dialog open={editDialogOpen} onClose={ handleCloseEdit } aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Message</DialogTitle>
+                <DialogTitle id="form-dialog-title">Edit the title and description</DialogTitle>
                 <DialogContent>
                     <CardMedia
                         className={classes.cardMedia}
-                        image={ currentImage.file.src }
+                        image={ currentImage.src }
                         title={ 'preview' }
                     />
                     <DialogContentText>

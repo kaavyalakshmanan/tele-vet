@@ -1,5 +1,28 @@
 import { combineReducers } from 'redux';
 
+const initialUser = {
+    "isAuthenticated": false,
+    "isFetching": true,
+    "didInvalidate": true,
+    "email": "user@test.com",
+    "username": "testUser",
+    "password": "test",
+    "profilePicture": "/public/resources/woman.png",
+    "lastUpdated": "",
+    "images": {
+        "list": []
+    },
+    "appointments": {
+        "list": []
+    },
+    "messages": {
+        "contactList": []
+    },
+    "documents": {
+        "list":[]
+    }
+}
+
 const initialAppointments = {
     apptList: [
         {
@@ -127,6 +150,28 @@ const initialProfiles = [{
     saturdayClose: "20h00",
 }];
 
+const userReducer = (user = initialUser, action) => {
+    switch(action.type) {
+        case 'RECEIVE_USER':
+            return Object.assign({}, action.user, {
+                isAuthenticated: true,
+                lastUpdated: Date.now(),
+                isFetching: false,
+                didInvalidate: false
+            });
+        case 'REQUEST_USER':
+            return Object.assign({}, user, {
+                isAuthenticated: true,
+                isFetching: true,
+                didInvalidate: false
+            });
+        case 'INVALIDATE_USER':
+            return initialUser
+        default:
+            return user
+    }
+}
+
 const appointmentReducer = (appointments = initialAppointments, action) => {
     if (action.type === 'UPDATE_APPOINTMENTS') {
         return action.appointmentData;
@@ -150,8 +195,6 @@ const userDashboardViewReducer = (view = '', action) => {
 
 const imageReducer = (images = initialImages, action) => {
     if (action.type === 'ADD_IMAGE') {
-        // TODO: Make an AJAX request to server, store image in database
-        // TODO: Get path for Image
         return {
             list: images.list.concat({
                 file: {
@@ -164,12 +207,7 @@ const imageReducer = (images = initialImages, action) => {
     }
     if (action.type === 'EDIT_IMAGE') {
         let newList = [];
-        console.log(images);
-        console.log(action.image);
         images.list.forEach((img) => {
-            console.log(img.file.src);
-            console.log(action.image.file.src);
-            console.log(img.file.src === action.image.file.src);
             if (img.file.src === action.image.file.src) {
                 newList.push(action.image);
             } else {
@@ -220,6 +258,7 @@ const profileReducer = (profiles = initialProfiles, action) => {
 }
 
 export default combineReducers({
+    user: userReducer,
     appointmentData: appointmentReducer,
     navBarHidden: navBarReducer,
     userDashboardView: userDashboardViewReducer,

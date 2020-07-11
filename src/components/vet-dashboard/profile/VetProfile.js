@@ -17,12 +17,19 @@ import {
 } from "reactstrap";
 // core components
 import UserHeader from "../headers/UserHeader";
+import {useDispatch} from "react-redux";
+import {setUserDashboardView} from "../../../actions";
 
-class VetProfile extends React.Component {
-  render() {
-    return (
+function VetProfile() {
+  const dispatch = useDispatch();
+
+  const onClickInbox = (e) => {
+    dispatch(setUserDashboardView('Messages'));
+  }
+
+  return (
       <>
-        <UserHeader />
+        <UserHeader/>
         {/* Page content */}
         <Container className="mt--7" fluid>
           <Row>
@@ -33,9 +40,9 @@ class VetProfile extends React.Component {
                     <div className="card-profile-image">
                       <a href="#pablo" onClick={e => e.preventDefault()}>
                         <img
-                          alt="..."
-                          className="rounded-circle"
-                          src={require("../profile-img-tmp/mock-avatar-2.jpg")}
+                            alt="..."
+                            className="rounded-circle"
+                            src={require("../profile-img-tmp/mock-avatar-2.jpg")}
                         />
                       </a>
                     </div>
@@ -44,21 +51,20 @@ class VetProfile extends React.Component {
                 <CardHeader className="text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                   <div className="d-flex justify-content-between">
                     <Button
-                      className="mr-4"
-                      color="info"
-                      href="../messages/Inbox"
-                      onClick={e => e.preventDefault()}
-                      size="sm"
+                        className="mr-4"
+                        color="info"
+                        href="../messages/Inbox"
+                        onClick={e => e.preventDefault()}
+                        size="sm"
                     >
                       Connect
                     </Button>
                     {/* <Link to= "../"> */}
                     <Button
-                      className="float-right"
-                      color="info"
-                      href= '/vet-dashboard/dashboard/inbox'
-                      onClick={this.handleClick}
-                      size="sm"
+                        className="float-right"
+                        color="info"
+                        onClick={onClickInbox}
+                        size="sm"
                     >
                       Inbox
                     </Button>
@@ -76,18 +82,18 @@ class VetProfile extends React.Component {
                       <span className="font-weight-light">, 27</span>
                     </h3>
                     <div className="h5 font-weight-300">
-                      <i className="ni location_pin mr-2" />
+                      <i className="ni location_pin mr-2"/>
                       Vancouver, BC
                     </div>
                     <div className="h5 mt-4">
-                      <i className="ni business_briefcase-24 mr-2" />
+                      <i className="ni business_briefcase-24 mr-2"/>
                       Senior Vet -- Dogs
                     </div>
                     <div>
-                      <i className="ni education_hat mr-2" />
+                      <i className="ni education_hat mr-2"/>
                       University of British Columbia
                     </div>
-                    <hr className="my-4" />
+                    <hr className="my-4"/>
                     <p>
                       I am a Senior Vet who specializes in dog care.
                     </p>
@@ -107,10 +113,10 @@ class VetProfile extends React.Component {
                     </Col>
                     <Col className="text-right" xs="4">
                       <Button
-                        color="primary"
-                        href="#pablo"
-                        onClick={e => e.preventDefault()}
-                        size="sm"
+                          color="primary"
+                          href="#pablo"
+                          onClick={e => e.preventDefault()}
+                          size="sm"
                       >
                         Edit Profile
                       </Button>
@@ -127,17 +133,17 @@ class VetProfile extends React.Component {
                         <Col lg="6">
                           <FormGroup>
                             <label
-                              className="form-control-label"
-                              htmlFor="input-username"
+                                className="form-control-label"
+                                htmlFor="input-username"
                             >
                               Username
                             </label>
                             <Input
-                              className="form-control-alternative"
-                              defaultValue="jessica.jones"
-                              id="input-username"
-                              placeholder="Username"
-                              type="text"
+                                className="form-control-alternative"
+                                defaultValue="jessica.jones"
+                                id="input-username"
+                                placeholder="Username"
+                                type="text"
                             />
                           </FormGroup>
                         </Col>
@@ -145,17 +151,17 @@ class VetProfile extends React.Component {
                         <Col lg="6">
                           <FormGroup>
                             <label
-                              className="form-control-label"
-                              htmlFor="input-password"
+                                className="form-control-label"
+                                htmlFor="input-password"
                             >
                               Password
                             </label>
                             <Input
-                              className="form-control-alternative"
-                              defaultValue="*********"
-                              id="input-password"
-                              placeholder="Password"
-                              type="text"
+                                className="form-control-alternative"
+                                defaultValue="*********"
+                                id="input-password"
+                                placeholder="Password"
+                                type="text"
                             />
                           </FormGroup>
                         </Col>
@@ -163,16 +169,16 @@ class VetProfile extends React.Component {
                         <Col lg="6">
                           <FormGroup>
                             <label
-                              className="form-control-label"
-                              htmlFor="input-email"
+                                className="form-control-label"
+                                htmlFor="input-email"
                             >
                               Email address
                             </label>
                             <Input
-                              className="form-control-alternative"
-                              id="input-email"
-                              placeholder="jessica.jones@example.com"
-                              type="email"
+                                className="form-control-alternative"
+                                id="input-email"
+                                placeholder="jessica.jones@example.com"
+                                type="email"
                             />
                           </FormGroup>
                         </Col>
@@ -181,40 +187,40 @@ class VetProfile extends React.Component {
                         <Col lg="6">
                           <FormGroup>
                             <label
-                              className="form-control-label"
-                              htmlFor="input-first-name"
+                                className="form-control-label"
+                                htmlFor="input-first-name"
                             >
                               First name
                             </label>
                             <Input
-                              className="form-control-alternative"
-                              defaultValue="Jessica"
-                              id="input-first-name"
-                              placeholder="First name"
-                              type="text"
+                                className="form-control-alternative"
+                                defaultValue="Jessica"
+                                id="input-first-name"
+                                placeholder="First name"
+                                type="text"
                             />
                           </FormGroup>
                         </Col>
                         <Col lg="6">
                           <FormGroup>
                             <label
-                              className="form-control-label"
-                              htmlFor="input-last-name"
+                                className="form-control-label"
+                                htmlFor="input-last-name"
                             >
                               Last name
                             </label>
                             <Input
-                              className="form-control-alternative"
-                              defaultValue="Jones"
-                              id="input-last-name"
-                              placeholder="Last name"
-                              type="text"
+                                className="form-control-alternative"
+                                defaultValue="Jones"
+                                id="input-last-name"
+                                placeholder="Last name"
+                                type="text"
                             />
                           </FormGroup>
                         </Col>
                       </Row>
                     </div>
-                    <hr className="my-4" />
+                    <hr className="my-4"/>
                     {/* Address */}
                     <h6 className="heading-small text-muted mb-4">
                       Contact information
@@ -224,17 +230,17 @@ class VetProfile extends React.Component {
                         <Col md="12">
                           <FormGroup>
                             <label
-                              className="form-control-label"
-                              htmlFor="input-address"
+                                className="form-control-label"
+                                htmlFor="input-address"
                             >
                               Address
                             </label>
                             <Input
-                              className="form-control-alternative"
-                              defaultValue="6324 Sunshine Blvd"
-                              id="input-address"
-                              placeholder="Home Address"
-                              type="text"
+                                className="form-control-alternative"
+                                defaultValue="6324 Sunshine Blvd"
+                                id="input-address"
+                                placeholder="Home Address"
+                                type="text"
                             />
                           </FormGroup>
                         </Col>
@@ -243,17 +249,17 @@ class VetProfile extends React.Component {
                         <Col lg="4">
                           <FormGroup>
                             <label
-                              className="form-control-label"
-                              htmlFor="input-city"
+                                className="form-control-label"
+                                htmlFor="input-city"
                             >
                               City
                             </label>
                             <Input
-                              className="form-control-alternative"
-                              defaultValue="Vancouver"
-                              id="input-city"
-                              placeholder="City"
-                              type="text"
+                                className="form-control-alternative"
+                                defaultValue="Vancouver"
+                                id="input-city"
+                                placeholder="City"
+                                type="text"
                             />
                           </FormGroup>
                         </Col>
@@ -262,17 +268,17 @@ class VetProfile extends React.Component {
                         <Col lg="4">
                           <FormGroup>
                             <label
-                              className="form-control-label"
-                              htmlFor="input-province"
+                                className="form-control-label"
+                                htmlFor="input-province"
                             >
                               Province
                             </label>
                             <Input
-                              className="form-control-alternative"
-                              defaultValue="British Columbia"
-                              id="input-province"
-                              placeholder="province"
-                              type="text"
+                                className="form-control-alternative"
+                                defaultValue="British Columbia"
+                                id="input-province"
+                                placeholder="province"
+                                type="text"
                             />
                           </FormGroup>
                         </Col>
@@ -280,50 +286,50 @@ class VetProfile extends React.Component {
                         <Col lg="4">
                           <FormGroup>
                             <label
-                              className="form-control-label"
-                              htmlFor="input-country"
+                                className="form-control-label"
+                                htmlFor="input-country"
                             >
                               Country
                             </label>
                             <Input
-                              className="form-control-alternative"
-                              defaultValue="Canada"
-                              id="input-country"
-                              placeholder="Country"
-                              type="text"
+                                className="form-control-alternative"
+                                defaultValue="Canada"
+                                id="input-country"
+                                placeholder="Country"
+                                type="text"
                             />
                           </FormGroup>
                         </Col>
                         <Col lg="4">
                           <FormGroup>
                             <label
-                              className="form-control-label"
-                              htmlFor="input-country"
+                                className="form-control-label"
+                                htmlFor="input-country"
                             >
                               Postal code
                             </label>
                             <Input
-                              className="form-control-alternative"
-                              id="input-postal-code"
-                              placeholder="V6Z123"
-                              type="number"
+                                className="form-control-alternative"
+                                id="input-postal-code"
+                                placeholder="V6Z123"
+                                type="number"
                             />
                           </FormGroup>
                         </Col>
                       </Row>
                     </div>
-                    <hr className="my-4" />
+                    <hr className="my-4"/>
                     {/* Description */}
                     <h6 className="heading-small text-muted mb-4">About me</h6>
                     <div className="pl-lg-4">
                       <FormGroup>
                         <label>About Me</label>
                         <Input
-                          className="form-control-alternative"
-                          placeholder="A few words about you ..."
-                          rows="4"
-                          defaultValue="I am a practicing vet specializing in dogs."
-                          type="textarea"
+                            className="form-control-alternative"
+                            placeholder="A few words about you ..."
+                            rows="4"
+                            defaultValue="I am a practicing vet specializing in dogs."
+                            type="textarea"
                         />
                       </FormGroup>
                     </div>
@@ -334,8 +340,7 @@ class VetProfile extends React.Component {
           </Row>
         </Container>
       </>
-    );
-  }
+  );
 }
 
 export default VetProfile;

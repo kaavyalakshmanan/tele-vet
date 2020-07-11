@@ -9,8 +9,8 @@ import { connect } from "react-redux";
 
 class Navigation extends React.Component {
     render() {
-        if (this.props.navBarHidden) {
-            return (null);
+        if (true) {
+            return null;
         }
         return (
             <Navbar className="navbar navbar-light" variant="light">
