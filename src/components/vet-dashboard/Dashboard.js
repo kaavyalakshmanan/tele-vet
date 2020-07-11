@@ -7,6 +7,7 @@ import VideocamIcon from "@material-ui/icons/Videocam";
 import EventIcon from "@material-ui/icons/Event";
 import MapIcon from "@material-ui/icons/Map";
 import PersonIcon from '@material-ui/icons/Person';
+import ScheduleIcon from '@material-ui/icons/Schedule';
 import DescriptionIcon from "@material-ui/icons/Description";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 import {NavBar} from "./sidebar/NavBar";
@@ -15,9 +16,11 @@ import Messages from "./messages/Messages";
 import FindVet from "../maps/FindVet";
 import VetProfile from "./profile/VetProfile"
 import VideoConference from "../videoConference/VideoConference";
+import TimePickers from "./timePickers/TimePickers";
 
 const viewMap = {
     'Profile': <VetProfile/>,
+    'Schedule': <TimePickers/>,
     'Messages': <Messages/>,
     'Calendar': <Calendar style={ { padding: '50px'} }/>,
     'Find a Vet': <FindVet/>,
@@ -28,12 +31,14 @@ const viewMap = {
 
 const iconMap = {
     'Profile':  <PersonIcon color={ 'inherit' }/>,
+    'Schedule': <ScheduleIcon color={ 'inherit' }/>,
     'Messages':  <MailIcon color={ 'inherit' }/>,
     'Calendar': <EventIcon color={ 'inherit' }/>,
     'Find a Vet': <MapIcon color={ 'inherit' }/>,
     'E-Visit': <VideocamIcon color={ 'inherit' } />,
     'Visit-Summary': <DescriptionIcon color={ 'inherit' }/>,
     'Photo Gallery': <PhotoCameraIcon color={ 'inherit' }/>,
+
 }
 
 class UserDashboard extends Component {

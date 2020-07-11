@@ -22,9 +22,18 @@ class ProfilePage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            profile: null
+            weeklyTimeBlock: []
+                // [["17:00", "18:00", "19:00"],
+                // ["17:00", "18:00", "19:00"],
+                // ["17:00", "18:00", "19:00"],
+                // ["17:00", "18:00", "19:00"],
+                // ["17:00", "18:00", "19:00"],
+                // ["17:00", "18:00", "19:00"],
+                // ["17:00", "18:00", "19:00"]]
         };
     }
+
+
 
     // useStyles = makeStyles((theme) => ({
     //     root: {
@@ -40,19 +49,24 @@ class ProfilePage extends React.Component {
     // placeholder***Should be deleted in later phase***
     // I think the mongoDB call should be made when the user makes the search
     // and displays the teaser cards created by Amy, then passes to this component as a prop on user onClick
-    // componentDidMount() {
-    //     const id = "5f04b521d46d3306e446c70f"
-    //     axios.get("http://localhost:9000/id/" + id)
-    //         .then(response => {
-    //             this.setState(
-    //                 {
-    //                     profile: response.data
-    //                 })
-    //         })
-    //         .catch((err) => {
-    //             console.log(err)
-    //         })
-    // }
+    componentDidMount() {
+        const id = "5f07b082acd85550aa1b19a9"
+        axios.get("http://localhost:9000/vet/id/" + id)
+            .then(response => {
+                this.setState(
+                    {
+                        weeklyTimeBlock: response.data.weeklyTimeBlocks
+                    })
+                // console.log(response.data)
+                // console.log(response.data._id)
+                // console.log(this.state.profile.weeklyTimeBlocks)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        // console.log(this.state.profile._id)
+        // console.log(this.state.profile.weeklyTimeBlocks)
+    }
 
 
     render() {
@@ -70,11 +84,17 @@ class ProfilePage extends React.Component {
                         <Grid item xs={12}>
                             <Description/>
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={12} >
+                              <div style={{alignItems: "right"}}>
                             <h5>Schedule your Appointment!</h5>
+                              </div>
                         </Grid>
                         <Grid item xs={12}>
-                            {/*<Booking key0={this.state.profile._id} key1={this.state.profile.weeklyTimeBlocks} key2={this.state.profile.scheduledAppointments}/>*/}
+                            <Booking
+                                // key0={this.state.profile._id}
+                                key1={this.state.weeklyTimeBlocks}
+                                // key2={this.state.profile.scheduledAppointments}
+                            />
                         </Grid>
                     </Grid>
                     <Grid container direction="column" spacing={1} xs={8}>
@@ -88,7 +108,7 @@ class ProfilePage extends React.Component {
                         </Grid>
                         <Link to="/EditPage">Edit</Link>
                         <Grid item>
-                            <h3>Testimonials</h3>
+                            {/*<h3>{this.state.profile._id}</h3>*/}
                         </Grid>
                     </Grid>
                 </Grid>
