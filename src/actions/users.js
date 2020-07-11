@@ -38,7 +38,7 @@ export const loginUser = id => {
             })
             .catch(err => {
                 console.error(err);
-                alert("Failed to load user data");
+                alert(err);
                 window.location.replace("/");
             });
     }
