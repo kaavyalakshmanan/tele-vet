@@ -73,7 +73,6 @@ export default function UserDashboard({id}) {
                     currentView={currentView}
                     onLogout={onLogout}
                 />
-                <Footer/>
             </div>
         )
     }
