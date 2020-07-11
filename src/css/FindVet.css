@@ -1,0 +1,48 @@
+.container {
+    display: inline-block;
+    flex-shrink: 3;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+#map_loader {
+    alignment: left;
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+#map{
+    display: contents;
+    flex-wrap: wrap;
+}
+
+#card {
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+}
+
+.GridList{
+    width: 100%;
+    height: 70%;
+    overflow-scrolling: auto;
+}
+
+#mapDisplay {
+    display: contents;
+}
+.MuiGridListTile-tile{
+    width: 30%;
+    flex-shrink: 0;
+}
+.MuiGridList-root {
+    text-align: -webkit-right;
+}
+
+#card_list{
+    display: flex;
+}
