@@ -9,8 +9,8 @@ import { connect } from "react-redux";
 
 class Navigation extends React.Component {
     render() {
-        if (this.props.navBarHidden) {
-            return (null);
+        if (true) {
+            return null;
         }
         return (
             <Navbar className="navbar navbar-light" variant="light">
@@ -24,6 +24,7 @@ class Navigation extends React.Component {
                 </Nav>
                 <NavDropdown title="Dashboards" id="basic-nav-dropdown">
                     <NavDropdown.Item href="/user/dashboard">Pet Owner</NavDropdown.Item>
+                    <NavDropdown.Item href="/vet-dashboard/dashboard">Vet</NavDropdown.Item>
                 </NavDropdown>
                 <Form inline>
                     <Form.Control type="text" placeholder="Search" className="mr-sm-2" />

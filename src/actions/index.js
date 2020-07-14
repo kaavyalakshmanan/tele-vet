@@ -1,4 +1,4 @@
-// This will file will contain actions used to change state
+// This file will contain actions used to change state
 // See Workshop 2 slides for details
 
 export const updateAppointments = appointmentData => {
@@ -36,6 +36,20 @@ export const addImage = image => {
     }
 }
 
+// export const editImage = image => {
+//     return {
+//         type: 'EDIT_IMAGE',
+//         image: image
+//     }
+// }
+// 
+// export const deleteImage = image => {
+//     return {
+//         type: 'DELETE_IMAGE',
+//         image: image
+//     }
+// }
+
 export const selectInbox = inbox => {
     return {
         type: 'SELECT_INBOX',
@@ -57,23 +71,11 @@ export const addContact = contact => {
     }
 }
 
-export const editVetProfile = (input1) => ({
-    type: "EDIT_VET_PROFILE",
-    payload: {
-        firstName: "",
-        lastName: "",
-        username: "",
-        businessAddress: "",
-        website: "",
-        openTimes: {
-            sunday: "",
-            monday: "",
-            tuesday: "",
-            wednesday: "",
-            thursday: "",
-            friday: "",
-            saturday: "",
-        },
-        acceptEmergency: ""
+export const editVetProfile = (stateInput) => {
+    return {
+        type: "EDIT_VET_PROFILE",
+        profile: stateInput
     }
-});
+};
+
+export * from "./users";

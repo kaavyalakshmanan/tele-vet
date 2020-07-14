@@ -16,8 +16,6 @@ export default function Description() {
                         <h2>Dr.Shawarma</h2>
                         <h6>Dog Specialist</h6>
                         <p>3489 West Broadway<br/>604-989-8273<br/>www.shawarma.com</p>
-                        <p>Hey! How have you been? Hungry? Dog food tastes better than cat food, etc. but shawarma food
-                            tastes best! Give me a call and I will help you get better.</p>
                     </div>
                 </div>
             </div>

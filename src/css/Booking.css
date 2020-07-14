@@ -15,7 +15,7 @@
 /*https://www.w3schools.com/css/css3_flexbox.asp*/
 #editProfileForm {
     padding: 20px 20px 100px;
-    float: right;
+    /*float: right;*/
     width: available;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .formGroup input {
-    background-color: black;
+    background-color: white;
     padding: 8px;
     width: 100%;
     border: none;
@@ -42,7 +42,7 @@
 }
 
 .editProfilePicture {
-    float: left;
+    /*float: left;*/
     width: 10px;
 }
 
@@ -54,12 +54,16 @@
 }
 
 .editCarousel{
-    float: left;
+    /*float: left;*/
     width: 350px;
     height: 100px;
     display: flex;
 }
 
+.MuiPickersBasePicker-pickerView{
+    max-width: 100% !important;
+    /*max-width: 100%*/
+}
 
 .makeStyles-grid-98 {
     width: auto;

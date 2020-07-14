@@ -8,6 +8,7 @@ import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -17,7 +18,6 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import PetsIcon from "@material-ui/icons/Pets";
-import PublishIcon from '@material-ui/icons/Publish';
 import Badge from "@material-ui/core/Badge";
 import NavHeader from "./NavHeader";
 const drawerWidth = 240;
@@ -81,13 +81,18 @@ const useStyles = makeStyles((theme) => ({
         // necessary for content to be below app bar
         ...theme.mixins.toolbar,
     },
+    logout: {
+        float: "right",
+        textAlign: "right",
+        margin: "0px 0px 0px auto"
+    },
     content: {
         flexGrow: 1,
         padding: theme.spacing(3),
     },
 }));
 
-export const NavBar = ({ handleViewChange, renderView, iconMap, userName, email, currentView, uploadPhoto } ) => {
+export const NavBar = ({ handleViewChange, renderView, iconMap, onLogout } ) => {
 
         const classes = useStyles();
         const theme = useTheme();
@@ -100,24 +105,6 @@ export const NavBar = ({ handleViewChange, renderView, iconMap, userName, email,
         const handleDrawerClose = () => {
             setOpen(false);
         };
-
-        let navbarButton;
-        if (currentView === 'Photo Gallery') {
-            navbarButton = (
-                <IconButton color="inherit" style={{"textAlign": "right", margin: "0px 0px 0px auto"}} onClick={uploadPhoto}>
-                    <PublishIcon/>
-                </IconButton>
-            )
-        } else {
-            navbarButton = (
-                <IconButton color="inherit" style={{"textAlign": "right", margin: "0px 0px 0px auto"}}>
-                    <Badge badgeContent={4} color="secondary">
-                        { /*TODO: Store notifications with redux*/ }
-                        <NotificationsIcon />
-                    </Badge>
-                </IconButton>
-            )
-        }
 
         return (
             <div className={classes.root}>
@@ -144,7 +131,14 @@ export const NavBar = ({ handleViewChange, renderView, iconMap, userName, email,
                             <PetsIcon style={{padding: "5px"}}/>
                             Tele-Vet
                         </Typography>
-                        { navbarButton }
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            className={classes.logout}
+                            onClick={onLogout}
+                        >
+                            Logout
+                        </Button>
                     </Toolbar>
                 </AppBar>
                 <Drawer
@@ -168,8 +162,6 @@ export const NavBar = ({ handleViewChange, renderView, iconMap, userName, email,
                     <Divider/>
                     <NavHeader
                         collapsed={ !open }
-                        userName={ userName }
-                        email={ email }
                     />
                     <Divider/>
                     <List>

@@ -1,76 +1,36 @@
 import React from 'react';
-import {connect} from "react-redux";
-import Paper from '@material-ui/core/Paper';
-import {ViewState} from '@devexpress/dx-react-scheduler';
-import {
-    Scheduler,
-    DayView,
-    WeekView,
-    MonthView,
-    Appointments,
-    Toolbar,
-    ViewSwitcher,
-} from '@devexpress/dx-react-scheduler-material-ui';
 
-/*
-This component is using the devExtreme react scheduler. We can sync with to external cals using AJAx requests
- */
-class Calendar extends React.Component {
+import Scheduler from 'devextreme-react/scheduler';
 
+import {useDispatch, useSelector} from "react-redux";
+import {addAppointment, addData, deleteAppointment, updateAppointments} from "../../../actions";
 
-    getDataFromAppointments() {
-        console.log(this.props.appointmentData.apptList);
-        return this.props.appointmentData.apptList.map(appt => {
-            return {
-                startDate: appt.calendarData.startDate,
-                endDate: appt.calendarData.endDate,
-                title: appt.calendarData.title
-            }
-        });
+const views = ['week', 'month'];
+
+export default function Calendar() {
+    const user = useSelector(state => state.user);
+    const dispatch = useDispatch();
+    const DATA_TYPE_APPOINTMENTS = "appointments";
+
+    const onAppointmentAdded = (event) => {
+        event.appointmentData.id = Date.now();
+        dispatch(addData(DATA_TYPE_APPOINTMENTS, event.appointmentData, user));
     }
 
-    getCurrentDate() {
-        const today = new Date();
-        const dd = String(today.getDate()).padStart(2, '0');
-        const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0
-        const yyyy = today.getFullYear();
-        return `${yyyy}-${mm}-${dd}`;
+    const onAppointmentDeleted = (event) => {
+        dispatch(deleteAppointment(event.appointmentData, user));
     }
 
-    render() {
-        return (
-            < Paper
-                elevation={3}>
-                < Scheduler
-                    data={this.getDataFromAppointments()}
-                    height='100%'
-                >
-                    < ViewState
-                        currentDate={this.getCurrentDate()}
-                        defaultCurrentViewName='Month'
-                        />
-                    < DayView
-                        const startDayHour = {9}
-                        const endDayHour = {14}
-                        />
-                    < WeekView
-                        startDayHour={9}
-                        endDayHour={14}
-                    />
-                    < MonthView />
-                    < Toolbar />
-                    < ViewSwitcher />
-                    < Appointments />
-                    < /Scheduler>
-                        < /Paper>
-                            )
-                            ;
-                            }
-                            }
-
-                            const mapStateToProps = (state) => { return {
-                            appointmentData: state.appointmentData
-                        }
-                        }
-
-                            export default connect(mapStateToProps, null)(Calendar)
+    return (
+        <Scheduler
+            dataSource={user.appointments.list}
+            views={views}
+            defaultCurrentView="month"
+            defaultCurrentDate={Date.now()}
+            height={600}
+            startDayHour={9}
+            onAppointmentAdding={onAppointmentAdded}
+            onAppointmentDeleting={onAppointmentDeleted}
+        />
+    );
+}

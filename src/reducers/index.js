@@ -1,24 +1,39 @@
 import { combineReducers } from 'redux';
 
+const initialUser = {
+    "isAuthenticated": false,
+    "isFetching": true,
+    "didInvalidate": true,
+    "email": "user@test.com",
+    "username": "testUser",
+    "password": "test",
+    "profilePicture": "/public/resources/woman.png",
+    "lastUpdated": "",
+    "images": {
+        "list": []
+    },
+    "appointments": {
+        "list": []
+    },
+    "messages": {
+        "contactList": []
+    },
+    "documents": {
+        "list":[]
+    }
+}
+
 const initialAppointments = {
     apptList: [
         {
-            vet: "Johnny Reptiles",
-            calendarData:
-            {
-                startDate: '2020-06-15T09:45',
-                endDate: '2020-06-15T11:00',
-                title: 'Cat Check-Up'
-            }
-        },
-        {
-            vet: "Sandy Fish",
-            calendarData:
-            {
-                startDate: '2020-06-16T12:00',
-                endDate: '2020-06-16T13:30',
-                title: 'Dog Vaccines'
-            }
+            text: 'Dog Check Up',
+            startDate: new Date(2020, 6, 22, 9, 30),
+            endDate: new Date(2020, 6, 22, 11, 30)
+        }, {
+            text: 'Cat Check Up',
+            startDate: new Date(2020, 6, 22, 12, 0),
+            endDate: new Date(2020, 6, 22, 13, 0),
+            allDay: true
         }
     ]
 }
@@ -26,29 +41,39 @@ const initialAppointments = {
 const initialImages = {
     list: [
         {
-            src: "https://images.pexels.com/photos/110820/pexels-photo-110820.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-            width: 2,
-            height: 2
+            file: {
+                src : "https://images.pexels.com/photos/110820/pexels-photo-110820.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+            },
+            title: "Title",
+            description: "Something about your image"
         },
         {
-            src: "https://images.pexels.com/photos/47547/squirrel-animal-cute-rodents-47547.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-            width: 2,
-            height: 2
+            file: {
+                src: "https://images.pexels.com/photos/47547/squirrel-animal-cute-rodents-47547.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+            },
+            title: "Title",
+            description: "Something about your image"
         },
         {
-            src: "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-            width: 2,
-            height: 2
+            file : {
+                src: "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+            },
+            title: "Title",
+            description: "Something about your image"
         },
         {
-            src: "https://images.pexels.com/photos/326012/pexels-photo-326012.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-            width: 2,
-            height: 2
+            file: {
+                src: "https://images.pexels.com/photos/326012/pexels-photo-326012.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+            },
+            title: "Title",
+            description: "Something about your image"
         },
         {
-            src: "https://images.pexels.com/photos/1851164/pexels-photo-1851164.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-            width: 2,
-            height: 2
+            file: {
+                src: "https://images.pexels.com/photos/1851164/pexels-photo-1851164.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+            },
+            title: "Title",
+            description: "Something about your image"
         }
     ]
 }
@@ -102,6 +127,51 @@ const initialContacts = {
     ]
 }
 
+const initialProfiles = [{
+    firstName: "Jane",
+    lastName: "McDouglas",
+    username: "Dr. McDoggy",
+    businessAddress: "2207 12th ave west, Vancouver",
+    website: "www.doggyClinic.com",
+    acceptEmergency:"true",
+    sundayOpen: "8h00",
+    sundayClose: "20h00",
+    mondayOpen: "8h00",
+    mondayClose: "20h00",
+    tuesdayOpen: "8h00",
+    tuesdayClose: "20h00",
+    wednesdayOpen: "8h00",
+    wednesdayClose: "20h00",
+    thursdayOpen: "8h00",
+    thursdayClose: "20h00",
+    fridayOpen: "8h00",
+    fridayClose: "20h00",
+    saturdayOpen: "8h00",
+    saturdayClose: "20h00",
+}];
+
+const userReducer = (user = initialUser, action) => {
+    switch(action.type) {
+        case 'RECEIVE_USER':
+            return Object.assign({}, action.user, {
+                isAuthenticated: true,
+                lastUpdated: Date.now(),
+                isFetching: false,
+                didInvalidate: false
+            });
+        case 'REQUEST_USER':
+            return Object.assign({}, user, {
+                isAuthenticated: true,
+                isFetching: true,
+                didInvalidate: false
+            });
+        case 'INVALIDATE_USER':
+            return initialUser
+        default:
+            return user
+    }
+}
+
 const appointmentReducer = (appointments = initialAppointments, action) => {
     if (action.type === 'UPDATE_APPOINTMENTS') {
         return action.appointmentData;
@@ -123,23 +193,34 @@ const userDashboardViewReducer = (view = '', action) => {
     return view;
 }
 
-const userPhotosReducer = (open = false, action) => {
-    if (action.type === 'SET_DROPZONE_OPEN') {
-        return action.open;
-    }
-    return open;
-}
-
 const imageReducer = (images = initialImages, action) => {
     if (action.type === 'ADD_IMAGE') {
-        // TODO: Make an AJAX request to server, store image in database
-        // TODO: Get path for Image
         return {
             list: images.list.concat({
-                src: '/resources/' + action.image.path,
-                height: 2,
-                width: 2
+                file: {
+                    src: action.image.file.src,
+                },
+                title: action.image.title,
+                description: action.image.description
             })
+        }
+    }
+    if (action.type === 'EDIT_IMAGE') {
+        let newList = [];
+        images.list.forEach((img) => {
+            if (img.file.src === action.image.file.src) {
+                newList.push(action.image);
+            } else {
+                newList.push(img);
+            }
+        });
+        return {
+            list: newList
+        };
+    }
+    if (action.type === 'DELETE_IMAGE') {
+        return {
+            list: images.list.filter(img => img.file.src !== action.image.file.src)
         }
     }
     return images;
@@ -169,13 +250,21 @@ const contactReducer = (contacts = initialContacts, action) => {
     return contacts;
 }
 
+const profileReducer = (profiles = initialProfiles, action) => {
+    if (action.type === "EDIT_VET_PROFILE") {
+        return profiles.push(action.payload)
+    }
+    return profiles
+}
+
 export default combineReducers({
+    user: userReducer,
     appointmentData: appointmentReducer,
     navBarHidden: navBarReducer,
     userDashboardView: userDashboardViewReducer,
     userDashboardSidebarOpen: userDashboardViewReducer,
     images: imageReducer,
-    photoDropzoneOpen: userPhotosReducer,
     inbox: inboxReducer,
-    contacts: contactReducer
+    contacts: contactReducer,
+    profiles: profileReducer
 });
