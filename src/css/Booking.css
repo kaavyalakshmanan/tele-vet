@@ -60,6 +60,27 @@
     display: flex;
 }
 
+.timeMenu button{
+    background-color: #3F51B6; /* Green background */
+    border: 1px solid #3849a3; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 50%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+    align-items: center;
+    align-content: center;
+}
+
+.timeMenu button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.timeMenu button:hover {
+    background-color: #3849a3;
+}
+
 .MuiPickersBasePicker-pickerView{
     max-width: 100% !important;
     /*max-width: 100%*/

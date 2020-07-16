@@ -9,7 +9,7 @@ class Booking extends React.Component {
         this.state = {
             isFlipped: false ,
             selectedDate: "",
-            selectedWeekday: [],
+            selectedWeekday: []
             // mon: props.key1.monday,
             // tue: props.week.tuesday,
             // wed: props.week.wednesday,
@@ -25,20 +25,21 @@ class Booking extends React.Component {
     handleClick= (e) => {
         // e.preventDefault();
         this.setState(prevState => ({ isFlipped: !prevState.isFlipped }));
-    //     this.setState({selectedDate: e})
-    //     if ((String(e).substring(0,3)) === "Mon") {this.setState({selectedWeekday: this.props.key1[1]})}
-    //     if ((String(e).substring(0,3)) === "Tue") {this.setState({selectedWeekday: this.props.key1[2]})}
-    //     if ((String(e).substring(0,3)) === "Wed") {this.setState({selectedWeekday: this.props.key1[3]})}
-    //     if ((String(e).substring(0,3)) === "Thu") {this.setState({selectedWeekday: this.props.key1[4]})}
-    //     if ((String(e).substring(0,3)) === "Fri") {this.setState({selectedWeekday: this.props.key1[5]})}
-    //     if ((String(e).substring(0,3)) === "Sat") {this.setState({selectedWeekday: this.props.key1[6]})}
-    //     if ((String(e).substring(0,3)) === "Sun") {this.setState({selectedWeekday: this.props.key1[7]})}
-    //     console.log(this.props.key1)
+        this.setState({selectedDate: e})
+        if ((String(e).substring(0,3)) === "Mon") {this.setState({selectedWeekday: this.props.key1[1]})}
+        if ((String(e).substring(0,3)) === "Tue") {this.setState({selectedWeekday: this.props.key1[2]})}
+        if ((String(e).substring(0,3)) === "Wed") {this.setState({selectedWeekday: this.props.key1[3]})}
+        if ((String(e).substring(0,3)) === "Thu") {this.setState({selectedWeekday: this.props.key1[4]})}
+        if ((String(e).substring(0,3)) === "Fri") {this.setState({selectedWeekday: this.props.key1[5]})}
+        if ((String(e).substring(0,3)) === "Sat") {this.setState({selectedWeekday: this.props.key1[6]})}
+        if ((String(e).substring(0,3)) === "Sun") {this.setState({selectedWeekday: this.props.key1[7]})}
+        // console.log(this.props.key1)
     }
 
     handleTimeSelection(e, item){
         // e.preventDefault();
-        console.log(this.selectedDate + item)
+        // console.log(this.selectedDate + item)
+        //Here you must pass props.key0 and props.key2
     }
 
     render() {
@@ -55,17 +56,14 @@ class Booking extends React.Component {
                     />
                 </MuiPickersUtilsProvider>
 
-                <div style={{textAlign: 'center'}}>
-                    <button onClick={this.handleClick}>Return to Calendar</button><br/>
-                    <button id="submitButton">6:00pm</button><br/>
-                    <button id="submitButton" onClick={(e, item) => this.handleTimeSelection(e, item)}>7h00pm</button><br/>
-                    <button id="submitButton" onClick={(e, item) => this.handleTimeSelection(e, item)}>8h00pm</button><br/>
-                    {/*<ul>*/}
-                    {/*    {this.state.selectedWeekday.map((item) => (*/}
-                    {/*        <button id="submitButton" onClick={(e, item) => this.handleTimeSelection(e, item)}>item</button>*/}
-                    {/*        // <ItemBlock key3={this.selectedDate} key1={item}/>*/}
-                    {/*    ))}*/}
-                    {/*</ul>*/}
+                <div className="timeMenu">
+                    <button className="timeMenu" onClick={this.handleClick}>Return</button>
+                    <ul className="timeMenu">
+                        {this.state.selectedWeekday.map(item => (
+                            <button className="timeMenu" onClick={(e,item) => this.handleTimeSelection(e, item)}>{item}</button>
+                            //https://dev.to/skptricks/create-simple-popup-example-in-react-application-5g7f
+                        ))}
+                    </ul>
                 </div>
             </ReactCardFlip>
         )

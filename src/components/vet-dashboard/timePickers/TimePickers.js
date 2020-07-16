@@ -72,11 +72,11 @@ class TimePickers extends React.Component {
         let temp = [monday, tuesday, wednesday, thursday, friday, saturday, sunday]
         // console.log(this.state.schedule)
         const helperSchedule = this.state.schedule.slice();
-        console.log(helperSchedule)
+        // console.log(helperSchedule)
         console.log(temp)
         helperSchedule.map((selected) => {
             if (String(selected).substring(0, 3) === "Mon") {
-                temp[1].push(String(selected).substring(16, 21))
+                monday.push(String(selected).substring(16, 21))
             } else if (String(selected).substring(0, 3) === "Tue") {
                 tuesday.push(String(selected).substring(16, 21))
             } else if (String(selected).substring(0, 3) === "Wed") {
@@ -91,11 +91,13 @@ class TimePickers extends React.Component {
                 sunday.push(String(selected).substring(16, 21))
             }
         })
+        console.log(temp)
         this.setState({weeklyTimeBlocks: temp}, () => {
-        const id = "5f07b082acd85550aa1b19a9"
-        axios.put("http://localhost:9000/vet/id" + id, this.state.weeklyTimeBlocks)
-            .then(res => console.log(res.data))
-            .catch(() => console.log("The axios.post call in itemBlock failed"))
+            const id = "5f07b082acd85550aa1b19a9"
+            console.log(this.state.weeklyTimeBlocks)
+            axios.put("http://localhost:9000/vets/" + id, {"weeklyTimeBlocks": this.state.weeklyTimeBlocks})
+                .then(res => console.log(res.data))
+                .catch(() => console.log("The axios.post call in itemBlock failed"))
         })
     }
 
@@ -110,6 +112,8 @@ class TimePickers extends React.Component {
     //         .catch((err) => {
     //             console.log(err)
     //         })
+
+
     //     // this.state.editVetProfile(this.state.weeklyTimeBlocks); // not sure the this.props is the way to go here!! CAUTIOIN!!!
     //     console.log(this.state.weeklyTimeBlocks)
     // }
@@ -334,7 +338,7 @@ class TimePickers extends React.Component {
                     <ScheduleSelector
                         selection={this.state.schedule}
                         numDays={7}
-                        startDate={new Date("2020-07-06")}
+                        startDate={new Date("2020-07-07")}
                         minTime={6}
                         maxTime={23}
                         dateFormat={"dddd"}
@@ -346,8 +350,9 @@ class TimePickers extends React.Component {
                     />
                 </div>
                 <button className="mr-4"
-                        color= "purple"
-                        onClick={e => this.handleSubmission(e)}>Save</button>
+                        color="purple"
+                        onClick={e => this.handleSubmission(e)}>Save
+                </button>
             </MuiPickersUtilsProvider>
         )
     }
