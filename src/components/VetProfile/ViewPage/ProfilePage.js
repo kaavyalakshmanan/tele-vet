@@ -22,7 +22,9 @@ class ProfilePage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            weeklyTimeBlock: []
+            id: "",
+            weeklyTimeBlocks: [],
+            scheduledAppointments: []
                 // [["17:00", "18:00", "19:00"],
                 // ["17:00", "18:00", "19:00"],
                 // ["17:00", "18:00", "19:00"],
@@ -51,11 +53,13 @@ class ProfilePage extends React.Component {
     // and displays the teaser cards created by Amy, then passes to this component as a prop on user onClick
     componentDidMount() {
         const id = "5f07b082acd85550aa1b19a9"
-        axios.get("http://localhost:9000/vet/id/" + id)
+        axios.get("http://localhost:9000/vets/id/" + id)
             .then(response => {
                 this.setState(
                     {
-                        weeklyTimeBlock: response.data.weeklyTimeBlocks
+                        id: response.data._id,
+                        weeklyTimeBlocks: response.data.weeklyTimeBlocks,
+                        scheduledAppointments: response.data.scheduledAppointments
                     })
                 // console.log(response.data)
                 // console.log(response.data._id)
@@ -65,7 +69,7 @@ class ProfilePage extends React.Component {
                 console.log(err)
             })
         // console.log(this.state.profile._id)
-        // console.log(this.state.profile.weeklyTimeBlocks)
+        // console.log(this.state.weeklyTimeBlocks)
     }
 
 
@@ -91,9 +95,9 @@ class ProfilePage extends React.Component {
                         </Grid>
                         <Grid item xs={12}>
                             <Booking
-                                // key0={this.state.profile._id}
+                                key0={this.state.id}
                                 key1={this.state.weeklyTimeBlocks}
-                                // key2={this.state.profile.scheduledAppointments}
+                                key2={this.state.scheduledAppointments}
                             />
                         </Grid>
                     </Grid>
