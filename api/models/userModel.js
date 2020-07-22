@@ -22,6 +22,7 @@ const userSchema = new Schema({
     documents: {
         list: [{}]
     }
+    //videoConferenceId: {type: String}
 });
 
 module.exports = mongoose.model("users", userSchema);
