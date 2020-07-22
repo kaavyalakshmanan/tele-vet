@@ -128,7 +128,7 @@ export default function DocumentList() {
                 </div>
                 <div className={classes.list}>
                     <List>
-                        {user.documents.list.map((file) =>
+                        {user.documents.map((file) =>
                             (
                             <ListItem>
                                 <ListItemAvatar>

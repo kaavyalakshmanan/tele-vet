@@ -96,11 +96,11 @@ export default function Album() {
     }
 
     const handleDelete = (index) => {
-        dispatch(deleteImage(user.images.list[index], user));
+        dispatch(deleteImage(user.images[index], user));
     }
 
     const handleOpenEdit = (index) => {
-        setCurrentImage(user.images.list[index]);
+        setCurrentImage(user.images[index]);
         setEditDialogOpen(true);
     }
 
@@ -146,7 +146,7 @@ export default function Album() {
                 <Container className={classes.cardGrid} maxWidth="md">
                     {/* End hero unit */}
                     <Grid container spacing={4}>
-                        {user.images.list.map((image, index) => (
+                        {user.images.map((image, index) => (
                             <Grid item key={index} xs={12} sm={6} md={4}>
                                 <Card className={classes.card}>
                                     <CardMedia

@@ -23,7 +23,7 @@ export default function Calendar() {
 
     return (
         <Scheduler
-            dataSource={user.appointments.list}
+            dataSource={user.appointments}
             views={views}
             defaultCurrentView="month"
             defaultCurrentDate={Date.now()}
