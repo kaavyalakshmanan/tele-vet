@@ -16,6 +16,7 @@ import EditPage from "./VetProfile/EditPage/EditPage";
 import VetDashboardInbox from "./vet-dashboard/messages/Inbox"
 // import VetProfile from "./vet-dashboard/profile/VetProfile"
 
+// Important for login
 const TEST_USER_ID = "5f0a3d2066cc2719e0552463";
 
 function App() {
