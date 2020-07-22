@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import ProgressComponent from '@material-ui/core/CircularProgress';
+import axios from "axios";
 const { v4: uuidv4 } = require('uuid');
 
 
 
-function JitsiMeetComponent() {
+function JitsiMeetComponentUser() {
     // const [loading, setLoading] = useState(true);
+    const [videoConferenceId, setId] = useState("192837465135792468");
     const containerStyle = {
         // width: '800px',
         // height: '400px',
@@ -13,11 +15,20 @@ function JitsiMeetComponent() {
         height: "100%",
     };
 
-    // const id = uuidv4();
+    // componentDidMount() {
+    //     const id = "5f109bf455e8e827aa4ec530"
+    //     axios.get("http://localhost:9000/users/id/" + id)
+    //         .then(response => {
+    //                     setId(response.data.videoConferenceId)
+    //         })
+    //         .catch((err) => {
+    //             console.log(err)
+    //         })
+    // }
 
     const jitsiContainerStyle = {
         display: "block",
-            // (loading ? 'none' : 'block'),
+        // (loading ? 'none' : 'block'),
         width: '100%',
         height: '100%',
         // width: '800px',
@@ -26,10 +37,9 @@ function JitsiMeetComponent() {
 
     function startConference() {
         try {
-            const id = uuidv4();
             const domain = 'meet.jit.si/';
             const options = {
-                roomName: id,
+                roomName: videoConferenceId,
                 height: 800,
                 // security: Need to find this option in the API and implement itS
                 parentNode: document.getElementById('jitsi-container'),
@@ -72,12 +82,4 @@ function JitsiMeetComponent() {
     );
 }
 
-export default JitsiMeetComponent;
-
-
-// https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-iframe
-//https://github.com/jitsi/lib-jitsi-meet/blob/master/doc/API.md#installation
-//https://gitee.com/huangranrumeng/jitsi-meet/raw/a9bdde193da5d57cbbd4e8c89afebe6de71544a5/doc/api.md
-//https://meetrix.io/blog/webrtc/integrate-jitsi-meet-to-react-app.html
-//https://jitsi.org/api/
-//https://github.com/gatteo/react-jitsi/tree/master/example
+export default JitsiMeetComponentUser;
