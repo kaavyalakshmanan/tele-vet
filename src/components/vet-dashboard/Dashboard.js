@@ -13,7 +13,6 @@ import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 import {NavBar} from "./sidebar/NavBar";
 import Gallery from "./photos/PhotoGallery";
 import Messages from "./messages/Messages";
-import FindVet from "../maps/FindVet";
 import VetProfile from "./profile/VetProfile"
 import VideoConference from "../videoConference/VideoConference";
 import TimePickers from "./timePickers/TimePickers";

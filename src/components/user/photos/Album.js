@@ -80,7 +80,7 @@ export default function Album() {
                 title: title,
                 description: description
             };
-            dispatch(addData(DATA_TYPE, newImage, user));
+            dispatch(addImage(newImage, user._id));
         }
         handleClose();
     }

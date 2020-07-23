@@ -4,6 +4,7 @@ const {uuid} = require("uuidv4");
 const veterinarian = require("../models/vetModel");
 
 //Get all veterinarians in the dataset
+// FIXME: This probably should not be a public endpoint because it returns passwords
 router.get('/', function (req, res, next) {
     res.setHeader('Content-Type', 'application/json');
     veterinarian.find({}, function (err, myData) {
@@ -13,6 +14,30 @@ router.get('/', function (req, res, next) {
             res.send(myData)
         }
     })
+})
+
+router.get('/profiles/all', function (req, res, next) {
+    veterinarian.find({}, function(err, vets) {
+        if (err) {
+            next(err);
+        } else {
+            let vetList = [];
+            vets.forEach(vet => {
+                console.log(vet.profilePicture)
+                vetList.push({
+                    _id: vet._id,
+                    name: vet.firstName + ' ' + vet.lastName,
+                    description: vet.description,
+                    rating: vet.rating,
+                    mapURL: 'google.com/maps/place/' + vet.businessAddress.replace(' ', '+') + '+' + vet.city + '+' + vet.postalCode,
+                    facebook: vet.facebook,
+                    instagram: vet.instagram,
+                    profilePicture: vet.profilePicture
+                });
+            });
+            res.send(vetList);
+        }
+    });
 })
 
 // Get veterinarian profile when given the mongodb _id

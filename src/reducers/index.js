@@ -7,20 +7,12 @@ const initialUser = {
     "email": "user@test.com",
     "username": "testUser",
     "password": "test",
-    "profilePicture": "/public/resources/woman.png",
+    "profilePicture": "http://localhost:3000/resources/woman.png",
     "lastUpdated": "",
-    "images": {
-        "list": []
-    },
-    "appointments": {
-        "list": []
-    },
-    "messages": {
-        "contactList": []
-    },
-    "documents": {
-        "list":[]
-    }
+    "images": [],
+    "appointments": [],
+    "messages": [],
+    "documents": []
 }
 
 const initialAppointments = {
@@ -257,6 +249,13 @@ const profileReducer = (profiles = initialProfiles, action) => {
     return profiles
 }
 
+const vetListReducer = (vetList = [], action) => {
+    if (action.type === 'UPDATE_VET_LIST') {
+        return action.vetList;
+    }
+    return vetList;
+}
+
 export default combineReducers({
     user: userReducer,
     appointmentData: appointmentReducer,
@@ -266,5 +265,6 @@ export default combineReducers({
     images: imageReducer,
     inbox: inboxReducer,
     contacts: contactReducer,
-    profiles: profileReducer
+    profiles: profileReducer,
+    vetList: vetListReducer
 });

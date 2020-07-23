@@ -63,14 +63,16 @@ export const fetchUserById = id => {
      return dispatch => {
          dispatch(requestUser());
          // FIXME: This is not well designed, could cause inconsistency between database and frontend
-         dispatch(receiveUser(user));
+         // dispatch(receiveUser(user));
          return axios.put(API_BASE_URL + "/id/" + user._id, user)
              .then((response) => {
+                 console.log("RESPONSE");
                  console.log(response);
-                 // dispatch(receiveUser(response.data));
+                 dispatch(receiveUser(response.data));
              })
              .catch(err => {
                  // FIXME: Notify the user if data did not load correctly
+                 console.log("ERROR")
                  console.error(err);
              });
      }
@@ -80,6 +82,21 @@ export const addData = (type, data, user) => {
     const newUser = Object.assign({}, user);
     newUser[type].list = user[type].list.concat(data);
     return dispatch => dispatch(updateUser(newUser));
+}
+
+export const addImage = (data, id) => {
+    return dispatch => {
+        dispatch(requestUser());
+        return axios.post(API_BASE_URL + "/image/" + id, data)
+            .then(response => {
+                console.log(response);
+                dispatch(receiveUser(response));
+            })
+            .catch(err => {
+                alert(err);
+                console.error(err);
+            });
+    }
 }
 
 export const deleteAppointment = (appointment, user) => {

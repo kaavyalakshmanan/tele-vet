@@ -1,5 +1,5 @@
 import React from "react";
-import Pic from "./DefaultPictures/headShot.jpg"
+import Pic from "../../../assets/img/vet/headshot.jpg"
 
 
 export default function Description() {

@@ -1,6 +1,6 @@
 import React from "react";
 import AvatarEditor from 'react-avatar-editor'
-import vet from "../ViewPage/DefaultPictures/headShot.jpg"
+import vet from "../../../assets/img/vet/headshot.jpg"
 
 class EditAvatar extends React.Component {
     render() {

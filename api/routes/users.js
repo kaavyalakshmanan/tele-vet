@@ -70,10 +70,27 @@ router.put('/id/:id', (req, res, next) => {
         if (err) {
             next(err);
         } else {
-            res.send(req.body);
+            res.status(200).send(JSON.stringify(newUser));
         }
     });
 });
+
+router.post('/image/:id', (req, res, next) => {
+    res.setHeader('Content-Type', 'application/json');
+    user.findByIdAndUpdate(
+        req.params.id,
+        {$push: {images: req.body}},
+        (err, response) => {
+            if (err) {
+                next(err);
+            } else {
+                console.log(response._doc);
+                res.send(response._doc);
+            }
+        }
+    )
+
+})
 
 // We May want to remove this endpoint or make it restricted
 router.delete('/id/:id', (req, res, next) => {

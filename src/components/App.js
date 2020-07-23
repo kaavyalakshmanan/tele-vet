@@ -10,11 +10,17 @@ import VetSignUp from "./home/VetSignUp";
 import PetSignUp from "./home/PetSignUp";
 import Error from "./Error"
 import AppointmentsView from './Appointments/AppointmentsView'
-import FindVet from "./maps/FindVet";
 import ProfilePage from "./VetProfile/ViewPage/ProfilePage";
 import EditPage from "./VetProfile/EditPage/EditPage";
+import DocumentList from "./user/documents/DocumentList";
 import VetDashboardInbox from "./vet-dashboard/messages/Inbox"
-// import VetProfile from "./vet-dashboard/profile/VetProfile"
+import VetProfilePage from "./userUpgrade/VetProfilePage";
+import LandingPage from "./LandingPage/LandingPage";
+import Map from "./maps/Map";
+import OldFindVet from "./maps/OldFindVet";
+import VetFinder from "./maps/VetFinder";
+import SectionTeam from "./maps/VetFinder";
+
 
 const TEST_USER_ID = "5f0a3d2066cc2719e0552463";
 
@@ -24,15 +30,19 @@ function App() {
         <div>
           <Navigation/>
           <Switch>
-            <Route path="/" component={Home} exact/>
+            <Route path="/" component={LandingPage} exact/>
+            <Route path="/find/vets" component={SectionTeam}/>
+            <Route path="/documents" component={DocumentList}/>
+            <Route path="/login" component={Home}/>
             <Route path="/about" component={About}/>
+            <Route path="/landing" component={LandingPage}/>
             <Route path="/user/dashboard" render={() => <UserDashboard id={TEST_USER_ID}/>}/>
             <Route path="/vet-dashboard/dashboard" component={VetDashboard}/>
-            {/* <Route path="/vet-dashboard/profile/VetProfile" component={VetProfile}/> */}
-            <Route path="/vet-dashboard/dashboard/inbox" component={VetDashboardInbox}/>
-            <Route path="/maps/FindVet" component={FindVet}/>
+            {/* <Route path="/vet-dashboard/profile/VetProfilePage" component={VetProfilePage}/> */}
+            <Route path="/vet/dashboard/inbox" component={VetDashboardInbox}/>
+            <Route path="/vet/profile/auth" render={() => <VetProfilePage authenticated={true}/>}/>
+            <Route path="/vet/profile/" render={() => <VetProfilePage authenticated={false}/>}/>
             <Route path="/appointments" component={AppointmentsView}/>
-            <Route path="/Vet" component={ProfilePage}/>
             <Route path="/EditPage" component={EditPage}/>
             <Route path="/vetsignup" component={VetSignUp}/>
             <Route path="/petsignup" component={PetSignUp}/>
