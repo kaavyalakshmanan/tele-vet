@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const {uuid} = require("uuidv4");
 const veterinarian = require("../models/vetModel");
+const auth = require('../middleware/auth');
+
+// Vet Model
+const Vet = require('../models/vetModel');
 
 //Get all veterinarians in the dataset
 // FIXME: This probably should not be a public endpoint because it returns passwords

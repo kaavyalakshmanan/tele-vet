@@ -1,15 +1,28 @@
-const createError = require('http-errors');
 const express = require('express');
+const mongoose = require("mongoose");
 const path = require('path');
+const config = require('config');
+
+const app = express();
+
+// Bodyparser Middleware
+app.use(express.json());
+
+// DB Config
+const db = config.get('mongoURI');
+
+
+
+const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require("cors");
-const mongoose = require("mongoose");
-const bodyParser = require('body-parser')
-const CONNECTION_STRING = "mongodb+srv://televet:cpsc436i@televet-u0yv3.mongodb.net/televet?retryWrites=true&w=majority";
+
+// const bodyParser = require('body-parser')
+// const CONNECTION_STRING = "mongodb+srv://televet:cpsc436i@televet-u0yv3.mongodb.net/televet?retryWrites=true&w=majority";
 
 // Adding mongoose
-mongoose.connect(CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
     .then(() => console.log('MongoDB Connected...'))
     .catch((err) => console.error(err));
 
@@ -21,10 +34,10 @@ connection.once("open", function () {
 
 
 const vetsRouter = require('./routes/vets');
-const usersRouter = require('./routes/users')
+// const usersRouter = require('./routes/users')
 
 
-const app = express();
+
 
 // Adding cors
 app.use(cors());
@@ -50,8 +63,12 @@ app.use(function(req, res, next) {
 
 
 // app.use('/', indexRouter);
+
+
+// Use Routes
 app.use('/vets', vetsRouter);
-app.use('/users', usersRouter);
+app.use('/users', require('./routes/users'));
+app.use('/auth', require('./routes/auth'));
 
 
 // catch 404 and forward to error handler
