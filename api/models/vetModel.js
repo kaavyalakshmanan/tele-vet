@@ -13,6 +13,7 @@ vetModel = new Schema({
         businessAddress: {type: String, required: [true, "A businessAddress is required"], unique: true},
         city: {type: String, required: [true, "A city is required"]},
         postalCode: {type: String},
+        formatted_address: {type: String},
         specialization: {type: String},
         acceptEmergencyCalls: {type: Boolean},
         certificates: [{type: 'Buffer'}],
@@ -25,6 +26,14 @@ vetModel = new Schema({
         rating: {type: Number},
         facebook: {type: String},
         instagram: {type: String},
+        photos: [
+            {
+                height: {type: Number},
+                html_attributions: [{type: String}],
+                photo_reference: {type: String},
+                width: {type: Number}
+            }
+        ],
         socialMediaSpare1: {type: String},
         socialMediaSpare2: {type: String},
         socialMediaSpare3: {type: String},
@@ -33,26 +42,35 @@ vetModel = new Schema({
         weeklyTimeBlocks: [[{type: String}]],
         scheduledAppointments: [{type: String}],
         relationships: Schema.Types.Mixed,
-        sundayOpen: {type: String},
-        sundayClose: {type: String},
-        mondayOpen: {type: String},
-        mondayClose: {type: String},
-        tuesdayOpen: {type: String},
-        tuesdayClose: {type: String},
-        wednesdayOpen: {type: String},
-        wednesdayClose: {type: String},
-        thursdayOpen: {type: String},
-        thursdayClose: {type: String},
-        fridayOpen: {type: String},
-        fridayClose: {type: String},
-        saturdayOpen: {type: String},
-        saturdayClose: {type: String},
+        opening_hours: [{
+            open_now: {type: Boolean},
+            sundayOpen: {type: String},
+            sundayClose: {type: String},
+            mondayOpen: {type: String},
+            mondayClose: {type: String},
+            tuesdayOpen: {type: String},
+            tuesdayClose: {type: String},
+            wednesdayOpen: {type: String},
+            wednesdayClose: {type: String},
+            thursdayOpen: {type: String},
+            thursdayClose: {type: String},
+            fridayOpen: {type: String},
+            fridayClose: {type: String},
+            saturdayOpen: {type: String},
+            saturdayClose: {type: String}
+        }],
         spareField1: Schema.Types.Mixed,
         spareField2: Schema.Types.Mixed,
         spareField3: Schema.Types.Mixed,
         spareField4: Schema.Types.Mixed,
         spareField5: Schema.Types.Mixed,
-        geometry: Schema.Types.Mixed
+        geometry: {
+            location: {
+                lat: {type: Number},
+                lng: {type: Number}
+            }
+        }
+
     }
     // ,{ strict: "throw" }
     // ,{versionKey: false}
@@ -131,9 +149,7 @@ module.exports = mongoose.model("veterinarians", vetModel);
 // }
 
 
-
 // activeOnPlatform: {type: Boolean}, relationships,geometry
-
 
 
 // HOW MODEL WORK: https://mongoosejs.com/docs/models.html
