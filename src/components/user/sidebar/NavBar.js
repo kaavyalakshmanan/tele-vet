@@ -20,6 +20,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import PetsIcon from "@material-ui/icons/Pets";
 import Badge from "@material-ui/core/Badge";
 import NavHeader from "./NavHeader";
+import LoadingOverlay from "react-loading-overlay";
+import {useSelector} from "react-redux";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -94,92 +96,98 @@ const useStyles = makeStyles((theme) => ({
 
 export const NavBar = ({ handleViewChange, renderView, iconMap, onLogout } ) => {
 
-        const classes = useStyles();
-        const theme = useTheme();
-        const [open, setOpen] = React.useState(false);
+    const classes = useStyles();
+    const theme = useTheme();
+    const [open, setOpen] = React.useState(false);
+    const user = useSelector(state => state.user);
 
-        const handleDrawerOpen = () => {
-            setOpen(true);
-        };
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    };
 
-        const handleDrawerClose = () => {
-            setOpen(false);
-        };
+    const handleDrawerClose = () => {
+        setOpen(false);
+    };
 
-        return (
-            <div className={classes.root}>
-                <CssBaseline/>
-                <AppBar
-                    position="fixed"
-                    className={clsx(classes.appBar, {
-                        [classes.appBarShift]: open,
-                    })}
-                >
-                    <Toolbar>
-                        <IconButton
-                            color="inherit"
-                            aria-label="open drawer"
-                            onClick={handleDrawerOpen}
-                            edge="start"
-                            className={clsx(classes.menuButton, {
-                                [classes.hide]: open,
-                            })}
-                        >
-                            <MenuIcon/>
-                        </IconButton>
-                        <Typography variant="h6" noWrap>
-                            <PetsIcon style={{padding: "5px"}}/>
-                            Tele-Vet
-                        </Typography>
-                        <Button
-                            variant="contained"
-                            color="secondary"
-                            className={classes.logout}
-                            onClick={onLogout}
-                        >
-                            Logout
-                        </Button>
-                    </Toolbar>
-                </AppBar>
-                <Drawer
-                    variant="permanent"
-                    className={clsx(classes.drawer, {
+    return (
+        <div className={classes.root}>
+            <CssBaseline/>
+            <AppBar
+                position="fixed"
+                className={clsx(classes.appBar, {
+                    [classes.appBarShift]: open,
+                })}
+            >
+                <Toolbar>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        onClick={handleDrawerOpen}
+                        edge="start"
+                        className={clsx(classes.menuButton, {
+                            [classes.hide]: open,
+                        })}
+                    >
+                        <MenuIcon/>
+                    </IconButton>
+                    <Typography variant="h6" noWrap>
+                        <PetsIcon style={{padding: "5px"}}/>
+                        Tele-Vet
+                    </Typography>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        className={classes.logout}
+                        onClick={onLogout}
+                    >
+                        Logout
+                    </Button>
+                </Toolbar>
+            </AppBar>
+            <Drawer
+                variant="permanent"
+                className={clsx(classes.drawer, {
+                    [classes.drawerOpen]: open,
+                    [classes.drawerClose]: !open,
+                })}
+                classes={{
+                    paper: clsx({
                         [classes.drawerOpen]: open,
                         [classes.drawerClose]: !open,
-                    })}
-                    classes={{
-                        paper: clsx({
-                            [classes.drawerOpen]: open,
-                            [classes.drawerClose]: !open,
-                        }),
-                    }}
-                >
-                    <div className={classes.toolbar}>
-                        <IconButton onClick={handleDrawerClose}>
-                            {theme.direction === 'rtl' ? <ChevronRightIcon/> : <ChevronLeftIcon/>}
-                        </IconButton>
-                    </div>
-                    <Divider/>
-                    <NavHeader
-                        collapsed={ !open }
-                    />
-                    <Divider/>
-                    <List>
-                        {Object.keys(iconMap).map((text) => (
-                            <ListItem button key={text} onClick={() => {
-                                console.log('clicked ' + text);
-                                handleViewChange(text);
-                            }}>
-                                <ListItemIcon>{iconMap[text]}</ListItemIcon>
-                                <ListItemText primary={text}/>
-                            </ListItem>
-                        ))}
-                    </List>
-                </Drawer>
+                    }),
+                }}
+            >
+                <div className={classes.toolbar}>
+                    <IconButton onClick={handleDrawerClose}>
+                        {theme.direction === 'rtl' ? <ChevronRightIcon/> : <ChevronLeftIcon/>}
+                    </IconButton>
+                </div>
+                <Divider/>
+                <NavHeader
+                    collapsed={!open}
+                />
+                <Divider/>
+                <List>
+                    {Object.keys(iconMap).map((text) => (
+                        <ListItem button key={text} onClick={() => {
+                            console.log('clicked ' + text);
+                            handleViewChange(text);
+                        }}>
+                            <ListItemIcon>{iconMap[text]}</ListItemIcon>
+                            <ListItemText primary={text}/>
+                        </ListItem>
+                    ))}
+                </List>
+            </Drawer>
+            <LoadingOverlay
+                active={user.isFetching}
+                spinner
+            >
                 <main className={classes.content}>
-                    <div className={classes.toolbar} />
-                    { renderView() }
+                    <div className={classes.toolbar}/>
+                    {renderView()}
                 </main>
-            </div>
-        );
+            </LoadingOverlay>
+        </div>
+    );
 }

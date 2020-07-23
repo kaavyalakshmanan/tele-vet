@@ -14,11 +14,12 @@ import Album from "./photos/Album";
 import VideoConference from "../videoConference/VideoConference"
 import DocumentList from "./documents/DocumentList";
 import LoadingOverlay from 'react-loading-overlay';
+import VetFinder from "../maps/VetFinder";
 
 const viewMap = {
     'Messages': <Messages/>,
     'Calendar': <Calendar style={ { padding: '50px'} }/>,
-    'Find a Vet': <NewFindVet/>,
+    'Find a Vet': <VetFinder/>,
     'Visit-Summary': <DocumentList/>,
     'E-Visit': <VideoConference/>,
     'Photo Gallery': <Album/>,
@@ -47,29 +48,30 @@ export default function UserDashboard({id}) {
         dispatch(loginUser(id));
     }, [])
 
+    const renderView = () => viewMap[currentView];
+
     return (
         <div>
-            <LoadingOverlay
-                active={user.isFetching}
-                spinner
-            >
             <NavBar
                 handleViewChange={view => {
                     // FIXME: what is going on here?
                     if (view === 'Messages') {
                         dispatch(selectInbox(null));
+                    } else if (view === 'Find a Vet') {
+                        let win = window.open(`/find/vets`, '_blank');
+                        win.focus();
+                    } else {
+                        setView(view);
                     }
-                    setView(view);
                 }
                 }
-                renderView={() => viewMap[currentView]}
+                renderView={renderView}
                 iconMap={iconMap}
                 userName={user.username}
                 email={user.email}
                 currentView={currentView}
                 onLogout={onLogout}
             />
-            </LoadingOverlay>
         </div>
     )
 }

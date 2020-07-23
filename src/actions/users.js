@@ -1,3 +1,4 @@
+
 import axios from 'axios';
 import {useDispatch} from "react-redux";
 const API_BASE_URL = 'http://localhost:9000/users';
@@ -59,74 +60,52 @@ export const fetchUserById = id => {
     }
 }
 
- export const updateUser = user => {
-     return dispatch => {
-         dispatch(requestUser());
-         // FIXME: This is not well designed, could cause inconsistency between database and frontend
-         // dispatch(receiveUser(user));
-         return axios.put(API_BASE_URL + "/id/" + user._id, user)
-             .then((response) => {
-                 console.log("RESPONSE");
-                 console.log(response);
-                 dispatch(receiveUser(response.data));
-             })
-             .catch(err => {
-                 // FIXME: Notify the user if data did not load correctly
-                 console.log("ERROR")
-                 console.error(err);
-             });
-     }
- }
-
-export const addData = (type, data, user) => {
-    const newUser = Object.assign({}, user);
-    newUser[type].list = user[type].list.concat(data);
-    return dispatch => dispatch(updateUser(newUser));
-}
-
-export const addImage = (data, id) => {
+export const updateUser = user => {
     return dispatch => {
         dispatch(requestUser());
-        return axios.post(API_BASE_URL + "/image/" + id, data)
-            .then(response => {
+        // FIXME: This is not well designed, could cause inconsistency between database and frontend
+        dispatch(receiveUser(user));
+        return axios.put(API_BASE_URL + "/id/" + user._id, user)
+            .then((response) => {
                 console.log(response);
-                dispatch(receiveUser(response));
+                // dispatch(receiveUser(response.data));
             })
             .catch(err => {
-                alert(err);
+                // FIXME: Notify the user if data did not load correctly
                 console.error(err);
             });
     }
 }
 
+export const addData = (type, data, user) => {
+    const newUser = Object.assign({}, user);
+    console.log(user);
+    newUser[type] = user[type].concat(data);
+    return dispatch => dispatch(updateUser(newUser));
+}
+
 export const deleteAppointment = (appointment, user) => {
     const newUser = Object.assign({}, user, {
-        appointments: {
-            list: user.appointments.list.filter(userAppointment => userAppointment.id !== appointment.id)
-        }
+        appointments: user.appointments.filter(userAppointment => userAppointment.id !== appointment.id)
     });
     return dispatch => dispatch(updateUser(newUser));
 }
 
 export const editImage = (image, user) => {
     let newList = [];
-    user.images.list.forEach((existingImage) => {
+    user.images.forEach((existingImage) => {
         const newImage = existingImage.src === image.src ? image : existingImage;
         newList.push(newImage);
     });
     const newUser = Object.assign({}, user, {
-        images: {
-            list: newList
-        }
+        images: newList
     });
     return dispatch => dispatch(updateUser(newUser));
 }
 
 export const deleteImage = (image, user) => {
     const newUser = Object.assign({}, user, {
-        images: {
-            list: user.images.list.filter(img => img.src !== image.src)
-        }
+        images: user.images.filter(img => img.src !== image.src)
     });
     return dispatch => dispatch(updateUser(newUser));
 }
@@ -140,9 +119,7 @@ export const updateProfilePicture = (src, user) => {
 
 export const deleteDocument = (document, user) => {
     const newUser = Object.assign({}, user, {
-        documents: {
-            list: user.documents.list.filter(doc => doc.id !== document.id)
-        }
+        documents: user.documents.list.filter(doc => doc.id !== document.id)
     });
     return dispatch => dispatch(updateUser(newUser));
 }
