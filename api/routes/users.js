@@ -91,18 +91,18 @@ router.post('/', (req, res) => {
 //     });
 // });
 
-// router.get('/id/:id', (req, res, next) => {
-//     res.setHeader('Content-Type', 'application/json');
-//     user.findById(req.params.id, (err, user) => {
-//         if (err) {
-//             next(err);
-//         } else if (!user) {
-//             res.status(404).send(`User with id ${req.params.id} not found`);
-//         } else {
-//             res.status(200).json(user._doc);
-//         }
-//     });
-// });
+router.get('/id/:id', (req, res, next) => {
+    res.setHeader('Content-Type', 'application/json');
+    user.findById(req.params.id, (err, user) => {
+        if (err) {
+            next(err);
+        } else if (!user) {
+            res.status(404).send(`User with id ${req.params.id} not found`);
+        } else {
+            res.status(200).json(user._doc);
+        }
+    });
+});
 
 // // FIXME: Do we still need this route?
 // router.get('/id/:userId/document/:documentId', (req, res, next) => {

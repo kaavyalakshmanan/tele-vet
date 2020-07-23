@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux';
+import errorReducer from './errorReducer';
+import authReducer from './authReducer';
 
 const initialUser = {
     "isAuthenticated": false,
@@ -266,5 +268,8 @@ export default combineReducers({
     images: imageReducer,
     inbox: inboxReducer,
     contacts: contactReducer,
-    profiles: profileReducer
+    profiles: profileReducer,
+
+    error: errorReducer,
+    auth: authReducer
 });
