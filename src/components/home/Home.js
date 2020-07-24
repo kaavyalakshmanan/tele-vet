@@ -12,6 +12,11 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
+import Snackbar from "@material-ui/core/Snackbar";
+import Alert from '@material-ui/lab/Alert';
+
+const API_BASE_URL = 'http://localhost:9000'
 
 function Copyright() {
   return (
@@ -59,9 +64,30 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide() {
   const classes = useStyles();
+  const [password, setPassword] = React.useState('');
+  const [username, setUsername] = React.useState('');
+  const [loginFailWarning, setLoginFailWarning] = React.useState(false);
+  const [loginSuccessFlag, setLoginSuccessFlag] = React.useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('loging in');
+    axios.post(API_BASE_URL + '/auth', {
+      password: password,
+      username: username
+    }).then(response => {
+      setLoginSuccessFlag(true);
+      window.location.replace(getRedirectURL(JSON.parse(response.data)));
+    }).catch(err => {
+      setLoginFailWarning(true);
+    });
+  }
+
+  const getRedirectURL = user => `/user/dashboard?id=${user.id}`;
 
   return (
-    <Grid container component="main" className={classes.root}>
+      <div>
+        <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -78,11 +104,12 @@ export default function SignInSide() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
+              id="username"
+              label="Username"
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e) => { setUsername(e.target.value) }}
             />
             <TextField
               variant="outlined"
@@ -94,6 +121,7 @@ export default function SignInSide() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e) => { setPassword(e.target.value) }}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -105,7 +133,7 @@ export default function SignInSide() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              href="/user/dashboard"
+              onClick={handleSubmit}
             >
               Sign In
             </Button>
@@ -141,5 +169,16 @@ export default function SignInSide() {
         </div>
       </Grid>
     </Grid>
+        <Snackbar open={loginSuccessFlag} autoHideDuration={6000} onClose={() => setLoginSuccessFlag(false)}>
+          <Alert onClose={() => setLoginSuccessFlag(false)} severity="success">
+            User Found! Please wait while we load the dashboard.
+          </Alert>
+        </Snackbar>
+        <Snackbar open={loginFailWarning} autoHideDuration={6000} onClose={() => setLoginFailWarning(false)}>
+          <Alert onClose={() => setLoginFailWarning(false)} severity="error">
+            Incorrect username or password.
+          </Alert>
+        </Snackbar>
+      </div>
   );
 }
