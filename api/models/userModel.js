@@ -21,7 +21,7 @@ const userSchema = new Schema({
         required: true
     },
     register_date: {
-        type: Date,
+        type: Number,
         default: Date.now
     },
     isAuthenticated: {
