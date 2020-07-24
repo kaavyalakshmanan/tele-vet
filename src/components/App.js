@@ -58,12 +58,12 @@ const handleLogin = () => {
     window.location.replace('/start?loginFailed=true');
   }
   return (<UserDashboard
-      initialUser={
+      userAuthData={
         axios.post(API_BASE_URL + '/auth', {
           password: password,
           username: username
         }).then(response => {
-          return response.data.user;
+          return response.data;
         }).catch(err => {
           window.location.replace('/start?loginFailed=true');
         })

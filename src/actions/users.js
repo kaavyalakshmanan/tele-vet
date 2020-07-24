@@ -37,7 +37,8 @@ export const loginUser = user => {
         return axios.get(API_BASE_URL + "auth/user", tokenConfig(user))
             .then(response => {
                 console.log('recieved user');
-                dispatch(receiveUser(response.data));
+                const newUser = Object.assign({}, response.data, {authData: user});
+                dispatch(receiveUser(newUser));
             })
             .catch(err => {
                 console.log('error');
@@ -84,16 +85,14 @@ const tokenConfig = user => {
 export const updateUser = user => {
     return dispatch => {
         dispatch(requestUser());
-        // FIXME: This is not well designed, could cause inconsistency between database and frontend
         dispatch(receiveUser(user));
-        return axios.put(API_BASE_URL + "/id/" + user._id, user)
+        return axios.put(API_BASE_URL + "auth/user", user, tokenConfig(user.authData))
             .then((response) => {
                 console.log(response);
-                // dispatch(receiveUser(response.data));
             })
             .catch(err => {
-                // FIXME: Notify the user if data did not load correctly
                 console.error(err);
+                alert("Your data did not save correctly. Please check your connection.")
             });
     }
 }

@@ -35,7 +35,7 @@ const iconMap = {
     'Photo Gallery': <PhotoCameraIcon color={ 'inherit' }/>,
 }
 
-export default function UserDashboard({initialUser}) {
+export default function UserDashboard({userAuthData}) {
     const [currentView, setView] = React.useState('Photo Gallery');
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
@@ -45,8 +45,8 @@ export default function UserDashboard({initialUser}) {
     }
 
     useEffect(() => {
-        return initialUser.then(initialUser => {
-            dispatch(loginUser(initialUser));
+        return userAuthData.then(userAuthData => {
+            dispatch(loginUser(userAuthData));
         });
         //const urlParams = new URLSearchParams(window.location.search);
         //const id = urlParams.get('id');

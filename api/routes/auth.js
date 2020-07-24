@@ -57,6 +57,14 @@ router.post('/', (req, res) => {
 // @desc    Put request to update an existing user
 // @access  Private
 
+// @route   PUT /auth/user
+// @desc    Put request to update an existing user
+// @access  Private
+
+// @route   PUT /auth/user
+// @desc    Put request to update an existing user
+// @access  Private
+
 router.put('/user', auth, (req, res) => {
     User.findById(req.user.id, (err, updatedUser) => {
         if (!updatedUser) res.status(404).json({msg: "User not found"})
@@ -65,9 +73,15 @@ router.put('/user', auth, (req, res) => {
             updatedUser.email = req.body.email;
             updatedUser.username = req.body.username;
             updatedUser.password = req.body.password;
+            updatedUser.profilePicture = req.body.profilePicture;
+            updatedUser.lastUpdate = req.body.lastUpdate;
+            updatedUser.images = req.body.images;
+            updatedUser.appointments = req.body.appointments;
+            updatedUser.messages = req.body.messages;
+            updatedUser.documents = req.body.documents;
 
-               // Create salt and hash
-               bcrypt.genSalt(10, (err, salt) => {
+            // Create salt and hash
+            bcrypt.genSalt(10, (err, salt) => {
                 bcrypt.hash(updatedUser.password, salt, (err, hash) => {
                     if (err) throw err;
                     updatedUser.password = hash;
