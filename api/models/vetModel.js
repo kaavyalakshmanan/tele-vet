@@ -42,7 +42,7 @@ vetModel = new Schema({
         weeklyTimeBlocks: [[{type: String}]],
         scheduledAppointments: [{type: String}],
         relationships: Schema.Types.Mixed,
-        opening_hours: [{
+        // opening_hours: [{
             open_now: {type: Boolean},
             sundayOpen: {type: String},
             sundayClose: {type: String},
@@ -57,8 +57,8 @@ vetModel = new Schema({
             fridayOpen: {type: String},
             fridayClose: {type: String},
             saturdayOpen: {type: String},
-            saturdayClose: {type: String}
-        }],
+            saturdayClose: {type: String},
+        // }],
         spareField1: Schema.Types.Mixed,
         spareField2: Schema.Types.Mixed,
         spareField3: Schema.Types.Mixed,

@@ -12,7 +12,7 @@ import {NavBar} from "./sidebar/NavBar";
 import Messages from "./messages/Messages";
 import FindVet from "../maps/FindVet";
 import Album from "./photos/Album";
-import VideoConference from "../videoConference/VideoConference"
+import UserVideoConference from "./userVideoConference/UserVideoConference"
 import DocumentList from "./documents/DocumentList";
 
 const viewMap = {
@@ -20,7 +20,7 @@ const viewMap = {
     'Calendar': <Calendar style={ { padding: '50px'} }/>,
     'Find a Vet': <FindVet/>,
     'Visit-Summary': <DocumentList/>,
-    'E-Visit': <VideoConference/>,
+    'E-Visit': <UserVideoConference/>,
     'Photo Gallery': <Album/>,
     'loader': <div className="loader"/>
 }

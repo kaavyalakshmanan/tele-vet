@@ -8,7 +8,7 @@ const userSchema = new Schema({
     email: {type: String, required: [true, "Password is required"], unique: true},
     username: {type: String, required: [true, "Username is required"], unique: true},
     password: {type: String, required: [true, "Password is required"]},
-    profilePicture: {type: String},
+    profilePicture: {type: 'Buffer'},
     lastUpdate: {type: Number},
     images: {
         list: [{}]
@@ -21,8 +21,14 @@ const userSchema = new Schema({
     },
     documents: {
         list: [{}]
-    }
-    //videoConferenceId: {type: String}
+    },
+    isVetConnected: {type: Boolean},
+    videoConferenceId: {type: String},
+    spareField1: Schema.Types.Mixed,
+    spareField2: Schema.Types.Mixed,
+    spareField3: Schema.Types.Mixed,
+    spareField4: Schema.Types.Mixed,
+    spareField5: Schema.Types.Mixed,
 });
 
-module.exports = mongoose.model("users", userSchema);
+module.exports = mongoose.model("AnimalOwner", userSchema);

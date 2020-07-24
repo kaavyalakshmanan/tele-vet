@@ -15,7 +15,7 @@ import Gallery from "./photos/PhotoGallery";
 import Messages from "./messages/Messages";
 import FindVet from "../maps/FindVet";
 import VetProfile from "./profile/VetProfile"
-import VideoConference from "../videoConference/VideoConference";
+import VetVideoConference from "./VetVideoConference/VetVideoConference";
 import TimePickers from "./timePickers/TimePickers";
 
 const viewMap = {
@@ -24,7 +24,7 @@ const viewMap = {
     'Messages': <Messages/>,
     'Calendar': <Calendar style={ { padding: '50px'} }/>,
     'Visit-Summary': 'Visit-Summary',
-    'E-Visit': <VideoConference/>
+    'E-Visit': <VetVideoConference/>
 }
 
 const iconMap = {
@@ -40,6 +40,9 @@ const iconMap = {
 }
 
 class UserDashboard extends Component {
+
+
+
 
     render() {
         this.props.hideNavigation(true);

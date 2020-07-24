@@ -10,7 +10,7 @@ import Calendar from "./StaticDatePicker"; //temporary
 import StaticDatePicker from "./StaticDatePicker"
 import Booking from "../bookingSystem2.0/Booking";
 import axios from "axios"
-import VideoConference2 from "../../videoConference/VideoConference";
+import VideoConference2 from "../../doNotUseVideoConference/VideoConference";
 
 
 
