@@ -23,7 +23,7 @@ export default function ProductSection() {
         <GridItem xs={12} sm={12} md={8}>
           <h2 className={classes.title}>Let{"'"}s talk product</h2>
           <h5 className={classes.description}>
-            blah blah blah. What do we do ...
+            Tele-health is more important now than ever. We are here to provide you with a secure way to get your pets the best possible care.
           </h5>
         </GridItem>
       </GridContainer>
