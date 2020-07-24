@@ -16,8 +16,9 @@ import DocumentList from "./user/documents/DocumentList";
 import VetProfilePage from "./userUpgrade/VetProfilePage";
 import LandingPage from "./LandingPage/LandingPage";
 import VetFinder from "./maps/VetFinder";
+import axios from "axios";
 
-const TEST_USER_ID = "5f190ceb302df7267423150e";
+const API_BASE_URL = 'http://localhost:9000'
 
 function App() {
   return (
@@ -28,10 +29,11 @@ function App() {
             <Route path="/" component={LandingPage} exact/>
             <Route path="/find/vets" component={VetFinder}/>
             <Route path="/documents" component={DocumentList}/>
-            <Route path="/login" component={Home}/>
+            <Route path="/login" render={handleLogin}/>
             <Route path="/about" component={About}/>
             <Route path="/landing" component={LandingPage}/>
-            <Route path="/user/dashboard" render={() => <UserDashboard id={TEST_USER_ID}/>}/>
+            <Route path="/start" component={Home}/>
+            <Route path="/user/dashboard" render={() => <UserDashboard/>}/>
             {/*<Route path="/vet-dashboard/dashboard" component={VetDashboard}/>*/}
             {/* <Route path="/vet-dashboard/profile/VetProfilePage" component={VetProfilePage}/> */}
             {/*<Route path="/vet/dashboard/inbox" component={VetDashboardInbox}/>*/}
@@ -47,5 +49,37 @@ function App() {
       </BrowserRouter>
   );
 }
+
+const handleLogin = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const password = urlParams.get('password');
+  const username = urlParams.get('username');
+  if (!password || !username) {
+    window.location.replace('/start?loginFailed=true');
+  }
+  return (<UserDashboard
+      initialUser={
+        axios.post(API_BASE_URL + '/auth', {
+          password: password,
+          username: username
+        }).then(response => {
+          return response.data.user;
+        }).catch(err => {
+          window.location.replace('/start?loginFailed=true');
+        })
+      }
+  />)
+}
+//      />)
+//  return axios.post(API_BASE_URL + '/auth', {
+//    password: password,
+//    username: username
+//  }).then(response => {
+//    console.log(response.data.user);
+//    return <UserDashboard initialUser={response.data.user}/>;
+//  }).catch(err => {
+//    window.location.replace('/start?loginFailed=true');
+//  });
+//}
 
 export default App;

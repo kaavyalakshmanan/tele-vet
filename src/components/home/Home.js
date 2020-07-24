@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,6 +15,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from '@material-ui/lab/Alert';
+import {loginUser} from "../../actions";
 
 const API_BASE_URL = 'http://localhost:9000'
 
@@ -69,19 +70,32 @@ export default function SignInSide() {
   const [loginFailWarning, setLoginFailWarning] = React.useState(false);
   const [loginSuccessFlag, setLoginSuccessFlag] = React.useState(false);
 
+//  const handleSubmit = (e) => {
+//    e.preventDefault();
+//    console.log('loging in');
+//    return axios.post(API_BASE_URL + '/auth', {
+//      password: password,
+//      username: username
+//    }).then(response => {
+//      setLoginSuccessFlag(true);
+//      window.location.replace(getRedirectURL(response.data.user));
+//    }).catch(err => {
+//      setLoginFailWarning(true);
+//    });
+//  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('loging in');
-    return axios.post(API_BASE_URL + '/auth', {
-      password: password,
-      username: username
-    }).then(response => {
-      setLoginSuccessFlag(true);
-      window.location.replace(getRedirectURL(response.data.user));
-    }).catch(err => {
-      setLoginFailWarning(true);
-    });
+    window.location.replace(`/login?username=${username}&password=${password}`);
   }
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const loginFailed = urlParams.get('loginFailed');
+    if(loginFailed) {
+      setLoginFailWarning(true);
+    }
+  });
 
   const getRedirectURL = user => `/user/dashboard?id=${user.id}`;
 
@@ -106,7 +120,7 @@ export default function SignInSide() {
               fullWidth
               id="username"
               label="Username"
-              name="email"
+              name="username"
               autoComplete="email"
               autoFocus
               onChange={(e) => { setUsername(e.target.value) }}

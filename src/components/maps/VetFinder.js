@@ -101,7 +101,7 @@ export default function VetFinder() {
                 <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
                     <Tab label="Map" {...a11yProps(0)} />
                     <Tab label="Vets" {...a11yProps(1)} />
-                    <Button style={{"float": "right", "color": "white"}} href='/login'>Login</Button>
+                    <Button style={{"float": "right", "color": "white"}} href='/start'>Login</Button>
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>

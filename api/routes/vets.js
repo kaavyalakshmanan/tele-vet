@@ -27,7 +27,6 @@ router.get('/profiles/all', function (req, res, next) {
         } else {
             let vetList = [];
             vets.forEach(vet => {
-                console.log(vet.profilePicture)
                 vetList.push({
                     _id: vet._id,
                     name: vet.firstName + ' ' + vet.lastName,

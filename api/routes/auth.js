@@ -111,10 +111,10 @@ router.put('/user', auth, (req, res) => {
 // @access  Private
 // Validate user with token
 router.get('/user', auth, (req, res) => {
+    console.log(req);
     User.findById(req.user.id)
         .select('-password')
         .then(user => res.json(user));
 })
-
 
 module.exports = router;

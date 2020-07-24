@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 import {useDispatch} from "react-redux";
-const API_BASE_URL = 'http://localhost:9000/users';
+const API_BASE_URL = 'http://localhost:9000/';
 
 
 export const receiveUser = user => {
@@ -30,35 +30,56 @@ export const logoutUser = () => {
     }
 }
 
-export const loginUser = id => {
+export const loginUser = user => {
     return dispatch => {
+        console.log(user);
         dispatch(requestUser());
-        return axios.get(API_BASE_URL + "/id/" + id)
+        return axios.get(API_BASE_URL + "auth/user", tokenConfig(user))
             .then(response => {
+                console.log('recieved user');
                 dispatch(receiveUser(response.data));
             })
             .catch(err => {
+                console.log('error');
                 console.error(err);
                 alert(err);
-                window.location.replace("/");
             });
     }
 }
 
-// FIXME: Remove if not needed
-export const fetchUserById = id => {
-    return dispatch => {
-        dispatch(requestUser());
-        return axios.get(API_BASE_URL + "/id/" + id)
-            .then(response => {
-                dispatch(receiveUser(response.data));
-            })
-            .catch(err => {
-                console.error(err);
-                alert("Failed to load user data");
-            });
+// setup config headers and token
+const tokenConfig = user => {
+    // Get token from local storage
+    const token = user.token;
+
+    // Headers
+    const config = {
+        headers: {
+            "Content-type": "application/json"
+        }
     }
+
+    if (token) {
+        config.headers['x-auth-token'] = token;
+    }
+
+    return config;
 }
+
+// FIXME: Remove if not needed
+//export const fetchUserById = id => {
+//    return dispatch => {
+//        dispatch(requestUser());
+//        return axios.get(API_BASE_URL + "/id/" + id)
+//            .then(response => {
+//                dispatch(receiveUser(response.data));
+//            })
+//            .catch(err => {
+//                console.error(err);
+//                alert("Failed to load user data");
+//            });
+//    }
+//}
 
 export const updateUser = user => {
     return dispatch => {
