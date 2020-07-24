@@ -5,6 +5,8 @@ const config = require('config');
 const jwt = require('jsonwebtoken');
 
 // REGISTERING A NEW USER
+// jwtSecret = config.get('jwtSecret');
+const jwtSecret =  "tv_myJwtSecret"
 
 // User Model
 const user = require("../models/userModel");
@@ -43,7 +45,7 @@ router.post('/', (req, res) => {
 
                             jwt.sign(
                                 {id: user.id},
-                                config.get('jwtSecret'),
+                                jwtSecret,
                                 {expiresIn: 3600},
                                 (err, token) => {
                                     if (err) throw err;

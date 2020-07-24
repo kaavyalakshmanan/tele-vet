@@ -23,7 +23,6 @@ import GetAppIcon from '@material-ui/icons/GetApp';
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import List from "@material-ui/core/List";
-import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     root: {

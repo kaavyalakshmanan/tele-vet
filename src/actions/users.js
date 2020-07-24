@@ -1,8 +1,25 @@
-
 import axios from 'axios';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 const API_BASE_URL = 'http://localhost:9000/';
 
+// setup config headers and token
+const tokenConfig = user => {
+    // Get token from local storage
+    const token = user.token;
+
+    // Headers
+    const config = {
+        headers: {
+           "Content-Type": "application/json",
+        }
+    }
+
+    if (token) {
+        config.headers['x-auth-token'] = token;
+    }
+
+    return config;
+}
 
 export const receiveUser = user => {
     return {
@@ -30,14 +47,18 @@ export const logoutUser = () => {
     }
 }
 
-export const loginUser = user => {
+export const loginUser = userAuthData => {
     return dispatch => {
-        console.log(user);
+        console.log(userAuthData);
+        const configuredToken = tokenConfig(userAuthData);
         dispatch(requestUser());
-        return axios.get(API_BASE_URL + "auth/user", tokenConfig(user))
+        return axios.get(API_BASE_URL + "auth/user", configuredToken)
             .then(response => {
                 console.log('recieved user');
-                dispatch(receiveUser(response.data));
+                console.log(response.data);
+                // Add token to user
+                const user = Object.assign({}, response.data, {authData: userAuthData})
+                dispatch(receiveUser(user));
             })
             .catch(err => {
                 console.log('error');
@@ -47,53 +68,24 @@ export const loginUser = user => {
     }
 }
 
-// setup config headers and token
-const tokenConfig = user => {
-    // Get token from local storage
-    const token = user.token;
-
-    // Headers
-    const config = {
-        headers: {
-            "Content-type": "application/json"
-        }
+const updateUser = (user) => {
+    // Only save the user without token to database
+    const objectWithoutKey = (object, key) => {
+        const {[key]: deletedKey, ...otherKeys} = object;
+        return otherKeys;
     }
-
-    if (token) {
-        config.headers['x-auth-token'] = token;
-    }
-
-    return config;
-}
-
-// FIXME: Remove if not needed
-//export const fetchUserById = id => {
-//    return dispatch => {
-//        dispatch(requestUser());
-//        return axios.get(API_BASE_URL + "/id/" + id)
-//            .then(response => {
-//                dispatch(receiveUser(response.data));
-//            })
-//            .catch(err => {
-//                console.error(err);
-//                alert("Failed to load user data");
-//            });
-//    }
-//}
-
-export const updateUser = user => {
+    const userToSave = objectWithoutKey(user, 'authData');
+    console.log(userToSave);
     return dispatch => {
         dispatch(requestUser());
-        // FIXME: This is not well designed, could cause inconsistency between database and frontend
         dispatch(receiveUser(user));
-        return axios.put(API_BASE_URL + "/id/" + user._id, user)
+        return axios.put(API_BASE_URL + "users/id", userToSave)
             .then((response) => {
-                console.log(response);
-                // dispatch(receiveUser(response.data));
+                console.log("Data Saved")
             })
             .catch(err => {
-                // FIXME: Notify the user if data did not load correctly
                 console.error(err);
+                alert("Warning, data was not saved correctly. Please check your connection")
             });
     }
 }

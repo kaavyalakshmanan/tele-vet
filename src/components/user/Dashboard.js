@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchUserById, loginUser, logoutUser, receiveUser, selectInbox} from "../../actions";
+import {fetchUserById, loginUser, logoutUser, receiveUser, selectInbox, setUserToken} from "../../actions";
 import Calendar from "./schedule/Calendar";
 import MailIcon from "@material-ui/icons/Mail";
 import VideocamIcon from "@material-ui/icons/Videocam";
@@ -35,7 +35,7 @@ const iconMap = {
     'Photo Gallery': <PhotoCameraIcon color={ 'inherit' }/>,
 }
 
-export default function UserDashboard({initialUser}) {
+export default function UserDashboard({userAuthData}) {
     const [currentView, setView] = React.useState('Photo Gallery');
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
@@ -45,13 +45,12 @@ export default function UserDashboard({initialUser}) {
     }
 
     useEffect(() => {
-        return initialUser.then(initialUser => {
-            dispatch(loginUser(initialUser));
-        });
-        //const urlParams = new URLSearchParams(window.location.search);
-        //const id = urlParams.get('id');
-        //console.log(id);
-        //await dispatch(loginUser(initialUser));
+        async function fetchData() {
+            alert("waiting");
+            const userData = await userAuthData;
+            dispatch(loginUser(userData));
+        }
+        fetchData();
     }, []);
 
     const renderView = () => viewMap[currentView];

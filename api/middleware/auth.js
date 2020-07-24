@@ -1,6 +1,9 @@
 const config = require('config');
 const jwt = require('jsonwebtoken');
 
+// jwtSecret = config.get('jwtSecret');
+const jwtSecret =  "tv_myJwtSecret"
+
 function auth(req, res, next) {
     const token = req.header('x-auth-token');
 

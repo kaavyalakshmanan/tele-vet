@@ -166,6 +166,13 @@ const userReducer = (user = initialUser, action) => {
     }
 }
 
+const authTokenReducer = (token = null, action) => {
+    if (action.type === 'SET_USER_AUTH_TOKEN') {
+        return action.token;
+    }
+    return token;
+}
+
 const appointmentReducer = (appointments = initialAppointments, action) => {
     if (action.type === 'UPDATE_APPOINTMENTS') {
         return action.appointmentData;
@@ -270,5 +277,6 @@ export default combineReducers({
     profiles: profileReducer,
     vetList: vetListReducer,
     error: errorReducer,
-    auth: authReducer
+    auth: authReducer,
+    authUserToken: authTokenReducer
 });

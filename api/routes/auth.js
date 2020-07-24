@@ -4,11 +4,14 @@ const bcrypt = require('bcryptjs');
 const config = require('config');
 const jwt = require('jsonwebtoken');
 const auth = require('../middleware/auth');
+const cors = require('cors')
 
 // LOGGING IN AN EXISTING USER
 
 // User Model
 const User = require("../models/userModel");
+// jwtSecret = config.get('jwtSecret');
+const jwtSecret =  "tv_myJwtSecret"
 
 // @route   POST /auth
 // @desc    Authenticate login of user
@@ -34,7 +37,7 @@ router.post('/', (req, res) => {
 
                     jwt.sign(
                         {id: user.id},
-                        config.get('jwtSecret'),
+                        jwtSecret,
                         {expiresIn: 3600}, 
                         (err, token) => {
                             if (err) throw err;
@@ -61,10 +64,7 @@ router.put('/user', auth, (req, res) => {
     User.findById(req.user.id, (err, updatedUser) => {
         if (!updatedUser) res.status(404).json({msg: "User not found"})
         else {
-            updatedUser.name = req.body.name;
-            updatedUser.email = req.body.email;
-            updatedUser.username = req.body.username;
-            updatedUser.password = req.body.password;
+            updatedUser = Object.assign({}, req.body);
 
                // Create salt and hash
                bcrypt.genSalt(10, (err, salt) => {
@@ -111,7 +111,6 @@ router.put('/user', auth, (req, res) => {
 // @access  Private
 // Validate user with token
 router.get('/user', auth, (req, res) => {
-    console.log(req);
     User.findById(req.user.id)
         .select('-password')
         .then(user => res.json(user));
