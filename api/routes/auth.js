@@ -65,6 +65,12 @@ router.put('/user', auth, (req, res) => {
             updatedUser.email = req.body.email;
             updatedUser.username = req.body.username;
             updatedUser.password = req.body.password;
+            updatedUser.profilePicture = req.body.profilePicture;
+            updatedUser.lastUpdate = req.body.lastUpdate;
+            updatedUser.images = req.body.images;
+            updatedUser.appointments = req.body.appointments;
+            updatedUser.messages = req.body.messages;
+            updatedUser.documents = req.body.documents;
 
                // Create salt and hash
                bcrypt.genSalt(10, (err, salt) => {
