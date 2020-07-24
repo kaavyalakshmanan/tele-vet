@@ -72,12 +72,12 @@ export default function SignInSide() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('loging in');
-    axios.post(API_BASE_URL + '/auth', {
+    return axios.post(API_BASE_URL + '/auth', {
       password: password,
       username: username
     }).then(response => {
       setLoginSuccessFlag(true);
-      window.location.replace(getRedirectURL(JSON.parse(response.data)));
+      window.location.replace(getRedirectURL(response.data.user));
     }).catch(err => {
       setLoginFailWarning(true);
     });
