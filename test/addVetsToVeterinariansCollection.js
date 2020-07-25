@@ -32,9 +32,9 @@ db.veterinarians.insertMany([
         "facebook": "https://www.facebook.com/beyonce",
         "twitter": "https://twitter.com/beyonce",
         "geometry": {
-            location: {
-                lat: 48.8515321,
-                lon: -123.800696
+            "location": {
+                "lat": 48.8515321,
+                "lng": -123.800696
             }
         }
 
@@ -60,9 +60,9 @@ db.veterinarians.insertMany([
         "facebook": "https://www.facebook.com/barackobama",
         "twitter": "https://twitter.com/BarackObama",
         "geometry": {
-            location: {
-                lat: 49.3364089,
-                lon: -123.0399861
+            "location": {
+                "lat": 49.3364089,
+                "lng": -123.0399861
             }
         }
 
@@ -167,9 +167,9 @@ db.veterinarians.insertMany([
         "facebook": "https://www.facebook.com/Kanye-West-Rocks-114203938645237",
         "twitter": "https://twitter.com/kanyewest",
         "geometry": {
-            location: {
-                lat: 49.2635931,
-                lon: -123.208738
+            "location": {
+                "lat": 49.2635931,
+                "lng": -123.208738
             }
         }
 
