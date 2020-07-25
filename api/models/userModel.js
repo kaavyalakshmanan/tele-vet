@@ -10,19 +10,10 @@ const userSchema = new Schema({
     password: {type: String, required: [true, "Password is required"]},
     profilePicture: {type: String},
     lastUpdate: {type: Number},
-    images: {
-        list: [{}]
-    },
-    appointments: {
-        list: [{}]
-    },
-    messages: {
-        contactList: [{}]
-    },
-    documents: {
-        list: [{}]
-    }
-    //videoConferenceId: {type: String}
+    images: [],
+    appointments: [],
+    messages: [],
+    documents: []
 });
 
 module.exports = mongoose.model("users", userSchema);

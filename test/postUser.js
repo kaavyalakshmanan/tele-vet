@@ -9,15 +9,9 @@ const initialUser = {
     "password": "test",
     "profilePicture": "/resources/woman.jpg",
     "lastUpdated": 0,
-    "images": {
-        "list": []
-    },
-    "appointments": {
-        "list": []
-    },
+    "images": [],
+    "appointments": [],
     "messages":
-        {
-            "contactList":
                 [
                     {
                         "name": "Thiago Barroncas",
@@ -59,11 +53,8 @@ const initialUser = {
                             }
                         ]
                     }
-                ]
-        },
-    "documents": {
-        "list": []
-    }
+                ],
+    "documents": []
 }
 
 axios.post("http://localhost:9000/users", initialUser)

@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const {uuid} = require("uuidv4");
-const veterinarian = require("../models/vetModel");
+const veterenarians = require("../models/vetModel");
 
-//Get all veterinarians in the dataset
+//Get all veterenarianss in the dataset
+// FIXME: This probably should not be a public endpoint because it returns passwords
 router.get('/', function (req, res, next) {
     res.setHeader('Content-Type', 'application/json');
-    veterinarian.find({}, function (err, myData) {
+    veterenarians.find({}, function (err, myData) {
         if (err) {
             next(err);
         } else {
@@ -15,9 +16,19 @@ router.get('/', function (req, res, next) {
     })
 })
 
-// Get veterinarian profile when given the mongodb _id
+router.get('/profiles/all', function (req, res, next) {
+    veterenarians.find({}, function(err, vets) {
+        if (err) {
+            next(err);
+        } else {
+            res.send(vets);
+        }
+    });
+})
+
+// Get veterenarians profile when given the mongodb _id
 router.get('/id/:id', function (req, res, next) {
-    veterinarian.findById(req.params.id, function (err, foundVet) {
+    veterenarians.findById(req.params.id, function (err, foundVet) {
         res.setHeader('Content-Type', 'application/json');
         if (err) {
             next(err);
@@ -29,9 +40,9 @@ router.get('/id/:id', function (req, res, next) {
     })
 })
 
-// Get veterinarian by matching username for login NOTE: EVERY API CALLS ARE CASE SENSITIVE
+// Get veterenarians by matching username for login NOTE: EVERY API CALLS ARE CASE SENSITIVE
 router.get('/username/:username', function (req, res, next) {
-    veterinarian.find({username: req.params.username}, function (err, foundVet) {
+    veterenarians.find({username: req.params.username}, function (err, foundVet) {
         res.setHeader('Content-Type', 'application/json');
         if (err) {
             next(err);
@@ -43,9 +54,9 @@ router.get('/username/:username', function (req, res, next) {
     })
 });
 
-// Get veterinarian by matching email for lost password
+// Get veterenarians by matching email for lost password
 router.get('/email/:email', function (req, res, next) {
-    veterinarian.find({email: req.params.email}, function (err, foundVet) {
+    veterenarians.find({email: req.params.email}, function (err, foundVet) {
         res.setHeader('Content-Type', 'application/json');
         if (err) {
             next(err);
@@ -58,22 +69,22 @@ router.get('/email/:email', function (req, res, next) {
     })
 });
 
-// Add new veterinarian profile as per given in the body
+// Add new veterenarians profile as per given in the body
 router.post('/', function (req, res, next) {
-    let newVet = new veterinarian(req.body);
+    let newVet = new veterenarians(req.body);
     newVet.id = uuid();
     res.setHeader('Content-Type', 'application/json');
     newVet.save().then((newVet) => {
-        res.status(200).json({"The new veterinarian has been added successfully :-D": newVet})
+        res.status(200).json({"The new veterenarians has been added successfully :-D": newVet})
     }).catch(err => {
         console.error(err);
         next(err);
     })
 })
 
-// Update veterinarian profile when given the mongodb _id - using findOneAndUpdate -> needs to be tested
+// Update veterenarians profile when given the mongodb _id - using findOneAndUpdate -> needs to be tested
 router.put('/:id', function (req, res, next) {
-    veterinarian.findOneAndUpdate(req.params.id, req.body, function(err, result) {
+    veterenarians.findOneAndUpdate(req.params.id, req.body, function(err, result) {
         res.setHeader('Content-Type', 'application/json');
         if (err) {
             next(err);
@@ -83,9 +94,9 @@ router.put('/:id', function (req, res, next) {
     });
 });
 
-// Delete veterinarian profile when given the mongodb _id
+// Delete veterenarians profile when given the mongodb _id
 router.delete('/:id', function (req, res, next) {
-    veterinarian.findById(req.params.id, function (err, foundVet) {
+    veterenarians.findById(req.params.id, function (err, foundVet) {
         res.setHeader('Content-Type', 'application/json');
         if (!foundVet) {
             res.status(404).send(`Vet with _id ${req.params.id} was not found`);
@@ -104,16 +115,16 @@ router.delete('/:id', function (req, res, next) {
 module.exports = router;
 
 
-// UPDATE WITHOUT USING findOneAndUpdate - veterinarian profile when given the mongodb _id
+// UPDATE WITHOUT USING findOneAndUpdate - veterenarians profile when given the mongodb _id
 // router.post('/:id', function (req, res, next) {
-//     veterinarian.findById(req.params.id, function (err, foundVet) {
+//     veterenarians.findById(req.params.id, function (err, foundVet) {
 //             res.setHeader('Content-Type', 'application/json');
 //             if (!foundVet) {
 //                 res.status(404).send("id number was not found")
 //             } else {
 //                 foundVet.name = req.body.name;
 //                 foundVet.save().then(foundVet => {
-//                     res.json("The found veterinarian has been updated ;-D")
+//                     res.json("The found veterenarians has been updated ;-D")
 //                 })
 //                     .catch(err => {
 //                         res.status(400).send("The update has failed ;-(")

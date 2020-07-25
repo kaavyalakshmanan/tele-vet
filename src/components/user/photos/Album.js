@@ -64,7 +64,7 @@ export default function Album() {
     const [preview, setPreview] = React.useState(null);
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
-    const DATA_TYPE = "images";
+    const DATA_TYPE_IMAGES = "images";
 
     const handleClose = () => {
         setUploadDialogOpen(false);
@@ -80,7 +80,7 @@ export default function Album() {
                 title: title,
                 description: description
             };
-            dispatch(addData(DATA_TYPE, newImage, user));
+            dispatch(addData(DATA_TYPE_IMAGES, newImage, user));
         }
         handleClose();
     }
