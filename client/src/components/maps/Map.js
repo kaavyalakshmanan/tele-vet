@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import isEmpty from '../../../node_modules/lodash.isempty';
+import isEmpty from 'lodash.isempty';
 import vetData from "../../resources/vet_data";
 import GoogleMap from './GoogleMap';
 
