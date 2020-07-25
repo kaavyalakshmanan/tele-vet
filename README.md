@@ -9,13 +9,11 @@
 
 ## Who is this for?
 
-Tele-Vet is a tele-health web app designed to connect vets with their furry patients. There are two use cases:
-(1) Pet owners who want to meet their vet virtually.
-(2) Vets who want to meet their patient or take on new patients virtually.
+Tele-Vet is a tele-health web app designed to connect vets with their furry patients. A user can view vet profile pages by location, upload relevant documents (images, text files, etc), and video conference with a vet.
 
 ## What will our app do?
 
-It will connect vets and pet owners virtually with video conferencing and messaging. Users can sign in as either pet owner or vet. 
+It will connect vets and pet owners virtually with video conferencing and messaging.
 Pet owners can:
 - Undergo a pre-screening using a chatbot to indicate the level of urgency and preliminary info
 - Search for vets by location
