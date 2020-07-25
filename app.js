@@ -18,8 +18,7 @@ const connection = mongoose.connection;
 connection.once("open", function () {
   console.log("MongoDB database connection established successfully :-D");
 })
-console.log("process:");;
-console.log(process.env.NODE_ENV);
+
 const vetsRouter = require('./routes/vets');
 const usersRouter = require('./routes/users');
 const indexRouter = require('./routes/index');
