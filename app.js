@@ -19,10 +19,8 @@ connection.once("open", function () {
   console.log("MongoDB database connection established successfully :-D");
 })
 
-
 const vetsRouter = require('./routes/vets');
 const usersRouter = require('./routes/users')
-
 
 const app = express();
 
@@ -47,7 +45,6 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-
 
 // app.use('/', indexRouter);
 app.use('/vets', vetsRouter);
@@ -79,7 +76,5 @@ if (process.env.NODE_ENV === 'production') {
       res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
-
-
 
 module.exports = app;

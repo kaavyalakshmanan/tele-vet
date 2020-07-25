@@ -10,7 +10,6 @@ import VetSignUp from "./home/VetSignUp";
 import PetSignUp from "./home/PetSignUp";
 import Error from "./Error"
 import AppointmentsView from './Appointments/AppointmentsView'
-import EditPage from "./VetProfile/EditPage/EditPage";
 import DocumentList from "./user/documents/DocumentList";
 //import VetDashboardInbox from "./vet-dashboard/messages/Inbox"
 import VetProfilePage from "./VetProfilePage/VetProfilePage";
