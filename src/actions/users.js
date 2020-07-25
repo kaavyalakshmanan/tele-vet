@@ -119,7 +119,7 @@ export const updateProfilePicture = (src, user) => {
 
 export const deleteDocument = (document, user) => {
     const newUser = Object.assign({}, user, {
-        documents: user.documents.list.filter(doc => doc.id !== document.id)
+        documents: user.documents.filter(doc => doc.id !== document.id)
     });
     return dispatch => dispatch(updateUser(newUser));
 }
