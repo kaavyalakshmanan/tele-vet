@@ -1,6 +1,4 @@
 import axios from 'axios';
-import {useDispatch} from "react-redux";
-import {receiveUser, requestUser} from "./users";
 const API_BASE_URL = '/vets';
 
 export const updateVetList = vetList => {

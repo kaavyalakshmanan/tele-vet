@@ -23,7 +23,6 @@ import GetAppIcon from '@material-ui/icons/GetApp';
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import List from "@material-ui/core/List";
-import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -54,7 +53,6 @@ export default function DocumentList() {
     const [previewName, setPreviewName] = React.useState("");
     const dispatch = useDispatch();
     const DATA_TYPE_DOCUMENTS = "documents";
-    const DOWNLOAD_BASE_URL = "http://localhost:9000/users/id/"
 
     const handleClose = () => {
         setUploadDialogOpen(false);
