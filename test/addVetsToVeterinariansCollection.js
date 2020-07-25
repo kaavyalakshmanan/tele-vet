@@ -173,6 +173,49 @@ db.veterinarians.insertMany([
             }
         }
 
-    }
+    },
+
+    {
+        "coverPhoto": "/resources/vets/michelles/cover.jpg",
+        "username": "michelle",
+        "firstName": "Michelle",
+        "lastName": "Obama",
+        "description": "At Michelle's we specialize in caring for large mammals, like horses, pigs, and cows. We have the experience to give these animals the care they need to be healthy and productive. We are available for in person appointments and virtual appointments. Schedule your visit today!",
+        "email": "michelle_obamal@gmail.com",
+        "businessName": "Michelle's Pet Hospital",
+        "profilePicture": "/resources/vets/michelles/profile.jpg",
+        "pictures": [
+          "/resources/vets/michelles/img1.jpg",
+          "/resources/vets/michelles/img2.jpg",
+          "/resources/vets/michelles/img3.jpg",
+          "/resources/vets/michelles/img4.jpg"
+        ],
+        "reviews": [
+          {
+            "rating": 5,
+            "title": "Best Ever",
+            "description": "We miss Michelle So Much!!!!!!!!!!!!!!!!!!!"
+          },
+          {
+            "rating": 5,
+            "title": "Michelle for Prime Minister",
+            "description": "This vet is so good we think she should run the country"
+          },
+          {
+            "rating": 5,
+            "title": "Great Time",
+            "description": "Taking my horse to Michelle was amazing. Thanks for everything you do!"
+          }
+        ],
+        "rating": 5,
+        "facebook": "https://www.facebook.com/michelleobama",
+        "twitter": "https://twitter.com/MichelleObama",
+        "geometry": {
+          "location": {
+            "lat": 49.2173469,
+            "lng": -123.1287737
+          }
+        }
+      }
 
 ])
