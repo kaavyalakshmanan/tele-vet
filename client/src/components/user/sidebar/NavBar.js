@@ -177,11 +177,11 @@ export const NavBar = ({ handleViewChange, renderView, iconMap, onLogout } ) => 
                     ))}
                 </List>
             </Drawer>
-            <LoadingOverlay
+            <LoadingOverlay className={classes.content}
                 active={user.isFetching}
                 spinner
             >
-                <main className={classes.content}>
+                <main>
                     <div className={classes.toolbar}/>
                     {renderView()}
                 </main>
