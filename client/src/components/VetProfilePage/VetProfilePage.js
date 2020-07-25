@@ -12,12 +12,9 @@ import MailIcon from "@material-ui/icons/Mail";
 
 
 // core components
-import Header from "./Header/Header.js";
-import Footer from "../material-kit/Footer/Footer.js";
 import Button from "../material-kit/CustomButtons/Button.js";
 import GridContainer from "../material-kit/Grid/GridContainer.js";
 import GridItem from "../material-kit/Grid/GridItem.js";
-import HeaderLinks from "./Header/HeaderLinks.js";
 import NavPills from "../material-kit/NavPills/NavPills.js";
 import Parallax from "../material-kit/Parallax/Parallax.js";
 
@@ -31,7 +28,6 @@ const useStyles = makeStyles(styles);
 
 export default function VetProfilePage(vet) {
     const classes = useStyles();
-    // const { ...rest } = props;
     const imageClasses = classNames(
         classes.imgRaised,
         classes.imgRoundedCircle,
@@ -103,6 +99,7 @@ export default function VetProfilePage(vet) {
                                                                 className={navImageClasses}
                                                             />)
                                                         }
+                                                        return null;
                                                     })
                                                     }
                                                     </GridItem>
@@ -114,18 +111,8 @@ export default function VetProfilePage(vet) {
                                                                     src={imgSrc}
                                                                     className={navImageClasses}
                                                                 />)
-                                                            }
-                                                        })
-                                                        }
-                                                    </GridItem>
-                                                    <GridItem xs={12} sm={12} md={4}>
-                                                        {currentVet.pictures.map((imgSrc, index) => {
-                                                            if (index > 4 && index <= 6) {
-                                                                return (<img
-                                                                    alt="..."
-                                                                    src={imgSrc}
-                                                                    className={navImageClasses}
-                                                                />)
+                                                            } else {
+                                                                return null;
                                                             }
                                                         })
                                                         }

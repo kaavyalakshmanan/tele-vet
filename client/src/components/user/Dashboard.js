@@ -13,7 +13,6 @@ import Messages from "./messages/Messages";
 import Album from "./photos/Album";
 import VideoConference from "../videoConference/VideoConference"
 import DocumentList from "./documents/DocumentList";
-import LoadingOverlay from 'react-loading-overlay';
 import VetFinder from "../maps/VetFinder";
 
 const viewMap = {

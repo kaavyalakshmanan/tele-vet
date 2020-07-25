@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import ProgressComponent from '@material-ui/core/CircularProgress';
+import React, { useEffect } from 'react';
 const { v4: uuidv4 } = require('uuid');
 
 
