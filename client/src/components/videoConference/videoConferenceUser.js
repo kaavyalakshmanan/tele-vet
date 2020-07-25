@@ -15,17 +15,6 @@ function JitsiMeetComponentUser() {
         height: "100%",
     };
 
-    // componentDidMount() {
-    //     const id = "5f109bf455e8e827aa4ec530"
-    //     axios.get("http://localhost:9000/users/id/" + id)
-    //         .then(response => {
-    //                     setId(response.data.videoConferenceId)
-    //         })
-    //         .catch((err) => {
-    //             console.log(err)
-    //         })
-    // }
-
     const jitsiContainerStyle = {
         display: "block",
         // (loading ? 'none' : 'block'),

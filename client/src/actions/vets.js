@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_BASE_URL = 'http://localhost:9000/vets';
+const API_BASE_URL = '/vets';
 
 export const updateVetList = vetList => {
     return {
