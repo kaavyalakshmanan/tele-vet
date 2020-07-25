@@ -11,12 +11,12 @@ router.get('/static/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build', req.url));
 });
 
-router.get('/maifest.json', (req, res) => {
+router.get('/manifest.json', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build', req.url));
 });
 
 router.get('/favicon.ico', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build', req.url));
+    res.sendFile(path.join(__dirname, '../client/build/favicon.io'));
 });
 
 router.get('/resources/*', (req, res) => {
