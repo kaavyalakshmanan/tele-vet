@@ -37,7 +37,7 @@ function App() {
             <Route path="/vet/profile/auth" render={() => <VetProfilePage authenticated={true}/>}/>
             <Route path="/vet/profile/" render={() => <VetProfilePage authenticated={false}/>}/>
             <Route path="/appointments" component={AppointmentsView}/>
-            <Route path="/EditPage" component={EditPage}/>
+            {/*<Route path="/EditPage" component={EditPage}/>*/}
             <Route path="/vetsignup" component={VetSignUp}/>
             <Route path="/petsignup" component={PetSignUp}/>
             <Route component={Error}/>
