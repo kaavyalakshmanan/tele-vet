@@ -24,7 +24,7 @@ navigator.geolocation.getCurrentPosition(positionSuccess, positionError, positio
 
 const getInfoWindowString = place => `
       <div style="font-size: 16px;">
-        ${place.name}
+        ${place.businessName}
       </div>
       <div style="font-size: 14px;">
         <span style="color: grey;">
@@ -32,12 +32,6 @@ const getInfoWindowString = place => `
         </span>
         <span style="color: orange;">${String.fromCharCode(9733).repeat(Math.floor(place.rating))}</span>
         <span style="color: lightgrey;">${String.fromCharCode(9733).repeat(5 - Math.floor(place.rating))}</span>
-      </div>
-      <div style="font-size: 14px; color: grey;">
-        ${place.types[0].replace('_', ' ')}
-      </div>
-      <div style="font-size: 14px; color: grey; margin-top: 5px">
-        ${'$'.repeat(place.price_level)}
       </div>
     </div>`;
 
@@ -85,38 +79,46 @@ const handleApiLoaded = (map, maps, places) => {
     markers.forEach((marker, i) => {
         marker.addListener('click', () => {
             infowindows[i].open(map, marker);
-            let win = window.open(`/vet/profile?id=${marker.id}`, '_blank');
-            win.focus();
         });
     });
 };
 
-class Map extends Component {
-    constructor(props) {
-        super(props);
+function Map({markers}) {
+    //constructor(props) {
+    //    super(props);
+//
+    //    this.state = {
+    //        places: vetData,
+    //    };
+    //}
 
-        this.state = {
-            places: vetData,
-        };
-    }
+    //render() {
+    //    const { places } = this.state;
+    console.log(".env");
+    console.log(process.env)
 
-    render() {
-        const { places } = this.state;
-
+    if (markers) {
         return (
             <Fragment>
-                {!isEmpty(places) && (
+                {!isEmpty(markers) && (
                     <GoogleMap
                         defaultZoom={10}
                         defaultCenter={VANCOUVER_COORDINATES}
-                        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_API_KEY }}
+                        bootstrapURLKeys={ {key: 'AIzaSyBREwvARS3lmrahtK3OFrNG2Ev3QUm1Spw'} }
                         yesIWantToUseGoogleMapApiInternals
-                        onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps, places)}
+                        onGoogleApiLoaded={({map, maps}) => handleApiLoaded(map, maps, markers)}
                     />
                 )}
             </Fragment>
         );
+    } else {
+        return (
+            <Fragment>
+                <GoogleMap/>
+            </Fragment>
+        )
     }
+   // }
 }
 
 export default Map;

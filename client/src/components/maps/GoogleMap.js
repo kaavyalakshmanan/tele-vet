@@ -13,7 +13,7 @@ const GoogleMap = ({ children, ...props }) => (
     <Wrapper>
         <GoogleMapReact
             bootstrapURLKeys={{
-                key: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
+                key: 'AIzaSyBREwvARS3lmrahtK3OFrNG2Ev3QUm1Spw',
             }}
             {...props}
         >

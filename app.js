@@ -18,7 +18,8 @@ const connection = mongoose.connection;
 connection.once("open", function () {
   console.log("MongoDB database connection established successfully :-D");
 })
-
+console.log("process:");;
+console.log(process.env.NODE_ENV);
 const vetsRouter = require('./routes/vets');
 const usersRouter = require('./routes/users');
 const indexRouter = require('./routes/index');
@@ -49,7 +50,7 @@ app.use(function(req, res, next) {
 
 app.use('/vets', vetsRouter);
 app.use('/users', usersRouter);
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
