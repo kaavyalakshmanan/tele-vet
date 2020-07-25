@@ -21,21 +21,7 @@ router.get('/profiles/all', function (req, res, next) {
         if (err) {
             next(err);
         } else {
-            let vetList = [];
-            vets.forEach(vet => {
-                console.log(vet.profilePicture)
-                vetList.push({
-                    _id: vet._id,
-                    name: vet.firstName + ' ' + vet.lastName,
-                    description: vet.description,
-                    rating: vet.rating,
-                    mapURL: 'google.com/maps/place/' + vet.businessAddress.replace(' ', '+') + '+' + vet.city + '+' + vet.postalCode,
-                    facebook: vet.facebook,
-                    instagram: vet.instagram,
-                    profilePicture: vet.profilePicture
-                });
-            });
-            res.send(vetList);
+            res.send(vets);
         }
     });
 })

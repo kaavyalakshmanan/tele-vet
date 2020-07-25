@@ -1,0 +1,44 @@
+{
+  "coverPhoto": "/resources/vets/intercity/cover.jpg",
+  "username": "intercity",
+  "firstName": "Batman",
+  "lastName": "Robin",
+  "description": "At Intercity Animal Emergency clinic we provide fast emergency services for your pets in times of need. Appointments are not needed and virtual appointments are available.",
+  "email": "intercity@gmail.com",
+  "businessName": "Intercity Animal Emergency Clinic",
+  "profilePicture": "/resources/vets/intercity/profile.jpg",
+  "pictures": [
+    "/resources/vets/intercity/img1.jpg",
+    "/resources/vets/intercity/img2.jpg",
+    "/resources/vets/intercity/img3.jpg",
+    "/resources/vets/intercity/img4.jpg",
+    "/resources/vets/intercity/img5.jpg",
+    "/resources/vets/intercity/img6.jpg"
+  ],
+  "reviews": [
+    {
+      "rating": 4,
+      "title": "Great Service",
+      "description": "I took my dog here after she jumped out the window and broke her jaw. The vets were really nice and experienced."
+    },
+    {
+      "rating": 3,
+      "title": "Meh",
+      "description": "Good service but very expensive."
+    },
+    {
+      "rating": 5,
+      "title": "I Love Intercity",
+      "description": "My sled dogs play rough and when they get hurt I love taking them to Intercity. The vets are soooo nice. 10/10 recommend!!!!!!!!!"
+    }
+  ],
+  "rating": 4,
+  "facebook": "https://www.facebook.com/groups/634079420001924",
+  "twitter": "https://twitter.com/bunsenbernerbmd",
+  "geometry": {
+    "location": {
+      "lat": 49.2175436,
+      "lng": -123.118982
+    }
+  }
+}

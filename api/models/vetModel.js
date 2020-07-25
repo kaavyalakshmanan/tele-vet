@@ -8,7 +8,6 @@ vetModel = new Schema({
         lastName: {type: String, required: [true, "A lastName is required"]},
         description: {type: String},
         email: {type: String, unique: true},
-        phone: {type: String, unique: true},
         businessName: {type: String},
         profilePicture: {type: 'Buffer'},
         pictures: [{type: 'Buffer'}],
