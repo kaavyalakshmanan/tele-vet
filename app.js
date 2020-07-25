@@ -20,7 +20,8 @@ connection.once("open", function () {
 })
 
 const vetsRouter = require('./routes/vets');
-const usersRouter = require('./routes/users')
+const usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
 
 const app = express();
 
@@ -46,7 +47,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-// app.use('/', indexRouter);
+app.use('/', indexRouter);
 app.use('/vets', vetsRouter);
 app.use('/users', usersRouter);
 
