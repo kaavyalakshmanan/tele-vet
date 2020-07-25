@@ -1,0 +1,32 @@
+{
+  "coverPhoto": "/resources/vets/guilford_pet_hospital/cover.jpg",
+  "username": "guilford_pet_hospital",
+  "firstName": "Guilford",
+  "lastName": "Constrictor",
+  "description": "At Guilford Pet Hospital we care for your pet with the expertise and compassion that you expect. Our passion is the health of your furry friends. We offer emergency care and scheduled appointments to fit your needs and schedule.",
+  "email": "guilford_pet_hospital@gmail.com",
+  "businessName": "Guilford Pet Hospital",
+  "profilePicture": "/resources/vets/guilford_pet_hospital/profile.jpg",
+  "pictures": [
+    "/resources/vets/guilford_pet_hospital/img1.jpg",
+    "/resources/vets/guilford_pet_hospital/img2.jpg",
+    "/resources/vets/guilford_pet_hospital/img3.jpg",
+    "/resources/vets/guilford_pet_hospital/img4.jpg"
+  ],
+  "reviews": [
+    {
+      "rating": 4.5,
+      "title": "Great Service",
+      "description": "would be a 5 but my cat was eaten by a snake after the appiontment"
+    }
+  ],
+  "rating": 4.5,
+  "facebook": "https://www.facebook.com/Guilford-Veterinary-Hospital-182165445156203",
+  "twitter": "https://twitter.com/GuilfordPatch",
+  "geometry": {
+    "location": {
+      "lat": 49.2015818,
+      "lng": -122.9718169
+    }
+  }
+}
