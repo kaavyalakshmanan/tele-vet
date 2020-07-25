@@ -1,51 +1,178 @@
 db.veterinarians.insertMany([
- {
-     "username":"ashawarma",
-     "password": "cpsc436i",
-     "firstName": "Atiya",
-     "lastName": "Shawarma",
-     "description": "Atiya is a passionate dog owner and healer! She specialises in large canines, although she welcomes any size at her Kitsilano clinic. Atiya earned a practicing doctorate in canine health with focus in heart surgery at the university of saskatchewan. She has been operating her own clinic on arbutus street and broadway since 1971",
-     "website": "www.kitsilanok9.com",
-     "email": "AtiyaShawarma@kitsilanok9.com",
-     "phone": "604-913-4043",
-     "businessAddress": "3000 west broadway",
-     "city": "Vancouver",
-     "postalCode": "v6r2r9",
-     "specialization": "canines",
-     "acceptEmergencyCalls": false,
-     "certificates": [{"type":"Buffer","data":[100,97,116,97,58,14,79,8,113,97,65,43,57,55,89,69,88,51,66,101,70,86,112,121,112,121,121,121,80,81,104]}],
-     "businessNumber": 123456789,
-     "profilePicture": {"type":"Buffer","data":[100,97,116,97,58,14,79,8,113,97,65,43,57,55,89,69,88,51,66,101,70,86,112,121,112,121,121,121,80,81,104]},
-     "carouselPictures": [{"type":"Buffer","data":[100,97,116,97,58,14,79,8,113,97,65,43,57,55,89,69,88,51,66,101,70,86,112,121,112,121,121,121,80,81,104]}],
-     "reviews": ["Dr. Shawarma is the best! She installed a mechanical heart for my german shepperd 5 years ago, and it has been healthy and happy even since!"],
-     "rating": 4,
-     "facebook": "https://www.facebook.com/Veterinarian-Community-366567727022295",
-     "instagram": "https://www.instagram.com/explore/tags/veterinarian/?hl=en",
-     "socialMediaSpare1": "https://www.snapchat.com/add/drbelindathevet",
-     "socialMediaSpare2": "",
-     "socialMediaSpare3": "",
-     "socialMediaSpare4": "",
-     "socialMediaSpare5": "",
-     "weeklyTimeBlocks": [[""]],
-     "scheduledAppointments": [""],
-     "sundayOpen": "2014-08-18T08:00:00",
-     "sundayClose": "2014-08-18T18:00:00",
-     "mondayOpen": "2014-08-18T08:00:00",
-     "mondayClose": "2014-08-18T18:00:00",
-     "tuesdayOpen": "2014-08-18T08:00:00",
-     "tuesdayClose": "2014-08-18T18:00:00",
-     "wednesdayOpen": "2014-08-18T08:00:00",
-     "wednesdayClose": "2014-08-18T18:00:00",
-     "thursdayOpen": "2014-08-18T08:00:00",
-     "thursdayClose": "2014-08-18T18:00:00",
-     "fridayOpen": "2014-08-18T08:00:00",
-     "fridayClose": "2014-08-18T18:00:00",
-     "saturdayOpen": "2014-08-18T08:00:00",
-     "saturdayClose": "2014-08-18T18:00:00",
-     "spareField1": "",
-     "spareField2": [""],
-     "spareField3": [[""]],
-     "spareField4": true,
-     "spareField5": 12345
- }
+
+    {
+        "coverPhoto": "/resources/vets/beyonce/cover.jpeg",
+        "username": "beyonce",
+        "firstName": "Beyonce",
+        "lastName": "Knowles",
+        "description": "Beyonce is passionate about helping about helping dogs who have undergone severe trauma.",
+        "email": "beyonce.knowles@gmail.com",
+        "businessName": "Lynn Valley Veterinary Clinic Ltd",
+        "profilePicture": "/resources/vets/beyonce/beyonce.jpg",
+        "pictures": ["/resources/vets/beyonce/animal1.jpeg", "/resources/vets/beyonce/animal2.jpeg", "/resources/vets/beyonce/animal3.jpg", "/resources/vets/beyonce/animal4.jpg", "/resources/vets/beyonce/animal5.jpg"],
+        "reviews": [
+        {
+            "ratingTitle": "Best vet I've been to in YEARS!!!",
+            "description": "Dr. Knowles really cares about her furry patients! She spends a lot of time helping and diagnosing accurately. 10/10 would go again!!!"
+        },
+        {
+            "ratingTitle": "Not the best but not the worst",
+            "description": "Dr. Knowles was super rushed when I brought my dog Tibbles in for a checkup afer Tibbles ate something weird and vomited hysterically. Dr Knowles just slapped on a hasty diagnosis and I went for a second opinion. Turns out she was right but she needs to work on her bedside manner!"
+        },
+        {
+            "ratingTitle": "Not the best but not the worst",
+            "description": "Dr. Knowles was super rushed when I brought my dog Tibbles in for a checkup afer Tibbles ate something weird and vomited hysterically. Dr Knowles just slapped on a hasty diagnosis and I went for a second opinion. Turns out she was right but she needs to work on her bedside manner!"
+        },
+        {
+            "ratingTitle": "Pretty decent",
+            "description": "Dr Knowles saved my puppy's life!!! She is the best!!!"
+        },
+    ],
+        "rating": 4.2,
+        "facebook": "https://www.facebook.com/beyonce",
+        "twitter": "https://twitter.com/beyonce",
+        "geometry": {
+            location: {
+                lat: 48.8515321,
+                lon: -123.800696
+            }
+        }
+
+    },
+
+    {
+        "coverPhoto": "/resources/vets/obama/cover.jpg",
+        "username": "obama",
+        "firstName": "Barack",
+        "lastName": "Obama",
+        "description": "Obama is passionate about getting animals to vote in the Nov 2020 election.",
+        "email": "barack.obama@gmail.com",
+        "businessName": "North Vancouver Pet Hospital",
+        "profilePicture": "/resources/vets/obama/obama.jpg",
+        "pictures": ["/resources/vets/obama/animal1.jpg", "/resources/vets/obama/animal2.jpg", "/resources/vets/obama/animal3.jpg", "/resources/vets/obama/animal4.jpg", "/resources/vets/obama/animal5.jpg"],
+        "reviews": [
+        {
+            "ratingTitle": "Super caring and thorough",
+            "description": "Dr. Obama makes excellent convincing arguments when trying to get doggos and kittens registered to vote!"
+        }
+    ],
+        "rating": 5,
+        "facebook": "https://www.facebook.com/barackobama",
+        "twitter": "https://twitter.com/BarackObama",
+        "geometry": {
+            location: {
+                lat: 49.3364089,
+                lon: -123.0399861
+            }
+        }
+
+    },
+
+    {
+        "coverPhoto": "/resources/vets/guilford_pet_hospital/cover.jpg",
+        "username": "guilford_pet_hospital",
+        "firstName": "Guilford",
+        "lastName": "Constrictor",
+        "description": "At Guilford Pet Hospital we care for your pet with the expertise and compassion that you expect. Our passion is the health of your furry friends. We offer emergency care and scheduled appointments to fit your needs and schedule.",
+        "email": "guilford_pet_hospital@gmail.com",
+        "businessName": "Guilford Pet Hospital",
+        "profilePicture": "/resources/vets/guilford_pet_hospital/profile.jpg",
+        "pictures": [
+          "/resources/vets/guilford_pet_hospital/img1.jpg",
+          "/resources/vets/guilford_pet_hospital/cover.jpg",
+          "/resources/vets/guilford_pet_hospital/img2.jpg",
+          "/resources/vets/guilford_pet_hospital/img3.jpg",
+          "/resources/vets/guilford_pet_hospital/img4.jpg"
+        ],
+        "reviews": [
+          {
+            "rating": 4.5,
+            "title": "Great Service",
+            "description": "would be a 5 but my cat was eaten by a snake after the appiontment"
+          }
+        ],
+        "rating": 4.5,
+        "facebook": "https://www.facebook.com/Guilford-Veterinary-Hospital-182165445156203",
+        "twitter": "https://twitter.com/GuilfordPatch",
+        "geometry": {
+          "location": {
+            "lat": 49.2015818,
+            "lng": -122.9718169
+          }
+        }
+      },
+
+      {
+        "coverPhoto": "/resources/vets/intercity/cover.jpg",
+        "username": "intercity",
+        "firstName": "Batman",
+        "lastName": "Robin",
+        "description": "At Intercity Animal Emergency clinic we provide fast emergency services for your pets in times of need. Appointments are not needed and virtual appointments are available.",
+        "email": "intercity@gmail.com",
+        "businessName": "Intercity Animal Emergency Clinic",
+        "profilePicture": "/resources/vets/intercity/profile.jpg",
+        "pictures": [
+          "/resources/vets/intercity/img1.jpg",
+          "/resources/vets/intercity/img2.jpg",
+          "/resources/vets/intercity/img3.jpg",
+          "/resources/vets/intercity/img4.jpg",
+          "/resources/vets/intercity/img5.jpg",
+          "/resources/vets/intercity/img6.jpg"
+        ],
+        "reviews": [
+          {
+            "rating": 4,
+            "title": "Great Service",
+            "description": "I took my dog here after she jumped out the window and broke her jaw. The vets were really nice and experienced."
+          },
+          {
+            "rating": 3,
+            "title": "Meh",
+            "description": "Good service but very expensive."
+          },
+          {
+            "rating": 5,
+            "title": "I Love Intercity",
+            "description": "My sled dogs play rough and when they get hurt I love taking them to Intercity. The vets are soooo nice. 10/10 recommend!!!!!!!!!"
+          }
+        ],
+        "rating": 4,
+        "facebook": "https://www.facebook.com/groups/634079420001924",
+        "twitter": "https://twitter.com/bunsenbernerbmd",
+        "geometry": {
+          "location": {
+            "lat": 49.2175436,
+            "lng": -123.118982
+          }
+        }
+      },
+
+    {
+        "coverPhoto": "/resources/vets/kanye/cover.jpg",
+        "username": "kanye.west",
+        "firstName": "Kanye",
+        "lastName": "West",
+        "description": "Dr West has specialized in hamster care, and focuses on diagnosing hamster cancer.",
+        "email": "kanye.west@gmail.com",
+        "businessName": "University Veterinary Clinic",
+        "profilePicture": "/resources/vets/kanye/kanye.jpg",
+        "pictures": ["/resources/vets/kanye/animal1.jpg", "/resources/vets/kanye/animal2.jpg", "/resources/vets/kanye/animal3.jpg", "/resources/vets/kanye/animal4.jpg", "/resources/vets/kanye/animal5.jpg"],
+        "reviews": [
+        {
+            "ratingTitle": "Absolute disgrace to the field of veterinary medicine",
+            "description": "Dr. West does not care for his furry patients AT ALL and only cares about money. Avoid like the plague!!!"
+        }
+    ],
+        "rating": 1.2,
+        "facebook": "https://www.facebook.com/Kanye-West-Rocks-114203938645237",
+        "twitter": "https://twitter.com/kanyewest",
+        "geometry": {
+            location: {
+                lat: 49.2635931,
+                lon: -123.208738
+            }
+        }
+
+    }
+
 ])
