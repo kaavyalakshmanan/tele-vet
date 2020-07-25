@@ -29,9 +29,9 @@ import ReactCardFlip from "react-card-flip";
 
 const useStyles = makeStyles(styles);
 
-export default function VetProfilePage(props) {
+export default function VetProfilePage(vet) {
     const classes = useStyles();
-    const { ...rest } = props;
+    // const { ...rest } = props;
     const imageClasses = classNames(
         classes.imgRaised,
         classes.imgRoundedCircle,
@@ -41,24 +41,24 @@ export default function VetProfilePage(props) {
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
     const [date, changeDate] = useState(new Date());
     const appointmentButtonText = flipped ? "Save Time" : "Request " + date;
-    let header = null;
-    if (props.authenticated) {
-        header = <Header
-            color="transparent"
-            brand="Tele Vet"
-            rightLinks={<HeaderLinks />}
-            fixed
-            changeColorOnScroll={{
-                height: 200,
-                color: "white"
-            }}
-            {...rest}
-        />
-    }
+    const currentVet = vet.vet;
+    // let header = null;
+    // if (props.authenticated) {
+    //     header = <Header
+    //         color="transparent"
+    //         brand="Tele Vet"
+    //         rightLinks={<HeaderLinks />}
+    //         fixed
+    //         changeColorOnScroll={{
+    //             height: 200,
+    //             color: "white"
+    //         }}
+    //         {...rest}
+    //     />
+    // }
     return (
         <div>
-            {header}
-            <Parallax small filter image={require("../../assets/img/vet/cute_puppy_cover.jpg")} />
+            <Parallax small filter image={ currentVet.coverPhoto } />
             <div className={classNames(classes.main, classes.mainRaised)}>
                 <div>
                     <div className={classes.container}>
@@ -69,21 +69,18 @@ export default function VetProfilePage(props) {
                                         <img
                                             alt="..."
                                             className={imageClasses}
-                                            src={require("../../assets/img/vet/headshot.jpg")}
+                                            src={ currentVet.profilePicture }
                                             style={{"max-width": "300px"}}
                                         />                                    </div>
                                     <div className={classes.name}>
-                                        <h3 className={classes.title}>Dr. Shawarma</h3>
+                                        <h3 className={classes.title}>{currentVet.businessName }</h3>
                                     </div>
                                 </div>
                             </GridItem>
                         </GridContainer>
                         <div className={classes.description}>
                             <p>
-                                Doctor Shawarma and her team strive to provide you with a comfortable, fun, and fast
-                                vet experience for both you and your pet. We specialize in dog treatment
-                                and surgery and are available for appointments in person and online.
-                                We look forward to meeting you and your furry friends. {" "}
+                                { currentVet.description }
                             </p>
                         </div>
                         <GridContainer justify="center">
@@ -98,28 +95,40 @@ export default function VetProfilePage(props) {
                                             tabContent: (
                                                 <GridContainer justify="center">
                                                     <GridItem xs={12} sm={12} md={4}>
-                                                        <img
-                                                            alt="..."
-                                                            src={require("../../assets/img/vet/vet1.jpg")}
-                                                            className={navImageClasses}
-                                                        />
-                                                        <img
-                                                            alt="..."
-                                                            src={require("../../assets/img/vet/vet2.jpg")}
-                                                            className={navImageClasses}
-                                                        />
+                                                    { currentVet.pictures.map((imgSrc, index) => {
+                                                        if (index <= 2) {
+                                                            return (<img
+                                                                alt="..."
+                                                                src={imgSrc}
+                                                                className={navImageClasses}
+                                                            />)
+                                                        }
+                                                    })
+                                                    }
                                                     </GridItem>
                                                     <GridItem xs={12} sm={12} md={4}>
-                                                        <img
-                                                            alt="..."
-                                                            src={require("../../assets/img/vet/vet3.jpg")}
-                                                            className={navImageClasses}
-                                                        />
-                                                        <img
-                                                            alt="..."
-                                                            src={require("../../assets/img/vet/vet4.jpg")}
-                                                            className={navImageClasses}
-                                                        />
+                                                        {currentVet.pictures.map((imgSrc, index) => {
+                                                            if (index > 2 && index <= 4) {
+                                                                return (<img
+                                                                    alt="..."
+                                                                    src={imgSrc}
+                                                                    className={navImageClasses}
+                                                                />)
+                                                            }
+                                                        })
+                                                        }
+                                                    </GridItem>
+                                                    <GridItem xs={12} sm={12} md={4}>
+                                                        {currentVet.pictures.map((imgSrc, index) => {
+                                                            if (index > 4 && index <= 6) {
+                                                                return (<img
+                                                                    alt="..."
+                                                                    src={imgSrc}
+                                                                    className={navImageClasses}
+                                                                />)
+                                                            }
+                                                        })
+                                                        }
                                                     </GridItem>
                                                 </GridContainer>
                                             )
@@ -163,19 +172,19 @@ export default function VetProfilePage(props) {
                                             tabContent: (
                                                 <GridContainer justify="center">
                                                     <GridItem xs={12} sm={12} md={4}>
-                                                        <Button color="google">
+                                                        <Button color="google" href={currentVet.email}>
                                                             <i
                                                                 className={" fab fa-google-plus-square"}
                                                             />{" "}
                                                             Email Us
                                                         </Button>
-                                                        <Button color="twitter">
+                                                        <Button color="twitter" href={currentVet.twitter}>
                                                             <i
                                                                 className={"fab fa-twitter"}
                                                             />{" "}
                                                             Connect with Twitter
                                                         </Button>
-                                                        <Button color="facebook">
+                                                        <Button color="facebook" href={currentVet.facebook}>
                                                             <i
                                                                 className={" fab fa-facebook-square"}
                                                             />{" "}

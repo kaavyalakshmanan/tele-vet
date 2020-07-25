@@ -13,7 +13,7 @@ import AppointmentsView from './Appointments/AppointmentsView'
 import EditPage from "./VetProfile/EditPage/EditPage";
 import DocumentList from "./user/documents/DocumentList";
 //import VetDashboardInbox from "./vet-dashboard/messages/Inbox"
-import VetProfilePage from "./vetProfilePage/VetProfilePage";
+import VetProfilePage from "./VetProfilePage/VetProfilePage";
 import LandingPage from "./LandingPage/LandingPage";
 import VetFinder from "./maps/VetFinder";
 

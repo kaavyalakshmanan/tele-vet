@@ -14,6 +14,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchVets} from "../../actions";
+import VetProfilePage from "../VetProfilePage/VetProfilePage";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -84,6 +85,7 @@ const useStyles = makeStyles((theme) => ({
 export default function VetFinder() {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
+    const [vetProfileView, setVetProfileView] = React.useState(null);
     const dispatch = useDispatch();
     const vetList = useSelector(state => state.vetList);
 
@@ -95,41 +97,49 @@ export default function VetFinder() {
         setValue(newValue);
     };
 
-    return (
-        <div className={classes.root}>
-            <AppBar position="static">
-                <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                    <Tab label="Map" {...a11yProps(0)} />
-                    <Tab label="Vets" {...a11yProps(1)} />
-                    <Button style={{"float": "right", "color": "white"}} href='/login'>Login</Button>
-                </Tabs>
-            </AppBar>
-            <TabPanel value={value} index={0}>
-                <Map className={classes.map} markers={vetList}/>
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                <Grid container spacing={4}>
-                    {vetList.map((vet, index) => (
-                        <Grid item key={index} xs={12} sm={6} md={4}>
-                            <Card className={classes.card}>
-                                <CardMedia
-                                    className={classes.cardMedia}
-                                    image={ vet.profilePicture }
-                                    title={ vet.name }
-                                />
-                                <CardContent className={classes.cardContent}>
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        { vet.name }
-                                    </Typography>
-                                    <Typography>
-                                        { vet.description }
-                                    </Typography>
-                                </CardContent>
-                            </Card>
-                        </Grid>
-                    ))}
-                </Grid>
-            </TabPanel>
-        </div>
-    );
+    const handleClickVet = vet => {
+        setVetProfileView(vet);
+    }
+
+    if (vetProfileView) {
+        return (<VetProfilePage vet={vetProfileView}/>);
+    } else {
+        return (
+            <div className={classes.root}>
+                <AppBar position="static">
+                    <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+                        <Tab label="Map" {...a11yProps(0)} />
+                        <Tab label="Vets" {...a11yProps(1)} />
+                        <Button style={{"float": "right", "color": "white"}} href='/login'>Login</Button>
+                    </Tabs>
+                </AppBar>
+                <TabPanel value={value} index={0}>
+                    <Map className={classes.map} markers={vetList}/>
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                    <Grid container spacing={4}>
+                        {vetList.map((vet, index) => (
+                            <Grid item key={index} xs={12} sm={6} md={4}>
+                                <Card className={classes.card} onClick={() => handleClickVet(vet)}>
+                                    <CardMedia
+                                        className={classes.cardMedia}
+                                        image={vet.profilePicture}
+                                        title={vet.name}
+                                    />
+                                    <CardContent className={classes.cardContent}>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            {vet.name}
+                                        </Typography>
+                                        <Typography>
+                                            {vet.description}
+                                        </Typography>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                        ))}
+                    </Grid>
+                </TabPanel>
+            </div>
+        );
+    }
 }
