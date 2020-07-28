@@ -9,7 +9,7 @@ const bodyParser = require('body-parser')
 const CONNECTION_STRING = "mongodb+srv://televet:cpsc436i@televet-u0yv3.mongodb.net/televet?retryWrites=true&w=majority";
 
 // Adding mongoose
-mongoose.connect(CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, })
     .then(() => console.log('MongoDB Connected...'))
     .catch((err) => console.error(err));
 
