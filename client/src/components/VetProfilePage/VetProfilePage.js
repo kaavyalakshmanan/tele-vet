@@ -23,6 +23,8 @@ import {DatePicker, TimePicker} from "@material-ui/pickers";
 import {MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import ReactCardFlip from "react-card-flip";
+import Header from "./Header/Header";
+import HeaderLinks from "./Header/HeaderLinks";
 
 const useStyles = makeStyles(styles);
 
@@ -38,22 +40,30 @@ export default function VetProfilePage(vet) {
     const [date, changeDate] = useState(new Date());
     const appointmentButtonText = flipped ? "Save Time" : "Request " + date;
     const currentVet = vet.vet;
-    // let header = null;
-    // if (props.authenticated) {
-    //     header = <Header
-    //         color="transparent"
-    //         brand="Tele Vet"
-    //         rightLinks={<HeaderLinks />}
-    //         fixed
-    //         changeColorOnScroll={{
-    //             height: 200,
-    //             color: "white"
-    //         }}
-    //         {...rest}
-    //     />
-    // }
+    //const header = <Header
+    //        color="transparent"
+    //        brand="Tele Vet"
+    //        rightLinks={<HeaderLinks />}
+    //        fixed
+    //        changeColorOnScroll={{
+    //            height: 200,
+    //            color: "white"
+    //        }}
+    //        {...rest}
+    //    />
+    //}
     return (
         <div>
+            <Header
+                color="transparent"
+                brand="Tele Vet"
+                rightLinks={<HeaderLinks />}
+                fixed
+                changeColorOnScroll={{
+                    height: 200,
+                    color: "white"
+                }}
+            />
             <Parallax small filter image={ currentVet.coverPhoto } />
             <div className={classNames(classes.main, classes.mainRaised)}>
                 <div>

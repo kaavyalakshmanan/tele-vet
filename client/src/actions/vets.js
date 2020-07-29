@@ -1,5 +1,6 @@
 import axios from 'axios';
-const API_BASE_URL = '/vets';
+const DEV_URL = 'http://localhost:9000';
+const API_BASE_URL = (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') ?  DEV_URL + '/vets' : '/vets'
 
 export const updateVetList = vetList => {
     return {
