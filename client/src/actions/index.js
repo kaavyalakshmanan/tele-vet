@@ -29,12 +29,12 @@ export const setPhotoDropzoneOpen = open => {
     }
 }
 
-// export const addImage = image => {
-//     return {
-//         type: 'ADD_IMAGE',
-//         image: image
-//     }
-// }
+export const addImage = image => {
+    return {
+        type: 'ADD_IMAGE',
+        image: image
+    }
+}
 
 // export const editImage = image => {
 //     return {

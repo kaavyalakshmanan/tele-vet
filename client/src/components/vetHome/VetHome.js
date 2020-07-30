@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+const WelcomeImage = "./welcome-back.jpg";
 
 function Copyright() {
   return (
@@ -31,7 +32,8 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(http://bestfriendsvethospital.com/columbus_petvet/wp-content/uploads/2020/03/141479838_s.jpg)',
+    backgroundImage: WelcomeImage,
+        // 'url(http://bestfriendsvethospital.com/columbus_petvet/wp-content/uploads/2020/03/141479838_s.jpg)',
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],

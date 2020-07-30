@@ -29,40 +29,50 @@ export default function HeaderLinks(props) {
             <ListItem className={classes.listItem}>
                 <CustomDropdown
                     noLiPadding
-                    buttonText="Edit Page"
+                    buttonText="Your clinic?"
                     buttonProps={{
                         className: classes.navLink,
                         color: "transparent"
                     }}
                     buttonIcon={Apps}
                     dropdownList={[
-                        <Link to="/" className={classes.dropdownLink}>
-                            Log Out
-                        </Link>,
+                        // <Link to="/" className={classes.dropdownLink}>
+                        //     Log Out
+                        // </Link>,
                         <a
                             target="_blank"
                             className={classes.dropdownLink}
+                            href='/vetLogin'
                         >
-                            Update Availability
-                        </a>,
-                        <a
-                            target="_blank"
-                            className={classes.dropdownLink}
-                        >
-                            Edit Description
-                        </a>,
-                        <a
-                            target="_blank"
-                            className={classes.dropdownLink}
-                        >
-                            Edit Photos
-                        </a>,
-                        <a
-                            target="_blank"
-                            className={classes.dropdownLink}
-                        >
-                            Edit Contact Information
+                            Login
                         </a>
+                        ,
+                        <a
+                            target="_blank"
+                            className={classes.dropdownLink}
+                            href='/vetLogin'
+                        >
+                            Sign-in
+                        </a>,
+                        <a
+                            target="_blank"
+                            className={classes.dropdownLink}
+                        >
+                            Contact Televet
+                        </a>
+                        // ,
+                        // <a
+                        //     target="_blank"
+                        //     className={classes.dropdownLink}
+                        // >
+                        //     Edit Photos
+                        // </a>,
+                        // <a
+                        //     target="_blank"
+                        //     className={classes.dropdownLink}
+                        // >
+                        //     Edit Contact Information
+                        // </a>
                     ]}
                 />
             </ListItem>
