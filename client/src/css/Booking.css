@@ -215,8 +215,9 @@ img {
 
 .cardFlip {
     background-color: transparent;
-    /*width: 300px;*/
-    /*height: 300px;*/
+    width: 400px;
+    height: 400px;
+    padding: 10px 24px; /* Some padding */
 }
 
 .timeMenu button{
@@ -229,6 +230,7 @@ img {
     display: block; /* Make the buttons appear below each other */
     align-items: center;
     align-content: center;
+    text-align: center;
 }
 
 .timeMenu button:not(:last-child) {

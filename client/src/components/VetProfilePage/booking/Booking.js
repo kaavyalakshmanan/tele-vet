@@ -2,6 +2,7 @@ import ReactCardFlip from 'react-card-flip';
 import DateFnsUtils from "@date-io/date-fns";
 import {DatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import React from "react";
+import "../../../css/Booking.css"
 
 class Booking extends React.Component {
     constructor(props) {
@@ -9,7 +10,7 @@ class Booking extends React.Component {
         this.state = {
             isFlipped: false,
             selectedDate: "",
-            selectedWeekday: [["12:00","13:00","14:00"], ["17:00","18:00","19:00"], ["10:00","12:00","17:00"], ["12:00","13:00","14:00"], ["12:00","13:00","14:00"], ["12:00","13:00","14:00"], ["No appointments Sunday"]]
+            selectedWeekday: ["12:00","13:00","14:00"]
             // mon: props.key1.monday,
             // tue: props.week.tuesday,
             // wed: props.week.wednesday,
@@ -26,28 +27,28 @@ class Booking extends React.Component {
         // e.preventDefault();
         this.setState(prevState => ({isFlipped: !prevState.isFlipped}));
         this.setState({selectedDate: e})
-    //     if ((String(e).substring(0, 3)) === "Mon") {
-    //         this.setState({selectedWeekday: this.props.key1[1]})
-    //     }
-    //     if ((String(e).substring(0, 3)) === "Tue") {
-    //         this.setState({selectedWeekday: this.props.key1[2]})
-    //     }
-    //     if ((String(e).substring(0, 3)) === "Wed") {
-    //         this.setState({selectedWeekday: this.props.key1[3]})
-    //     }
-    //     if ((String(e).substring(0, 3)) === "Thu") {
-    //         this.setState({selectedWeekday: this.props.key1[4]})
-    //     }
-    //     if ((String(e).substring(0, 3)) === "Fri") {
-    //         this.setState({selectedWeekday: this.props.key1[5]})
-    //     }
-    //     if ((String(e).substring(0, 3)) === "Sat") {
-    //         this.setState({selectedWeekday: this.props.key1[6]})
-    //     }
-    //     if ((String(e).substring(0, 3)) === "Sun") {
-    //         this.setState({selectedWeekday: this.props.key1[7]})
-    //     }
-    //     console.log(this.props.key1)
+        // if ((String(e).substring(0, 3)) === "Mon") {
+        //     this.setState({selectedWeekday: this.props.key1[1]})
+        // }
+        // if ((String(e).substring(0, 3)) === "Tue") {
+        //     this.setState({selectedWeekday: this.props.key1[2]})
+        // }
+        // if ((String(e).substring(0, 3)) === "Wed") {
+        //     this.setState({selectedWeekday: this.props.key1[3]})
+        // }
+        // if ((String(e).substring(0, 3)) === "Thu") {
+        //     this.setState({selectedWeekday: this.props.key1[4]})
+        // }
+        // if ((String(e).substring(0, 3)) === "Fri") {
+        //     this.setState({selectedWeekday: this.props.key1[5]})
+        // }
+        // if ((String(e).substring(0, 3)) === "Sat") {
+        //     this.setState({selectedWeekday: this.props.key1[6]})
+        // }
+        // if ((String(e).substring(0, 3)) === "Sun") {
+        //     this.setState({selectedWeekday: this.props.key1[7]})
+        // }
+        // console.log(this.props.key1)
     }
 
     handleTimeSelection(e, item) {
@@ -88,7 +89,6 @@ class Booking extends React.Component {
                     </div>
                 </div>
             </ReactCardFlip>
-
         )
     }
 }
