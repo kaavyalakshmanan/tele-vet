@@ -25,6 +25,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import ReactCardFlip from "react-card-flip";
 import Header from "./Header/Header";
 import HeaderLinks from "./Header/HeaderLinks";
+import Booking from "./booking/Booking";
 
 const useStyles = makeStyles(styles);
 
@@ -135,31 +136,32 @@ export default function VetProfilePage(vet) {
                                             tabIcon: EventIcon,
                                             tabContent: (
                                                 <GridContainer justify="center">
-                                                    <ReactCardFlip isFlipped={flipped} flipDirection="horizontal">
-                                                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                                            <DatePicker style={{textAlign: 'center'}}
-                                                                        autoOk
-                                                                        variant="static"
-                                                                        openTo="date"
-                                                                        value={date}
-                                                                        onChange={(date) => {
-                                                                            changeDate(date);
-                                                                            setFlipped(true)
-                                                                        }}
-                                                            />
-                                                            <Button className={classes.formButton} hidden={flipped} onClick={() => setFlipped(!flipped)}>{appointmentButtonText}</Button>
-                                                        </MuiPickersUtilsProvider>
-                                                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                                            <TimePicker
-                                                                autoOk
-                                                                variant="static"
-                                                                openTo="hours"
-                                                                value={date}
-                                                                onChange={changeDate}
-                                                            />
-                                                            <Button className={classes.formButton} hidden={!flipped} onClick={() => setFlipped(!flipped)}>{appointmentButtonText}</Button>
-                                                        </MuiPickersUtilsProvider>
-                                                    </ReactCardFlip>
+                                                    <Booking/>
+                                                    {/*<ReactCardFlip isFlipped={flipped} flipDirection="horizontal">*/}
+                                                    {/*    <MuiPickersUtilsProvider utils={DateFnsUtils}>*/}
+                                                    {/*        <DatePicker style={{textAlign: 'center'}}*/}
+                                                    {/*                    autoOk*/}
+                                                    {/*                    variant="static"*/}
+                                                    {/*                    openTo="date"*/}
+                                                    {/*                    value={date}*/}
+                                                    {/*                    onChange={(date) => {*/}
+                                                    {/*                        changeDate(date);*/}
+                                                    {/*                        setFlipped(true)*/}
+                                                    {/*                    }}*/}
+                                                    {/*        />*/}
+                                                    {/*        <Button className={classes.formButton} hidden={flipped} onClick={() => setFlipped(!flipped)}>{appointmentButtonText}</Button>*/}
+                                                    {/*    </MuiPickersUtilsProvider>*/}
+                                                    {/*    <MuiPickersUtilsProvider utils={DateFnsUtils}>*/}
+                                                    {/*        <TimePicker*/}
+                                                    {/*            autoOk*/}
+                                                    {/*            variant="static"*/}
+                                                    {/*            openTo="hours"*/}
+                                                    {/*            value={date}*/}
+                                                    {/*            onChange={changeDate}*/}
+                                                    {/*        />*/}
+                                                    {/*        <Button className={classes.formButton} hidden={!flipped} onClick={() => setFlipped(!flipped)}>{appointmentButtonText}</Button>*/}
+                                                    {/*    </MuiPickersUtilsProvider>*/}
+                                                    {/*</ReactCardFlip>*/}
                                                 </GridContainer>
                                             )
                                         },
