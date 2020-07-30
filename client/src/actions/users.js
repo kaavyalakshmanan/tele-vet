@@ -1,7 +1,8 @@
 
 import axios from 'axios';
 import {useDispatch} from "react-redux";
-const API_BASE_URL = '/users';
+const API_BASE_URL = 'http://localhost:9000/users'
+//'/users';
 
 
 export const receiveUser = user => {
