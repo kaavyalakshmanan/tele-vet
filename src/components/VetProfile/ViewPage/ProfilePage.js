@@ -53,7 +53,7 @@ class ProfilePage extends React.Component {
     // and displays the teaser cards created by Amy, then passes to this component as a prop on user onClick
     componentDidMount() {
         // const id = "5f07b082acd85550aa1b19a9"
-        const id = "5f109bf455e8e827aa4ec530"
+        const id = "5f221d2c5d8cf84f1ae5a5b2"
         axios.get("http://localhost:9000/vets/id/" + id)
             .then(response => {
                 this.setState(
@@ -81,18 +81,16 @@ class ProfilePage extends React.Component {
                 flexGrow: 1,
                 alignItems: "center",
                 alignContent: "center"}}>
-                <Grid container spacing={3}>
+                <Grid container spacing={3} style={{textAlign: "center"}}>
                     <Grid item xs={12}>
                         <CarouselSection/>
                     </Grid>
-                    <Grid container spacing={1} xs={4}>
+                    <Grid container spacing={2} xs={4}>
                         <Grid item xs={12}>
                             <Description/>
                         </Grid>
-                        <Grid item xs={12} >
-                              <div style={{alignItems: "right"}}>
+                        <Grid item xs={12}>
                             <h5>Schedule your Appointment!</h5>
-                              </div>
                         </Grid>
                         <Grid item xs={12}>
                             <Booking
