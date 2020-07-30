@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-const WelcomeImage = "./welcome-back.jpg";
+// const WelcomeImage = "./welcome-back.jpg";
 
 function Copyright() {
   return (
@@ -32,7 +32,8 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: WelcomeImage,
+    backgroundImage: 'url(https://memegenerator.net/img/instances/31232921.jpg)',
+    // WelcomeImage,
         // 'url(http://bestfriendsvethospital.com/columbus_petvet/wp-content/uploads/2020/03/141479838_s.jpg)',
     backgroundRepeat: 'no-repeat',
     backgroundColor:
