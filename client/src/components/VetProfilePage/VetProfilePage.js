@@ -137,31 +137,6 @@ export default function VetProfilePage(vet) {
                                             tabContent: (
                                                 <GridContainer justify="center">
                                                     <Booking/>
-                                                    {/*<ReactCardFlip isFlipped={flipped} flipDirection="horizontal">*/}
-                                                    {/*    <MuiPickersUtilsProvider utils={DateFnsUtils}>*/}
-                                                    {/*        <DatePicker style={{textAlign: 'center'}}*/}
-                                                    {/*                    autoOk*/}
-                                                    {/*                    variant="static"*/}
-                                                    {/*                    openTo="date"*/}
-                                                    {/*                    value={date}*/}
-                                                    {/*                    onChange={(date) => {*/}
-                                                    {/*                        changeDate(date);*/}
-                                                    {/*                        setFlipped(true)*/}
-                                                    {/*                    }}*/}
-                                                    {/*        />*/}
-                                                    {/*        <Button className={classes.formButton} hidden={flipped} onClick={() => setFlipped(!flipped)}>{appointmentButtonText}</Button>*/}
-                                                    {/*    </MuiPickersUtilsProvider>*/}
-                                                    {/*    <MuiPickersUtilsProvider utils={DateFnsUtils}>*/}
-                                                    {/*        <TimePicker*/}
-                                                    {/*            autoOk*/}
-                                                    {/*            variant="static"*/}
-                                                    {/*            openTo="hours"*/}
-                                                    {/*            value={date}*/}
-                                                    {/*            onChange={changeDate}*/}
-                                                    {/*        />*/}
-                                                    {/*        <Button className={classes.formButton} hidden={!flipped} onClick={() => setFlipped(!flipped)}>{appointmentButtonText}</Button>*/}
-                                                    {/*    </MuiPickersUtilsProvider>*/}
-                                                    {/*</ReactCardFlip>*/}
                                                 </GridContainer>
                                             )
                                         },

@@ -15,8 +15,11 @@ import DocumentList from "./user/documents/DocumentList";
 import VetProfilePage from "./VetProfilePage/VetProfilePage";
 import LandingPage from "./LandingPage/LandingPage";
 import VetFinder from "./maps/VetFinder";
+import VetHome from "./vetHome/VetHome";
+import VetDashboard from "";
 
 const TEST_USER_ID = "5f190ceb302df7267423150e";
+const TEST_VET_ID = "";
 
 
 function App() {
@@ -29,9 +32,11 @@ function App() {
             <Route path="/find/vets" component={VetFinder}/>
             <Route path="/documents" component={DocumentList}/>
             <Route path="/login" component={Home}/>
+            <Route path="/vetLogin" component={VetHome}/>
             <Route path="/about" component={About}/>
             <Route path="/landing" component={LandingPage}/>
-            <Route path="/user/dashboard" render={() => <UserDashboard id={TEST_USER_ID}/>}/>
+            <Route path="/user/dashboard" render={() => <UserDashboard petId={TEST_USER_ID}/>}/>
+            <Route path="/vet/dashboard" render={() => <VetDashboard vetId={TEST_VET_ID}/>}/>
             {/*<Route path="/vet-dashboard/dashboard" component={VetDashboard}/>*/}
             {/* <Route path="/vet-dashboard/profile/VetProfilePage" component={VetProfilePage}/> */}
             {/*<Route path="/vet/dashboard/inbox" component={VetDashboardInbox}/>*/}

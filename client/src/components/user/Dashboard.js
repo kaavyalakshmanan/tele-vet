@@ -34,7 +34,7 @@ const iconMap = {
     'Photo Gallery': <PhotoCameraIcon color={ 'inherit' }/>,
 }
 
-export default function UserDashboard({id}) {
+export default function UserDashboard({petId}) {
     const [currentView, setView] = React.useState('Photo Gallery');
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
@@ -44,7 +44,7 @@ export default function UserDashboard({id}) {
     }
 
     useEffect(() => {
-        dispatch(loginUser(id));
+        dispatch(loginUser(petId));
     }, [])
 
     const renderView = () => viewMap[currentView];
