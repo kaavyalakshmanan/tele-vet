@@ -2,6 +2,13 @@ import axios from 'axios';
 const DEV_URL = 'http://localhost:9000';
 const API_BASE_URL = (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') ?  DEV_URL + '/vets' : '/vets'
 
+export const receiveVet = vet => {
+    return {
+        type: 'RECEIVE_VET',
+        vet: vet
+    }
+}
+
 export const updateVetList = vetList => {
     return {
         type: 'UPDATE_VET_LIST',
@@ -14,6 +21,19 @@ export const fetchVets = () => {
         return axios.get(API_BASE_URL + "/profiles/all")
             .then(response => {
                 dispatch(updateVetList(response.data));
+            })
+            .catch(err => {
+                console.error(err);
+                alert(err);
+            });
+    }
+}
+
+export const getVetById = id => {
+    return dispatch => {
+        return axios.get(API_BASE_URL + '/id/' + id)
+            .then(response => {
+                dispatch(receiveVet(response.data));
             })
             .catch(err => {
                 console.error(err);

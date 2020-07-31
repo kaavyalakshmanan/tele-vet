@@ -22,8 +22,54 @@ import styles from "../../../assets/jss/material-kit-react/components/headerLink
 
 const useStyles = makeStyles(styles);
 
-export default function HeaderLinks(props) {
+export default function HeaderLinks({auth, id}) {
     const classes = useStyles();
+    console.log("ID=");
+    console.log(id);
+    console.log('AUTH=');
+    console.log(auth);
+    let dropdownList = auth ?
+        [
+            <a
+                target="_blank"
+                className={classes.dropdownLink}
+            >
+                Upload Profile Picture
+            </a>,
+            <a
+                target="_blank"
+                className={classes.dropdownLink}
+            >
+                Edit Photos
+            </a>,
+            <a
+                target="_blank"
+                className={classes.dropdownLink}
+            >
+                Edit Contact Information
+            </a>
+        ] : [
+            <a
+                target="_blank"
+                className={classes.dropdownLink}
+                >
+                Review This Vet
+            </a>,
+            <a
+                target="_blank"
+                className={classes.dropdownLink}
+                href={'/login/vet' + '?id=' + id}
+            >
+                Login
+            </a>,
+            <a
+                target="_blank"
+                className={classes.dropdownLink}
+            >
+                Contact Televet to Sign Up
+            </a>
+        ]
+
     return (
         <List className={classes.list}>
             <ListItem className={classes.listItem}>
@@ -35,45 +81,7 @@ export default function HeaderLinks(props) {
                         color: "transparent"
                     }}
                     buttonIcon={Apps}
-                    dropdownList={[
-                        // <Link to="/" className={classes.dropdownLink}>
-                        //     Log Out
-                        // </Link>,
-                        <a
-                            target="_blank"
-                            className={classes.dropdownLink}
-                            href='/vetLogin'
-                        >
-                            Login
-                        </a>
-                        ,
-                        <a
-                            target="_blank"
-                            className={classes.dropdownLink}
-                            href='/vetLogin'
-                        >
-                            Sign-in
-                        </a>,
-                        <a
-                            target="_blank"
-                            className={classes.dropdownLink}
-                        >
-                            Contact Televet
-                        </a>
-                        // ,
-                        // <a
-                        //     target="_blank"
-                        //     className={classes.dropdownLink}
-                        // >
-                        //     Edit Photos
-                        // </a>,
-                        // <a
-                        //     target="_blank"
-                        //     className={classes.dropdownLink}
-                        // >
-                        //     Edit Contact Information
-                        // </a>
-                    ]}
+                    dropdownList={dropdownList}
                 />
             </ListItem>
             <ListItem className={classes.listItem}>

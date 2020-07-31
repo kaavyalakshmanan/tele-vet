@@ -12,19 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        TeleVet
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import {getURLParams} from "../../utils/utils";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -57,8 +45,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignInSide() {
+export default function SignIn({type}) {
   const classes = useStyles();
+  let targetDashboard = type === 'user' ? '/user/dashboard' : '/vet/dashboard';
+  const params = getURLParams(window.location.href);
+  if (params.id) {
+    targetDashboard += ('?id=' + params.id);
+  }
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -105,7 +98,7 @@ export default function SignInSide() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              href="/user/dashboard"
+              href={targetDashboard}
             >
               Sign In
             </Button>
@@ -121,21 +114,8 @@ export default function SignInSide() {
                 </Link>
               </Grid>
             </Grid>
-
-            <Grid container>
-              <Grid item xs>
-                <Link href="" variant="body2">
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="VetSignUp" variant="body2">
-                  {"Or Sign Up as a Vet"}
-                </Link>
-              </Grid>
-            </Grid>
             
             <Box mt={5}>
-              <Copyright />
             </Box>
           </form>
         </div>

@@ -102,7 +102,7 @@ export default function VetFinder() {
     }
 
     if (vetProfileView) {
-        return (<VetProfilePage vet={vetProfileView}/>);
+        return (<VetProfilePage vet={vetProfileView} auth={false}/>);
     } else {
         return (
             <div className={classes.root}>

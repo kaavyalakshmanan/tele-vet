@@ -42,7 +42,7 @@ class UserDashboard extends Component {
 
     render() {
         this.props.hideNavigation(true);
-        // FIXME: Change colors to match home screen
+        // FIXME: Change colors to match LogIn screen
         return (
             <div>
                 <NavBar

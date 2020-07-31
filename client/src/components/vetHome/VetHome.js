@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-// const WelcomeImage = "./welcome-back.jpg";
+// const WelcomeImage = "./vet.jpg";
 
 function Copyright() {
   return (

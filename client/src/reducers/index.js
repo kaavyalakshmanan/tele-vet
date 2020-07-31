@@ -15,6 +15,24 @@ const initialUser = {
     "documents": []
 }
 
+const initialLoggedInVet = {
+    "_id": 0,
+    "coverPhoto":'',
+    "username":'',
+    "firstname":'',
+    "lastname":'',
+    "description":'',
+    "email":'',
+    "businessName":'',
+    "profilePicture":'',
+    "pictures":[],
+    "reviews":[],
+    "rating": 0,
+    "facebook":'',
+    "twitter":'',
+    "geometry":{}
+}
+
 const initialAppointments = {
     apptList: [
         {
@@ -256,6 +274,13 @@ const vetListReducer = (vetList = [], action) => {
     return vetList;
 }
 
+const loggedInVetReducer = (vet = initialLoggedInVet, action) => {
+    if (action.type === 'RECEIVE_VET') {
+        return action.vet;
+    }
+    return vet;
+}
+
 export default combineReducers({
     user: userReducer,
     appointmentData: appointmentReducer,
@@ -266,5 +291,6 @@ export default combineReducers({
     inbox: inboxReducer,
     contacts: contactReducer,
     profiles: profileReducer,
-    vetList: vetListReducer
+    vetList: vetListReducer,
+    loggedInVet: loggedInVetReducer
 });

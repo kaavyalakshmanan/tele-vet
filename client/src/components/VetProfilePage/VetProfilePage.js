@@ -5,8 +5,6 @@ import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 import Camera from "@material-ui/icons/Camera";
-import Palette from "@material-ui/icons/Palette";
-import Favorite from "@material-ui/icons/Favorite";
 import EventIcon from "@material-ui/icons/Event";
 import MailIcon from "@material-ui/icons/Mail";
 
@@ -19,52 +17,43 @@ import NavPills from "../material-kit/NavPills/NavPills.js";
 import Parallax from "../material-kit/Parallax/Parallax.js";
 
 import styles from "../../assets/jss/material-kit-react/views/profilePage.js";
-import {DatePicker, TimePicker} from "@material-ui/pickers";
-import {MuiPickersUtilsProvider} from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
-import ReactCardFlip from "react-card-flip";
 import Header from "./Header/Header";
 import HeaderLinks from "./Header/HeaderLinks";
 import Booking from "./booking/Booking";
+import {getVetById, loginUser} from "../../actions";
+import {useDispatch, useSelector} from "react-redux";
 
 const useStyles = makeStyles(styles);
 
-export default function VetProfilePage(vet) {
+export default function VetProfilePage({vet, auth, id}) {
     const classes = useStyles();
+    const loggedInVet = useSelector(state => state.loggedInVet);
+    const dispatch = useDispatch();
     const imageClasses = classNames(
         classes.imgRaised,
         classes.imgRoundedCircle,
         classes.imgFluid
     );
-    const [flipped, setFlipped] = useState(false);
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
-    const [date, changeDate] = useState(new Date());
-    const appointmentButtonText = flipped ? "Save Time" : "Request " + date;
-    const currentVet = vet.vet;
-    //const header = <Header
-    //        color="transparent"
-    //        brand="Tele Vet"
-    //        rightLinks={<HeaderLinks />}
-    //        fixed
-    //        changeColorOnScroll={{
-    //            height: 200,
-    //            color: "white"
-    //        }}
-    //        {...rest}
-    //    />
-    //}
+    useEffect(() => {
+        if (auth && id) {
+            dispatch(getVetById(id));
+        }
+    }, [])
+    const currentVet = vet ? vet : loggedInVet;
+    console.log(currentVet);
+
     return (
         <div>
             <Header
                 color="transparent"
                 brand="Tele Vet"
-                rightLinks={<HeaderLinks />}
+                rightLinks={<HeaderLinks auth={auth} id = {currentVet._id ? currentVet._id : id}/>}
                 fixed
                 changeColorOnScroll={{
                     height: 200,
                     color: "white"
-                }}
-            />
+                }}/>
             <Parallax small filter image={ currentVet.coverPhoto } />
             <div className={classNames(classes.main, classes.mainRaised)}>
                 <div>
