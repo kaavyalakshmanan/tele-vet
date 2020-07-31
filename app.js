@@ -67,7 +67,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// Serve static assets if we are in production
+// Serve static third-party-assets-material-ui if we are in production
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
   app.use(express.static('client/build'));

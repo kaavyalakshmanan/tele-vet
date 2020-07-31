@@ -56,7 +56,7 @@ export const fetchUserById = id => {
             })
             .catch(err => {
                 console.error(err);
-                alert("Failed to load user data");
+                alert("Failed to load UserDashboard data");
             });
     }
 }
@@ -72,7 +72,7 @@ export const updateUser = user => {
                 // dispatch(receiveUser(response.data));
             })
             .catch(err => {
-                // FIXME: Notify the user if data did not load correctly
+                // FIXME: Notify the UserDashboard if data did not load correctly
                 console.error(err);
             });
     }

@@ -4,7 +4,7 @@ const initialUser = {
     "isAuthenticated": false,
     "isFetching": true,
     "didInvalidate": true,
-    "email": "user@test.com",
+    "email": "UserDashboard@test.com",
     "username": "testUser",
     "password": "test",
     "profilePicture": "http://localhost:3000/resources/woman.png",
@@ -88,8 +88,8 @@ const initialImages = {
     ]
 }
 
-// TODO: We need to decide how we are going to store messages
-// TODO: Add a timestamp to messages
+// TODO: We need to decide how we are going to store Messages
+// TODO: Add a timestamp to Messages
 const initialContacts = {
     contactList: [
         {

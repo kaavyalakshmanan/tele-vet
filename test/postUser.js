@@ -4,7 +4,7 @@ const initialUser = {
     "isAuthenticated": false,
     "isFetching": false,
     "didInvalidate": false,
-    "email": "user@test.com",
+    "email": "UserDashboard@test.com",
     "username": "testUser",
     "password": "test",
     "profilePicture": "/resources/woman.jpg",

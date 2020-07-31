@@ -10,17 +10,17 @@ import MailIcon from "@material-ui/icons/Mail";
 
 
 // core components
-import Button from "../material-kit/CustomButtons/Button.js";
-import GridContainer from "../material-kit/Grid/GridContainer.js";
-import GridItem from "../material-kit/Grid/GridItem.js";
-import NavPills from "../material-kit/NavPills/NavPills.js";
-import Parallax from "../material-kit/Parallax/Parallax.js";
+import Button from "../../third-party-assets-material-ui/components/CustomButtons/Button.js";
+import GridContainer from "../../third-party-assets-material-ui/components/Grid/GridContainer.js";
+import GridItem from "../../third-party-assets-material-ui/components/Grid/GridItem.js";
+import NavPills from "../../third-party-assets-material-ui/components/NavPills/NavPills.js";
+import Parallax from "../../third-party-assets-material-ui/components/Parallax/Parallax.js";
 
-import styles from "../../assets/jss/material-kit-react/views/profilePage.js";
+import styles from "../../third-party-assets-material-ui/jss/material-kit-react/views/profilePage.js";
 import Header from "./Header/Header";
 import HeaderLinks from "./Header/HeaderLinks";
-import Booking from "./booking/Booking";
-import {getVetById, loginUser} from "../../actions";
+import Booking from "./Booking/Booking";
+import {getVetById} from "../../actions";
 import {useDispatch, useSelector} from "react-redux";
 
 const useStyles = makeStyles(styles);

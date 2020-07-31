@@ -55,7 +55,7 @@ module.exports = mongoose.model("veterenarians", vetModel);
 //     "socialMediaSpare5": "",
 //     "weeklyTimeBlocks": [[""]],
 //     "scheduledAppointments": [""],
-//     "relationships": [{customerId: "", videoLink: "", messages: [""], appointmentReport: [""], appointmentPictures: [{type: 'Buffer'}]},
+//     "relationships": [{customerId: "", videoLink: "", Messages: [""], appointmentReport: [""], appointmentPictures: [{type: 'Buffer'}]},
 //     "sundayOpen": "2014-08-18T08:00:00",
 //     "sundayClose": "2014-08-18T18:00:00",
 //     "mondayOpen": "2014-08-18T08:00:00",

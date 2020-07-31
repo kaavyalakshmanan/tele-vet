@@ -15,10 +15,10 @@ import Tooltip from "@material-ui/core/Tooltip";
 import {Apps, CloudDownload, FeaturedVideo} from "@material-ui/icons";
 
 // core components
-import CustomDropdown from "../../../components/material-kit/CustomDropdown/CustomDropdown.js";
-import Button from "../../../components/material-kit/CustomButtons/Button.js";
+import CustomDropdown from "../../../third-party-assets-material-ui/components/CustomDropdown/CustomDropdown.js";
+import Button from "../../../third-party-assets-material-ui/components/CustomButtons/Button.js";
 
-import styles from "../../../assets/jss/material-kit-react/components/headerLinksStyle.js";
+import styles from "../../../third-party-assets-material-ui/jss/material-kit-react/components/headerLinksStyle.js";
 
 const useStyles = makeStyles(styles);
 

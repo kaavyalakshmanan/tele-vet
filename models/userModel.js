@@ -44,7 +44,7 @@ module.exports = mongoose.model("users", userSchema);
 //     rating: {type: Number},
 // facebook: {type: String},
 // instagram: {type: String},
-// photos: [
+// Photos: [
 //     {
 //         height: {type: Number},
 //         html_attributions: [{type: String}],
@@ -94,5 +94,5 @@ module.exports = mongoose.model("users", userSchema);
 // lastUpdate: {type: Number},
 // images: [],
 //     appointments: [],
-//     messages: [],
-//     documents: []
+//     Messages: [],
+//     Documents: []

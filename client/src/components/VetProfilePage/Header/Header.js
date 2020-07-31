@@ -14,7 +14,7 @@ import Drawer from "@material-ui/core/Drawer";
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu";
 // core components
-import styles from "../../../assets/jss/material-kit-react/components/headerStyle.js";
+import styles from "../../../third-party-assets-material-ui/jss/material-kit-react/components/headerStyle.js";
 
 const useStyles = makeStyles(styles);
 
@@ -128,7 +128,7 @@ Header.propTypes = {
   brand: PropTypes.string,
   fixed: PropTypes.bool,
   absolute: PropTypes.bool,
-  // this will cause the sidebar to change the color from
+  // this will cause the Sidebar to change the color from
   // props.color (see above) to changeColorOnScroll.color
   // when the window.pageYOffset is heigher or equal to
   // changeColorOnScroll.height and then when it is smaller than
