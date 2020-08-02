@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, {useState} from "react";
 import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 // react components for routing our app without refresh
@@ -19,11 +19,13 @@ import CustomDropdown from "../../../third-party-assets-material-ui/components/C
 import Button from "../../../third-party-assets-material-ui/components/CustomButtons/Button.js";
 
 import styles from "../../../third-party-assets-material-ui/jss/material-kit-react/components/headerLinksStyle.js";
+import EditContactInfo from "../Edit/EditContactInfo";
 
 const useStyles = makeStyles(styles);
 
 export default function HeaderLinks({auth, id}) {
     const classes = useStyles();
+    const [ContactInfoPopup, SetContactInfoPopup] = useState(false);
     console.log("ID=");
     console.log(id);
     console.log('AUTH=');
@@ -45,6 +47,8 @@ export default function HeaderLinks({auth, id}) {
             <a
                 target="_blank"
                 className={classes.dropdownLink}
+                // href={'/login/vet' + '?id=' + id}
+                onClick={() => SetContactInfoPopup(true)}
             >
                 Edit Contact Information
             </a>
@@ -83,6 +87,7 @@ export default function HeaderLinks({auth, id}) {
                     buttonIcon={Apps}
                     dropdownList={dropdownList}
                 />
+                <EditContactInfo key0={ContactInfoPopup}/>
             </ListItem>
             <ListItem className={classes.listItem}>
                 <Tooltip
