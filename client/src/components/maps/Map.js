@@ -13,14 +13,17 @@ const positionOptions = {
 
 const positionSuccess = position => {
     CURRENT_LOCATION = [position.coords.latitude, position.coords.longitude]
+    console.log("SUCCESS: ", CURRENT_LOCATION)
 }
 
 const positionError = err => {
     console.warn(`ERROR(${err.code}): ${err.message}`);
     CURRENT_LOCATION = VANCOUVER_COORDINATES;
+    console.log("FAIL: ", CURRENT_LOCATION)
 }
 
 navigator.geolocation.getCurrentPosition(positionSuccess, positionError, positionOptions);
+
 
 const getInfoWindowString = place => `
       <div style="font-size: 16px;">
@@ -84,16 +87,6 @@ const handleApiLoaded = (map, maps, places) => {
 };
 
 function Map({markers}) {
-    //constructor(props) {
-    //    super(props);
-//
-    //    this.state = {
-    //        places: vetData,
-    //    };
-    //}
-
-    //render() {
-    //    const { places } = this.state;
     console.log(".env");
     console.log(process.env)
 
@@ -102,8 +95,8 @@ function Map({markers}) {
             <Fragment>
                 {!isEmpty(markers) && (
                     <GoogleMap
-                        defaultZoom={10}
-                        defaultCenter={VANCOUVER_COORDINATES}
+                        defaultZoom={11}
+                        defaultCenter={CURRENT_LOCATION}
                         bootstrapURLKeys={ {key: 'AIzaSyBREwvARS3lmrahtK3OFrNG2Ev3QUm1Spw'} }
                         yesIWantToUseGoogleMapApiInternals
                         onGoogleApiLoaded={({map, maps}) => handleApiLoaded(map, maps, markers)}
