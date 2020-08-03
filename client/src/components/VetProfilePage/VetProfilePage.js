@@ -20,9 +20,16 @@ import styles from "../../third-party-assets-material-ui/jss/material-kit-react/
 import Header from "./Header/Header";
 import HeaderLinks from "./Header/HeaderLinks";
 import Booking from "./Booking/Booking";
-import {getVetById} from "../../actions";
+import {addVetImageData, getVetById} from "../../actions";
 import {useDispatch, useSelector} from "react-redux";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogActions from "@material-ui/core/DialogActions";
+import Dialog from "@material-ui/core/Dialog";
 
+styles['cardMedia'] = {paddingTop: '56.25%'}
 const useStyles = makeStyles(styles);
 
 export default function VetProfilePage({vet, auth, id}) {
@@ -34,6 +41,9 @@ export default function VetProfilePage({vet, auth, id}) {
         classes.imgRoundedCircle,
         classes.imgFluid
     );
+    const [uploadDialogOpen, setUploadDialogOpen] = React.useState(false);
+    const [photoUploadAction, setPhotoUploadAction] = React.useState(null);
+    const [preview, setPreview] = React.useState(null);
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
     useEffect(() => {
         if (auth && id) {
@@ -43,12 +53,48 @@ export default function VetProfilePage({vet, auth, id}) {
     const currentVet = vet ? vet : loggedInVet;
     console.log(currentVet);
 
+    const handlePreview = (e) => {
+        if (e.target.files) {
+            const reader = new FileReader();
+            reader.addEventListener('load', (event) => {
+                setPreview(event.target.result);
+            });
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    }
+
+    const handleClose = () => {
+        setUploadDialogOpen(false);
+        setPreview(null);
+    };
+
+    const handleSubmit = (e) => {
+        if (preview) {
+            dispatch(addVetImageData(photoUploadAction, preview));
+        }
+        handleClose();
+    }
+
+    const handleAddPhoto = (e) => {
+        setPhotoUploadAction('PICTURE');
+        setUploadDialogOpen(true);
+    }
+
+    const handleAddProfilePicture = (e) => {
+        setPhotoUploadAction('PROFILE_PICTURE');
+        setUploadDialogOpen(true);
+    }
+
     return (
         <div>
             <Header
                 color="transparent"
                 brand="Tele Vet"
-                rightLinks={<HeaderLinks auth={auth} id = {currentVet._id ? currentVet._id : id}/>}
+                rightLinks={<HeaderLinks auth={auth}
+                                         id = {currentVet._id ? currentVet._id : id}
+                                         handleAddPhoto={handleAddPhoto}
+                                         handleAddProfilePicture={handleAddProfilePicture}
+                />}
                 fixed
                 changeColorOnScroll={{
                     height: 200,
@@ -105,7 +151,7 @@ export default function VetProfilePage({vet, auth, id}) {
                                                     </GridItem>
                                                     <GridItem xs={12} sm={12} md={4}>
                                                         {currentVet.pictures.map((imgSrc, index) => {
-                                                            if (index > 2 && index <= 4) {
+                                                            if (index > 2) {
                                                                 return (<img
                                                                     alt="..."
                                                                     src={imgSrc}
@@ -164,6 +210,38 @@ export default function VetProfilePage({vet, auth, id}) {
                     </div>
                 </div>
             </div>
+            <Dialog open={uploadDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">Upload a Photo</DialogTitle>
+                <DialogContent>
+                    <CardMedia
+                        className={ classes.cardMedia }
+                        image={ preview }
+                        title={ 'preview' }
+                    />
+                    <DialogContentText>
+                        Upload a new photo
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleSubmit} color="primary">
+                        Upload
+                    </Button>
+                    <Button color="primary"
+                            variant="contained"
+                            component="label"
+                    >
+                        Browse
+                        <input
+                            type="file"
+                            style={{ display: "none" }}
+                            onChange={ handlePreview }
+                        />
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 }

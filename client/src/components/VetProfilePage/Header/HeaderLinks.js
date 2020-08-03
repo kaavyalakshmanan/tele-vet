@@ -23,7 +23,7 @@ import EditContactInfo from "../Edit/EditContactInfo";
 
 const useStyles = makeStyles(styles);
 
-export default function HeaderLinks({auth, id}) {
+export default function HeaderLinks({auth, id, handleAddProfilePicture, handleAddPhoto}) {
     const classes = useStyles();
     const [ContactInfoPopup, SetContactInfoPopup] = useState(false);
     console.log("ID=");
@@ -35,12 +35,14 @@ export default function HeaderLinks({auth, id}) {
             <a
                 target="_blank"
                 className={classes.dropdownLink}
+                onClick={handleAddProfilePicture}
             >
                 Upload Profile Picture
             </a>,
             <a
                 target="_blank"
                 className={classes.dropdownLink}
+                onClick={handleAddPhoto}
             >
                 Edit Photos
             </a>,
