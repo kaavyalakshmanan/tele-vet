@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import {useDispatch} from "react-redux";
 // const API_BASE_URL = '/users';
@@ -26,6 +25,14 @@ export const invalidateUser = () => {
     }
 }
 
+// New types for registering user
+export const registerUser = user => {
+    return {
+        type: 'REGISTER_SUCCESS',
+        user: user
+    }
+}
+
 export const logoutUser = () => {
     return dispatch => {
         dispatch(invalidateUser());
@@ -36,7 +43,7 @@ export const logoutUser = () => {
 export const loginUser = id => {
     return dispatch => {
         dispatch(requestUser());
-        return axios.get(API_BASE_URL + "/id/" + id)
+        return axios.get(API_BASE_URL + "/auth")
             .then(response => {
                 dispatch(receiveUser(response.data));
             })
@@ -44,6 +51,50 @@ export const loginUser = id => {
                 console.error(err);
                 alert(err);
                 window.location.replace("/");
+            });
+    }
+}
+
+// Register a new user
+// export const register = ({name, username, email, password}) => dispatch => {
+//     // Headers
+//     const config = {
+//         headers: {
+//             'Content-Type': 'application/json'
+//         }
+//     }
+    
+//     // Request body/data that we send
+//     const body = JSON.stringify({name, username, email, password});
+
+//     axios.post('/users', body, config) 
+//         .then(res => dispatch({
+//             type: REGISTER_SUCCESS,
+//             payload: res.data
+//         }))
+//         .catch(err => {
+//             dispatch(returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL'));
+//             dispatch({
+//                 type: REGISTER_FAIL
+//             });
+//         })
+// };
+
+export const register = ({name, username, email, password}) => {
+    return dispatch => {
+        // Headers
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        return axios.post(API_BASE_URL + "/users", config)
+            .then(response => {
+                dispatch(registerUser(response.data));
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Failed to register user data");
             });
     }
 }

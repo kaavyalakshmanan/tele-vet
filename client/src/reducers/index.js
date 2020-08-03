@@ -1,19 +1,26 @@
 import { combineReducers } from 'redux';
 
-const initialUser = {
-    "isAuthenticated": false,
-    "isFetching": true,
-    "didInvalidate": true,
-    "email": "user@test.com",
-    "username": "testUser",
-    "password": "test",
-    "profilePicture": "http://localhost:3000/resources/woman.png",
-    "lastUpdated": "",
-    "images": [],
-    "appointments": [],
-    "messages": [],
-    "documents": []
-}
+// const initialUser = {
+//     "isAuthenticated": false,
+//     "isFetching": true,
+//     "didInvalidate": true,
+//     "email": "user@test.com",
+//     "username": "testUser",
+//     "password": "test",
+//     "profilePicture": "http://localhost:3000/resources/woman.png",
+//     "lastUpdated": "",
+//     "images": [],
+//     "appointments": [],
+//     "messages": [],
+//     "documents": []
+// }
+
+const initialState = {
+    token: localStorage.getItem('token'),
+    isAuthenticated: null,
+    isLoading: false,
+    user: null
+};
 
 const initialAppointments = {
     apptList: [
@@ -142,25 +149,36 @@ const initialProfiles = [{
     saturdayClose: "20h00",
 }];
 
-const userReducer = (user = initialUser, action) => {
+const userReducer = (state = initialState, action) => {
     switch(action.type) {
-        case 'RECEIVE_USER':
-            return Object.assign({}, action.user, {
+        // case 'RECEIVE_USER':
+        //     return Object.assign({}, action.user, {
+        //         isAuthenticated: true,
+        //         lastUpdated: Date.now(),
+        //         isFetching: false,
+        //         didInvalidate: false
+        //     });
+        // case 'REQUEST_USER':
+        //     return Object.assign({}, user, {
+        //         isAuthenticated: true,
+        //         isFetching: true,
+        //         didInvalidate: false
+        //     });
+        // case 'INVALIDATE_USER':
+        //     return initialUser
+        // Added new cases for registration 
+        case 'REGISTER_SUCCESS':
+            // Set to local storage
+            localStorage.setItem('token', action.payload.token);
+            return {
+                ...state,
+                ...action.payload,
                 isAuthenticated: true,
-                lastUpdated: Date.now(),
-                isFetching: false,
-                didInvalidate: false
-            });
-        case 'REQUEST_USER':
-            return Object.assign({}, user, {
-                isAuthenticated: true,
-                isFetching: true,
-                didInvalidate: false
-            });
-        case 'INVALIDATE_USER':
-            return initialUser
+                isLoading: false
+            };
+
         default:
-            return user
+            return state
     }
 }
 
