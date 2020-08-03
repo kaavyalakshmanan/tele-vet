@@ -19,6 +19,7 @@
     "bootstrap": "^4.5.0",
     "classnames": "^2.2.6",
     "components": "^0.1.0",
+    "config": "^3.3.1",
     "cors": "^2.8.5",
     "date-fns": "^2.0.0",
     "devextreme": "^20.1.4",
@@ -65,6 +66,7 @@
     "react-window": "^1.8.5",
     "reactstrap": "^8.5.1",
     "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "remove-node-modules": "^1.7.6",
@@ -79,6 +81,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:9000",
   "eslintConfig": {
     "extends": "react-app"
   },

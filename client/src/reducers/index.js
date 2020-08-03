@@ -1,5 +1,9 @@
 import { combineReducers } from 'redux';
 
+// Authentication
+import authReducer from './authReducer';
+import errorReducer from './errorReducer';
+
 const initialUser = {
     "isAuthenticated": false,
     "isFetching": true,
@@ -266,5 +270,9 @@ export default combineReducers({
     inbox: inboxReducer,
     contacts: contactReducer,
     profiles: profileReducer,
-    vetList: vetListReducer
+    vetList: vetListReducer,
+
+    // Authentication
+    auth: authReducer,
+    error: errorReducer
 });
