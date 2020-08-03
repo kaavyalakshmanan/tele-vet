@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -17,7 +17,7 @@ import {fetchVets} from "../../actions";
 import VetProfilePage from "../VetProfilePage/VetProfilePage";
 
 function TabPanel(props) {
-    const { children, value, index, ...other } = props;
+    const {children, value, index, ...other} = props;
 
     return (
         <div
@@ -91,6 +91,7 @@ export default function VetFinder() {
 
     useEffect(() => {
         dispatch(fetchVets())
+        console.log(vetList)
     }, []);
 
     const handleChange = (event, newValue) => {
@@ -115,27 +116,31 @@ export default function VetFinder() {
                 </AppBar>
                 <TabPanel value={value} index={0}>
                     <Map className={classes.map} markers={vetList}/>
+
                 </TabPanel>
                 <TabPanel value={value} index={1}>
+                    {console.log("here")}
+
                     <Grid container spacing={4}>
                         {vetList.map((vet, index) => (
-                            <Grid item key={index} xs={12} sm={6} md={4}>
-                                <Card className={classes.card} onClick={() => handleClickVet(vet)}>
-                                    <CardMedia
-                                        className={classes.cardMedia}
-                                        image={vet.profilePicture}
-                                        title={vet.name}
-                                    />
-                                    <CardContent className={classes.cardContent}>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                            {vet.name}
-                                        </Typography>
-                                        <Typography>
-                                            {vet.description}
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
+                            console.log(vet)
+                            // <Grid item key={index} xs={12} sm={6} md={4}>
+                            //     <Card className={classes.card} onClick={() => handleClickVet(vet)}>
+                            //         <CardMedia
+                            //             className={classes.cardMedia}
+                            //             image={vet.profilePicture}
+                            //             title={vet.name}
+                            //         />
+                            //         <CardContent className={classes.cardContent}>
+                            //             <Typography gutterBottom variant="h5" component="h2">
+                            //                 {vet.name}
+                            //             </Typography>
+                            //             <Typography>
+                            //                 {vet.description}
+                            //             </Typography>
+                            //         </CardContent>
+                            //     </Card>
+                            // </Grid>
                         ))}
                     </Grid>
                 </TabPanel>
