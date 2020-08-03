@@ -123,24 +123,23 @@ export default function VetFinder() {
 
                     <Grid container spacing={4}>
                         {vetList.map((vet, index) => (
-                            console.log(vet)
-                            // <Grid item key={index} xs={12} sm={6} md={4}>
-                            //     <Card className={classes.card} onClick={() => handleClickVet(vet)}>
-                            //         <CardMedia
-                            //             className={classes.cardMedia}
-                            //             image={vet.profilePicture}
-                            //             title={vet.name}
-                            //         />
-                            //         <CardContent className={classes.cardContent}>
-                            //             <Typography gutterBottom variant="h5" component="h2">
-                            //                 {vet.name}
-                            //             </Typography>
-                            //             <Typography>
-                            //                 {vet.description}
-                            //             </Typography>
-                            //         </CardContent>
-                            //     </Card>
-                            // </Grid>
+                            <Grid item key={index} xs={12} sm={6} md={4}>
+                                <Card className={classes.card} onClick={() => handleClickVet(vet)}>
+                                    <CardMedia
+                                        className={classes.cardMedia}
+                                        image={vet.profilePicture}
+                                        title={vet.name}
+                                    />
+                                    <CardContent className={classes.cardContent}>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            {vet.name}
+                                        </Typography>
+                                        <Typography>
+                                            {vet.description}
+                                        </Typography>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
                         ))}
                     </Grid>
                 </TabPanel>
