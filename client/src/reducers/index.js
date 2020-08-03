@@ -278,6 +278,13 @@ const loggedInVetReducer = (vet = initialLoggedInVet, action) => {
     if (action.type === 'RECEIVE_VET') {
         return action.vet;
     }
+    if (action.type === 'UPDATE_VET_PROFILE_PICTURE') {
+        return Object.assign({}, vet, {profilePicture: action.image});
+    }
+    if (action.type === 'ADD_VET_PHOTO') {
+        let newImageList = vet.pictures.concat(action.image);
+        return Object.assign({}, vet, {pictures: newImageList});
+    }
     return vet;
 }
 

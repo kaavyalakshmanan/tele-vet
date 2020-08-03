@@ -16,6 +16,20 @@ export const updateVetList = vetList => {
     }
 }
 
+export const addVetImageData = (type, image) => {
+    if (type === 'PROFILE_PICTURE') {
+        return {
+            type: 'UPDATE_VET_PROFILE_PICTURE',
+            image: image
+        }
+    } else if (type === 'PICTURE') {
+        return {
+            type: 'ADD_VET_PHOTO',
+            image: image
+        }
+    }
+}
+
 export const fetchVets = () => {
     return dispatch => {
         return axios.get(API_BASE_URL + "/profiles/all")
