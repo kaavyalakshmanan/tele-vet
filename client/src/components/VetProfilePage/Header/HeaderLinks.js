@@ -19,13 +19,11 @@ import CustomDropdown from "../../../third-party-assets-material-ui/components/C
 import Button from "../../../third-party-assets-material-ui/components/CustomButtons/Button.js";
 
 import styles from "../../../third-party-assets-material-ui/jss/material-kit-react/components/headerLinksStyle.js";
-import EditContactInfo from "../Edit/EditContactInfo";
 
 const useStyles = makeStyles(styles);
 
-export default function HeaderLinks({auth, id, handleAddProfilePicture, handleAddPhoto}) {
+export default function HeaderLinks({auth, id, handleAddProfilePicture, handleAddPhoto, handleAvailabilities}) {
     const classes = useStyles();
-    const [ContactInfoPopup, SetContactInfoPopup] = useState(false);
     console.log("ID=");
     console.log(id);
     console.log('AUTH=');
@@ -49,10 +47,9 @@ export default function HeaderLinks({auth, id, handleAddProfilePicture, handleAd
             <a
                 target="_blank"
                 className={classes.dropdownLink}
-                // href={'/login/vet' + '?id=' + id}
-                onClick={() => SetContactInfoPopup(true)}
+                onClick={handleAvailabilities}
             >
-                Edit Contact Information
+                Edit Appointment Availabilities
             </a>
         ] : [
             <a
@@ -89,7 +86,6 @@ export default function HeaderLinks({auth, id, handleAddProfilePicture, handleAd
                     buttonIcon={Apps}
                     dropdownList={dropdownList}
                 />
-                <EditContactInfo key0={ContactInfoPopup}/>
             </ListItem>
             <ListItem className={classes.listItem}>
                 <Tooltip
