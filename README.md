@@ -104,8 +104,8 @@ Pet owners can retrieve message log, prescriptions and uploaded images. Vets can
 
 ## Prototypes
 
-![initialSketches](public/resources/prototypes/sketches.jpg)
-![initialSketches2](public/resources/prototypes/sketches2.jpg)
+![initialSketches](client/public/resources/prototypes/sketches.jpg)
+![initialSketches2](client/public/resources/prototypes/sketches2.jpg)
 
 ## Available Scripts
 

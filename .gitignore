@@ -23,7 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # without a database we need local .env versions to demo uploading
-public/resources/Camping.jpg
-public/resources/Canoe.jpg
-public/resources/Chugach.jpg
-public/resources/Climbing.JPG
+client/public/resources/Camping.jpg
+client/public/resources/Canoe.jpg
+client/public/resources/Chugach.jpg
+client/public/resources/Climbing.JPG
