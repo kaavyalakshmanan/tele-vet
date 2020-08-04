@@ -72,7 +72,7 @@ router.post('/', (req, res) => {
    @desc   Put request to update an existing user
    @access Private */
    
-router.put('/user', auth, (req, res) => {
+   router.put('/user', auth, (req, res) => {
     User.findById(req.user.id, (err, updatedUser) => {
         if (!updatedUser) res.status(404).json({msg: "User not found"})
         else {
