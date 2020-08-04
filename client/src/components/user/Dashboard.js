@@ -13,8 +13,10 @@ import Messages from "./messages/Messages";
 import Album from "./photos/Album";
 import VideoConference from "../videoConference/VideoConference"
 import DocumentList from "./documents/DocumentList";
-import LoadingOverlay from 'react-loading-overlay';
 import VetFinder from "../maps/VetFinder";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import LinearProgress from '@material-ui/core/LinearProgress';
+import {makeStyles} from "@material-ui/core/styles";
 
 const viewMap = {
     'Messages': <Messages/>,
@@ -35,7 +37,17 @@ const iconMap = {
     'Photo Gallery': <PhotoCameraIcon color={ 'inherit' }/>,
 }
 
+const useStyles = makeStyles((theme) => ({
+    spinner: {
+        width: '100%',
+        '& > * + *': {
+            marginTop: theme.spacing(2),
+        },
+    },
+}));
+
 export default function UserDashboard({userAuthData}) {
+    const classes = useStyles();
     const [currentView, setView] = React.useState('Photo Gallery');
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
@@ -48,14 +60,17 @@ export default function UserDashboard({userAuthData}) {
         return userAuthData.then(userAuthData => {
             dispatch(loginUser(userAuthData));
         });
-        //const urlParams = new URLSearchParams(window.location.search);
-        //const id = urlParams.get('id');
-        //console.log(id);
-        //await dispatch(loginUser(initialUser));
     }, []);
 
     const renderView = () => viewMap[currentView];
 
+    if (!user.isAuthenticated || user.isFetching) {
+        return (
+            <div className={classes.spinner}>
+                <LinearProgress />
+            </div>
+        )
+    }
     return (
         <div>
             <NavBar

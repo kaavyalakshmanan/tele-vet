@@ -5,14 +5,12 @@ import Navigation from "./Navigation";
 import Home from "./home/Home";
 import About from "./About";
 import UserDashboard from "./user/Dashboard";
-// import VetDashboard from "./vet-dashboard/Dashboard";
 import VetSignUp from "./home/VetSignUp";
 import PetSignUp from "./home/PetSignUp";
 import Error from "./Error"
 import AppointmentsView from './Appointments/AppointmentsView'
 import EditPage from "./VetProfile/EditPage/EditPage";
 import DocumentList from "./user/documents/DocumentList";
-//import VetDashboardInbox from "./vet-dashboard/messages/Inbox"
 import VetProfilePage from "./userUpgrade/VetProfilePage";
 import LandingPage from "./LandingPage/LandingPage";
 import VetFinder from "./maps/VetFinder";
@@ -70,16 +68,5 @@ const handleLogin = () => {
       }
   />)
 }
-//      />)
-//  return axios.post(API_BASE_URL + '/auth', {
-//    password: password,
-//    username: username
-//  }).then(response => {
-//    console.log(response.data.user);
-//    return <UserDashboard initialUser={response.data.user}/>;
-//  }).catch(err => {
-//    window.location.replace('/start?loginFailed=true');
-//  });
-//}
 
 export default App;
