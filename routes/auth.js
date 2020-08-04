@@ -5,7 +5,7 @@ const config = require('config');
 const jwt = require('jsonwebtoken');
 const auth = require('../middleware/auth');
 
-// AUTHENTICATED EXISTING USER
+// LOGGING IN EXISTING USER
 
 // User Model
 const User = require("../models/userModel");
@@ -19,6 +19,7 @@ router.post('/', (req, res) => {
 
     // Simple validation
     if (!username || !password) {
+        // Bad request, user did not send correct info
         return res.status(400).json({msg: 'Please enter all fields'});
     }
 
@@ -45,8 +46,8 @@ router.post('/', (req, res) => {
                                 user: {
                                     id: user.id,
                                     name: user.name,
-                                    username: user.username,
-                                    email: user.email
+                                    email: user.email,
+                                    username: user.username
                                 }
                             })
                         }
