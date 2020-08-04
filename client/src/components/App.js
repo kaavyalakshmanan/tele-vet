@@ -31,6 +31,7 @@ function App() {
             <Route path="/about" component={About}/>
             <Route path="/landing" component={LandingPage}/>
             <Route path="/user/dashboard" render={() => <UserDashboard/>}/>
+            {/* <Route path="/user/dashboard" render={() => <UserDashboard id={TEST_USER_ID}/>}/> */}
             {/*<Route path="/vet-dashboard/dashboard" component={VetDashboard}/>*/}
             {/* <Route path="/vet-dashboard/profile/VetProfilePage" component={VetProfilePage}/> */}
             {/*<Route path="/vet/dashboard/inbox" component={VetDashboardInbox}/>*/}

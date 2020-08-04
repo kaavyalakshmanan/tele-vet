@@ -177,6 +177,17 @@ const userReducer = (state = initialState, action) => {
                 isLoading: false
             };
 
+        case 'REGISTER_FAIL':
+            // Set to local storage
+            localStorage.removeItem('token');
+            return {
+                ...state,
+                token: null,
+                user: null,
+                isAuthenticated: false,
+                isLoading: false
+            };
+
         default:
             return state
     }

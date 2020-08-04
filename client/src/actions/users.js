@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {useDispatch} from "react-redux";
+// import {useDispatch} from "react-redux";
 // const API_BASE_URL = '/users';
 
 const DEV_URL = 'https://localhost:9000';
@@ -34,6 +34,12 @@ export const registerUser = user => {
     }
 }
 
+export const registerFail = () => {
+    return {
+        type: 'REGISTER_FAIL'
+    }
+}
+
 export const logoutUser = () => {
     return dispatch => {
         dispatch(invalidateUser());
@@ -41,42 +47,99 @@ export const logoutUser = () => {
     }
 }
 
-export const loginUser = id => {
+// export const loginUser = id => {
+//     return dispatch => {
+//         dispatch(requestUser());
+//         return axios.get(API_BASE_URL + "/auth")
+//             .then(response => {
+//                 dispatch(receiveUser(response.data));
+//             })
+//             .catch(err => {
+//                 console.error(err);
+//                 alert(err);
+//                 window.location.replace("/");
+//             });
+//     }
+// }
+
+export const loginUser = user => {
     return dispatch => {
+        console.log(user);
         dispatch(requestUser());
-        return axios.get(API_BASE_URL + "/auth")
+        return axios.get(API_BASE_URL + "auth/user", tokenConfig(user))
             .then(response => {
-                dispatch(receiveUser(response.data));
+                console.log('recieved user');
+                const newUser = Object.assign({}, response.data, {authData: user});
+                // dispatch(receiveUser(newUser));
+
+                // post request to register user?
+                return axios.post(API_BASE_URL + "/auth", tokenConfig(user))
+                    .then(response => {
+                        console.log("user about to login");
+                        dispatch(receiveUser(newUser));
+                    })
             })
             .catch(err => {
+                console.log('error');
                 console.error(err);
                 alert(err);
-                window.location.replace("/");
             });
     }
 }
 
+// setup config headers and token
+const tokenConfig = user => {
+    // Get token from local storage
+    const token = user.token;
+
+    // Headers
+    const config = {
+        headers: {
+            "Content-type": "application/json"
+        }
+    }
+
+    if (token) {
+        config.headers['x-auth-token'] = token;
+    }
+
+    return config;
+}
+
+const config1 = {
+    "mongoURI": "mongodb+srv://televet:cpsc436i@televet-u0yv3.mongodb.net/televet?retryWrites=true&w=majority",
+    "jwtSecret": "ws_myJwtSecret"
+}
+
 export const register = ({name, username, email, password}) => {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Accept', 'application/json');
-    // headers.append('Authorization', 'Basic ' + base64.encode(username + ":" +  password));
-    headers.append('Origin','http://localhost:3000');
+    // let headers = new Headers();
+    // headers.append('Content-Type', 'application/json');
+    // headers.append('Accept', 'application/json');
+    // // headers.append('Authorization', 'Basic ' + base64.encode(username + ":" +  password));
+    // headers.append('Origin','http://localhost:3000');
+
+    const newUser = {
+        name: name,
+        username: username,
+        email: email,
+        password: password
+    }
     return dispatch => {
         // Headers
-        // const config = {
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Access-Control-Allow-Origin' : 'http://localhost:3000',
-        //         'Access-Control-Allow-Methods': 'POST',
-        //         'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-        //     }
-        // }
-        return axios.post(API_BASE_URL)
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : 'http://localhost:3000',
+                'Access-Control-Allow-Methods': 'POST',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+            }
+        }
+        return axios.post(API_BASE_URL, config)
             .then(response => {
                 dispatch(registerUser(response.data));
             })
             .catch(err => {
+                dispatch(registerFail())
                 console.log("error is " + err);
                 alert("Failed to register user data");
             });
@@ -84,6 +147,7 @@ export const register = ({name, username, email, password}) => {
 }
 
 // FIXME: Remove if not needed
+// TODO: CHANGE ENDPOINT
 export const fetchUserById = id => {
     return dispatch => {
         dispatch(requestUser());
@@ -98,6 +162,7 @@ export const fetchUserById = id => {
     }
 }
 
+// TODO: CHANGE ENDPOINT
 export const updateUser = user => {
     return dispatch => {
         dispatch(requestUser());
@@ -114,6 +179,7 @@ export const updateUser = user => {
             });
     }
 }
+
 
 export const addData = (type, data, user) => {
     const newUser = Object.assign({}, user);
