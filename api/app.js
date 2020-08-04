@@ -2,24 +2,19 @@ const express = require('express');
 const mongoose = require("mongoose");
 const path = require('path');
 const config = require('config');
-
-const app = express();
-
-// Bodyparser Middleware
-app.use(express.json());
-
-// DB Config
-const db = config.get('mongoURI');
-
-
-
 const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require("cors");
+const vetsRouter = require('./routes/vets');
+const usersRouter = require('./routes/users');
+const authRouter = require('./routes/auth');
 
-// const bodyParser = require('body-parser')
-// const CONNECTION_STRING = "mongodb+srv://televet:cpsc436i@televet-u0yv3.mongodb.net/televet?retryWrites=true&w=majority";
+// initialize express app
+const app = express();
+
+// initialize mongoDB config
+const db = config.get('mongoURI');
 
 // Adding mongoose
 mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
@@ -32,13 +27,6 @@ connection.once("open", function () {
   console.log("MongoDB database connection established successfully :-D");
 })
 
-
-const vetsRouter = require('./routes/vets');
-// const usersRouter = require('./routes/users')
-
-
-
-
 // Adding cors
 app.use(cors());
 
@@ -47,7 +35,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
-//app.use(express.json());
+// Increase the max payload size
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb'}));
 app.use(express.urlencoded({ extended: false }));
@@ -67,8 +55,8 @@ app.use(function(req, res, next) {
 
 // Use Routes
 app.use('/vets', vetsRouter);
-app.use('/users', require('./routes/users'));
-app.use('/auth', require('./routes/auth'));
+app.use('/users', usersRouter);
+app.use('/auth', authRouter);
 
 
 // catch 404 and forward to error handler
@@ -86,7 +74,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-
 
 module.exports = app;
