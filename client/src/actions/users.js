@@ -2,8 +2,9 @@ import axios from 'axios';
 import {useDispatch} from "react-redux";
 // const API_BASE_URL = '/users';
 
-const DEV_URL = 'http://localhost:9000';
+const DEV_URL = 'https://localhost:9000';
 const API_BASE_URL = (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') ?  DEV_URL + '/users' : '/users'
+const proxyURL = "https://cors-anywhere.herokuapp.com/";
 
 
 export const receiveUser = user => {
@@ -55,45 +56,28 @@ export const loginUser = id => {
     }
 }
 
-// Register a new user
-// export const register = ({name, username, email, password}) => dispatch => {
-//     // Headers
-//     const config = {
-//         headers: {
-//             'Content-Type': 'application/json'
-//         }
-//     }
-    
-//     // Request body/data that we send
-//     const body = JSON.stringify({name, username, email, password});
-
-//     axios.post('/users', body, config) 
-//         .then(res => dispatch({
-//             type: REGISTER_SUCCESS,
-//             payload: res.data
-//         }))
-//         .catch(err => {
-//             dispatch(returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL'));
-//             dispatch({
-//                 type: REGISTER_FAIL
-//             });
-//         })
-// };
-
 export const register = ({name, username, email, password}) => {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+    // headers.append('Authorization', 'Basic ' + base64.encode(username + ":" +  password));
+    headers.append('Origin','http://localhost:3000');
     return dispatch => {
         // Headers
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }
-        return axios.post(API_BASE_URL + "/users", config)
+        // const config = {
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Access-Control-Allow-Origin' : 'http://localhost:3000',
+        //         'Access-Control-Allow-Methods': 'POST',
+        //         'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+        //     }
+        // }
+        return axios.post(API_BASE_URL)
             .then(response => {
                 dispatch(registerUser(response.data));
             })
             .catch(err => {
-                console.error(err);
+                console.log("error is " + err);
                 alert("Failed to register user data");
             });
     }

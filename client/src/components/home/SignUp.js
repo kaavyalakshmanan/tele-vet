@@ -32,7 +32,7 @@ class SignUp extends Component {
         // register: PropTypes.func.isRequired,
         // clearErrors: PropTypes.func.isRequired
     
-        // register: PropTypes.func.isRequired
+        register: PropTypes.func.isRequired
     };
     
     componentDidUpdate(prevProps) {
@@ -69,7 +69,7 @@ class SignUp extends Component {
       console.log("new user is")
       console.log(newUser)
 
-      register(newUser);
+      this.props.register(newUser);
   };
     
     
@@ -154,8 +154,8 @@ class SignUp extends Component {
 
 const mapStateToProps = state => ({
     // auth and error coming from root reducer
-    isAuthenticated: state.auth.isAuthenticated,
+    // isAuthenticated: state.auth.isAuthenticated,
     error: state.error
   })
 
-export default SignUp;
+  export default connect(mapStateToProps, { register})(SignUp)
