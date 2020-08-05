@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,6 +14,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {createNewUser} from '../../actions/users';
 import {useDispatch} from "react-redux";
+import Snackbar from "@material-ui/core/Snackbar";
+import Alert from "react-bootstrap/Alert";
 
 function Copyright() {
   return (
@@ -40,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%', 
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -53,6 +55,8 @@ export default function SignUp() {
   const [password, setPassword] = React.useState('');
   const [username, setUsername] = React.useState('');
   const [email, setEmail] = React.useState('');
+  const [registerFailWarning, setRegisterFailWarning] = React.useState(false);
+  const [registerSuccessFlag, setRegisterSuccessFlag] = React.useState(false);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -60,9 +64,17 @@ export default function SignUp() {
     e.preventDefault();
     dispatch(createNewUser(email, username, password));
   }
- 
 
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const registerFailed = urlParams.get('registerFailed');
+    if(registerFailed) {
+      setRegisterFailWarning(true);
+    }
+  });
+ 
   return (
+    <div>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -142,5 +154,17 @@ export default function SignUp() {
         <Copyright />
       </Box>
     </Container>
+
+    <Snackbar open={registerSuccessFlag} autoHideDuration={6000} onClose={() => setRegisterSuccessFlag(false)}>
+    <Alert onClose={() => setRegisterSuccessFlag(false)} severity="success">
+      Registration was successful! Please wait while we redirect you to login page.
+    </Alert>
+    </Snackbar>
+    <Snackbar open={registerFailWarning} autoHideDuration={6000} onClose={() => setRegisterFailWarning(false)}>
+    <Alert onClose={() => setRegisterFailWarning(false)} severity="error">
+      Oops, looks like you're already registered.
+    </Alert>
+    </Snackbar>
+  </div>
   );
 }

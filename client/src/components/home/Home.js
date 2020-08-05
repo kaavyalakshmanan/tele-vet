@@ -3,8 +3,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
@@ -51,12 +49,16 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%', 
     marginTop: theme.spacing(1),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  snackbarStyleViaNestedContent: {
+    backgroundColor: "red",
+    color: "black"
+  }
 }));
 
 export default function SignInSide() {
@@ -68,6 +70,7 @@ export default function SignInSide() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoginSuccessFlag(true);
     window.location.replace(`/login?username=${username}&password=${password}`);
   }
 
@@ -75,6 +78,7 @@ export default function SignInSide() {
     const urlParams = new URLSearchParams(window.location.search);
     const loginFailed = urlParams.get('loginFailed');
     if(loginFailed) {
+      console.log("login has failed")
       setLoginFailWarning(true);
     }
   });
@@ -141,7 +145,6 @@ export default function SignInSide() {
                     </Link>
                   </Grid>
                 </Grid>
-
                 <Box mt={5}>
                   <Copyright />
                 </Box>
@@ -149,16 +152,17 @@ export default function SignInSide() {
             </div>
           </Grid>
         </Grid>
-        <Snackbar open={loginSuccessFlag} autoHideDuration={6000} onClose={() => setLoginSuccessFlag(false)}>
+        <Snackbar open={loginSuccessFlag} autoHideDuration={6000} onClose={() => setLoginSuccessFlag(false)} className={classes.snackbarStyleViaNestedContent}>
           <Alert onClose={() => setLoginSuccessFlag(false)} severity="success">
             User Found! Please wait while we load the dashboard.
           </Alert>
         </Snackbar>
         <Snackbar open={loginFailWarning} autoHideDuration={6000} onClose={() => setLoginFailWarning(false)}>
-          <Alert onClose={() => setLoginFailWarning(false)} severity="error">
+          <Alert severity="error" onClose={() => setLoginFailWarning(false)} severity="error">
             Incorrect username or password.
           </Alert>
         </Snackbar>
+        <Alert severity="error">Incorrect username or password.</Alert>
       </div>
   );
 }
