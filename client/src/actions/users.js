@@ -21,6 +21,40 @@ export const invalidateUser = () => {
     }
 }
 
+export const createNewUser = (email, username, password) => {
+    const newUser = JSON.stringify({
+        isAuthenticated: true,
+        isFetching: false,
+        didInvalidate: false,
+        email: email,
+        username: username,
+        password: password,
+        profilePicture: "",
+        lastUpdate: Date.now(),
+        images: [],
+        appointments: [],
+        messages: [],
+        documents: []
+    })
+    console.log("new user is")
+    console.log(newUser)
+    return dispatch => {
+        axios.post(API_BASE_URL + "/users", newUser, {headers:{"Content-Type" : "application/json"}})
+            .then(response => {
+                // Redirect to login
+                console.log("post is successful")
+                window.location.replace("/login?username=" + newUser.username + "&password=" + newUser.password)  
+            })
+            .catch(err => {
+                console.log("post is unsuccessful")
+                console.log(err)
+                // TODO: Remove before presentation
+                alert(err);
+                window.location.replace("/")
+            })
+    }
+}
+
 export const logoutUser = () => {
     return dispatch => {
         dispatch(invalidateUser());
