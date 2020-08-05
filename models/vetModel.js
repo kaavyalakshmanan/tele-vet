@@ -22,7 +22,7 @@ vetModel = new Schema({
     // ,{versionKey: false}
 );
 
-module.exports = mongoose.model("veterenarians", vetModel);
+module.exports = mongoose.model("vets", vetModel);
 
 // for practicing your post {
 // {
