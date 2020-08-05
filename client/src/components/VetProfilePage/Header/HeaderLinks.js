@@ -88,12 +88,6 @@ export default function HeaderLinks({auth, id, handleAddProfilePicture, handleAd
                 />
             </ListItem>
             <ListItem className={classes.listItem}>
-                {/*<Tooltip*/}
-                {/*    id="Video-Appointment"*/}
-                {/*    title="Start a Video Appointment"*/}
-                {/*    placement={window.innerWidth > 959 ? "top" : "left"}*/}
-                {/*    classes={{tooltip: classes.tooltip}}*/}
-                {/*>*/}
                     <Button
                         color="transparent"
                         target="_blank"
@@ -102,7 +96,6 @@ export default function HeaderLinks({auth, id, handleAddProfilePicture, handleAd
                     >
                         <FeaturedVideo className={classes.icons}/> Video Appointment
                     </Button>
-                {/*</Tooltip>*/}
             </ListItem>
         </List>
     );

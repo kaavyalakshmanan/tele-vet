@@ -6,7 +6,6 @@ import "../../../css/Booking.css"
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
-import TextField from "@material-ui/core/TextField";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -19,20 +18,11 @@ class Booking extends React.Component {
             selectedDate: "",
             selectedWeekday: ["Loading...please wait!"],
             popup: false
-            // mon: props.key1.monday,
-            // tue: props.week.tuesday,
-            // wed: props.week.wednesday,
-            // thu: props.week.thursday,
-            // fri: props.week.friday,
-            // sat: props.week.saturday,
-            // sun: props.week.sunday
         };
-        // this.handleClick = this.handleClick.bind(this);
     }
 
 
     handleClick = (e) => {
-        // e.preventDefault();
         this.setState(prevState => ({isFlipped: !prevState.isFlipped}));
         this.setState({selectedDate: e})
         if ((String(e).substring(0, 3)) === "Mon") {
@@ -60,9 +50,6 @@ class Booking extends React.Component {
 
     handleTimeSelection(e, item) {
         this.setState({popup: true})
-        // e.preventDefault();
-        // console.log(this.selectedDate + item)
-        //Here you must pass props.key0 and props.key2
     }
 
     handleClose = () => {
@@ -79,7 +66,6 @@ class Booking extends React.Component {
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                             <DatePicker style={{textAlign: 'center'}}
                                         autoOk
-                                // orientation="landscape"
                                         variant="static"
                                         openTo="date"
                                         value={this.selectedDate}
@@ -96,7 +82,6 @@ class Booking extends React.Component {
                                 {selectedWeekday.map(item => (
                                     <button
                                         onClick={(e, item) => this.handleTimeSelection(e, item)}>{item}</button>
-                                    //https://dev.to/skptricks/create-simple-popup-example-in-react-application-5g7f
                                 ))}
                             </ul>
                         </div>

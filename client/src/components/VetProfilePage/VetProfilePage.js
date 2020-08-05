@@ -33,11 +33,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
-import TimePickers from "./Edit/TimePickers";
-import Slide from "@material-ui/core/Slide";
+import TimePickers from "./Booking/TimePickers";
 import VideoConference from "../VideoConference/VideoConference";
-// import { withStyles } from '@material-ui/styles';
-// import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => Object.assign({}, styles, {
     appBar: {
@@ -63,7 +60,6 @@ export default function VetProfilePage({vet, auth, id}) {
     const [photoUploadAction, setPhotoUploadAction] = React.useState(null);
     const [availabilities, SetAvailabilitiesOpen] = useState(false);
     const [VideoConferenceOpen, SetVideoConferenceOpen] = useState(false);
-    // const [save, setSave] = useState(false);
     const [preview, setPreview] = React.useState(null);
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
     useEffect(() => {
@@ -112,7 +108,6 @@ export default function VetProfilePage({vet, auth, id}) {
         setUploadDialogOpen(true);
     }
 
-    //For Vet to select appointment availabilities
     const handleAvailabilities = (e) => {
         SetAvailabilitiesOpen(true);
     }
@@ -121,23 +116,13 @@ export default function VetProfilePage({vet, auth, id}) {
         SetAvailabilitiesOpen(false);
     }
 
-
-    // const myRef = useRef(handleSubmission(id))
     const myRef = useRef(null);
-
 
     const handleCloseAndSaveAvailabilities = () => {
         SetAvailabilitiesOpen(false);
         myRef.current.handleSubmission(id);
-        // console.log("id at line 130 is " + id)
-        // receiveVet()
-        // const myRef = useRef(child.handleSubmission(id);
-        // const myRef = useRef(handleSubmission(id);
     }
 
-
-        // myRef.current.const myRef = useRef(null)handleSubmission(id)
-    // const myRef = useRef(null)
         const startVideoConference = () => {
             SetVideoConferenceOpen(true)
         }
@@ -145,16 +130,6 @@ export default function VetProfilePage({vet, auth, id}) {
         const closeVideoConference = () => {
             SetVideoConferenceOpen(false)
         }
-
-
-
-    // const myRef = useRef(null);
-        //     = useRef(child.handleSubmission(id))
-        // this.refs.child.handleSubmission(id);
-
-    // const Transition = React.forwardRef(function Transition(props, ref) {
-    //     return <Slide direction="up" ref={ref} {...props} />;
-    // });
 
     return (
         <div>
@@ -316,7 +291,6 @@ export default function VetProfilePage({vet, auth, id}) {
                 </DialogActions>
             </Dialog>
             <Dialog fullScreen open={availabilities} onClose={handleCloseAvailabilities}
-                // TransitionComponent={Transition}
             >
                 <AppBar className={classes.appBar}>
                     <Toolbar>
@@ -338,7 +312,6 @@ export default function VetProfilePage({vet, auth, id}) {
                 <TimePickers ref={myRef} />
             </Dialog>
             <Dialog fullScreen open={VideoConferenceOpen} onClose={closeVideoConference}
-                // TransitionComponent={Transition}
             >
                 <AppBar className={classes.appBar}>
                     <Toolbar>
