@@ -1,3 +1,4 @@
+// import {User} from '../models/userModel';
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
@@ -7,31 +8,26 @@ const jwt = require('jsonwebtoken');
 // REGISTERING A NEW USER
 
 // User Model
-const user = require("../models/userModel");
+const User = require('../models/userModel');
 
 // @route   POST /users
 // @desc    Register a new user
 // @access  Public
 router.post('/', (req, res) => {
-    const {name, email, username, password} = req.body;
+    const {email, username, password} = req.body;
 
     // Simple validation
-    if (!name || !username || !email || !password) {
+    if (!username || !email || !password) {
         // Bad request, user did not send correct info
         return res.status(400).json({msg: 'Please enter all fields'});
     }
 
     // Check for existing user
-    user.findOne({username})
+    User.findOne({username})
         .then(user => {
             if (user) return res.status(400).json({msg: 'User already exists'});
 
-            const newUser = new User({
-                name,
-                email,
-                username,
-                password
-            });
+            const newUser = new User(req.body);
 
             // Create salt and hash
             bcrypt.genSalt(10, (err, salt) => {
@@ -51,7 +47,6 @@ router.post('/', (req, res) => {
                                         token,
                                         user: {
                                             id: user.id,
-                                            name: user.name,
                                             email: user.email,
                                             username: user.username
                                         }
