@@ -22,7 +22,7 @@ import styles from "../../../third-party-assets-material-ui/jss/material-kit-rea
 
 const useStyles = makeStyles(styles);
 
-export default function HeaderLinks({auth, id, handleAddProfilePicture, handleAddPhoto, handleAvailabilities}) {
+export default function HeaderLinks({auth, id, handleAddProfilePicture, handleAddPhoto, handleAvailabilities, startVideoConference}) {
     const classes = useStyles();
     console.log("ID=");
     console.log(id);
@@ -88,20 +88,21 @@ export default function HeaderLinks({auth, id, handleAddProfilePicture, handleAd
                 />
             </ListItem>
             <ListItem className={classes.listItem}>
-                <Tooltip
-                    id="Video-Appointment"
-                    title="Start a Video Appointment"
-                    placement={window.innerWidth > 959 ? "top" : "left"}
-                    classes={{tooltip: classes.tooltip}}
-                >
+                {/*<Tooltip*/}
+                {/*    id="Video-Appointment"*/}
+                {/*    title="Start a Video Appointment"*/}
+                {/*    placement={window.innerWidth > 959 ? "top" : "left"}*/}
+                {/*    classes={{tooltip: classes.tooltip}}*/}
+                {/*>*/}
                     <Button
                         color="transparent"
                         target="_blank"
                         className={classes.navLink}
+                        onClick={startVideoConference}
                     >
                         <FeaturedVideo className={classes.icons}/> Video Appointment
                     </Button>
-                </Tooltip>
+                {/*</Tooltip>*/}
             </ListItem>
         </List>
     );

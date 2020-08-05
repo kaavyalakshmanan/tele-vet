@@ -15,7 +15,8 @@ vetModel = new Schema({
         rating: {type: Number},
         facebook: {type: String},
         twitter: {type: String},
-        geometry: Schema.Types.Mixed
+        geometry: Schema.Types.Mixed,
+        weeklyTimeBlocks: [[{type: 'String'}]]
     }
     // ,{ strict: "throw" }
     // ,{versionKey: false}

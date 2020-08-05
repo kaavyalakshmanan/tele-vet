@@ -9,8 +9,9 @@ import {
 } from '@material-ui/pickers';
 import {Grid} from "@material-ui/core";
 import ScheduleSelector from 'react-schedule-selector'
-import axios from "axios"
-import {Button} from "reactstrap";
+// import axios from "axios"
+import {useDispatch} from "react-redux";
+import {updateVet} from "../../../actions";
 
 class TimePickers extends React.Component {
     constructor(props) {
@@ -39,29 +40,33 @@ class TimePickers extends React.Component {
             saturdayOpen: "2014-08-18T08:00:00",
             saturdayClose: "2014-08-18T18:00:00",
         }
+        // const dispatch = useDispatch();
+        // this.props.handleSubmission()
+        // if (this.props.key1) {() => {this.handleSubmission}}
+        // console.log(id)
     }
 
-    componentDidMount() {
-        const id = "5f221d2c5d8cf84f1ae5a5b2"
-        axios.get("http://localhost:9000/vet/id/" + this.id)
-            .then(response => {
-                this.setState(
-                    {
-                        schedule: response.data.spareField1
-                        // weeklyTimeBlocks: response.data.weeklyTimeBlocks
-                    })
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
+    // componentDidMount() {
+    //     const id = "5f221d2c5d8cf84f1ae5a5b2"
+    //     axios.get("http://localhost:9000/vet/id/" + this.id)
+    //         .then(response => {
+    //             this.setState(
+    //                 {
+    //                     schedule: response.data.spareField1
+    //                     // weeklyTimeBlocks: response.data.weeklyTimeBlocks
+    //                 })
+    //         })
+    //         .catch((err) => {
+    //             console.log(err)
+    //         })
+    // }
 
     handleTimeslotsChange = newSchedule => {
         this.setState({schedule: newSchedule})
     }
 
-    handleSubmission = (e) => {
-        e.preventDefault();
+    handleSubmission = (id) => {
+        // e.preventDefault();
         const monday = [];
         const tuesday = [];
         const wednesday = [];
@@ -77,6 +82,7 @@ class TimePickers extends React.Component {
         helperSchedule.map((selected) => {
             if (String(selected).substring(0, 3) === "Mon") {
                 monday.push(String(selected).substring(16, 21))
+
             } else if (String(selected).substring(0, 3) === "Tue") {
                 tuesday.push(String(selected).substring(16, 21))
             } else if (String(selected).substring(0, 3) === "Wed") {
@@ -93,9 +99,12 @@ class TimePickers extends React.Component {
         })
         console.log(temp)
         this.setState({weeklyTimeBlocks: temp}, () => {
-            const id = "5f07b082acd85550aa1b19a9"
-            console.log(this.state.weeklyTimeBlocks)
-            axios.put("http://localhost:9000/vets/" + id, {"weeklyTimeBlocks": this.state.weeklyTimeBlocks})
+            // const id = this.props.key0
+            // console.log(this.state.weeklyTimeBlocks)
+            // dispatch(
+                updateVet(id, this.state.weeklyTimeBlocks)
+            // )
+            // axios.put("http://localhost:9000/vets/" + id, {"weeklyTimeBlocks": this.state.weeklyTimeBlocks})
                 .then(res => console.log(res.data))
                 .catch(() => console.log("The axios.post call in itemBlock failed"))
         })
@@ -349,10 +358,10 @@ class TimePickers extends React.Component {
                         onChange={this.handleTimeslotsChange}
                     />
                 </div>
-                <button className="mr-4"
-                        color="purple"
-                        onClick={e => this.handleSubmission(e)}>Save
-                </button>
+                {/*<button className="mr-4"*/}
+                {/*        color="purple"*/}
+                {/*        onClick={e => this.handleSubmission(e)}>Save*/}
+                {/*</button>*/}
             </MuiPickersUtilsProvider>
         )
     }

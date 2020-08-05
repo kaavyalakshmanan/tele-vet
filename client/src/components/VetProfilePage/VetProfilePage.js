@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -35,6 +35,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import TimePickers from "./Edit/TimePickers";
 import Slide from "@material-ui/core/Slide";
+import VideoConference from "../VideoConference/VideoConference";
 // import { withStyles } from '@material-ui/styles';
 // import { makeStyles, createStyles } from '@material-ui/core/styles';
 
@@ -61,7 +62,8 @@ export default function VetProfilePage({vet, auth, id}) {
     const [uploadDialogOpen, setUploadDialogOpen] = React.useState(false);
     const [photoUploadAction, setPhotoUploadAction] = React.useState(null);
     const [availabilities, SetAvailabilitiesOpen] = useState(false);
-    // const [ContactInfoOpen, SetContactInfoOpen] = useState(false);
+    const [VideoConferenceOpen, SetVideoConferenceOpen] = useState(false);
+    // const [save, setSave] = useState(false);
     const [preview, setPreview] = React.useState(null);
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
     useEffect(() => {
@@ -113,10 +115,34 @@ export default function VetProfilePage({vet, auth, id}) {
         SetAvailabilitiesOpen(false);
     }
 
+
+    // const myRef = useRef(handleSubmission(id))
+    const myRef = useRef(null);
+
     const handleCloseAndSaveAvailabilities = () => {
         SetAvailabilitiesOpen(false);
-        //Action to save the availability entries
+        myRef.handleSubmission();
+        // const myRef = useRef(child.handleSubmission(id);
+        // const myRef = useRef(handleSubmission(id);
+
     }
+
+
+        // myRef.current.handleSubmission(id)
+
+        const startVideoConference = () => {
+            SetVideoConferenceOpen(true)
+        }
+
+        const closeVideoConference = () => {
+            SetVideoConferenceOpen(false)
+        }
+
+
+
+    // const myRef = useRef(null);
+        //     = useRef(child.handleSubmission(id))
+        // this.refs.child.handleSubmission(id);
 
     // const Transition = React.forwardRef(function Transition(props, ref) {
     //     return <Slide direction="up" ref={ref} {...props} />;
@@ -132,6 +158,7 @@ export default function VetProfilePage({vet, auth, id}) {
                                          handleAddPhoto={handleAddPhoto}
                                          handleAddProfilePicture={handleAddProfilePicture}
                                          handleAvailabilities={handleAvailabilities}
+                                         startVideoConference={startVideoConference}
                 />}
                 fixed
                 changeColorOnScroll={{
@@ -248,57 +275,76 @@ export default function VetProfilePage({vet, auth, id}) {
                     </div>
                 </div>
             </div>
-                <Dialog open={uploadDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">Upload a Photo</DialogTitle>
-                    <DialogContent>
-                        <CardMedia
-                            className={classes.cardMedia}
-                            image={preview}
-                            title={'preview'}
+            <Dialog open={uploadDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">Upload a Photo</DialogTitle>
+                <DialogContent>
+                    <CardMedia
+                        className={classes.cardMedia}
+                        image={preview}
+                        title={'preview'}
+                    />
+                    <DialogContentText>
+                        Upload a new photo
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleSubmit} color="primary">
+                        Upload
+                    </Button>
+                    <Button color="primary"
+                            variant="contained"
+                            component="label"
+                    >
+                        Browse
+                        <input
+                            type="file"
+                            style={{display: "none"}}
+                            onChange={handlePreview}
                         />
-                        <DialogContentText>
-                            Upload a new photo
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleClose} color="primary">
-                            Cancel
+                    </Button>
+                </DialogActions>
+            </Dialog>
+            <Dialog fullScreen open={availabilities} onClose={handleCloseAvailabilities}
+                // TransitionComponent={Transition}
+            >
+                <AppBar className={classes.appBar}>
+                    <Toolbar>
+                        <IconButton edge="start" color="inherit" onClick={handleCloseAvailabilities}
+                                    aria-label="close">
+                            <CloseIcon/>
+                        </IconButton>
+                        <Typography variant="h6" className={classes.title}>
+                            Edit Hours of Operation
+                        </Typography>
+                        <Button autoFocus color="inherit" onClick={handleCloseAndSaveAvailabilities}>
+                            save
                         </Button>
-                        <Button onClick={handleSubmit} color="primary">
-                            Upload
+                    </Toolbar>
+                </AppBar>
+                <TimePickers ref={myRef} />
+            </Dialog>
+            <Dialog fullScreen open={VideoConferenceOpen} onClose={closeVideoConference}
+                // TransitionComponent={Transition}
+            >
+                <AppBar className={classes.appBar}>
+                    <Toolbar>
+                        <IconButton edge="start" color="inherit" onClick={closeVideoConference}
+                                    aria-label="close">
+                            <CloseIcon/>
+                        </IconButton>
+                        <Typography variant="h6" className={classes.title}>
+                            Video Conference
+                        </Typography>
+                        <Button autoFocus color="inherit" onClick={closeVideoConference}>
+                            Leave Session
                         </Button>
-                        <Button color="primary"
-                                variant="contained"
-                                component="label"
-                        >
-                            Browse
-                            <input
-                                type="file"
-                                style={{display: "none"}}
-                                onChange={handlePreview}
-                            />
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-                <Dialog fullScreen open={availabilities} onClose={handleCloseAvailabilities}
-                        // TransitionComponent={Transition}
-                >
-                    <AppBar className={classes.appBar}>
-                        <Toolbar>
-                            <IconButton edge="start" color="inherit" onClick={handleCloseAvailabilities}
-                                        aria-label="close">
-                                <CloseIcon/>
-                            </IconButton>
-                            <Typography variant="h6" className={classes.title}>
-                                Edit Hours of Operation
-                            </Typography>
-                            <Button autoFocus color="inherit" onClick={handleCloseAndSaveAvailabilities}>
-                                save
-                            </Button>
-                        </Toolbar>
-                    </AppBar>
-                    <TimePickers/>
-                </Dialog>
+                    </Toolbar>
+                </AppBar>
+                <VideoConference/>
+            </Dialog>
         </div>
     );
 }
