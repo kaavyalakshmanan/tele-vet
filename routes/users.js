@@ -48,7 +48,7 @@ router.post('/', (req, res) => {
                                 {expiresIn: 3600},
                                 (err, token) => {
                                     if (err) throw err;
-                                    // Send JSON response with relevant user info
+                                    // Send JSON response with relevant user info and newly created authorization token
                                     res.json({
                                         token,
                                         user: {
