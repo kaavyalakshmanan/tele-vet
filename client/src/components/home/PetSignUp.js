@@ -87,6 +87,7 @@ export default function SignUp() {
                 onChange={(e) => { setEmail(e.target.value) }}
               />
             </Grid>
+            <br></br>
 
             <Grid item xs={12}>
               <TextField
@@ -100,6 +101,7 @@ export default function SignUp() {
                 onChange={(e) => { setUsername(e.target.value) }}
               />
             </Grid>
+            <br></br>
 
             <Grid item xs={12}>
               <TextField
@@ -114,6 +116,7 @@ export default function SignUp() {
                 onChange={(e) => { setPassword(e.target.value) }}
               />
             </Grid>
+            <br></br>
 
           <Button
             type="submit"
