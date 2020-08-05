@@ -53,7 +53,7 @@ app.use(function(req, res, next) {
 });
 
 
-// TODO: Remove?
+// TODO: Uncomment for deployment 
 // app.use('/', indexRouter);
 
 
