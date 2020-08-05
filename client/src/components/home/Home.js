@@ -149,11 +149,6 @@ export default function SignInSide() {
                     <Link href="" variant="body2">
                     </Link>
                   </Grid>
-                  <Grid item>
-                    <Link href="VetSignUp" variant="body2">
-                      {"Or Sign Up as a Vet"}
-                    </Link>
-                  </Grid>
                 </Grid>
 
                 <Box mt={5}>
