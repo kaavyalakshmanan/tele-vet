@@ -20,8 +20,7 @@ import {getURLParams} from "../utils/utils";
 // import VetProfile from "./vet/profile/VetProfile";
 
 const TEST_USER_ID = "5f190ceb302df7267423150e";
-const TEST_VET_ID = "";
-
+// const TEST_VET_ID = "";
 
 function App() {
   return (

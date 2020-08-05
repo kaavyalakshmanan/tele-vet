@@ -78,7 +78,7 @@ class TimePickers extends React.Component {
         // console.log(this.state.schedule)
         const helperSchedule = this.state.schedule.slice();
         // console.log(helperSchedule)
-        console.log(temp)
+        // console.log(temp)
         helperSchedule.map((selected) => {
             if (String(selected).substring(0, 3) === "Mon") {
                 monday.push(String(selected).substring(16, 21))
@@ -96,17 +96,20 @@ class TimePickers extends React.Component {
             } else if (String(selected).substring(0, 3) === "Sun") {
                 sunday.push(String(selected).substring(16, 21))
             }
+            //account for no selection here
         })
-        console.log(temp)
+        // console.log(temp)
         this.setState({weeklyTimeBlocks: temp}, () => {
             // const id = this.props.key0
             // console.log(this.state.weeklyTimeBlocks)
             // dispatch(
-                updateVet(id, this.state.weeklyTimeBlocks)
+                updateVet(id, temp)
+            // console.log(temp)
+            // console.log(id)
             // )
             // axios.put("http://localhost:9000/vets/" + id, {"weeklyTimeBlocks": this.state.weeklyTimeBlocks})
-                .then(res => console.log(res.data))
-                .catch(() => console.log("The axios.post call in itemBlock failed"))
+            //     .then(res => console.log(res.data))
+            //     .catch(() => console.log("The axios.post call in itemBlock failed"))
         })
     }
 
@@ -136,212 +139,212 @@ class TimePickers extends React.Component {
     render() {
         return (
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <h3>Physical Clinic Hours of Operation</h3>
-                <div className="formGroup">
-                    <Grid container
-                          spacing={3}
-                          direction="row"
-                          justify="left"
-                          alignItems="flex-end">
-                        <title>Hours of Operation</title>
-                        <Grid container
-                              spacing={3}
-                              xs={12}
-                              direction="row"
-                              justify="left"
-                              alignItems="flex-end">
-                            <Grid item>
-                                <label>Tuesday:</label>
-                            </Grid>
-                            <Grid item={6}>
-                                <KeyboardTimePicker
-                                    margin="normal"
-                                    className="time-picker"
-                                    label="Start Time"
-                                    value={this.state.tuesdayOpen}
-                                    onChange={(e) => this.handleInfoChange("tuesdayOpen", e)}
-                                />
-                            </Grid>
-                            <Grid item={6}>
-                                <KeyboardTimePicker
-                                    margin="normal"
-                                    className="time-picker"
-                                    label="Close Time"
-                                    value={this.state.tuesdayClose}
-                                    onChange={(e) => this.handleInfoChange("tuesdayClose", e)}
-                                />
-                            </Grid>
-                        </Grid>
-                        <Grid container
-                              spacing={3}
-                              xs={12}
-                              direction="row"
-                              justify="left"
-                              alignItems="flex-end">
-                            <Grid item>
-                                <label>Tuesday:</label>
-                            </Grid>
-                            <Grid item={6}>
-                                <KeyboardTimePicker
-                                    margin="normal"
-                                    className="time-picker"
-                                    label="Start Time"
-                                    value={this.state.tuesdayOpen}
-                                    onChange={(e) => this.handleInfoChange("tuesdayOpen", e)}
-                                />
-                            </Grid>
-                            <Grid item={6}>
-                                <KeyboardTimePicker
-                                    margin="normal"
-                                    className="time-picker"
-                                    label="Close Time"
-                                    value={this.state.tuesdayClose}
-                                    onChange={(e) => this.handleInfoChange("tuesdayClose", e)}
-                                />
-                            </Grid>
-                        </Grid>
-                        <Grid container
-                              spacing={3}
-                              xs={12}
-                              direction="row"
-                              justify="left"
-                              alignItems="flex-end">
-                            <Grid item>
-                                <label>Wednesday:</label>
-                            </Grid>
-                            <Grid item={6}>
-                                <KeyboardTimePicker
-                                    margin="normal"
-                                    className="time-picker"
-                                    label="Start Time"
-                                    value={this.state.wednesdayOpen}
-                                    onChange={(e) => this.handleInfoChange("wednesdayOpen", e)}
-                                />
-                            </Grid>
-                            <Grid item={6}>
-                                <KeyboardTimePicker
-                                    margin="normal"
-                                    className="time-picker"
-                                    label="Close Time"
-                                    value={this.state.wednesdayClose}
-                                    onChange={(e) => this.handleInfoChange("wednesdayClose", e)}
-                                />
-                            </Grid>
-                        </Grid>
-                        <Grid container
-                              spacing={3}
-                              xs={12}
-                              direction="row"
-                              justify="left"
-                              alignItems="flex-end">
-                            <Grid item>
-                                <label>Thursday:</label>
-                            </Grid>
-                            <Grid item={6}>
-                                <KeyboardTimePicker
-                                    margin="normal"
-                                    className="time-picker"
-                                    label="Start Time"
-                                    value={this.state.thursdayOpen}
-                                    onChange={(e) => this.handleInfoChange("thursdayOpen", e)}
-                                />
-                            </Grid>
-                            <Grid item={6}>
-                                <KeyboardTimePicker
-                                    margin="normal"
-                                    className="time-picker"
-                                    label="Close Time"
-                                    value={this.state.thursdayClose}
-                                    onChange={(e) => this.handleInfoChange("thursdayClose", e)}
-                                />
-                            </Grid>
-                        </Grid>
-                        <Grid container
-                              spacing={3}
-                              xs={12}
-                              direction="row"
-                              justify="left"
-                              alignItems="flex-end">
-                            <Grid item>
-                                <label>Friday:</label>
-                            </Grid>
-                            <Grid item={6}>
-                                <KeyboardTimePicker
-                                    margin="normal"
-                                    className="time-picker"
-                                    label="Start Time"
-                                    value={this.state.fridayOpen}
-                                    onChange={(e) => this.handleInfoChange("fridayOpen", e)}
-                                />
-                            </Grid>
-                            <Grid item={6}>
-                                <KeyboardTimePicker
-                                    margin="normal"
-                                    className="time-picker"
-                                    label="Close Time"
-                                    value={this.state.fridayClose}
-                                    onChange={(e) => this.handleInfoChange("fridayClose", e)}
-                                />
-                            </Grid>
-                        </Grid>
-                        <Grid container
-                              spacing={3}
-                              xs={12}
-                              direction="row"
-                              justify="left"
-                              alignItems="flex-end">
-                            <Grid item>
-                                <label>Saturday:</label>
-                            </Grid>
-                            <Grid item={6}>
-                                <KeyboardTimePicker
-                                    margin="normal"
-                                    className="time-picker"
-                                    label="Start Time"
-                                    value={this.state.saturdayOpen}
-                                    onChange={(e) => this.handleInfoChange("saturdayOpen", e)}
-                                />
-                            </Grid>
-                            <Grid item={6}>
-                                <KeyboardTimePicker
-                                    margin="normal"
-                                    className="time-picker"
-                                    label="Close Time"
-                                    value={this.state.saturdayClose}
-                                    onChange={(e) => this.handleInfoChange("saturdayClose", e)}
-                                />
-                            </Grid>
-                        </Grid>
-                        <Grid container
-                              spacing={3}
-                              xs={12}
-                              direction="row"
-                              justify="left"
-                              alignItems="flex-end">
-                            <Grid item>
-                                <label>Sunday:</label>
-                            </Grid>
-                            <Grid item={6}>
-                                <KeyboardTimePicker
-                                    margin="normal"
-                                    className="time-picker"
-                                    label="Start Time"
-                                    value={this.state.sundayOpen}
-                                    onChange={(e) => this.handleInfoChange("sundayOpen", e)}
-                                />
-                            </Grid>
-                            <Grid item={6}>
-                                <KeyboardTimePicker
-                                    margin="normal"
-                                    className="time-picker"
-                                    label="Close Time"
-                                    value={this.state.sundayClose}
-                                    onChange={(e) => this.handleInfoChange("sundayClose", e)}
-                                />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </div>
+                {/*<h3>Physical Clinic Hours of Operation</h3>*/}
+                {/*<div className="formGroup">*/}
+                {/*    <Grid container*/}
+                {/*          spacing={3}*/}
+                {/*          direction="row"*/}
+                {/*          justify="left"*/}
+                {/*          alignItems="flex-end">*/}
+                {/*        <title>Hours of Operation</title>*/}
+                {/*        <Grid container*/}
+                {/*              spacing={3}*/}
+                {/*              xs={12}*/}
+                {/*              direction="row"*/}
+                {/*              justify="left"*/}
+                {/*              alignItems="flex-end">*/}
+                {/*            <Grid item>*/}
+                {/*                <label>Tuesday:</label>*/}
+                {/*            </Grid>*/}
+                {/*            <Grid item={6}>*/}
+                {/*                <KeyboardTimePicker*/}
+                {/*                    margin="normal"*/}
+                {/*                    className="time-picker"*/}
+                {/*                    label="Start Time"*/}
+                {/*                    value={this.state.tuesdayOpen}*/}
+                {/*                    onChange={(e) => this.handleInfoChange("tuesdayOpen", e)}*/}
+                {/*                />*/}
+                {/*            </Grid>*/}
+                {/*            <Grid item={6}>*/}
+                {/*                <KeyboardTimePicker*/}
+                {/*                    margin="normal"*/}
+                {/*                    className="time-picker"*/}
+                {/*                    label="Close Time"*/}
+                {/*                    value={this.state.tuesdayClose}*/}
+                {/*                    onChange={(e) => this.handleInfoChange("tuesdayClose", e)}*/}
+                {/*                />*/}
+                {/*            </Grid>*/}
+                {/*        </Grid>*/}
+                {/*        <Grid container*/}
+                {/*              spacing={3}*/}
+                {/*              xs={12}*/}
+                {/*              direction="row"*/}
+                {/*              justify="left"*/}
+                {/*              alignItems="flex-end">*/}
+                {/*            <Grid item>*/}
+                {/*                <label>Tuesday:</label>*/}
+                {/*            </Grid>*/}
+                {/*            <Grid item={6}>*/}
+                {/*                <KeyboardTimePicker*/}
+                {/*                    margin="normal"*/}
+                {/*                    className="time-picker"*/}
+                {/*                    label="Start Time"*/}
+                {/*                    value={this.state.tuesdayOpen}*/}
+                {/*                    onChange={(e) => this.handleInfoChange("tuesdayOpen", e)}*/}
+                {/*                />*/}
+                {/*            </Grid>*/}
+                {/*            <Grid item={6}>*/}
+                {/*                <KeyboardTimePicker*/}
+                {/*                    margin="normal"*/}
+                {/*                    className="time-picker"*/}
+                {/*                    label="Close Time"*/}
+                {/*                    value={this.state.tuesdayClose}*/}
+                {/*                    onChange={(e) => this.handleInfoChange("tuesdayClose", e)}*/}
+                {/*                />*/}
+                {/*            </Grid>*/}
+                {/*        </Grid>*/}
+                {/*        <Grid container*/}
+                {/*              spacing={3}*/}
+                {/*              xs={12}*/}
+                {/*              direction="row"*/}
+                {/*              justify="left"*/}
+                {/*              alignItems="flex-end">*/}
+                {/*            <Grid item>*/}
+                {/*                <label>Wednesday:</label>*/}
+                {/*            </Grid>*/}
+                {/*            <Grid item={6}>*/}
+                {/*                <KeyboardTimePicker*/}
+                {/*                    margin="normal"*/}
+                {/*                    className="time-picker"*/}
+                {/*                    label="Start Time"*/}
+                {/*                    value={this.state.wednesdayOpen}*/}
+                {/*                    onChange={(e) => this.handleInfoChange("wednesdayOpen", e)}*/}
+                {/*                />*/}
+                {/*            </Grid>*/}
+                {/*            <Grid item={6}>*/}
+                {/*                <KeyboardTimePicker*/}
+                {/*                    margin="normal"*/}
+                {/*                    className="time-picker"*/}
+                {/*                    label="Close Time"*/}
+                {/*                    value={this.state.wednesdayClose}*/}
+                {/*                    onChange={(e) => this.handleInfoChange("wednesdayClose", e)}*/}
+                {/*                />*/}
+                {/*            </Grid>*/}
+                {/*        </Grid>*/}
+                {/*        <Grid container*/}
+                {/*              spacing={3}*/}
+                {/*              xs={12}*/}
+                {/*              direction="row"*/}
+                {/*              justify="left"*/}
+                {/*              alignItems="flex-end">*/}
+                {/*            <Grid item>*/}
+                {/*                <label>Thursday:</label>*/}
+                {/*            </Grid>*/}
+                {/*            <Grid item={6}>*/}
+                {/*                <KeyboardTimePicker*/}
+                {/*                    margin="normal"*/}
+                {/*                    className="time-picker"*/}
+                {/*                    label="Start Time"*/}
+                {/*                    value={this.state.thursdayOpen}*/}
+                {/*                    onChange={(e) => this.handleInfoChange("thursdayOpen", e)}*/}
+                {/*                />*/}
+                {/*            </Grid>*/}
+                {/*            <Grid item={6}>*/}
+                {/*                <KeyboardTimePicker*/}
+                {/*                    margin="normal"*/}
+                {/*                    className="time-picker"*/}
+                {/*                    label="Close Time"*/}
+                {/*                    value={this.state.thursdayClose}*/}
+                {/*                    onChange={(e) => this.handleInfoChange("thursdayClose", e)}*/}
+                {/*                />*/}
+                {/*            </Grid>*/}
+                {/*        </Grid>*/}
+                {/*        <Grid container*/}
+                {/*              spacing={3}*/}
+                {/*              xs={12}*/}
+                {/*              direction="row"*/}
+                {/*              justify="left"*/}
+                {/*              alignItems="flex-end">*/}
+                {/*            <Grid item>*/}
+                {/*                <label>Friday:</label>*/}
+                {/*            </Grid>*/}
+                {/*            <Grid item={6}>*/}
+                {/*                <KeyboardTimePicker*/}
+                {/*                    margin="normal"*/}
+                {/*                    className="time-picker"*/}
+                {/*                    label="Start Time"*/}
+                {/*                    value={this.state.fridayOpen}*/}
+                {/*                    onChange={(e) => this.handleInfoChange("fridayOpen", e)}*/}
+                {/*                />*/}
+                {/*            </Grid>*/}
+                {/*            <Grid item={6}>*/}
+                {/*                <KeyboardTimePicker*/}
+                {/*                    margin="normal"*/}
+                {/*                    className="time-picker"*/}
+                {/*                    label="Close Time"*/}
+                {/*                    value={this.state.fridayClose}*/}
+                {/*                    onChange={(e) => this.handleInfoChange("fridayClose", e)}*/}
+                {/*                />*/}
+                {/*            </Grid>*/}
+                {/*        </Grid>*/}
+                {/*        <Grid container*/}
+                {/*              spacing={3}*/}
+                {/*              xs={12}*/}
+                {/*              direction="row"*/}
+                {/*              justify="left"*/}
+                {/*              alignItems="flex-end">*/}
+                {/*            <Grid item>*/}
+                {/*                <label>Saturday:</label>*/}
+                {/*            </Grid>*/}
+                {/*            <Grid item={6}>*/}
+                {/*                <KeyboardTimePicker*/}
+                {/*                    margin="normal"*/}
+                {/*                    className="time-picker"*/}
+                {/*                    label="Start Time"*/}
+                {/*                    value={this.state.saturdayOpen}*/}
+                {/*                    onChange={(e) => this.handleInfoChange("saturdayOpen", e)}*/}
+                {/*                />*/}
+                {/*            </Grid>*/}
+                {/*            <Grid item={6}>*/}
+                {/*                <KeyboardTimePicker*/}
+                {/*                    margin="normal"*/}
+                {/*                    className="time-picker"*/}
+                {/*                    label="Close Time"*/}
+                {/*                    value={this.state.saturdayClose}*/}
+                {/*                    onChange={(e) => this.handleInfoChange("saturdayClose", e)}*/}
+                {/*                />*/}
+                {/*            </Grid>*/}
+                {/*        </Grid>*/}
+                {/*        <Grid container*/}
+                {/*              spacing={3}*/}
+                {/*              xs={12}*/}
+                {/*              direction="row"*/}
+                {/*              justify="left"*/}
+                {/*              alignItems="flex-end">*/}
+                {/*            <Grid item>*/}
+                {/*                <label>Sunday:</label>*/}
+                {/*            </Grid>*/}
+                {/*            <Grid item={6}>*/}
+                {/*                <KeyboardTimePicker*/}
+                {/*                    margin="normal"*/}
+                {/*                    className="time-picker"*/}
+                {/*                    label="Start Time"*/}
+                {/*                    value={this.state.sundayOpen}*/}
+                {/*                    onChange={(e) => this.handleInfoChange("sundayOpen", e)}*/}
+                {/*                />*/}
+                {/*            </Grid>*/}
+                {/*            <Grid item={6}>*/}
+                {/*                <KeyboardTimePicker*/}
+                {/*                    margin="normal"*/}
+                {/*                    className="time-picker"*/}
+                {/*                    label="Close Time"*/}
+                {/*                    value={this.state.sundayClose}*/}
+                {/*                    onChange={(e) => this.handleInfoChange("sundayClose", e)}*/}
+                {/*                />*/}
+                {/*            </Grid>*/}
+                {/*        </Grid>*/}
+                {/*    </Grid>*/}
+                {/*</div>*/}
                 <div>
                     <h3>Virtual Appointments timeslot availabilities</h3>
                     <ScheduleSelector
@@ -360,7 +363,8 @@ class TimePickers extends React.Component {
                 </div>
                 {/*<button className="mr-4"*/}
                 {/*        color="purple"*/}
-                {/*        onClick={e => this.handleSubmission(e)}>Save*/}
+                {/*        ref={this.props.ref}*/}
+                {/*        onClick={(id) => this.handleSubmission(id)}>Save*/}
                 {/*</button>*/}
             </MuiPickersUtilsProvider>
         )

@@ -58,19 +58,25 @@ export const getVetById = id => {
 }
 
 export const updateVet = (id, weeklyTimeBlocks)  => {
-    return dispatch => {
-        return axios.put(API_BASE_URL + "/id/" + id, {"weeklyTimeBlocks": weeklyTimeBlocks})
+    // console.log("running line 61")
+    // return dispatch => {
+        console.log("running line 63" + id)
+    //     return
+    axios.put(API_BASE_URL + "/" + id, {"weeklyTimeBlocks": weeklyTimeBlocks})
             .then((response) => {
                 console.log(response);
-                dispatch(receiveVet(response.data));
+                // dispatch(
+                    receiveVet(response.data)
+                // );
             })
             .catch(err => {
                 console.error(err);
             });
-    }
+    // }
 }
 // Action for editing the appointment timeslots
 ////  dispatch(requestUser()); // Why this? Can we remove it?
 //       // FIXME: This is not well designed, could cause inconsistency between database and frontend
 //       //  dispatch(receiveVet(vet));
 // FIXME: Notify the UserDashboard if data did not load correctly
+//+ "/id/"

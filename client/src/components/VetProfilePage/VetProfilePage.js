@@ -20,7 +20,7 @@ import styles from "../../third-party-assets-material-ui/jss/material-kit-react/
 import Header from "./Header/Header";
 import HeaderLinks from "./Header/HeaderLinks";
 import Booking from "./Booking/Booking";
-import {addVetImageData, getVetById} from "../../actions";
+import {addVetImageData, getVetById, receiveVet} from "../../actions";
 import {useDispatch, useSelector} from "react-redux";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -73,6 +73,12 @@ export default function VetProfilePage({vet, auth, id}) {
     }, [])
     const currentVet = vet ? vet : loggedInVet;
     console.log(currentVet);
+    console.log(currentVet);
+    console.log(currentVet);
+    console.log(id);
+    console.log(id);
+    console.log(id);
+    console.log(currentVet.weeklyTimeBlocks);
 
     const handlePreview = (e) => {
         if (e.target.files) {
@@ -119,17 +125,19 @@ export default function VetProfilePage({vet, auth, id}) {
     // const myRef = useRef(handleSubmission(id))
     const myRef = useRef(null);
 
+
     const handleCloseAndSaveAvailabilities = () => {
         SetAvailabilitiesOpen(false);
-        myRef.handleSubmission();
+        myRef.current.handleSubmission(id);
+        // console.log("id at line 130 is " + id)
+        // receiveVet()
         // const myRef = useRef(child.handleSubmission(id);
         // const myRef = useRef(handleSubmission(id);
-
     }
 
 
-        // myRef.current.handleSubmission(id)
-
+        // myRef.current.const myRef = useRef(null)handleSubmission(id)
+    // const myRef = useRef(null)
         const startVideoConference = () => {
             SetVideoConferenceOpen(true)
         }
@@ -236,7 +244,7 @@ export default function VetProfilePage({vet, auth, id}) {
                                             tabIcon: EventIcon,
                                             tabContent: (
                                                 <GridContainer justify="center">
-                                                    <Booking/>
+                                                    <Booking key1={currentVet.weeklyTimeBlocks}/>
                                                 </GridContainer>
                                             )
                                         },
@@ -319,7 +327,10 @@ export default function VetProfilePage({vet, auth, id}) {
                         <Typography variant="h6" className={classes.title}>
                             Edit Hours of Operation
                         </Typography>
-                        <Button autoFocus color="inherit" onClick={handleCloseAndSaveAvailabilities}>
+                        <Button autoFocus
+                                color="inherit"
+                                onClick={handleCloseAndSaveAvailabilities}
+                        >
                             save
                         </Button>
                     </Toolbar>
