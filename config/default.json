@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://televet:cpsc436i@televet-u0yv3.mongodb.net/televet?retryWrites=true&w=majority",
+    "jwtSecret": "tv_myJwtSecret"
+}

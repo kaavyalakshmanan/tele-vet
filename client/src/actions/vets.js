@@ -16,7 +16,7 @@ export const fetchVets = () => {
                 dispatch(updateVetList(response.data));
             })
             .catch(err => {
-                console.error(err);
+                // TODO: Remove before presentation
                 alert(err);
             });
     }
