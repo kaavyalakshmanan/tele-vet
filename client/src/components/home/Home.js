@@ -117,10 +117,6 @@ export default function SignInSide() {
                     autoComplete="current-password"
                     onChange={(e) => { setPassword(e.target.value) }}
                 />
-                <FormControlLabel
-                    control={<Checkbox value="remember" color="primary" />}
-                    label="Remember me"
-                />
                 <Button
                     type="submit"
                     fullWidth
@@ -132,11 +128,6 @@ export default function SignInSide() {
                   Sign In
                 </Button>
                 <Grid container>
-                  <Grid item xs>
-                    <Link href="PasswordReset" variant="body2">
-                      Forgot password?
-                    </Link>
-                  </Grid>
                   <Grid item>
                     <Link href="PetSignUp" variant="body2">
                       {"Don't have an account? Sign Up as a Pet Owner"}
