@@ -35,13 +35,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
-// Increase the max payload size
+
+// Increase the max payload size for file uploads
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb'}));
+
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Set headers
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "https://maps.googleapis.com/"); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
@@ -50,6 +53,7 @@ app.use(function(req, res, next) {
 });
 
 
+// TODO: Remove?
 // app.use('/', indexRouter);
 
 
