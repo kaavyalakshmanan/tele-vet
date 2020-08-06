@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles";
 import Chat from "@material-ui/icons/Chat";
 import VerifiedUser from "@material-ui/icons/VerifiedUser";
 import Fingerprint from "@material-ui/icons/Fingerprint";
@@ -15,48 +15,52 @@ const useStyles = makeStyles(styles);
 // EFFECTS: Renders a the product description section of the Landing Page component
 // CREDIT: Based on a free material-kit-react template from https://www.creative-tim.com/
 export default function ProductDescription() {
-  const classes = useStyles();
-  return (
-    <div className={classes.section}>
-      <GridContainer justify="center">
-        <GridItem xs={12} sm={12} md={8}>
-          <h2 className={classes.title}>Let{"'"}s talk product</h2>
-          <h5 className={classes.description}>
-            blah blah blah. What do we do ...
-          </h5>
-        </GridItem>
-      </GridContainer>
-      <div>
-        <GridContainer>
-          <GridItem xs={12} sm={12} md={4}>
-            <InfoArea
-              title="Video Conferencing"
-              description="Meet with your vet remotely at a time and place convenient for you"
-              icon={Chat}
-              iconColor="info"
-              vertical
-            />
-          </GridItem>
-          <GridItem xs={12} sm={12} md={4}>
-            <InfoArea
-              title="Verified Users"
-              description="Our vets are all licensed, vetted, and verified by our team."
-              icon={VerifiedUser}
-              iconColor="success"
-              vertical
-            />
-          </GridItem>
-          <GridItem xs={12} sm={12} md={4}>
-            <InfoArea
-              title="Secure"
-              description="Share information with your vet worry free with our secure platform."
-              icon={Fingerprint}
-              iconColor="danger"
-              vertical
-            />
-          </GridItem>
-        </GridContainer>
-      </div>
-    </div>
-  );
+    const classes = useStyles();
+    return (
+        <div className={classes.section}>
+            <GridContainer justify="center">
+                <GridItem xs={12} sm={12} md={8}>
+                    <h2 className={classes.title}>Let{"'"}s talk product</h2>
+                    <h5 className={classes.description}>
+                        Tele-Vet is a virtual health care web-app that connects vets with their furry patients.
+                         A user can view vet profiles by location rating or by proximity to the user. Users can also
+                            upload relevant documents to their pet's care (images, text files, etc), book an appointment
+                            and video conference with a vet to get the care they need, even during a global pandemic.
+
+                    </h5>
+                </GridItem>
+            </GridContainer>
+            <div>
+                <GridContainer>
+                    <GridItem xs={12} sm={12} md={4}>
+                        <InfoArea
+                            title="Video Conferencing"
+                            description="Meet with your vet remotely at a time and place convenient for you"
+                            icon={Chat}
+                            iconColor="info"
+                            vertical
+                        />
+                    </GridItem>
+                    <GridItem xs={12} sm={12} md={4}>
+                        <InfoArea
+                            title="Verified Users"
+                            description="Our vets are all licensed, vetted, and verified by our team."
+                            icon={VerifiedUser}
+                            iconColor="success"
+                            vertical
+                        />
+                    </GridItem>
+                    <GridItem xs={12} sm={12} md={4}>
+                        <InfoArea
+                            title="Secure"
+                            description="Share information with your vet worry free with our secure platform."
+                            icon={Fingerprint}
+                            iconColor="danger"
+                            vertical
+                        />
+                    </GridItem>
+                </GridContainer>
+            </div>
+        </div>
+);
 }
