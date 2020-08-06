@@ -22,7 +22,7 @@ export const invalidateUser = () => {
 }
 
 export const createNewUser = (email, username, password) => {
-    const newUser = JSON.stringify({
+    const newUser = {
         isAuthenticated: true,
         isFetching: false,
         didInvalidate: false,
@@ -35,19 +35,14 @@ export const createNewUser = (email, username, password) => {
         appointments: [],
         messages: [],
         documents: []
-    })
-    console.log("new UserDasboard is")
-    console.log(newUser)
+    };
     return dispatch => {
-        axios.post(API_BASE_URL + "/users", newUser, {headers:{"Content-Type" : "application/json"}})
+        axios.post(API_BASE_URL + "/users", JSON.stringify(newUser), {headers:{"Content-Type" : "application/json"}})
             .then(response => {
                 // Redirect to login
-                console.log("post is successful")
-                window.location.replace("/login?username=" + newUser.username + "&password=" + newUser.password)
+                window.open(`/login?username=${newUser.username}&password=${newUser.password}`);
             })
             .catch(err => {
-                console.log("post is unsuccessful")
-                console.log(err)
                 // TODO: Remove before presentation
                 alert(err);
                 window.location.replace("/")
@@ -100,7 +95,7 @@ export const updateUser = user => {
     return dispatch => {
         dispatch(requestUser());
         dispatch(receiveUser(user));
-        return axios.put(API_BASE_URL + "/auth/UserDasboard", user, tokenConfig(user.authData))
+        return axios.put(API_BASE_URL + "/auth/UserDasboard", JSON.stringify(user), tokenConfig(user.authData))
             .then((response) => {
                 console.log(response);
             })

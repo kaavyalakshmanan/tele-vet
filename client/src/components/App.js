@@ -47,7 +47,7 @@ const handleLogin = () => {
     const password = urlParams.get('password');
     const username = urlParams.get('username');
     if (!password || !username) {
-        window.location.replace('/start?loginFailed=true');
+        window.location.replace('/login/user?loginFailed=true');
     }
     return (<UserDashboard
         userAuthData={
@@ -57,7 +57,7 @@ const handleLogin = () => {
             }).then(response => {
                 return response.data;
             }).catch(err => {
-                window.location.replace('/start?loginFailed=true');
+                window.location.replace('/login/user?loginFailed=true');
             })
         }
     />)

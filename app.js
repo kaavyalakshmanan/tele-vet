@@ -52,7 +52,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-
 // TODO: Uncomment for deployment
 // app.use('/', indexRouter);
 
