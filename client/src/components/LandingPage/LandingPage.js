@@ -1,33 +1,28 @@
 import React from "react";
-// nodejs library that concatenates classes
 import classNames from "classnames";
-// @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
+import ProductDescription from "./Sections/ProductDescription.js";
+import WorkWithUs from "./Sections/WorkWithUs.js";
 
-// @material-ui/icons
-
-// core components
-import GridContainer from "../../components/material-kit/Grid/GridContainer.js";
-import GridItem from "../../components/material-kit/Grid/GridItem.js";
-import Button from "../../components/material-kit/CustomButtons/Button.js";
-import Parallax from "../../components/material-kit/Parallax/Parallax.js";
-
-import styles from "../../assets/jss/material-kit-react/views/landingPage.js";
-
-// Sections for this page
-import ProductSection from "./Sections/ProductSection.js";
-import WorkSection from "./Sections/WorkSection.js";
-
-const dashboardRoutes = [];
+// Third Party components from https://www.creative-tim.com/
+import GridContainer from "../../material-ui-assets/components/Grid/GridContainer.js";
+import GridItem from "../../material-ui-assets/components/Grid/GridItem.js";
+import Button from "../../material-ui-assets/components/CustomButtons/Button.js";
+import Parallax from "../../material-ui-assets/components/Parallax/Parallax.js";
+// Third party styles from https://www.creative-tim.com/
+import styles from "../../material-ui-assets/jss/material-kit-react/views/landingPage.js";
 
 const useStyles = makeStyles(styles);
 
-export default function LandingPage(props) {
+// EFFECTS: Renders the landing page
+// REQUIRED PROPS: None
+// LOCATION: /
+// CREDIT: This component is based on the free material-kit-ui from https://www.creative-tim.com/
+export default function LandingPage() {
   const classes = useStyles();
-  const { ...rest } = props;
   return (
     <div>
-      <Parallax filter image={require("../../assets/img/vet/cute_puppy_cover.jpg")}>
+      <Parallax filter image={require("../../material-ui-assets/img/vet/cute_puppy_cover.jpg")}>
         <div className={classes.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>
@@ -54,8 +49,8 @@ export default function LandingPage(props) {
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
-          <ProductSection />
-          <WorkSection />
+          <ProductDescription />
+          <WorkWithUs />
         </div>
       </div>
     </div>
