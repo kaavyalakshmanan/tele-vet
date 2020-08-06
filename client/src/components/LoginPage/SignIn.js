@@ -79,12 +79,10 @@ export default function SignIn() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoginSuccessFlag(true);
     window.location.replace(`/login?username=${username}&password=${password}`);
   }
 
   const closeSnackbar = (e) => {
-    console.log('close snackbar');
     setLoginFailWarning(false);
   }
 
