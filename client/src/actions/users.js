@@ -111,12 +111,15 @@ export const updateUser = user => {
     }
 }
 
+// Updating user's images, appointments, or documents
 export const addData = (type, data, user) => {
     const newUser = Object.assign({}, user);
     console.log(user);
     newUser[type] = user[type].concat(data);
     return dispatch => dispatch(updateUser(newUser));
 }
+
+// Updating user info
 
 export const deleteAppointment = (appointment, user) => {
     const newUser = Object.assign({}, user, {

@@ -1,6 +1,8 @@
 // This file will contain actions used to change state
 // See Workshop 2 slides for details
 
+// GET RID OF THESE
+
 export const updateAppointments = appointmentData => {
     return {
         type: 'UPDATE_APPOINTMENTS',
