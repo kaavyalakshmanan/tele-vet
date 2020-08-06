@@ -7,17 +7,11 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from "redux";
 import reducers from './reducers';
 import thunkMiddleware from 'redux-thunk'
-import { createLogger } from 'redux-logger'
-
-const loggerMiddleware = createLogger();
 
 ReactDOM.render(
     <Provider store={createStore(
         reducers,
-        applyMiddleware(
-            thunkMiddleware,
-            loggerMiddleware
-        )
+        applyMiddleware(thunkMiddleware)
     )}>
         <App />
     </Provider>,
