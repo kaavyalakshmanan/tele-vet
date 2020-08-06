@@ -118,10 +118,6 @@ Vets can upload images, fill out their availability for users to book, and start
     2. Set up account (details depend on provider).
     3. Integrate into web app.
 
-## Prototypes
-
-![initialSketches](public/resources/prototypes/sketches.jpg)
-![initialSketches2](public/resources/prototypes/sketches2.jpg)
 
 ## Tech from Units 1 - 5:
 1. HTML/CSS/JS:
