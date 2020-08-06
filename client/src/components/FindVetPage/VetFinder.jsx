@@ -5,7 +5,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Map from "./Map/Map";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -14,6 +13,7 @@ import Button from "@material-ui/core/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchVets} from "../../actions";
 import VetProfilePage from "../VetProfilePage/VetProfilePage";
+import Map from "./Map/Map";
 
 function TabPanel(props) {
     const {children, value, index, ...other} = props;

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import isEmpty from 'lodash.isempty';
-import GoogleMap from './GoogleMap';
+import GoogleMap from "./GoogleMap";
 
 const VANCOUVER_COORDINATES = [49.257803, -123.119299];
 let CURRENT_LOCATION = null;

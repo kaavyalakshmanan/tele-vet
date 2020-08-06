@@ -1,8 +1,8 @@
 import React from "react";
 import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
-import ProductDescription from "./Sections/ProductDescription.js";
-import WorkWithUs from "./Sections/WorkWithUs.js";
+import ProductDescription from "./Sections/ProductDescription.jsx";
+import WorkWithUs from "./Sections/WorkWithUs.jsx";
 
 // Third Party components from https://www.creative-tim.com/
 import GridContainer from "../../material-ui-assets/components/Grid/GridContainer.js";

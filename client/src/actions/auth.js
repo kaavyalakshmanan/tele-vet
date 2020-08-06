@@ -22,8 +22,6 @@ export const receiveUser = user => {
     }
 }
 
-
-
 export const loginUser = user => {
     return dispatch => {
         dispatch(requestUser());

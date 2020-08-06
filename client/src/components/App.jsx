@@ -2,17 +2,16 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import '../css/App.css';
 import Navigation from "./Navigation";
-import Login from "./LoginPage/SignIn";
 import About from "./About";
 import UserDashboard from "./UserDasboard/Dashboard";
 import Error from "./Error"
 import VetProfilePage from "./VetProfilePage/VetProfilePage";
 import LandingPage from "./LandingPage/LandingPage";
-import VetFinder from "./FindVetPage/VetFinder";
 import {getURLParams} from "../utils/utils";
 import axios from "axios";
 import SignIn from "./LoginPage/SignIn";
 import SignUp from "./LoginPage/SignUp";
+import VetFinder from "./FindVetPage/VetFinder";
 
 const DEV_URL = 'http://localhost:9000';
 const API_BASE_URL = (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') ?  DEV_URL : '';
@@ -29,7 +28,6 @@ function App() {
             <Route path="/login/user" render={() => <SignIn type={'user'}/>}/>
             <Route path="/about" component={About}/>
             <Route path="/landing" component={LandingPage}/>
-              {/*<Route path="/start" component={Login}/>*/}
             <Route path="/login" render={handleLogin}/>
             <Route path="/vet/dashboard" render={renderVetDashboard}/>
             <Route path="/vet/profile/auth" render={() => <VetProfilePage authenticated={true}/>}/>
