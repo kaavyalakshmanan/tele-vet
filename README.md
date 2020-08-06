@@ -14,29 +14,12 @@ Tele-Vet is a tele-health web app designed to connect vets with their furry pati
 ## What will our app do?
 
 It will connect vets and pet owners virtually with video conferencing and messaging.
-Pet owners can:
-- [ ] Undergo a pre-screening using a chatbot to indicate the level of urgency and preliminary info
-- [ ] Search for vets by location
-- [ ] Book an appointment with a vet
-- [ ] View a vet's availability
-- [ ] Message vets in real-time
-- [ ] Send and receive private messages to a message inbox
-- [ ] Upload images
-- [ ] Video conference with vets
-- [ ] View message log history with vets
-- [ ] Receive a summary of the appointment from the vet
-- [ ] Receive prescriptions from the vet that can be downloaded as a pdf for printing and collecting
+
 
 Vets can:
-- [ ] Send and receive private messages to a message inbox
-- [ ] View calendar and book patients through Google Calendar or Outlook or Apple Calendar
-- [ ] View message log history with patients 
-- [ ] Send notes and prescriptions
-- [ ] View patient uploaded images
-- [ ] View preliminary info on patients from pre-screening
-- [ ] View existing patient files
 
-## What type of data will we store?
+
+## What type of data will we store on MongoDB?
 
 We will store patient profile data: 
 Pet Owners:
@@ -73,21 +56,31 @@ Pet owners can retrieve message log, prescriptions and uploaded images. Vets can
 ## Minimal Requirements
 - [ ] Database storage
 - [ ] User and vet accounts
-- [ ] external log-in manager
-- [ ] Search for vets by location (google map integration)
-- [ ] View a vet's availability
+- [ ] External log-in manager
+- [ ] Search for vets by location
+- [ ] Google Maps API integration
+- [ ] Users can view a vet's availability
 
 ## Standard Requirements
-- [ ] Booking/viewing appointment
-- [ ] Send and receive private messages to a message inbox
-- [ ] Realtime messaging between patients and vets
-- [ ] Embedded video portal
 - [ ] Upload images
+- [ ] User authentication
+- [ ] Book an appointment with a vet
+- [ ] Vets can select their availability in their calendar
+- [ ] Video conference with vets
+- [ ] Realtime messaging between patients and vets
+- [ ] Send and receive private messages, images, and docs to a message inbox
+- View message log history with vets
+- Receive a summary of the appointment from the vet
+- Send notes and prescriptions
+- View patient uploaded images
+- View existing patient files
 
 ## Stretch Requirements
+- [ ] Receive prescriptions from the vet that can be downloaded as a pdf for printing and collecting
 - [ ] Integrate booking with external calendars (google Cal, Outlook, Apple Cal)
 - [ ] Payment integration
-- [ ] Pre-screening chatbot
+- [ ] Undergo a pre-screening using a chatbot to indicate the level of urgency and preliminary info
+- [ ] Vets can view preliminary info on patients from pre-screening
 
 ## Breakdown of minimal requirements
 - [ ] Database Storage
