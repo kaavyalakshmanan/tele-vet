@@ -2,20 +2,19 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import '../css/App.css';
 import Navigation from "./Navigation";
-import Home from "./home/Home";
+import Home from "./LoginPage/SignIn";
 import About from "./About";
-import UserDashboard from "./user/Dashboard";
-import VetSignUp from "./home/VetSignUp";
-import PetSignUp from "./home/PetSignUp";
+import UserDashboard from "./UserDasboard/Dashboard";
+import PetSignUp from "./LoginPage/PetSignUp";
 import Error from "./Error"
-import AppointmentsView from './Appointments/AppointmentsView'
-import DocumentList from "./user/documents/DocumentList";
+import DocumentList from "./UserDasboard/Documents/DocumentList";
 import VetProfilePage from "./VetProfilePage/VetProfilePage";
 import LandingPage from "./LandingPage/LandingPage";
-import VetFinder from "./maps/VetFinder";
+import VetFinder from "./FindVetPage/VetFinder";
 import axios from "axios";
 
-const API_BASE_URL = 'http://localhost:9000'
+const DEV_URL = 'http://localhost:9000';
+const API_BASE_URL = (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') ?  DEV_URL : '';
 
 function App() {
     return (
@@ -33,8 +32,6 @@ function App() {
                     <Route path="/user/dashboard" render={() => <UserDashboard/>}/>
                     <Route path="/vet/profile/auth" render={() => <VetProfilePage authenticated={true}/>}/>
                     <Route path="/vet/profile/" render={() => <VetProfilePage authenticated={false}/>}/>
-                    <Route path="/appointments" component={AppointmentsView}/>
-                    <Route path="/vetsignup" component={VetSignUp}/>
                     <Route path="/petsignup" component={PetSignUp}/>
                     <Route component={Error}/>
                 </Switch>

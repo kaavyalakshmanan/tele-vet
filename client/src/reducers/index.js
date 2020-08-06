@@ -4,7 +4,7 @@ const initialUser = {
     "isAuthenticated": false,
     "isFetching": true,
     "didInvalidate": true,
-    "email": "user@test.com",
+    "email": "UserDasboard@test.com",
     "username": "testUser",
     "password": "test",
     "profilePicture": "http://localhost:3000/resources/woman.png",
@@ -142,7 +142,7 @@ const initialProfiles = [{
     saturdayClose: "20h00",
 }];
 
-const userReducer = (user = initialUser, action) => {
+const userReducer = (user = {}, action) => {
     switch(action.type) {
         case 'RECEIVE_USER':
             return Object.assign({}, action.user, {
@@ -242,7 +242,7 @@ const contactReducer = (contacts = initialContacts, action) => {
     return contacts;
 }
 
-const profileReducer = (profiles = initialProfiles, action) => {
+const profileReducer = (profiles = {}, action) => {
     if (action.type === "EDIT_VET_PROFILE") {
         return profiles.push(action.payload)
     }
