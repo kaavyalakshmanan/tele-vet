@@ -4,11 +4,13 @@
 
 [Kaavya](https://www.linkedin.com/in/kaavlaks/): R2Q7
  - Worked on: 
-   - User authentication
-   - Creating the login and registration pages
-   - Helped with creating user dashboard
-   - Helped team with debugging other features/components
-   - Helped keep team on track with deliverables during meetings
+   - Implemented user authentication
+   - Created the login and registration pages
+   - Incorporating Auth0
+   - Helped create user dashboard
+   - Debugged many features/components
+   - Kept team on track with deliverables during meetings
+   - Took minutes during all meetings
    - Contributed to code refactoring and clean up 
    - Helped deploy to Heroku
 
@@ -20,6 +22,8 @@
    - Pulled json data for local vets from Google maps API
    - Centered map to user location
    - Supported team with documentation and testing
+   - Helped debug Heroku deployment
+   - Wrote biweekly scrum reports
    
 [Francois](https://www.linkedin.com/in/charettefrancois/): J1H1B
  - Worked on:
@@ -30,7 +34,7 @@
    
 [Nick](https://www.linkedin.com/in/nipeters/): T9F2B
  - Worked on:
-   - SO MUCH STUFF
+   - STUFF
 
 ## Description of App:
 
