@@ -24,7 +24,7 @@ router.post('/', (req, res) => {
     }
 
     // If User Dasboard is already registered, send 400 response
-    User.findOne({username})
+    User.findOne({username: username, email: email})
         .then(user => {
             if (user) return res.status(400).json({msg: 'User already exists'});
 
@@ -58,10 +58,16 @@ router.post('/', (req, res) => {
                                         }
                                     });
                                 });
-                        });
+                        })
+                .catch(err => {
+                        return res.status(400).json({msg: 'User already exists'});
+                    })
                 });
             });
-        });
+        })
+        .catch(err => {
+            return res.status(400).json({msg: 'Unable to create this user.'});
+        })
 });
 
 

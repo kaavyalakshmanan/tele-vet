@@ -43,9 +43,8 @@ export const createNewUser = (email, username, password) => {
                 window.open(`/login?username=${newUser.username}&password=${newUser.password}`);
             })
             .catch(err => {
-                // TODO: Remove before presentation
-                alert(err);
-                window.location.replace("/")
+                console.error("User Already Exists")
+                window.location.replace("/petsignup?registerFailed=true")
             })
     }
 }

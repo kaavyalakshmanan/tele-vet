@@ -14,6 +14,7 @@ import {useDispatch} from "react-redux";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from '@material-ui/lab/Alert';
 import {createNewUser} from "../../actions";
+import {getURLParams} from "../../utils/utils";
 
 
 function Copyright() {
@@ -58,10 +59,11 @@ const useStyles = makeStyles((theme) => ({
 // CREDIT: This component is based on sample code from https://material-ui.com/
 export default function SignUp() {
   const classes = useStyles();
+  const urlParams = getURLParams(window.location.href);
   const [password, setPassword] = React.useState('');
   const [username, setUsername] = React.useState('');
   const [email, setEmail] = React.useState('');
-  const [registerFailWarning, setRegisterFailWarning] = React.useState(false);
+  const [registerFailWarning, setRegisterFailWarning] = React.useState(urlParams.registerFailed);
   const [registerSuccessFlag, setRegisterSuccessFlag] = React.useState(false);
   const dispatch = useDispatch();
 
@@ -70,14 +72,6 @@ export default function SignUp() {
     e.preventDefault();
     dispatch(createNewUser(email, username, password));
   }
-
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const registerFailed = urlParams.get('registerFailed');
-    if (registerFailed) {
-      setRegisterFailWarning(true);
-    }
-  });
 
   return (
       <div>

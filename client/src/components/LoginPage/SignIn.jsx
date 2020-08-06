@@ -71,24 +71,18 @@ const useStyles = makeStyles((theme) => ({
 // CREDIT: This component is based on sample code from https://material-ui.com/
 export default function SignIn({type}) {
   const classes = useStyles();
-  const urlParams = new URLSearchParams(window.location.search);
-  const loginFailed = urlParams.get('loginFailed');
+  const urlParams = getURLParams(window.location.href);
   const [password, setPassword] = React.useState('');
   const [username, setUsername] = React.useState('');
-  const [loginFailWarning, setLoginFailWarning] = React.useState(loginFailed);
+  const [loginFailWarning, setLoginFailWarning] = React.useState(urlParams.loginFailed);
   const [loginSuccessFlag, setLoginSuccessFlag] = React.useState(false);
-  // let targetDashboard = type === 'user' ? '/login' : '/vet/dashboard';
-  const params = getURLParams(window.location.href);
-  // if (params.id) {
-  //   targetDashboard += ('?id=' + params.id);
-  // }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (type === 'user') {
       window.location.replace(`/login?username=${username}&password=${password}`);
     } else {
-      window.location.replace(`/vet/dashboard?id=${params.id}`);
+      window.location.replace(`/vet/dashboard?id=${urlParams.id}`);
     }
   }
 
