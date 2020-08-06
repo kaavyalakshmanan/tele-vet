@@ -5,16 +5,16 @@ const veterenarians = require("../models/vetModel");
 
 //Get all veterenarianss in the dataset
 // FIXME: This probably should not be a public endpoint because it returns passwords
-router.get('/', function (req, res, next) {
-    res.setHeader('Content-Type', 'application/json');
-    veterenarians.find({}, function (err, myData) {
-        if (err) {
-            next(err);
-        } else {
-            res.send(myData)
-        }
-    })
-})
+// router.get('/', function (req, res, next) {
+//     res.setHeader('Content-Type', 'application/json');
+//     veterenarians.find({}, function (err, myData) {
+//         if (err) {
+//             next(err);
+//         } else {
+//             res.send(myData)
+//         }
+//     })
+// })
 
 router.get('/profiles/all', function (req, res, next) {
     veterenarians.find({}, function(err, vets) {
