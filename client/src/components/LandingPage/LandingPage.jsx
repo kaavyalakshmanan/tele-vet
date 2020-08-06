@@ -14,7 +14,7 @@ import styles from "../../material-ui-assets/jss/material-kit-react/views/landin
 import {useDispatch, useSelector} from "react-redux";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
-import { setEmailSuccessFlag } from "../../actions";
+import {setEmailStatusFlag} from "../../actions";
 
 const useStyles = makeStyles(styles);
 
@@ -47,8 +47,7 @@ export default function LandingPage() {
   });
 
   const closeSnackBar = () => {
-    setEmailFailedFlag(false);
-    setEmailSuccessFlag(false);
+    dispatch(setEmailStatusFlag(null));
   }
 
   return (
