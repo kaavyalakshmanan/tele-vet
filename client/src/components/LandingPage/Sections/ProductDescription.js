@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Chat from "@material-ui/icons/Chat";
 import VerifiedUser from "@material-ui/icons/VerifiedUser";
 import Fingerprint from "@material-ui/icons/Fingerprint";
+
 // Third Party components from https://www.creative-tim.com/
 import GridItem from "../../../material-ui-assets/components/Grid/GridItem.js";
 import InfoArea from "../../../material-ui-assets/components/InfoArea/InfoArea.js";

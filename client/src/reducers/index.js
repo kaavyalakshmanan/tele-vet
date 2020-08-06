@@ -6,7 +6,11 @@ const initialUser = {
     "isAuthenticated": false,
     "isFetching": true,
     "didInvalidate": true,
+<<<<<<< HEAD
     "email": "UserDasboard@test.com",
+=======
+    "email": "UserDashboard@test.com",
+>>>>>>> final-presentation-vet-login-popup
     "username": "testUser",
     "password": "test",
     "profilePicture": "http://localhost:3000/resources/woman.png",
@@ -17,7 +21,28 @@ const initialUser = {
     "documents": []
 }
 
+<<<<<<< HEAD
 // REMOVE
+=======
+const initialLoggedInVet = {
+    "_id": 0,
+    "coverPhoto":'',
+    "username":'',
+    "firstname":'',
+    "lastname":'',
+    "description":'',
+    "email":'',
+    "businessName":'',
+    "profilePicture":'',
+    "pictures":[],
+    "reviews":[],
+    "rating": 0,
+    "facebook":'',
+    "twitter":'',
+    "geometry":{}
+}
+
+>>>>>>> final-presentation-vet-login-popup
 const initialAppointments = {
     apptList: [
         {
@@ -74,9 +99,14 @@ const initialImages = {
     ]
 }
 
+<<<<<<< HEAD
 // REMOVE
 // TODO: We need to decide how we are going to store messages
 // TODO: Add a timestamp to messages
+=======
+// TODO: We need to decide how we are going to store Messages
+// TODO: Add a timestamp to Messages
+>>>>>>> final-presentation-vet-login-popup
 const initialContacts = {
     contactList: [
         {
@@ -262,6 +292,20 @@ const vetListReducer = (vetList = [], action) => {
     return vetList;
 }
 
+const loggedInVetReducer = (vet = initialLoggedInVet, action) => {
+    if (action.type === 'RECEIVE_VET') {
+        return action.vet;
+    }
+    if (action.type === 'UPDATE_VET_PROFILE_PICTURE') {
+        return Object.assign({}, vet, {profilePicture: action.image});
+    }
+    if (action.type === 'ADD_VET_PHOTO') {
+        let newImageList = vet.pictures.concat(action.image);
+        return Object.assign({}, vet, {pictures: newImageList});
+    }
+    return vet;
+}
+
 export default combineReducers({
     // WHAT WE NEED
     user: userReducer,
@@ -277,6 +321,12 @@ export default combineReducers({
     images: imageReducer,
     inbox: inboxReducer,
     contacts: contactReducer,
+<<<<<<< HEAD
 
    
+=======
+    profiles: profileReducer,
+    vetList: vetListReducer,
+    loggedInVet: loggedInVetReducer
+>>>>>>> final-presentation-vet-login-popup
 });
