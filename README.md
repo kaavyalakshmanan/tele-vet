@@ -27,6 +27,7 @@ https://tele-vet.herokuapp.com/
    - Supported team with documentation and testing
    - Helped debug Heroku deployment
    - Wrote biweekly scrum reports
+   - Set up the MongoDB database
    
 [Francois](https://www.linkedin.com/in/charettefrancois/): J1H1B
  - Worked on:
@@ -34,10 +35,17 @@ https://tele-vet.herokuapp.com/
    - Built the user/vet appointment booking system
    - Helped with the API, including the collection models
    - Defined the project using wireframes and flow maps
+   - Designed the vet profile page 
    
 [Nick](https://www.linkedin.com/in/nipeters/): T9F2B
  - Worked on:
-   - STUFF
+   - Created the user dashboard
+   - Built landing page and refactored the vet profile page
+   - Designed and wrote the redux/thunk state control flow
+   - Assisted with implementing and debugging user authentication
+   - Refactored maps to pull vet profiles from the database
+   - Assisted in designing the user endpoints in the api
+
 
 ## What our app does:
 
