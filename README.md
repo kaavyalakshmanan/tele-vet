@@ -1,5 +1,8 @@
 # Tele-Vet
 
+https://tele-vet.herokuapp.com/
+
+
 ## Who we are:
 
 [Kaavya](https://www.linkedin.com/in/kaavlaks/): R2Q7
@@ -36,13 +39,9 @@
  - Worked on:
    - STUFF
 
-## Description of App:
+## What our app does:
 
-Tele-Vet is a tele-health web app designed to connect vets with their furry patients. A user can view vet profile pages by location, upload relevant documents (images, text files, etc), and video conference with a vet.
-
-## What will our app do?
-
-It will connect vets and pet owners virtually with video conferencing and messaging.
+Tele-Vet is a virtual health care web-app that connects vets with their furry patients. A user can view vet profiles by location rating or by proximity to the user. Users can also upload relevant documents to their pet's care (images, text files, etc), book an appointment and video conference with a vet to get the care they need, even during a global pandemic.
 
 
 ## What type of data will we store on MongoDB?
