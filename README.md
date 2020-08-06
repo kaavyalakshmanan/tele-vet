@@ -15,7 +15,7 @@ Tele-Vet is a tele-health web app designed to connect vets with their furry pati
 
 It will connect vets and pet owners virtually with video conferencing and messaging.
 Pet owners can:
-- [] Undergo a pre-screening using a chatbot to indicate the level of urgency and preliminary info
+- [ ] Undergo a pre-screening using a chatbot to indicate the level of urgency and preliminary info
 - Search for vets by location
 - Book an appointment with a vet
 - View a vet's availability
