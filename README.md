@@ -9,7 +9,7 @@ https://tele-vet.herokuapp.com/
  - Worked on: 
    - Implemented user authentication
    - Created the login and registration pages
-   - Incorporating Auth0
+   - Incorporated JWS & Bcryptjs
    - Helped create user dashboard
    - Debugged many features/components
    - Kept team on track with deliverables during meetings
@@ -52,7 +52,7 @@ https://tele-vet.herokuapp.com/
 Tele-Vet is a virtual health care web-app that connects vets with their furry patients. A user can view vet profiles by location rating or by proximity to the user. Users can also upload relevant documents to their pet's care (images, text files, etc), book an appointment and video conference with a vet to get the care they need, even during a global pandemic.
 
 
-## What type of data will we store on MongoDB?
+## What type of data we store on MongoDB:
 
 We will store patient profile data: 
 Pet Owners:
@@ -80,9 +80,10 @@ Vets:
 - [ ] Message history
 - [ ] Prescription history etc
 
-## What will users be able to do with the data?
+## What users cando with the data:
 
 Pet owners can view vet clinics by location or profile. Within this, they can view ratings and contact information. Users can also upload images of their pets, and book an appointment with a vet. 
+
 Vets can upload images, fill out their availability for users to book, and start video conferencing.
 
 ## Minimal Requirements
@@ -113,17 +114,6 @@ Vets can upload images, fill out their availability for users to book, and start
 - [ ] Payment integration
 - [ ] Undergo a pre-screening using a chatbot to indicate the level of urgency and preliminary info
 - [ ] Vets can view preliminary info on patients from pre-screening
-
-## Breakdown of minimal requirements
-- [x] Database Storage
-    1. Set up a database
-    2. Create a REST service in the backend that will provide endpoints for accessing the database, so we can access the
-        data with frontend AJAX requests.
-
-- [x] External log-in manager
-    1. Choose an Oauth2.0 provider (Auth0 is free for up to 7k users https://auth0.com/). We don't want to manage this ourselves.
-    2. Set up account (details depend on provider).
-    3. Integrate into web app.
 
 
 ## Tech from Units 1 - 5:
