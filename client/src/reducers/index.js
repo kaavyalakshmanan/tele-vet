@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 
+// Empty user -> so we don't get error before we get actual user from db
+// REMOVE AND SET TO EMPTY OBJ
 const initialUser = {
     "isAuthenticated": false,
     "isFetching": true,
@@ -15,6 +17,7 @@ const initialUser = {
     "documents": []
 }
 
+// REMOVE
 const initialAppointments = {
     apptList: [
         {
@@ -30,6 +33,7 @@ const initialAppointments = {
     ]
 }
 
+// REMOVE
 const initialImages = {
     list: [
         {
@@ -70,6 +74,7 @@ const initialImages = {
     ]
 }
 
+// REMOVE
 // TODO: We need to decide how we are going to store messages
 // TODO: Add a timestamp to messages
 const initialContacts = {
@@ -119,6 +124,7 @@ const initialContacts = {
     ]
 }
 
+// REMOVE AND SET TO EMPTY OBJ
 const initialProfiles = [{
     firstName: "Jane",
     lastName: "McDouglas",
@@ -257,14 +263,20 @@ const vetListReducer = (vetList = [], action) => {
 }
 
 export default combineReducers({
+    // WHAT WE NEED
     user: userReducer,
-    appointmentData: appointmentReducer,
     navBarHidden: navBarReducer,
     userDashboardView: userDashboardViewReducer,
     userDashboardSidebarOpen: userDashboardViewReducer,
+    // Rename to vetProfileReducer
+    profiles: profileReducer,
+    vetList: vetListReducer,
+
+    // GET RID OF THESE
+    appointmentData: appointmentReducer,
     images: imageReducer,
     inbox: inboxReducer,
     contacts: contactReducer,
-    profiles: profileReducer,
-    vetList: vetListReducer
+
+   
 });

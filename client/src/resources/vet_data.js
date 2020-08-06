@@ -1,3 +1,5 @@
+//REMOVE?
+
 const vetData = [
     {
   "business_status": "OPERATIONAL",

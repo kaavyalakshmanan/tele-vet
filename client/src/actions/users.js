@@ -1,9 +1,6 @@
-
 import axios from 'axios';
-import {useDispatch} from "react-redux";
 const DEV_URL = 'http://localhost:9000';
-const API_BASE_URL = (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') ?  DEV_URL + '/users' : '/users'
-
+const API_BASE_URL = (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') ?  DEV_URL : '';
 
 export const receiveUser = user => {
     return {
@@ -24,6 +21,40 @@ export const invalidateUser = () => {
     }
 }
 
+export const createNewUser = (email, username, password) => {
+    const newUser = JSON.stringify({
+        isAuthenticated: true,
+        isFetching: false,
+        didInvalidate: false,
+        email: email,
+        username: username,
+        password: password,
+        profilePicture: "",
+        lastUpdate: Date.now(),
+        images: [],
+        appointments: [],
+        messages: [],
+        documents: []
+    })
+    console.log("new user is")
+    console.log(newUser)
+    return dispatch => {
+        axios.post(API_BASE_URL + "/users", newUser, {headers:{"Content-Type" : "application/json"}})
+            .then(response => {
+                // Redirect to login
+                console.log("post is successful")
+                window.location.replace("/login?username=" + newUser.username + "&password=" + newUser.password)  
+            })
+            .catch(err => {
+                console.log("post is unsuccessful")
+                console.log(err)
+                // TODO: Remove before presentation
+                alert(err);
+                window.location.replace("/")
+            })
+    }
+}
+
 export const logoutUser = () => {
     return dispatch => {
         dispatch(invalidateUser());
@@ -31,59 +62,64 @@ export const logoutUser = () => {
     }
 }
 
-export const loginUser = id => {
+export const loginUser = user => {
     return dispatch => {
         dispatch(requestUser());
-        return axios.get(API_BASE_URL + "/id/" + id)
+        return axios.get(API_BASE_URL + "/auth/user", tokenConfig(user))
             .then(response => {
-                dispatch(receiveUser(response.data));
+                const newUser = Object.assign({}, response.data, {authData: user});
+                dispatch(receiveUser(newUser));
             })
             .catch(err => {
-                console.error(err);
+                // TODO: Remove before presentation
                 alert(err);
-                window.location.replace("/");
             });
     }
 }
 
-// FIXME: Remove if not needed
-export const fetchUserById = id => {
-    return dispatch => {
-        dispatch(requestUser());
-        return axios.get(API_BASE_URL + "/id/" + id)
-            .then(response => {
-                dispatch(receiveUser(response.data));
-            })
-            .catch(err => {
-                console.error(err);
-                alert("Failed to load user data");
-            });
+// setup config headers and token
+const tokenConfig = user => {
+    // Get token from local storage
+    const token = user.token;
+
+    // Headers
+    const config = {
+        headers: {
+            "Content-type": "application/json"
+        }
     }
+
+    if (token) {
+        config.headers['x-auth-token'] = token;
+    }
+
+    return config;
 }
 
 export const updateUser = user => {
     return dispatch => {
         dispatch(requestUser());
-        // FIXME: This is not well designed, could cause inconsistency between database and frontend
         dispatch(receiveUser(user));
-        return axios.put(API_BASE_URL + "/id/" + user._id, user)
+        return axios.put(API_BASE_URL + "/auth/user", user, tokenConfig(user.authData))
             .then((response) => {
                 console.log(response);
-                // dispatch(receiveUser(response.data));
             })
             .catch(err => {
-                // FIXME: Notify the user if data did not load correctly
-                console.error(err);
+                // TODO: Remove before presentation
+                alert("Your data did not save correctly. Please check your connection.")
             });
     }
 }
 
+// Updating user's images, appointments, or documents
 export const addData = (type, data, user) => {
     const newUser = Object.assign({}, user);
     console.log(user);
     newUser[type] = user[type].concat(data);
     return dispatch => dispatch(updateUser(newUser));
 }
+
+// Updating user info
 
 export const deleteAppointment = (appointment, user) => {
     const newUser = Object.assign({}, user, {
@@ -120,7 +156,7 @@ export const updateProfilePicture = (src, user) => {
 
 export const deleteDocument = (document, user) => {
     const newUser = Object.assign({}, user, {
-        documents: user.documents.filter(doc => doc.id !== document.id)
+        documents: user.documents.list.filter(doc => doc.id !== document.id)
     });
     return dispatch => dispatch(updateUser(newUser));
 }

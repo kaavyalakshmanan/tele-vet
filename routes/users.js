@@ -1,107 +1,68 @@
+/* REGISTERING A NEW USER
+   Credits to help us understand how to use JWT and bcryptjs: https://blog.bitsrc.io/build-a-login-auth-app-with-mern-stack-part-1-c405048e3669
+*/
+
 const express = require('express');
 const router = express.Router();
-const {uuid} = require("uuidv4");
-const user = require("../models/userModel");
+const bcrypt = require('bcryptjs');
+const config = require('config');
+const jwt = require('jsonwebtoken');
 
+// User Model
+const User = require('../models/userModel');
 
-router.get('/', (req, res, next) => {
-    res.setHeader('Content-Type', 'application/json');
-    user.find({}, function (err, result) {
-        if (err) {
-            next(err);
-        } else {
-            res.json(result)
-        }
-    });
+/* @route   POST /users
+   @desc    Register a new user
+   @access  Public */
+
+router.post('/', (req, res) => {
+    const {email, username, password} = req.body;
+
+    // If user does not input username, email, or password, send 400 response
+    if (!username || !email || !password) {
+        return res.status(400).json({msg: 'Please enter all fields'});
+    }
+
+    // If user is already registered, send 400 response 
+    User.findOne({username})
+        .then(user => {
+            if (user) return res.status(400).json({msg: 'User already exists'});
+
+            // Create new user object with req.body that's passed in from axios post request
+            const newUser = new User(req.body);
+
+            // Salt & hash password to make more secure
+            bcrypt.genSalt(10, (err, salt) => {
+                bcrypt.hash(newUser.password, salt, (err, hash) => {
+                    if (err) throw err;
+                    // Set user's password to hashed password
+                    newUser.password = hash;
+                    // Dave user to database
+                    newUser.save()
+                        .then(user => {
+                            // Sign user in using JWT token
+                            jwt.sign(
+                                {id: user.id},
+                                config.get('jwtSecret'),
+                                // Keep user logged in for 1 hour
+                                {expiresIn: 3600},
+                                (err, token) => {
+                                    if (err) throw err;
+                                    // Send JSON response with relevant user info and newly created authorization token
+                                    res.json({
+                                        token,
+                                        user: {
+                                            id: user.id,
+                                            email: user.email,
+                                            username: user.username
+                                        }
+                                    });
+                                });
+                        });
+                });
+            });
+        });
 });
 
-router.post('/', (req, res, next) => {
-    let newUser = new user(req.body);
-    newUser.id = uuid();
-    res.setHeader('Content-Type', 'application/json');
-    newUser.save().then((newUser) => {
-        res.send(newUser);
-    }).catch(err => {
-        console.log(err);
-        next(err);
-    });
-});
-
-router.get('/id/:id', (req, res, next) => {
-    res.setHeader('Content-Type', 'application/json');
-    user.findById(req.params.id, (err, user) => {
-        if (err) {
-            next(err);
-        } else if (!user) {
-            res.status(404).send(`User with id ${req.params.id} not found`);
-        } else {
-            res.status(200).json(user._doc);
-        }
-    });
-});
-
-// FIXME: Do we still need this route?
-router.get('/id/:userId/document/:documentId', (req, res, next) => {
-    res.setHeader('Content-Type', 'application/json');
-    user.findById(req.params.userId, (err, user) => {
-        if (err) {
-            next(err);
-        } else if (!user) {
-            res.status(404).send(`User with id ${req.params.userId} not found`);
-        } else {
-            let targetDocument = null;
-            user._doc.documents.list.forEach((doc => {
-                if (req.params.documentId === doc.id.toString()) {
-                    targetDocument = JSON.stringify(doc);
-                }
-            }));
-            if (targetDocument) {
-                res.status(200).json(targetDocument);
-            } else {
-                res.status(404).send(`Document with id ${req.params.documentId} not found`);
-            }
-        }
-    });
-})
-
-router.put('/id/:id', (req, res, next) => {
-    res.setHeader('Content-Type', 'application/json');
-    user.findByIdAndUpdate(req.params.id, req.body, (err, newUser) => {
-        if (err) {
-            next(err);
-        } else {
-            res.status(200).send(JSON.stringify(newUser));
-        }
-    });
-});
-
-router.post('/image/:id', (req, res, next) => {
-    res.setHeader('Content-Type', 'application/json');
-    user.findByIdAndUpdate(
-        req.params.id,
-        {$push: {images: req.body}},
-        (err, response) => {
-            if (err) {
-                next(err);
-            } else {
-                console.log(response._doc);
-                res.send(response._doc);
-            }
-        }
-    )
-
-})
-
-// We May want to remove this endpoint or make it restricted
-router.delete('/id/:id', (req, res, next) => {
-    res.setHeader('Content-Type', 'application/json');
-    user.findByIdAndDelete(req.params.id, (err, deletedUser) => {
-        if (err) {
-            next(err);
-        } else {
-            res.json(deletedUser);
-        }
-    });
-});
 
 module.exports = router;
