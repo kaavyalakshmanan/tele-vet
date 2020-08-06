@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import {getURLParams} from "../../utils/utils";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -68,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
 // EFFECTS: Renders the Sign In Page
 // LOCATION: /start
 // CREDIT: This component is based on sample code from https://material-ui.com/
-export default function SignIn() {
+export default function SignIn({type}) {
   const classes = useStyles();
   const urlParams = new URLSearchParams(window.location.search);
   const loginFailed = urlParams.get('loginFailed');
@@ -76,10 +77,19 @@ export default function SignIn() {
   const [username, setUsername] = React.useState('');
   const [loginFailWarning, setLoginFailWarning] = React.useState(loginFailed);
   const [loginSuccessFlag, setLoginSuccessFlag] = React.useState(false);
+  // let targetDashboard = type === 'user' ? '/login' : '/vet/dashboard';
+  const params = getURLParams(window.location.href);
+  // if (params.id) {
+  //   targetDashboard += ('?id=' + params.id);
+  // }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    window.location.replace(`/login?username=${username}&password=${password}`);
+    if (type === 'user') {
+      window.location.replace(`/login?username=${username}&password=${password}`);
+    } else {
+      window.location.replace(`/vet/dashboard?id=${params.id}`);
+    }
   }
 
   const closeSnackbar = (e) => {
@@ -131,6 +141,7 @@ export default function SignIn() {
                     color="primary"
                     className={classes.submit}
                     onClick={handleSubmit}
+                    // href={targetDashboard}
                 >
                   Sign In
                 </Button>

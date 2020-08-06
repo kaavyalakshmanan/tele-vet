@@ -6,7 +6,7 @@ const initialUser = {
     "isAuthenticated": false,
     "isFetching": true,
     "didInvalidate": true,
-    "email": "UserDasboard@test.com",
+    "email": "",
     "username": "testUser",
     "password": "test",
     "profilePicture": "http://localhost:3000/resources/woman.png",
@@ -18,6 +18,24 @@ const initialUser = {
 }
 
 // REMOVE
+const initialLoggedInVet = {
+    "_id": 0,
+    "coverPhoto":'',
+    "username":'',
+    "firstname":'',
+    "lastname":'',
+    "description":'',
+    "email":'',
+    "businessName":'',
+    "profilePicture":'',
+    "pictures":[],
+    "reviews":[],
+    "rating": 0,
+    "facebook":'',
+    "twitter":'',
+    "geometry":{}
+}
+
 const initialAppointments = {
     apptList: [
         {
@@ -262,21 +280,28 @@ const vetListReducer = (vetList = [], action) => {
     return vetList;
 }
 
+const loggedInVetReducer = (vet = null, action) => {
+    if (action.type === 'RECEIVE_VET') {
+        return action.vet;
+    }
+    if (action.type === 'UPDATE_VET_PROFILE_PICTURE') {
+        return Object.assign({}, vet, {profilePicture: action.image});
+    }
+    if (action.type === 'ADD_VET_PHOTO') {
+        let newImageList = vet.pictures.concat(action.image);
+        return Object.assign({}, vet, {pictures: newImageList});
+    }
+    return vet;
+}
+
 export default combineReducers({
     // WHAT WE NEED
     user: userReducer,
     navBarHidden: navBarReducer,
     userDashboardView: userDashboardViewReducer,
     userDashboardSidebarOpen: userDashboardViewReducer,
+    loggedInVet: loggedInVetReducer,
     // Rename to vetProfileReducer
     profiles: profileReducer,
-    vetList: vetListReducer,
-
-    // GET RID OF THESE
-    appointmentData: appointmentReducer,
-    images: imageReducer,
-    inbox: inboxReducer,
-    contacts: contactReducer,
-
-   
+    vetList: vetListReducer
 });

@@ -43,7 +43,7 @@ export const createNewUser = (email, username, password) => {
             .then(response => {
                 // Redirect to login
                 console.log("post is successful")
-                window.location.replace("/login?username=" + newUser.username + "&password=" + newUser.password)  
+                window.location.replace("/login?username=" + newUser.username + "&password=" + newUser.password)
             })
             .catch(err => {
                 console.log("post is unsuccessful")
@@ -120,7 +120,6 @@ export const addData = (type, data, user) => {
 }
 
 // Updating user info
-
 export const deleteAppointment = (appointment, user) => {
     const newUser = Object.assign({}, user, {
         appointments: user.appointments.filter(userAppointment => userAppointment.id !== appointment.id)
@@ -156,7 +155,7 @@ export const updateProfilePicture = (src, user) => {
 
 export const deleteDocument = (document, user) => {
     const newUser = Object.assign({}, user, {
-        documents: user.documents.list.filter(doc => doc.id !== document.id)
+        documents: user.documents.filter(doc => doc.id !== document.id)
     });
     return dispatch => dispatch(updateUser(newUser));
 }

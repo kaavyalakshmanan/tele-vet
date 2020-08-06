@@ -53,7 +53,7 @@ app.use(function(req, res, next) {
 });
 
 
-// TODO: Uncomment for deployment 
+// TODO: Uncomment for deployment
 // app.use('/', indexRouter);
 
 
@@ -78,5 +78,15 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// Serve static third-party-assets-material-ui if we are in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 module.exports = app;

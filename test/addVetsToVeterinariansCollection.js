@@ -73,7 +73,7 @@ db.veterinarians.insertMany([
         "username": "guilford_pet_hospital",
         "firstName": "Guilford",
         "lastName": "Constrictor",
-        "description": "At Guilford Pet Hospital we care for your pet with the expertise and compassion that you expect. Our passion is the health of your furry friends. We offer emergency care and scheduled appointments to fit your needs and schedule.",
+        "description": "At Guilford Pet Hospital we care for your pet with the expertise and compassion that you expect. Our passion is the health of your furry friends. We offer emergency care and scheduled appointments to fit your needs and Schedule.",
         "email": "guilford_pet_hospital@gmail.com",
         "businessName": "Guilford Pet Hospital",
         "profilePicture": "/resources/vets/guilford_pet_hospital/profile.jpg",

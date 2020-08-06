@@ -24,5 +24,13 @@ export const addMessage = message => {
     }
 }
 
+export const editVetProfile = (stateInput) => {
+    return {
+        type: "EDIT_VET_PROFILE",
+        profile: stateInput
+    }
+};
+
+
 export * from "./users";
 export * from "./vets";

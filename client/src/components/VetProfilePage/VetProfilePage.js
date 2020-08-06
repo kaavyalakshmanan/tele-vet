@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 import Camera from "@material-ui/icons/Camera";
@@ -12,54 +12,144 @@ import GridItem from "../../material-ui-assets/components/Grid/GridItem.js";
 import NavPills from "../../material-ui-assets/components/NavPills/NavPills.js";
 import Parallax from "../../material-ui-assets/components/Parallax/Parallax.js";
 
-// Third party styles from https://www.creative-tim.com/
 import styles from "../../material-ui-assets/jss/material-kit-react/views/profilePage.js";
 import Header from "./Header/Header";
 import HeaderLinks from "./Header/HeaderLinks";
-import Booking from "./booking/Booking";
+import {addVetImageData, getVetById, receiveVet} from "../../actions";
+import {useDispatch, useSelector} from "react-redux";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogActions from "@material-ui/core/DialogActions";
+import Dialog from "@material-ui/core/Dialog";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+import Typography from "@material-ui/core/Typography";
+import TimePickers from "./Booking/TimePickers";
+import VideoConference from "../VideoConference/VideoConference";
+import Booking from "./Booking/Booking";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
-const useStyles = makeStyles(styles);
+const useStyles = makeStyles((theme) => Object.assign({}, styles, {
+    appBar: {
+        position: 'relative',
+    },
+    title: {
+        marginLeft: theme.spacing(2),
+        flex: 1,
+    },
+    cardMedia: {paddingTop: '56.25%'}
+}));
 
 // EFFECTS: Renders the vet profile page
 // REQUIRED PROPS: vet -- The vet object to be rendered
 // LOCATION: /find/vets
-export default function VetProfilePage(vet) {
+export default function VetProfilePage({vet, auth, id}) {
     const classes = useStyles();
+    const loggedInVet = useSelector(state => state.loggedInVet);
+    const dispatch = useDispatch();
     const imageClasses = classNames(
         classes.imgRaised,
         classes.imgRoundedCircle,
         classes.imgFluid
     );
-    const [flipped, setFlipped] = useState(false);
+    const [uploadDialogOpen, setUploadDialogOpen] = React.useState(false);
+    const [photoUploadAction, setPhotoUploadAction] = React.useState(null);
+    const [availabilities, SetAvailabilitiesOpen] = useState(false);
+    const [VideoConferenceOpen, SetVideoConferenceOpen] = useState(false);
+    const [preview, setPreview] = React.useState(null);
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
-    const [date, changeDate] = useState(new Date());
-    const appointmentButtonText = flipped ? "Save Time" : "Request " + date;
-    const currentVet = vet.vet;
-    //const header = <Header
-    //        color="transparent"
-    //        brand="Tele Vet"
-    //        rightLinks={<HeaderLinks />}
-    //        fixed
-    //        changeColorOnScroll={{
-    //            height: 200,
-    //            color: "white"
-    //        }}
-    //        {...rest}
-    //    />
-    //}
+    useEffect(() => {
+        if (auth && id) {
+            dispatch(getVetById(id));
+        }
+    }, [])
+    const currentVet = vet ? vet : loggedInVet;
+
+    const handlePreview = (e) => {
+        if (e.target.files) {
+            const reader = new FileReader();
+            reader.addEventListener('load', (event) => {
+                setPreview(event.target.result);
+            });
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    }
+
+    const handleClose = () => {
+        setUploadDialogOpen(false);
+        setPreview(null);
+    };
+
+    const handleSubmit = (e) => {
+        if (preview) {
+            dispatch(addVetImageData(photoUploadAction, preview));
+        }
+        handleClose();
+    }
+
+    const handleAddPhoto = (e) => {
+        setPhotoUploadAction('PICTURE');
+        setUploadDialogOpen(true);
+    }
+
+    const handleAddProfilePicture = (e) => {
+        setPhotoUploadAction('PROFILE_PICTURE');
+        setUploadDialogOpen(true);
+    }
+
+    const handleAvailabilities = (e) => {
+        SetAvailabilitiesOpen(true);
+    }
+
+    const handleCloseAvailabilities = (e) => {
+        SetAvailabilitiesOpen(false);
+    }
+
+    const myRef = useRef(null);
+
+    const handleCloseAndSaveAvailabilities = () => {
+        SetAvailabilitiesOpen(false);
+        myRef.current.handleSubmission(id);
+    }
+
+        const startVideoConference = () => {
+            SetVideoConferenceOpen(true)
+        }
+
+        const closeVideoConference = () => {
+            SetVideoConferenceOpen(false)
+        }
+
+    if (!loggedInVet && !vet) {
+        return (
+            <div className={classes.spinner}>
+                <LinearProgress />
+            </div>
+        )
+    }
+
     return (
         <div>
             <Header
                 color="transparent"
                 brand="Tele Vet"
-                rightLinks={<HeaderLinks />}
+                rightLinks={<HeaderLinks auth={auth}
+                                         id={currentVet._id ? currentVet._id : id}
+                                         handleAddPhoto={handleAddPhoto}
+                                         handleAddProfilePicture={handleAddProfilePicture}
+                                         handleAvailabilities={handleAvailabilities}
+                                         startVideoConference={startVideoConference}
+                />}
                 fixed
                 changeColorOnScroll={{
                     height: 200,
                     color: "white"
-                }}
-            />
-            <Parallax small filter image={ currentVet.coverPhoto } />
+                }}/>
+            <Parallax small filter image={currentVet.coverPhoto}/>
             <div className={classNames(classes.main, classes.mainRaised)}>
                 <div>
                     <div className={classes.container}>
@@ -70,18 +160,18 @@ export default function VetProfilePage(vet) {
                                         <img
                                             alt="..."
                                             className={imageClasses}
-                                            src={ currentVet.profilePicture }
+                                            src={currentVet.profilePicture}
                                             style={{"max-width": "300px"}}
-                                        />                                    </div>
+                                        /></div>
                                     <div className={classes.name}>
-                                        <h3 className={classes.title}>{currentVet.businessName }</h3>
+                                        <h3 className={classes.title}>{currentVet.businessName}</h3>
                                     </div>
                                 </div>
                             </GridItem>
                         </GridContainer>
                         <div className={classes.description}>
                             <p>
-                                { currentVet.description }
+                                {currentVet.description}
                             </p>
                         </div>
                         <GridContainer justify="center">
@@ -96,21 +186,21 @@ export default function VetProfilePage(vet) {
                                             tabContent: (
                                                 <GridContainer justify="center">
                                                     <GridItem xs={12} sm={12} md={4}>
-                                                    { currentVet.pictures.map((imgSrc, index) => {
-                                                        if (index <= 2) {
-                                                            return (<img
-                                                                alt="..."
-                                                                src={imgSrc}
-                                                                className={navImageClasses}
-                                                            />)
+                                                        {currentVet.pictures.map((imgSrc, index) => {
+                                                            if (index <= 2) {
+                                                                return (<img
+                                                                    alt="..."
+                                                                    src={imgSrc}
+                                                                    className={navImageClasses}
+                                                                />)
+                                                            }
+                                                            return null;
+                                                        })
                                                         }
-                                                        return null;
-                                                    })
-                                                    }
                                                     </GridItem>
                                                     <GridItem xs={12} sm={12} md={4}>
                                                         {currentVet.pictures.map((imgSrc, index) => {
-                                                            if (index > 2 && index <= 4) {
+                                                            if (index > 2) {
                                                                 return (<img
                                                                     alt="..."
                                                                     src={imgSrc}
@@ -130,32 +220,7 @@ export default function VetProfilePage(vet) {
                                             tabIcon: EventIcon,
                                             tabContent: (
                                                 <GridContainer justify="center">
-                                                    <Booking/>
-                                                    {/*<ReactCardFlip isFlipped={flipped} flipDirection="horizontal">*/}
-                                                    {/*    <MuiPickersUtilsProvider utils={DateFnsUtils}>*/}
-                                                    {/*        <DatePicker style={{textAlign: 'center'}}*/}
-                                                    {/*                    autoOk*/}
-                                                    {/*                    variant="static"*/}
-                                                    {/*                    openTo="date"*/}
-                                                    {/*                    value={date}*/}
-                                                    {/*                    onChange={(date) => {*/}
-                                                    {/*                        changeDate(date);*/}
-                                                    {/*                        setFlipped(true)*/}
-                                                    {/*                    }}*/}
-                                                    {/*        />*/}
-                                                    {/*        <Button className={classes.formButton} hidden={flipped} onClick={() => setFlipped(!flipped)}>{appointmentButtonText}</Button>*/}
-                                                    {/*    </MuiPickersUtilsProvider>*/}
-                                                    {/*    <MuiPickersUtilsProvider utils={DateFnsUtils}>*/}
-                                                    {/*        <TimePicker*/}
-                                                    {/*            autoOk*/}
-                                                    {/*            variant="static"*/}
-                                                    {/*            openTo="hours"*/}
-                                                    {/*            value={date}*/}
-                                                    {/*            onChange={changeDate}*/}
-                                                    {/*        />*/}
-                                                    {/*        <Button className={classes.formButton} hidden={!flipped} onClick={() => setFlipped(!flipped)}>{appointmentButtonText}</Button>*/}
-                                                    {/*    </MuiPickersUtilsProvider>*/}
-                                                    {/*</ReactCardFlip>*/}
+                                                    <Booking key1={currentVet.weeklyTimeBlocks}/>
                                                 </GridContainer>
                                             )
                                         },
@@ -194,6 +259,77 @@ export default function VetProfilePage(vet) {
                     </div>
                 </div>
             </div>
+            <Dialog open={uploadDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">Upload a Photo</DialogTitle>
+                <DialogContent>
+                    <CardMedia
+                        className={classes.cardMedia}
+                        image={preview}
+                        title={'preview'}
+                    />
+                    <DialogContentText>
+                        Upload a new photo
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleSubmit} color="primary">
+                        Upload
+                    </Button>
+                    <Button color="primary"
+                            variant="contained"
+                            component="label"
+                    >
+                        Browse
+                        <input
+                            type="file"
+                            style={{display: "none"}}
+                            onChange={handlePreview}
+                        />
+                    </Button>
+                </DialogActions>
+            </Dialog>
+            <Dialog fullScreen open={availabilities} onClose={handleCloseAvailabilities}
+            >
+                <AppBar className={classes.appBar}>
+                    <Toolbar>
+                        <IconButton edge="start" color="inherit" onClick={handleCloseAvailabilities}
+                                    aria-label="close">
+                            <CloseIcon/>
+                        </IconButton>
+                        <Typography variant="h6" className={classes.title}>
+                            Edit Hours of Operation
+                        </Typography>
+                        <Button autoFocus
+                                color="inherit"
+                                onClick={handleCloseAndSaveAvailabilities}
+                        >
+                            save
+                        </Button>
+                    </Toolbar>
+                </AppBar>
+                <TimePickers ref={myRef} />
+            </Dialog>
+            <Dialog fullScreen open={VideoConferenceOpen} onClose={closeVideoConference}
+            >
+                <AppBar className={classes.appBar}>
+                    <Toolbar>
+                        <IconButton edge="start" color="inherit" onClick={closeVideoConference}
+                                    aria-label="close">
+                            <CloseIcon/>
+                        </IconButton>
+                        <Typography variant="h6" className={classes.title}>
+                            Video Conference
+                        </Typography>
+                        <Button autoFocus color="inherit" onClick={closeVideoConference}>
+                            Leave Session
+                        </Button>
+                    </Toolbar>
+                </AppBar>
+                <VideoConference/>
+            </Dialog>
         </div>
     );
 }
