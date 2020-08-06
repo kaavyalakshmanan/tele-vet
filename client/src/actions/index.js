@@ -34,3 +34,4 @@ export const editVetProfile = (stateInput) => {
 
 export * from "./users";
 export * from "./vets";
+export * from "./email";

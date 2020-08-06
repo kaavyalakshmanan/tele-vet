@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 import ProductDescription from "./Sections/ProductDescription.jsx";
@@ -11,8 +11,24 @@ import Button from "../../material-ui-assets/components/CustomButtons/Button.js"
 import Parallax from "../../material-ui-assets/components/Parallax/Parallax.js";
 // Third party styles from https://www.creative-tim.com/
 import styles from "../../material-ui-assets/jss/material-kit-react/views/landingPage.js";
+import {useDispatch, useSelector} from "react-redux";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+import { setEmailSuccessFlag } from "../../actions";
 
 const useStyles = makeStyles(styles);
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+function getEmailFailedStatus(emailStatus) {
+  return emailStatus === 'failed';
+}
+
+function getEmailSuccessStatus(emailStatus) {
+  return emailStatus === 'success';
+}
 
 // EFFECTS: Renders the landing page
 // REQUIRED PROPS: None
@@ -20,6 +36,21 @@ const useStyles = makeStyles(styles);
 // CREDIT: This component is based on the free material-kit-ui from https://www.creative-tim.com/
 export default function LandingPage() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const emailStatus = useSelector(state => state.emailStatus);
+  const [emailFailedFlag, setEmailFailedFlag] = React.useState(getEmailFailedStatus(emailStatus));
+  const [emailSuccessFlag, setEmailSuccessFlag] = React.useState(getEmailSuccessStatus(emailStatus));
+
+  useEffect(() => {
+    setEmailFailedFlag(getEmailFailedStatus(emailStatus));
+    setEmailSuccessFlag(getEmailSuccessStatus(emailStatus));
+  });
+
+  const closeSnackBar = () => {
+    setEmailFailedFlag(false);
+    setEmailSuccessFlag(false);
+  }
+
   return (
     <div>
       <Parallax filter image={require("../../material-ui-assets/img/vet/cute_puppy_cover.jpg")}>
@@ -53,6 +84,16 @@ export default function LandingPage() {
           <WorkWithUs />
         </div>
       </div>
+      <Snackbar open={emailSuccessFlag} autoHideDuration={6000} onClose={closeSnackBar}>
+        <Alert onClose={closeSnackBar} severity="success">
+          Your registration request was sent successfully!
+        </Alert>
+      </Snackbar>
+      <Snackbar open={emailFailedFlag} autoHideDuration={6000} onClose={closeSnackBar}>
+        <Alert onClose={closeSnackBar} severity="error">
+          Oops, there was an issue sending your request.
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

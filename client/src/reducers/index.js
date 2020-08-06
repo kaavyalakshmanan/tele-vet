@@ -83,6 +83,15 @@ const imageReducer = (images = {}, action) => {
     return images;
 }
 
+const emailReducer = (status = null, action) => {
+    console.log(action);
+    if (action.type === 'SET_EMAIL_SUCCESS_FLAG') {
+        return action.status;
+    }
+    return status;
+}
+
+
 export default combineReducers({
     user: userReducer,
     navBarHidden: navBarReducer,
@@ -90,6 +99,7 @@ export default combineReducers({
     userDashboardSidebarOpen: userDashboardViewReducer,
     vetProfiles: vetProfileReducer,
     images: imageReducer,
-    vetList: vetListReducer
+    vetList: vetListReducer,
+    emailStatus: emailReducer
 
 });

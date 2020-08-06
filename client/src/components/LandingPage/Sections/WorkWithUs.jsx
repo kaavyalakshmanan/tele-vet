@@ -6,6 +6,9 @@ import CustomInput from "../../../material-ui-assets/components/CustomInput/Cust
 import Button from "../../../material-ui-assets/components/CustomButtons/Button.js";
 // Third party styles from https://www.creative-tim.com/
 import styles from "../../../material-ui-assets/jss/material-kit-react/views/landingPageSections/workStyle.js";
+import {sendEmail} from "../../../actions/email";
+import TextField from "@material-ui/core/TextField";
+import {useDispatch} from "react-redux";
 
 const useStyles = makeStyles(styles);
 
@@ -13,6 +16,20 @@ const useStyles = makeStyles(styles);
 // CREDIT: Based on a free material-kit-react template from https://www.creative-tim.com/
 export default function WorkWithUs() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const [name, setName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [msg, setMsg] = React.useState('');
+
+  const handleSendEmail = () => {
+    console.log('sending Email');
+    dispatch(sendEmail(JSON.stringify({
+      name: name,
+      email: email,
+      message: msg
+    })));
+  }
+
   return (
     <div className={classes.section}>
       <GridContainer justify="center">
@@ -31,6 +48,9 @@ export default function WorkWithUs() {
                   formControlProps={{
                     fullWidth: true
                   }}
+                  inputProps = {{
+                    onChange: (e) => { setName(e.target.value)}
+                  }}
                 />
               </GridItem>
               <GridItem xs={12} sm={12} md={6}>
@@ -39,6 +59,9 @@ export default function WorkWithUs() {
                   id="email"
                   formControlProps={{
                     fullWidth: true
+                  }}
+                  inputProps = {{
+                    onChange: (e) => { setEmail(e.target.value)}
                   }}
                 />
               </GridItem>
@@ -53,9 +76,11 @@ export default function WorkWithUs() {
                   multiline: true,
                   rows: 5
                 }}
-              />
+                inputProps = {{
+                  onChange: (e) => { setMsg(e.target.value)}
+                }}              />
               <GridItem xs={12} sm={12} md={4}>
-                <Button color="primary">Send Message</Button>
+                <Button color="primary" onClick={handleSendEmail}>Send Message</Button>
               </GridItem>
             </GridContainer>
           </form>

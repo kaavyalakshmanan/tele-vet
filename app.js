@@ -9,6 +9,7 @@ const cors = require("cors");
 const vetsRouter = require('./routes/vets');
 const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
+const emailRouter = require('./routes/email');
 
 // initialize express app
 const app = express();
@@ -59,6 +60,7 @@ app.use(function(req, res, next) {
 app.use('/vets', vetsRouter);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
+app.use('/email', emailRouter);
 
 
 // catch 404 and forward to error handler
