@@ -1,11 +1,36 @@
 # Tele-Vet
 
-## Who are we?
+## Who we are:
 
-- Kaavya: R2Q7
-- Amy: U5X9A
-- Francois: J1H1B
-- Nick: T9F2B
+[Kaavya](https://www.linkedin.com/in/kaavlaks/): R2Q7
+ - Worked on: 
+   - User authentication
+   - Creating the login and registration pages
+   - Helped with creating user dashboard
+   - Helped team with debugging other features/components
+   - Helped keep team on track with deliverables during meetings
+   - Contributed to code refactoring and clean up 
+   - Helped deploy to Heroku
+
+[Amy](https://www.linkedin.com/in/amy-george-ubc/): U5X9A
+ - Worked on:
+   - Google Maps API integration
+   - Built the maps display component
+   - Added markers with vet info and ratings
+   - Pulled json data for local vets from Google maps API
+   - Centered map to user location
+   - Supported team with documentation and testing
+   
+[Francois](https://www.linkedin.com/in/charettefrancois/): J1H1B
+ - Worked on:
+   - Implemented the video conferencing components
+   - Built the user/vet appointment booking system
+   - Helped with the API, including the collection models
+   - Defined the project using wireframes and flow maps
+   
+[Nick](https://www.linkedin.com/in/nipeters/): T9F2B
+ - Worked on:
+   - SO MUCH STUFF
 
 ## Description of App:
 
@@ -93,3 +118,19 @@ Vets can upload images, fill out their availability for users to book, and start
 
 ![initialSketches](public/resources/prototypes/sketches.jpg)
 ![initialSketches2](public/resources/prototypes/sketches2.jpg)
+
+## Tech from Units 1 - 5:
+1. HTML/CSS/JS:
+On frontend was built with React, we used the html, css, and Javascript from workshop 1 as a foundation for creating and styling our components. This workshop was primarily important in understanding how to style components. We primarily used React hooks to style, but this is very similar to traditional CSS.
+2. REACT/REDUX:
+This was one of the most important workshops for us. Our frontend is built with React and we use Redux to manage state. The three most important state objects are the current user, current vet, and the vet list.
+3. MongoDB:
+Tele-Vet uses a MongoDB Atlas cloud database to store pet owner and vet information. We have two collections. The vet collection stores a list of vet objects, each that represent a single vet that has "registered" for our service. Users can view these vets on the find a vet page. The user collection stores a list of user objects. Each user can log in, view vets and upload photos and documents about their pets.
+4. Node & Express:
+Our backend API is an express server written in Node. We use Thunk to make api calls and then use the api to communicate with our database.
+5. Release Engineering: Our App is deployed on Heroku at https://tele-vet.herokuapp.com/. Achieving this task required rafactoring our app directory structure and a fair amount of debugging.
+
+## Next steps:
+There are two features that we would like to include in future iterations of Tele-Vet. Messaging is the big feature that we were not able to implement. It would serve as another channel for an authenticated vet to communicate with users. 
+
+The second feature we would like to add is the ability for a vet to be properly authenticated at login. We felt that having two types of authenticated users went a bit above and beyond the scope of this course and we are excited to add it in the next steps.
