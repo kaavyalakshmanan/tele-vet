@@ -1,34 +1,28 @@
-import React, {useEffect, useState} from "react";
-// nodejs library that concatenates classes
+import React, {useState} from "react";
 import classNames from "classnames";
-// @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-// @material-ui/icons
 import Camera from "@material-ui/icons/Camera";
-import Palette from "@material-ui/icons/Palette";
-import Favorite from "@material-ui/icons/Favorite";
 import EventIcon from "@material-ui/icons/Event";
 import MailIcon from "@material-ui/icons/Mail";
 
+// Third Party components from https://www.creative-tim.com/
+import Button from "../../material-ui-assets/components/CustomButtons/Button.js";
+import GridContainer from "../../material-ui-assets/components/Grid/GridContainer.js";
+import GridItem from "../../material-ui-assets/components/Grid/GridItem.js";
+import NavPills from "../../material-ui-assets/components/NavPills/NavPills.js";
+import Parallax from "../../material-ui-assets/components/Parallax/Parallax.js";
 
-// core components
-import Button from "../material-kit/CustomButtons/Button.js";
-import GridContainer from "../material-kit/Grid/GridContainer.js";
-import GridItem from "../material-kit/Grid/GridItem.js";
-import NavPills from "../material-kit/NavPills/NavPills.js";
-import Parallax from "../material-kit/Parallax/Parallax.js";
-
-import styles from "../../assets/jss/material-kit-react/views/profilePage.js";
-import {DatePicker, TimePicker} from "@material-ui/pickers";
-import {MuiPickersUtilsProvider} from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
-import ReactCardFlip from "react-card-flip";
+// Third party styles from https://www.creative-tim.com/
+import styles from "../../material-ui-assets/jss/material-kit-react/views/profilePage.js";
 import Header from "./Header/Header";
 import HeaderLinks from "./Header/HeaderLinks";
 import Booking from "./booking/Booking";
 
 const useStyles = makeStyles(styles);
 
+// EFFECTS: Renders the vet profile page
+// REQUIRED PROPS: vet -- The vet object to be rendered
+// LOCATION: /find/vets
 export default function VetProfilePage(vet) {
     const classes = useStyles();
     const imageClasses = classNames(

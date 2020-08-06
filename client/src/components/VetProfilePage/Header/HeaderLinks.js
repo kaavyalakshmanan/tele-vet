@@ -15,14 +15,14 @@ import Tooltip from "@material-ui/core/Tooltip";
 import {Apps, CloudDownload, FeaturedVideo} from "@material-ui/icons";
 
 // core components
-import CustomDropdown from "../../../components/material-kit/CustomDropdown/CustomDropdown.js";
-import Button from "../../../components/material-kit/CustomButtons/Button.js";
+import CustomDropdown from "../../../material-ui-assets/components/CustomDropdown/CustomDropdown.js";
+import Button from "../../../material-ui-assets/components/CustomButtons/Button.js";
 
-import styles from "../../../assets/jss/material-kit-react/components/headerLinksStyle.js";
+import styles from "../../../material-ui-assets/jss/material-kit-react/components/headerLinksStyle.js";
 
 const useStyles = makeStyles(styles);
 
-export default function HeaderLinks(props) {
+export default function HeaderLinks() {
     const classes = useStyles();
     return (
         <List className={classes.list}>
