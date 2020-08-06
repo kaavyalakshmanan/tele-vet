@@ -147,7 +147,7 @@ export default function SignIn({type}) {
                 </Button>
                 <Grid container>
                   <Grid item>
-                    <Link href="PetSignUp" variant="body2">
+                    <Link href="/petsignup" variant="body2">
                       {"Don't have an account? Sign Up as a Pet Owner"}
                     </Link>
                   </Grid>
