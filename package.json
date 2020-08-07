@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node bin/www",
     "deploy": "npm install && node bin/www",
-    "heroku-postbuild": "cd client && npm install && npm run-script build && npm start"
+    "heroku-postbuild": "cd client && npm install && npm run build && npm start"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
