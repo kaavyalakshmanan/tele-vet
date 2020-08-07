@@ -7,8 +7,8 @@ const nodemailer = require('nodemailer');
 // This is to avoid creating security alerts by spamming real email addresses
 function sendMail(content, target="thetelevet@gmail.com") {
     const transport = nodemailer.createTransport({
-        host: "smtp.gmail.io",
-        port: 2525,
+        host: "smtp.gmail.com",
+        port: 465,
         // auth: {
         //     user: process.env.EMAIL_ADDRESS,
         //     pass: process.env.EMAIL_PASSWORD
@@ -19,7 +19,7 @@ function sendMail(content, target="thetelevet@gmail.com") {
         }
     });
     const mailOptions = {
-        from: "mail@televet.com",
+        from: "thetelevet@gmail.com",
         to: target,
         subject: 'NEW VET REQUEST',
         text: content
@@ -36,7 +36,7 @@ function sendMail(content, target="thetelevet@gmail.com") {
 router.post('/', (req, res) => {
     console.log('got the request');
     try {
-        sendMail(req.body.content)
+        sendMail(JSON.stringify(req.body));
         return res.status(200).send('Email sent successfully');
     } catch (err) {
         return res.status(400).send('Email failed to send');
