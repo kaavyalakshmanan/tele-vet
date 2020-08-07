@@ -65,8 +65,8 @@ export const loginUser = user => {
                 dispatch(receiveUser(newUser));
             })
             .catch(err => {
-                // TODO: Remove before presentation
-                alert(err);
+                console.error('error');
+                window.location.replace('/');
             });
     }
 }
@@ -99,8 +99,7 @@ export const updateUser = user => {
                 console.log(response);
             })
             .catch(err => {
-                // TODO: Remove before presentation
-                alert("Your data did not save correctly. Please check your connection.")
+                console.error(err);
             });
     }
 }
