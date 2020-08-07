@@ -56,16 +56,13 @@ app.use(function(req, res, next) {
   next();
 });
 
-// TODO: Uncomment for deployment
-// app.use('/', indexRouter);
+app.use('/', indexRouter);
 
 // Use Routes
 app.use('/vets', vetsRouter);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 app.use('/email', emailRouter);
-app.use('/index', indexRouter);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
