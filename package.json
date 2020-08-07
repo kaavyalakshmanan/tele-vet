@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node bin/www",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "deploy": "npm install && node bin/www",
+    "heroku-postbuild": "cd client && npm install && npm run-script build && npm start"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
