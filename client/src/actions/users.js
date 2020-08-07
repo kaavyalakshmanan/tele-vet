@@ -59,7 +59,7 @@ export const logoutUser = () => {
 export const loginUser = user => {
     return dispatch => {
         dispatch(requestUser());
-        return axios.get(API_BASE_URL + "/auth/UserDasboard", tokenConfig(user))
+        return axios.get(API_BASE_URL + "/auth/user", tokenConfig(user))
             .then(response => {
                 const newUser = Object.assign({}, response.data, {authData: user});
                 dispatch(receiveUser(newUser));
@@ -94,7 +94,7 @@ export const updateUser = user => {
     return dispatch => {
         dispatch(requestUser());
         dispatch(receiveUser(user));
-        return axios.put(API_BASE_URL + "/auth/UserDasboard", JSON.stringify(user), tokenConfig(user.authData))
+        return axios.put(API_BASE_URL + "/auth/user", JSON.stringify(user), tokenConfig(user.authData))
             .then((response) => {
                 console.log(response);
             })
