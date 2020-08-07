@@ -1,5 +1,23 @@
 import { combineReducers } from 'redux';
 
+const initialVet = {
+    coverPhoto: '',
+    username: '',
+    firstName: '',
+    lastName: '',
+    description: '',
+    email: '',
+    businessName: '',
+    profilePicture: '',
+    pictures: [],
+    reviews: {},
+    rating: 0,
+    facebook: '',
+    twitter: '',
+    geometry: {},
+    weeklyTimeBlocks: []
+}
+
 const userReducer = (user = {}, action) => {
     switch(action.type) {
         case 'RECEIVE_USER':
@@ -36,7 +54,14 @@ const userDashboardViewReducer = (view = '', action) => {
     return view;
 }
 
-const vetProfileReducer = (vetProfiles = {}, action) => {
+const currentVetReducer = (vet = null, action) => {
+    if (action.type === 'RECEIVE_VET') {
+        return action.vet;
+    }
+    return vet;
+}
+
+const vetProfileReducer = (vetProfiles = initialVet, action) => {
     if (action.type === "EDIT_VET_PROFILE") {
         return vetProfiles.push(action.payload)
     }
@@ -100,6 +125,6 @@ export default combineReducers({
     vetProfiles: vetProfileReducer,
     images: imageReducer,
     vetList: vetListReducer,
-    emailStatus: emailReducer
-
+    emailStatus: emailReducer,
+    loggedInVet: currentVetReducer
 });

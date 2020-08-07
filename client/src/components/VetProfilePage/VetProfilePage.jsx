@@ -64,6 +64,7 @@ export default function VetProfilePage({vet, auth, id}) {
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
     useEffect(() => {
         if (auth && id) {
+            console.log('Got auth and id');
             dispatch(getVetById(id));
         }
     }, [])
