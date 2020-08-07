@@ -11,6 +11,7 @@ const vetsRouter = require('./routes/vets');
 const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
 const emailRouter = require('./routes/email');
+const indexRouter = require('./routes/index');
 
 // initialize express app
 const app = express();
@@ -63,6 +64,7 @@ app.use('/vets', vetsRouter);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 app.use('/email', emailRouter);
+app.use('/index', indexRouter);
 
 
 // catch 404 and forward to error handler
@@ -82,7 +84,7 @@ app.use(function(err, req, res, next) {
 });
 
 // Serve static third-party-assets-material-ui if we are in production
-if (.NODEprocess.env_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   // Set static folder
   app.use(express.static('client/build'));
 
