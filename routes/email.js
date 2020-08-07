@@ -9,13 +9,17 @@ function sendMail(content, target="thetelevet@gmail.com") {
     const transport = nodemailer.createTransport({
         host: "smtp.gmail.io",
         port: 2525,
+        // auth: {
+        //     user: process.env.EMAIL_ADDRESS,
+        //     pass: process.env.EMAIL_PASSWORD
+        // }
         auth: {
-            user: process.env.EMAIL_ADDRESS,
-            pass: process.env.EMAIL_PASSWORD
+            user: "thetelevet@gmail.com",
+            pass: "securevoldy436"
         }
     });
     const mailOptions = {
-        from: "43e90e571d-face75@inbox.mailtrap.io",
+        from: "mail@televet.com",
         to: target,
         subject: 'NEW VET REQUEST',
         text: content

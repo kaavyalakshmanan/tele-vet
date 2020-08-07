@@ -16,7 +16,8 @@ const emailRouter = require('./routes/email');
 const app = express();
 
 // initialize mongoDB config
-const db = process.env.MONGO_URI
+// const db = process.env.MONGO_URI
+const db = config.get('mongoURI');
 
 // Adding mongoose
 mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
@@ -81,7 +82,7 @@ app.use(function(err, req, res, next) {
 });
 
 // Serve static third-party-assets-material-ui if we are in production
-if (process.env.NODE_ENV === 'production') {
+if (.NODEprocess.env_ENV === 'production') {
   // Set static folder
   app.use(express.static('client/build'));
 
