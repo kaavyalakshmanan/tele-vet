@@ -51,6 +51,28 @@ https://tele-vet.herokuapp.com/
 
 Tele-Vet is a virtual health care web-app that connects vets with their furry patients. A user can view vet profiles by location rating or by proximity to the user. Users can also upload relevant documents to their pet's care (images, text files, etc), book an appointment and video conference with a vet to get the care they need, even during a global pandemic.
 
+## Note for the grader:
+
+There are two types of users in this app, veterinarians and pet owners.
+
+#### Pet Owners:
+    
+This is pretty self-explanatory. Navigate to the log in page, create an account, and start editing your profile
+
+#### Veterinarians:    
+
+Tele-Vet will not allow just anyone to register as a Vet. In reality Vets would need to apply to be part of the app and properly vetted before an account is created. That said, since this is a university
+project we created six mock vet profiles that the user can view form the find a vet page. These vet users can also log in and modify their profiles. To see this functionality follow the steps below:
+1. visit any vet profile page from the 'find vets in your area' page
+2. click on the login link in the "Your Clinic?" dropdown menu
+3. Enter any of the following username/password pairs:
+    - username: "sok", password: "sok"
+    - username: "nixit", password: "nixit"
+    - username: "mirage", password: "mirage"
+    - username: "dannadoug", password: "dannadoug"
+    - username: "alexwWasHere", password: alexWasHere,
+    - username: "oli", password: "oli"
+4. after logging in you are able to change the profile picture, add photos, and edit the vet's availability
 
 ## What type of data we store on MongoDB:
 
