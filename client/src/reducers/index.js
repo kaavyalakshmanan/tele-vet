@@ -55,7 +55,11 @@ const userDashboardViewReducer = (view = '', action) => {
 }
 
 const currentVetReducer = (vet = null, action) => {
-    if (action.type === 'RECEIVE_VET') {
+    if (action.type === 'UPDATE_VET_PROFILE_PICTURE') {
+        return Object.assign({}, vet, {profilePicture: action.image});
+    } else if (action.type === 'PICTURE') {
+        return Object.assign({}, vet, {pictures: vet.pictures.concat(action.image)});
+    } else if (action.type === 'RECEIVE_VET') {
         return action.vet;
     }
     return vet;
