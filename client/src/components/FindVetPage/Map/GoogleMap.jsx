@@ -4,7 +4,7 @@ import GoogleMapReact from 'google-map-react';
 
 const Wrapper = styled.main`
     height: 90vh;
-    width: 100vw;
+    width: 90vw;
     display: flex;
     
 `;

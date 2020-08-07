@@ -22,10 +22,7 @@ export default function ProductDescription() {
         <GridItem xs={12} sm={12} md={8}>
           <h2 className={classes.title}>Let{"'"}s talk product</h2>
           <h5 className={classes.description}>
-            Tele-Vet is an App that allows you to connect with your vet. Pet owners, we understand that Canada is big,
-            people living in remote northern regions often have to travel hundreds of kilometers to visit a vet. Vets,
-            we understand the marketing is important and we want to help you reach pet owners that need your services. Join Tele-Vet
-            as a vet by sending a request below.
+            Tele-Vet is a virtual health care web-app that connects vets with their furry patients. A user can view vet profiles by location rating or by proximity to the user. Users can also upload relevant documents to their pet's care (images, text files, etc), book an appointment and video conference with a vet to get the care they need, even during a global pandemic.
           </h5>
         </GridItem>
       </GridContainer>
