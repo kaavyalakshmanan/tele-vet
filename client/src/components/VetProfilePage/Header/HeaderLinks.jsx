@@ -49,12 +49,6 @@ export default function HeaderLinks({auth, id, handleAddProfilePicture, handleAd
             <a
                 target="_blank"
                 className={classes.dropdownLink}
-            >
-                Review This Vet
-            </a>,
-            <a
-                target="_blank"
-                className={classes.dropdownLink}
                 href={'/login/vet' + '?id=' + id}
             >
                 Login

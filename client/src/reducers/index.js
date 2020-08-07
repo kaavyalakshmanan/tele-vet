@@ -55,22 +55,18 @@ const userDashboardViewReducer = (view = '', action) => {
 }
 
 const currentVetReducer = (vet = null, action) => {
-    if (action.type === 'UPDATE_VET_PROFILE_PICTURE') {
-        return Object.assign({}, vet, {profilePicture: action.image});
-    } else if (action.type === 'PICTURE') {
-        return Object.assign({}, vet, {pictures: vet.pictures.concat(action.image)});
-    } else if (action.type === 'RECEIVE_VET') {
+    if (action.type === 'RECEIVE_VET') {
         return action.vet;
     }
     return vet;
 }
 
-const vetProfileReducer = (vetProfiles = initialVet, action) => {
-    if (action.type === "EDIT_VET_PROFILE") {
-        return vetProfiles.push(action.payload)
-    }
-    return vetProfiles
-}
+// const vetProfileReducer = (vetProfiles = initialVet, action) => {
+//     if (action.type === "EDIT_VET_PROFILE") {
+//         return vetProfiles.push(action.payload)
+//     }
+//     return vetProfiles
+// }
 
 const vetListReducer = (vetList = [], action) => {
     if (action.type === 'UPDATE_VET_LIST') {
@@ -126,7 +122,7 @@ export default combineReducers({
     navBarHidden: navBarReducer,
     userDashboardView: userDashboardViewReducer,
     userDashboardSidebarOpen: userDashboardViewReducer,
-    vetProfiles: vetProfileReducer,
+    // vetProfiles: vetProfileReducer,
     images: imageReducer,
     vetList: vetListReducer,
     emailStatus: emailReducer,

@@ -1,11 +1,7 @@
 import React from "react";
 import DateFnsUtils from '@date-io/date-fns';
-import {
-    MuiPickersUtilsProvider,
-    KeyboardTimePicker,
-} from '@material-ui/pickers';
+import {MuiPickersUtilsProvider,} from '@material-ui/pickers';
 import ScheduleSelector from 'react-schedule-selector'
-import {updateVet} from "../../../actions";
 
 class TimePickers extends React.Component {
     constructor(props) {
@@ -23,10 +19,11 @@ class TimePickers extends React.Component {
     }
 
     handleTimeslotsChange = newSchedule => {
+        console.log(newSchedule);
         this.setState({schedule: newSchedule})
     }
 
-    handleSubmission = (id) => {
+    handleSubmission = () => {
         const monday = [];
         const tuesday = [];
         const wednesday = [];
@@ -39,7 +36,6 @@ class TimePickers extends React.Component {
         helperSchedule.map((selected) => {
             if (String(selected).substring(0, 3) === "Mon") {
                 monday.push(String(selected).substring(16, 21))
-
             } else if (String(selected).substring(0, 3) === "Tue") {
                 tuesday.push(String(selected).substring(16, 21))
             } else if (String(selected).substring(0, 3) === "Wed") {
@@ -53,10 +49,14 @@ class TimePickers extends React.Component {
             } else if (String(selected).substring(0, 3) === "Sun") {
                 sunday.push(String(selected).substring(16, 21))
             }
-        })
-        this.setState({weeklyTimeBlocks: temp}, () => {
-                updateVet(id, temp)
-        })
+        });
+        console.log('helperSchedule');
+        console.log(helperSchedule)
+        console.log(temp);
+        this.props.submitTimeBlocks(temp);
+        // this.setState({weeklyTimeBlocks: temp}, () => {
+        //         updateVet(id, temp)
+        // })
     }
 
     handleInfoChange = (field, event) => {

@@ -15,7 +15,7 @@ import Parallax from "../../material-ui-assets/components/Parallax/Parallax.js";
 import styles from "../../material-ui-assets/jss/material-kit-react/views/profilePage.js";
 import Header from "./Header/Header";
 import HeaderLinks from "./Header/HeaderLinks";
-import {addVetImageData, getVetById, receiveVet} from "../../actions";
+import {addVetImageData, getVetById, receiveVet, updateVetTimeBlocks} from "../../actions";
 import {useDispatch, useSelector} from "react-redux";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -61,6 +61,15 @@ export default function VetProfilePage({vet, auth, id}) {
     const [availabilities, SetAvailabilitiesOpen] = useState(false);
     const [VideoConferenceOpen, SetVideoConferenceOpen] = useState(false);
     const [preview, setPreview] = React.useState(null);
+    // const [weeklyTimeBlocks, setWeeklyTimeBlocks] = useState(
+    //     [["17:00", "18:00", "19:00"],
+    //     ["17:00", "18:00", "19:00"],
+    //     ["17:00", "18:00", "19:00"],
+    //     ["17:00", "18:00", "19:00"],
+    //     ["17:00", "18:00", "19:00"],
+    //     ["17:00", "18:00", "19:00"],
+    //     ["17:00", "18:00", "19:00"]]);
+    // const [schedule, setSchedule] = useState([]);
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
     useEffect(() => {
         if (auth && id) {
@@ -85,9 +94,9 @@ export default function VetProfilePage({vet, auth, id}) {
         setPreview(null);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmitImage = (e) => {
         if (preview) {
-            dispatch(addVetImageData(photoUploadAction, preview));
+            dispatch(addVetImageData(photoUploadAction, preview, loggedInVet));
         }
         handleClose();
     }
@@ -117,18 +126,33 @@ export default function VetProfilePage({vet, auth, id}) {
         myRef.current.handleSubmission(id);
     }
 
-        const startVideoConference = () => {
-            SetVideoConferenceOpen(true)
-        }
+    const startVideoConference = () => {
+        SetVideoConferenceOpen(true)
+    }
 
-        const closeVideoConference = () => {
-            SetVideoConferenceOpen(false)
-        }
+    const closeVideoConference = () => {
+        SetVideoConferenceOpen(false)
+    }
+
+    // const handleSetTimeBlocks = timeBlocks => {
+    //     setWeeklyTimeBlocks(timeBlocks);
+    // }
+    //
+    // const handleSetSchedule = schedule => {
+    //     setSchedule(schedule);
+    // }
+
+    const handleSubmitTimeBlocks = weeklyTimeBlocks => {
+        console.log('Submitting Time Blocks!!!!');
+        console.log(weeklyTimeBlocks);
+        console.log(loggedInVet);
+        dispatch(updateVetTimeBlocks(weeklyTimeBlocks, loggedInVet));
+    }
 
     if (!loggedInVet && !vet) {
         return (
             <div className={classes.spinner}>
-                <LinearProgress />
+                <LinearProgress/>
             </div>
         )
     }
@@ -276,7 +300,7 @@ export default function VetProfilePage({vet, auth, id}) {
                     <Button onClick={handleClose} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={handleSubmit} color="primary">
+                    <Button onClick={handleSubmitImage} color="primary">
                         Upload
                     </Button>
                     <Button color="primary"
@@ -311,7 +335,7 @@ export default function VetProfilePage({vet, auth, id}) {
                         </Button>
                     </Toolbar>
                 </AppBar>
-                <TimePickers ref={myRef} />
+                <TimePickers ref={myRef} submitTimeBlocks={handleSubmitTimeBlocks} />
             </Dialog>
             <Dialog fullScreen open={VideoConferenceOpen} onClose={closeVideoConference}
             >
