@@ -1,173 +1,133 @@
-# tele-vet
+# Tele-Vet
 
-## Who are we?
+https://tele-vet.herokuapp.com/
 
-- Kaavya: R2Q7
-- Amy: U5X9A
-- Francois: J1H1B
-- Nick: T9F2B
 
-## Who is this for?
+## Who we are:
 
-Tele-Vet is a tele-health web app designed to connect vets with their furry patients. A user can view vet profile pages by location, upload relevant documents (images, text files, etc), and video conference with a vet.
+[Kaavya](https://www.linkedin.com/in/kaavlaks/): R2Q7
+ - Worked on: 
+   - Implemented user authentication
+   - Created the login and registration pages
+   - Incorporated JWS & Bcryptjs
+   - Helped create user dashboard
+   - Debugged many features/components
+   - Kept team on track with deliverables during meetings
+   - Took minutes during all meetings
+   - Contributed to code refactoring and clean up 
+   - Helped deploy to Heroku
 
-## What will our app do?
+[Amy](https://www.linkedin.com/in/amy-george-ubc/): U5X9A
+ - Worked on:
+   - Google Maps API integration
+   - Built the maps display component
+   - Added markers with vet info and ratings
+   - Pulled json data for local vets from Google maps API
+   - Centered map to user location
+   - Supported team with documentation and testing
+   - Helped debug Heroku deployment
+   - Wrote biweekly scrum reports
+   - Set up the MongoDB database
+   
+[Francois](https://www.linkedin.com/in/charettefrancois/): J1H1B
+ - Worked on:
+   - Implemented the video conferencing components
+   - Built the user/vet appointment booking system
+   - Helped with the API, including the collection models
+   - Defined the project using wireframes and flow maps
+   - Designed the vet profile page 
+   
+[Nick](https://www.linkedin.com/in/nipeters/): T9F2B
+ - Worked on:
+   - Created the user dashboard
+   - Built landing page and refactored the vet profile page
+   - Designed and wrote the redux/thunk state control flow
+   - Assisted with implementing and debugging user authentication
+   - Refactored maps to pull vet profiles from the database
+   - Assisted in designing the user endpoints in the api
 
-It will connect vets and pet owners virtually with video conferencing and messaging.
-Pet owners can:
-- Undergo a pre-screening using a chatbot to indicate the level of urgency and preliminary info
-- Search for vets by location
-- Book an appointment with a vet
-- View a vet's availability
-- Message vets in real-time
-- Send and receive private messages to a message inbox
-- Upload images
-- Video conference with vets
-- View message log history with vets
-- Receive a summary of the appointment from the vet
-- Receive prescriptions from the vet that can be downloaded as a pdf for printing and collecting
 
-Vets can:
-- Send and receive private messages to a message inbox
-- View calendar and book patients through Google Calendar or Outlook or Apple Calendar
-- View message log history with patients 
-- Send notes and prescriptions
-- View patient uploaded images
-- View preliminary info on patients from pre-screening
-- View existing patient files
+## What our app does:
 
-## What type of data will we store?
+Tele-Vet is a virtual health care web-app that connects vets with their furry patients. A user can view vet profiles by location rating or by proximity to the user. Users can also upload relevant documents to their pet's care (images, text files, etc), book an appointment and video conference with a vet to get the care they need, even during a global pandemic.
+
+
+## What type of data we store on MongoDB:
 
 We will store patient profile data: 
 Pet Owners:
-- Name
-- Contact information
-- Address
-- Message History
-- List of pets
-
-Pets:
-- Name
-- Owner
-- Species
-- Breed
-- Address
-- Uploaded images
-- Files (patient history, prescription history, pre-existing conditions, etc)
+- [x] Name
+- [x] Authetication info
+- [x] Email address
+- [x] Password
+- [x] Images
+- [x] Appointments
+- [x] Message History
+- [x] Documents
 
 Vets:
-- Vet name
-- Clinic contact information
-- Vet clinic location
-- Address
-- Uploaded images of the clinic or staff
-- Staff profiles
-- Some certificate proving the vet is real
-- Message history
-- Prescription history etc
+- [x] Vet name
+- [x] Clinic name
+- [x] Clinic location & address
+- [x] Uploaded images of the clinic or staff
+- [x] Cover photo, profile picture, staff & pet pictures
+- [x] Vet profiles
+- [x] Email
+- [x] Rating
+- [x] Facebook & Twitter
+- [x] Username
+- [ ] Some certificate proving the vet is real
+- [ ] Message history
+- [ ] Prescription history etc
 
-## What will users be able to do with the data?
+## What users cando with the data:
 
-Pet owners can retrieve message log, prescriptions and uploaded images. Vets can retrieve message log, patient file, and uploaded images.
+Pet owners can view vet clinics by location or profile. Within this, they can view ratings and contact information. Users can also upload images of their pets, and book an appointment with a vet. 
+
+Vets can upload images, fill out their availability for users to book, and start video conferencing.
 
 ## Minimal Requirements
-- Database storage
-- User and vet accounts
-- external log-in manager
-- Search for vets by location (google map integration)
-- View a vet's availability
+- [x] Database storage
+- [x] User and vet accounts
+- [x] External log-in manager
+- [x] Search for vets by user's location
+- [x] Google Maps API integration
+- [x] Users can view a vet's availability
 
 ## Standard Requirements
-- Booking/viewing appointment
-- Send and receive private messages to a message inbox
-- Realtime messaging between patients and vets
-- Embedded video portal
-- Upload images
+- [x] Upload images
+- [x] Book an appointment with a vet
+- [x] Vets can select their availability in their calendar
+- [x] Video conferencing
+- [x] Realtime messaging between patients and vets
+- [ ] Send and receive private messages, images, and docs to a message inbox
+- View message log history with vets
+- Receive a summary of the appointment from the vet
+- Send notes and prescriptions
+- View patient uploaded images
+- View existing patient files
 
 ## Stretch Requirements
-- Integrate booking with external calendars (google Cal, Outlook, Apple Cal)
-- Payment integration
-- Pre-screening chatbot
+- [x] User authentication
+- [ ] Receive prescriptions from the vet that can be downloaded as a pdf for printing and collecting
+- [ ] Integrate booking with external calendars (google Cal, Outlook, Apple Cal)
+- [ ] Payment integration
+- [ ] Undergo a pre-screening using a chatbot to indicate the level of urgency and preliminary info
+- [ ] Vets can view preliminary info on patients from pre-screening
 
-## Breakdown of minimal requirements
-- Database Storage
-    1. Set up a database
-    2. Create a REST service in the backend that will provide endpoints for accessing the database, so we can access the
-        data with frontend AJAX requests.
 
-- external log-in manager
-    1. Choose an Oauth2.0 provider (Auth0 is free for up to 7k users https://auth0.com/). We don't want to manage this ourselves.
-    2. Set up account (details depend on provider).
-    3. Integrate into web app.
+## Tech from Units 1 - 5:
+1. HTML/CSS/JS:
+On frontend was built with React, we used the html, css, and Javascript from workshop 1 as a foundation for creating and styling our components. This workshop was primarily important in understanding how to style components. We primarily used React hooks to style, but this is very similar to traditional CSS.
+2. REACT/REDUX:
+This was one of the most important workshops for us. Our frontend is built with React and we use Redux to manage state. The three most important state objects are the current user, current vet, and the vet list.
+3. MongoDB:
+Tele-Vet uses a MongoDB Atlas cloud database to store pet owner and vet information. We have two collections. The vet collection stores a list of vet objects, each that represent a single vet that has "registered" for our service. Users can view these vets on the find a vet page. The user collection stores a list of user objects. Each user can log in, view vets and upload photos and documents about their pets.
+4. Node & Express:
+Our backend API is an express server written in Node. We use Thunk to make api calls and then use the api to communicate with our database.
+5. Release Engineering: Our App is deployed on Heroku at https://tele-vet.herokuapp.com/. Achieving this task required rafactoring our app directory structure and a fair amount of debugging.
 
-## Prototypes
+## Next steps:
+There are two features that we would like to include in future iterations of Tele-Vet. Messaging is the big feature that we were not able to implement. It would serve as another channel for an authenticated vet to communicate with users. 
 
-![initialSketches](public/resources/prototypes/sketches.jpg)
-![initialSketches2](public/resources/prototypes/sketches2.jpg)
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+The second feature we would like to add is the ability for a vet to be properly authenticated at login. We felt that having two types of authenticated users went a bit above and beyond the scope of this course and we are excited to add it in the next steps.
