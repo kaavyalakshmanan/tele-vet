@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require("mongoose");
 const path = require('path');
@@ -15,7 +16,7 @@ const emailRouter = require('./routes/email');
 const app = express();
 
 // initialize mongoDB config
-const db = config.get('mongoURI');
+const db = process.env.MONGO_URI
 
 // Adding mongoose
 mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })

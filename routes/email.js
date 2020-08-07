@@ -7,11 +7,11 @@ const nodemailer = require('nodemailer');
 // This is to avoid creating security alerts by spamming real email addresses
 function sendMail(content, target="thetelevet@gmail.com") {
     const transport = nodemailer.createTransport({
-        host: "smtp.mailtrap.io",
+        host: "smtp.gmail.io",
         port: 2525,
         auth: {
-            user: "b809824a26074b",
-            pass: "c80af9d5c521b4"
+            user: process.env.EMAIL_ADDRESS,
+            pass: process.env.EMAIL_PASSWORD
         }
     });
     const mailOptions = {

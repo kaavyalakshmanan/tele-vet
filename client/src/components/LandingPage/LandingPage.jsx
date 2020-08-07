@@ -58,9 +58,8 @@ export default function LandingPage() {
             <GridItem xs={12} sm={12} md={6}>
               <h1 className={classes.title}>Your Pet's Health Starts Here.</h1>
               <h4>
-                Your pet needs the best care possible. We know that.
-                  And you need to find the best values in your area.
-                  Tele-vet is here to connect you with more vet options.
+                Your pet needs the best care possible. We know that you need to find the best vets in your area.
+                  Tele-Vet is here to connect you with more vet options.
               </h4>
               <br />
               <Button

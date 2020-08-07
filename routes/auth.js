@@ -5,13 +5,14 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const config = require('config');
 const jwt = require('jsonwebtoken');
 // Authentication token
 const auth = require('../middleware/auth');
 
 // User Model
 const User = require("../models/userModel");
+
+const JWT_SECRET = process.env.JWT_SECRET;
 
 /* @route   POST /auth
    @desc    Authenticate login of user
@@ -38,7 +39,7 @@ router.post('/', (req, res) => {
                     // Sign user in using JWT token
                     jwt.sign(
                         {id: user.id},
-                        config.get('jwtSecret'),
+                        JWT_SECRET,
                         // Keep user logged in for 1 hour
                         {expiresIn: 3600}, 
                         (err, token) => {
@@ -87,7 +88,7 @@ router.put('/user', auth, (req, res, next) => {
                                 // Sign user in using JWT token
                                 jwt.sign(
                                     {id: user.id},
-                                    config.get('jwtSecret'),
+                                    JWT_SECRET,
                                     // Keep user logged in for 1 hour
                                     {expiresIn: 3600},
                                     (err, token) => {
