@@ -56,7 +56,7 @@ export default function LandingPage() {
         <div className={classes.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>
-              <h1 className={classes.title}>Your Pets health starts here.</h1>
+              <h1 className={classes.title}>Your Pet's health starts here.</h1>
               <h4>
                 Your pet needs the best care possible. We know that.
                   And you need to find the best values in your area.
