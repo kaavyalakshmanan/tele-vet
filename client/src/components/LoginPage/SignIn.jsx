@@ -31,6 +31,15 @@ function Copyright() {
   );
 }
 
+const vetUsernameMap = {
+  "sok": {password: "sok", id: "5f2ae458f12b9f14c50dfebf"},
+  "nixit": {password: "nixit", id: "5f2af4601c929d2604e33cce"},
+  "mirage": {password: "mirage", id: "5f2af7d21c929d2604e33cd1"},
+  "dannadoug": {password: "dannadoug", id: "5f2af93b1c929d2604e33cd2"},
+  "alexWasHere" : {password: "alexWasHere", id: "5f2afb5b1c929d2604e33cd3"},
+  "oli": {password: "oli", id: "5f2af2b01c929d2604e33ccd"}
+}
+
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
@@ -82,7 +91,11 @@ export default function SignIn({type}) {
     if (type === 'user') {
       window.location.replace(`/login?username=${username}&password=${password}`);
     } else {
-      window.location.replace(`/vet/dashboard?id=${urlParams.id}`);
+      if (vetUsernameMap[username] && vetUsernameMap[username].password === password) {
+        window.location.replace(`/vet/dashboard?id=${vetUsernameMap[username].id}`);
+      } else {
+        window.location.replace(`/login/vet?loginFailed=true`);
+      }
     }
   }
 

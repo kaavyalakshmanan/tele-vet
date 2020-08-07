@@ -1,8 +1,5 @@
-import React, {useState} from "react";
-import DeleteIcon from "@material-ui/icons/Delete";
-import IconButton from "@material-ui/core/IconButton";
+import React from "react";
 // react components for routing our app without refresh
-import { Link } from "react-router-dom";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -49,7 +46,7 @@ export default function HeaderLinks({auth, id, handleAddProfilePicture, handleAd
             <a
                 target="_blank"
                 className={classes.dropdownLink}
-                href={'/login/vet' + '?id=' + id}
+                href={'/login/vet'}
             >
                 Login
             </a>,
